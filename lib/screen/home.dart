@@ -1935,7 +1935,7 @@ class SmallChild extends StatelessWidget {
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height*0.1,),
                       Container(
-                        width: MediaQuery.of(context).size.width*0.7,
+                        width: MediaQuery.of(context).size.width*0.56,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
                           boxShadow: [
@@ -1995,7 +1995,7 @@ class SmallChild extends StatelessWidget {
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height*0.1,),
                       Container(
-                        width: MediaQuery.of(context).size.width*0.7,
+                        width: MediaQuery.of(context).size.width*0.56,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
                           boxShadow: [
