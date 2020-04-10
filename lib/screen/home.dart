@@ -169,7 +169,7 @@ class LargeChild extends StatelessWidget {
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
-                  fontSize: 25.0,
+                  fontSize: 30.0,
                 ),
               ),
               Container(
@@ -204,7 +204,7 @@ class LargeChild extends StatelessWidget {
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
-                  fontSize: 25.0,
+                  fontSize: 30.0,
                 ),
               ),
               Container(
@@ -343,6 +343,503 @@ class LargeChild extends StatelessWidget {
         ),
         SizedBox(height: 80.0,),// GAP
         Container(
+          child: Column(
+            children: <Widget>[
+              Text(
+                "EXPERIENCE",
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 30.0,
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width*0.0625,
+                child: Divider(
+                  color: Colors.white,
+                  thickness: 3.0,
+                )
+              ),
+              SizedBox(height:30.0),
+              Container(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal:200.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width*0.7,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0.0, 3.0),
+                                blurRadius: 6.0,
+                                color: Colors.black26
+                              )
+                            ]
+                          ),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Image.asset(
+                                    'assets/experience/gssoc.png',
+                                    width: 150.0,
+                                    height: 150.0,
+                                  ),
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'GSSOC\'20 Participant',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'GIRLSCRIPT',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          ),
+                                          SizedBox(width: MediaQuery.of(context).size.width*0.31,),
+                                          Text(
+                                            '03/20 to Present',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                      Text(
+                                        'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                        Container(
+                          width: MediaQuery.of(context).size.width*0.7,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0.0, 3.0),
+                                blurRadius: 6.0,
+                                color: Colors.black26
+                              )
+                            ]
+                          ),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Image.asset(
+                                    'assets/experience/jwoc.jfif',
+                                    width: 150.0,
+                                    height: 150.0,
+                                  ).showCursorOnHover,
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'JWOC Participant',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'JGEC Winter Of Code',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          ),
+                                          SizedBox(width: MediaQuery.of(context).size.width*0.25,),
+                                          Text(
+                                            '01/20 to 02/2020',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                      Text(
+                                        'Ranked 5th as a top contributor to Open Source projects on GitHub as a \nparticipant of JwoC (JGEC Winter of Code).',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                        Container(
+                          width: MediaQuery.of(context).size.width*0.7,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0.0, 3.0),
+                                blurRadius: 6.0,
+                                color: Colors.black26
+                              )
+                            ]
+                          ),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Image.asset(
+                                    'assets/experience/google.png',
+                                    width: 150.0,
+                                    height: 150.0,
+                                  ).showCursorOnHover,
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Build for Digital India Trainee',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'GOOGLE',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          ),
+                                          SizedBox(width: MediaQuery.of(context).size.width*0.33,),
+                                          Text(
+                                            '10/19 to 01/2020',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                      Text(
+                                        'Got selected as a ChangeMaker and developed a mobile application using \nFlutter and Dart and with Firebase and Google Cloud Platform Places API, under \nBuild For Digital India program.',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                        Container(
+                          width: MediaQuery.of(context).size.width*0.7,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0.0, 3.0),
+                                blurRadius: 6.0,
+                                color: Colors.black26
+                              )
+                            ]
+                          ),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Image.asset(
+                                    'assets/experience/QSwhite.png',
+                                    width: 150.0,
+                                    height: 150.0,
+                                  ).showCursorOnHover,
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Flutter Developer',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'QuickStay',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          ),
+                                          SizedBox(width: MediaQuery.of(context).size.width*0.32,),
+                                          Text(
+                                            '12/19 to Present',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                      Text(
+                                        'Developing a mobile application, using Flutter with Dart and Firebase as a \nbackend for authentication and storage of user data for the startup QuickStay.',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                        Container(
+                          width: MediaQuery.of(context).size.width*0.7,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0.0, 3.0),
+                                blurRadius: 6.0,
+                                color: Colors.black26
+                              )
+                            ]
+                          ),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Image.asset(
+                                    'assets/experience/ieee.png',
+                                    width: 150.0,
+                                    height: 150.0,
+                                  ).showCursorOnHover,
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Content Writer',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'IEEE CIET STUDENT BRANCH',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          ),
+                                          SizedBox(width: MediaQuery.of(context).size.width*0.23,),
+                                          Text(
+                                            '05/19 to Present',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                      Text(
+                                        'Created content for various events like Workshops, Hackathons, Expert Talk, and \nOrientation Program for freshers organised by IEEE CIET Student Branch.',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                        Container(
+                          width: MediaQuery.of(context).size.width*0.7,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0.0, 3.0),
+                                blurRadius: 6.0,
+                                color: Colors.black26
+                              )
+                            ]
+                          ),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Image.asset(
+                                    'assets/social/gfg2.png',
+                                    width: 150.0,
+                                    height: 150.0,
+                                  ).showCursorOnHover,
+                                  SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Campus Ambassador',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Text(
+                                            'GEEKSFORGEEKS',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          ),
+                                          SizedBox(width: MediaQuery.of(context).size.width*0.28,),
+                                          Text(
+                                            '06/19 to Present',
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.grey
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                      Text(
+                                        'Organizing and managing GeeksforGeeks presence in college fests and other \ntechnical events, and involving students from first to a final year to actively \nparticipate in GeeksforGeeks activities and contributions.',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+        SizedBox(height: 80.0,),//Gap
+        Container(
           width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.only(top:30.0),
@@ -376,7 +873,7 @@ class LargeChild extends StatelessWidget {
                       "PROJECTS",
                       style: TextStyle(
                         fontFamily: "Poppins",
-                        fontSize: 25.0,
+                        fontSize: 30.0,
                         color: Colors.white,
                         fontWeight: FontWeight.bold
                       ),
@@ -627,7 +1124,7 @@ class LargeChild extends StatelessWidget {
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
-                  fontSize: 25.0,
+                  fontSize: 30.0,
                 ),
               ),
               Container(
@@ -1172,6 +1669,397 @@ class SmallChild extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+          child: Column(
+            children: <Widget>[
+              Text(
+                "EXPERIENCE",
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 30.0,
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width*0.56,
+                child: Divider(
+                  color: Colors.white,
+                  thickness: 3.0,
+                )
+              ),
+              SizedBox(height:30.0),
+              Container(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.56,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(0.0, 3.0),
+                              blurRadius: 6.0,
+                              color: Colors.black26
+                            )
+                          ]
+                        ),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top:8.0,bottom: 8.0),
+                            child: Column(
+                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Image.asset(
+                                  'assets/experience/gssoc.png',
+                                  width: 150.0,
+                                  height: 150.0,
+                                ),
+                                SizedBox(width: MediaQuery.of(context).size.width*0.055,),
+                                Text(
+                                  'GSSOC\'20 Participant',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                Text(
+                                  'GIRLSCRIPT',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.31,),
+                                Text(
+                                  '03/20 to Present',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.56,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(0.0, 3.0),
+                              blurRadius: 6.0,
+                              color: Colors.black26
+                            )
+                          ]
+                        ),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top:8.0,bottom: 8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Image.asset(
+                                  'assets/experience/jwoc.jfif',
+                                  width: 150.0,
+                                  height: 150.0,
+                                ).showCursorOnHover,
+                                SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Text(
+                                  'JWOC Participant',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                Text(
+                                  'JGEC Winter Of Code',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.25,),
+                                Text(
+                                  '01/20 to 02/2020',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.56,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(0.0, 3.0),
+                              blurRadius: 6.0,
+                              color: Colors.black26
+                            )
+                          ]
+                        ),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top:8.0,bottom: 8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Image.asset(
+                                  'assets/experience/google.png',
+                                  width: 150.0,
+                                  height: 150.0,
+                                ).showCursorOnHover,
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Text(
+                                  'Build for Digital India \nTrainee',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                Text(
+                                  'GOOGLE',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.33,),
+                                Text(
+                                  '10/19 to 01/2020',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.56,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(0.0, 3.0),
+                              blurRadius: 6.0,
+                              color: Colors.black26
+                            )
+                          ]
+                        ),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0,bottom: 8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Image.asset(
+                                  'assets/experience/QSwhite.png',
+                                  width: 150.0,
+                                  height: 150.0,
+                                ).showCursorOnHover,
+                                SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Text(
+                                  'Flutter Developer',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                Text(
+                                  'QuickStay',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.32,),
+                                Text(
+                                  '12/19 to Present',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.7,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(0.0, 3.0),
+                              blurRadius: 6.0,
+                              color: Colors.black26
+                            )
+                          ]
+                        ),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0,bottom: 8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Image.asset(
+                                  'assets/experience/ieee.png',
+                                  width: 150.0,
+                                  height: 150.0,
+                                ).showCursorOnHover,
+                                SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Text(
+                                  'Content Writer',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                Text(
+                                  'IEEE CIET STUDENT BRANCH',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.23,),
+                                Text(
+                                  '05/19 to Present',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.7,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(0.0, 3.0),
+                              blurRadius: 6.0,
+                              color: Colors.black26
+                            )
+                          ]
+                        ),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0,bottom: 8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Image.asset(
+                                  'assets/social/gfg2.png',
+                                  width: 150.0,
+                                  height: 150.0,
+                                ).showCursorOnHover,
+                                SizedBox(width: MediaQuery.of(context).size.width*0.05,),
+                                Text(
+                                  'Campus Ambassador',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                Text(
+                                  'GEEKSFORGEEKS',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.28,),
+                                Text(
+                                  '06/19 to Present',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey
+                                  ),
+                                ),
+                                // SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
           Container(
             width: MediaQuery.of(context).size.width,
             child: Padding(

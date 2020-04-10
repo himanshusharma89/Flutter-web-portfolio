@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Himanshu Shrama | Portfolio',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Poppins'
+      ),
       home: Dashboard(),
     );
   }

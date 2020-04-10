@@ -66,6 +66,11 @@ flutter:
     - assets/tech/html.png
     - assets/tech/css.png
     - assets/tech/dart.png
+    - assets/experience/gssoc.png
+    - assets/experience/google.png
+    - assets/experience/ieee.png
+    - assets/experience/QSwhite.png
+    - assets/experience/jwoc.jfif
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
