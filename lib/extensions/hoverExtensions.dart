@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/extensions/navbarOnHover.dart';
 import 'dart:html' as html;
 import 'package:my_portfolio/extensions/translateOnHover.dart';
 
 extension HoverExtensions on Widget {
   // Get a regerence to the body of the view
-  static final appContainer =
-      html.window.document.getElementById('app-container');
+  static final appContainer = html.window.document.getElementById('app-container');
 
   Widget get showCursorOnHover {
     return MouseRegion(
@@ -22,6 +22,11 @@ extension HoverExtensions on Widget {
   }
   Widget get moveUpOnHover {
     return TranslateOnHover(
+      child: this,
+    );
+  }
+  Widget get moveRightOnHover {
+    return NavbarOnHover(
       child: this,
     );
   }

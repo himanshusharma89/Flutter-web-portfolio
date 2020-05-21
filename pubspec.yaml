@@ -28,6 +28,9 @@ dependencies:
   dotted_border: ^1.0.5
   url_launcher: ^5.4.2
   percent_indicator: ^2.1.1+1
+  flutter_spinkit: ^4.1.2+1
+  ripple_effect: ^0.1.1
+  scrollable_positioned_list: ^0.1.6
 
 dev_dependencies:
   flutter_test:
@@ -46,31 +49,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/IMG_0602 - Copy.JPG
-    - assets/lp_image.png
-    - assets/profile.png
-    - assets/flutter.png
-    - assets/social/github.png
-    - assets/social/instagram.png
-    - assets/social/twitter.png
-    - assets/social/linkedIn.png
-    - assets/social/stack-overflow.png
-    - assets/social/logo_blank.png
-    - assets/social/medium.png
-    - assets/social/gfg.png
-    - assets/social/gfg1.png
-    - assets/social/gfg2.png
-    - assets/tech/c.png
-    - assets/tech/java.png
-    - assets/tech/c++.png
-    - assets/tech/html.png
-    - assets/tech/css.png
-    - assets/tech/dart.png
-    - assets/experience/gssoc.png
-    - assets/experience/google.png
-    - assets/experience/ieee.png
-    - assets/experience/QSwhite.png
-    - assets/experience/jwoc.jfif
+    - assets/
+    - assets/social/
+    - assets/tech/
+    - assets/experience/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/screen/dashboard.dart';
+import 'package:my_portfolio/utilities/loader.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Poppins'
       ),
-      home: Dashboard(),
+      initialRoute: '/loader',
+      routes: {
+        '/main': (context)=>Dashboard(),
+        '/loader': (context)=> Loader(),
+      }
     );
   }
 }
