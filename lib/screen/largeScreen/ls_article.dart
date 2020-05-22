@@ -13,7 +13,6 @@ class Article_LS extends StatelessWidget {
         Text(
           "ARTICLES",
           style: TextStyle(
-            fontFamily: "Poppins",
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 30.0,
@@ -93,8 +92,7 @@ class Article_LS extends StatelessWidget {
                   style: TextStyle(
                     color: Color.fromRGBO(178, 190, 205,1),
                     fontSize: 17.0,
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.bold
+                            fontWeight: FontWeight.bold
                   ),
                 ),
               ],

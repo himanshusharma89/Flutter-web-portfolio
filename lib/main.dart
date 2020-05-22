@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/screen/dashboard.dart';
 import 'package:my_portfolio/utilities/loader.dart';
 
@@ -13,7 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'Himanshu Shrama | Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Poppins'
+        textTheme: GoogleFonts.montserratTextTheme(
+          Theme.of(context).textTheme,
+        )
       ),
       initialRoute: '/loader',
       routes: {

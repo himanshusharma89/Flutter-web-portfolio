@@ -73,7 +73,6 @@ class Footer_LS extends StatelessWidget {
                   letterSpacing: 1,
                   color: Colors.white,
                   fontSize: 15.0,
-                  fontFamily: "Poppins"
                 ),
               ),
               ClipRRect(
@@ -88,7 +87,6 @@ class Footer_LS extends StatelessWidget {
                   letterSpacing: 1,
                   color: Colors.white,
                   fontSize: 18.0,
-                  fontFamily: "Poppins"
                 ),
               ),
               Text(
@@ -97,7 +95,6 @@ class Footer_LS extends StatelessWidget {
                   letterSpacing: 1,
                   color: Colors.white,
                   fontSize: 15.0,
-                  fontFamily: "Poppins"
                 ),
               ),
               Image.asset(

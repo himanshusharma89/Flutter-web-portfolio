@@ -14,7 +14,6 @@ class Skills_LS extends StatelessWidget {
         Text(
           "SKILLS",
           style: TextStyle(
-            fontFamily: "Poppins",
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 30.0,

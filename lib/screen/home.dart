@@ -207,7 +207,6 @@ class _SmallChildState extends State<SmallChild> {
                                 fontSize: 40,
                                 color: Colors.white,
                                 // fontWeight: FontWeight.bold,
-                                fontFamily: "Poppins"
                               ),
                             ),
                             Text(
@@ -215,7 +214,6 @@ class _SmallChildState extends State<SmallChild> {
                               style: TextStyle(
                                 fontSize: 40, 
                                 color: Colors.white,
-                                fontFamily: "Poppins"
                               ),
                             )
                           ],
@@ -229,8 +227,7 @@ class _SmallChildState extends State<SmallChild> {
                                 fontSize: 50,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                fontFamily: "Poppins"
-                              ),
+                                                              ),
                               children: <TextSpan>[
                                 TextSpan(
                                   text: "IMANSHU ",
@@ -269,8 +266,7 @@ class _SmallChildState extends State<SmallChild> {
                                   "WELCOME TO MY PROFILE",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontFamily: "Poppins"
-                                  ),
+                                                                      ),
                                 ),
                               ),
                             ).moveUpOnHover,
@@ -310,8 +306,7 @@ class _SmallChildState extends State<SmallChild> {
                               letterSpacing: 1,
                               color: Colors.white,
                               fontSize: 20.0,
-                              fontFamily: "Poppins"
-                            ),
+                                                          ),
                           ),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(60.0),
@@ -325,8 +320,7 @@ class _SmallChildState extends State<SmallChild> {
                               letterSpacing: 1,
                               color: Colors.white,
                               fontSize: 20.0,
-                              fontFamily: "Poppins"
-                            ),
+                                                          ),
                           )
                         ],
                       ),
@@ -349,7 +343,7 @@ class _SmallChildState extends State<SmallChild> {
                         Text(
                           "About Me",
                           style: TextStyle(
-                            fontFamily: "Poppins",
+                            
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontSize: 30.0,
@@ -369,7 +363,7 @@ class _SmallChildState extends State<SmallChild> {
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                               fontSize: 20.0,
-                              fontFamily: "Poppins",
+                              
                               color: Colors.white
                             ),
                           ),
@@ -384,7 +378,7 @@ class _SmallChildState extends State<SmallChild> {
                         Text(
                           "SKILLS",
                           style: TextStyle(
-                            fontFamily: "Poppins",
+                            
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontSize: 30.0,
@@ -544,7 +538,7 @@ class _SmallChildState extends State<SmallChild> {
                       Text(
                         "EXPERIENCE",
                         style: TextStyle(
-                          fontFamily: "Poppins",
+                          
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           fontSize: 30.0,
@@ -951,7 +945,6 @@ class _SmallChildState extends State<SmallChild> {
                                     text: ["CODE", "DEBUG", "ANALYZE", "DESIGN"],
                                     textStyle: TextStyle(
                                       fontSize: 55.0, 
-                                      fontFamily: "Star Jedi",
                                       color: Colors.white
                                     ),
                                     textAlign: TextAlign.start,
@@ -962,7 +955,7 @@ class _SmallChildState extends State<SmallChild> {
                               Text(
                                 "PROJECTS",
                                 style: TextStyle(
-                                  fontFamily: "Poppins",
+                                  
                                   fontSize: 30.0,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold
@@ -1009,8 +1002,7 @@ class _SmallChildState extends State<SmallChild> {
                                                   color: Colors.white,
                                                   fontSize: 20.0,
                                                   fontWeight: FontWeight.bold,
-                                                  fontFamily: "Poppins"
-                                                ),
+                                                                                                  ),
                                               ),
                                               SizedBox(height:30.0),
                                               Text(
@@ -1019,8 +1011,7 @@ class _SmallChildState extends State<SmallChild> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 18.0,
-                                                  fontFamily: "Poppins"
-                                                ),
+                                                                                                  ),
                                               )
                                             ],
                                           ),
@@ -1060,8 +1051,7 @@ class _SmallChildState extends State<SmallChild> {
                                                   color: Colors.white,
                                                   fontSize: 20.0,
                                                   fontWeight: FontWeight.bold,
-                                                  fontFamily: "Poppins"
-                                                ),
+                                                                                                  ),
                                               ),
                                               SizedBox(height:30.0),
                                               Text(
@@ -1070,8 +1060,7 @@ class _SmallChildState extends State<SmallChild> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 18.0,
-                                                  fontFamily: "Poppins"
-                                                ),
+                                                                                                  ),
                                               )
                                             ],
                                           ),
@@ -1111,7 +1100,6 @@ class _SmallChildState extends State<SmallChild> {
                                                   color: Colors.white,
                                                   fontSize: 20.0,
                                                   fontWeight: FontWeight.bold,
-                                                  fontFamily: "Poppins"
                                                 ),
                                               ),
                                               SizedBox(height:30.0),
@@ -1121,7 +1109,6 @@ class _SmallChildState extends State<SmallChild> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 18.0,
-                                                  fontFamily: "Poppins"
                                                 ),
                                               )
                                             ],
@@ -1162,7 +1149,6 @@ class _SmallChildState extends State<SmallChild> {
                                                   color: Colors.white,
                                                   fontSize: 20.0,
                                                   fontWeight: FontWeight.bold,
-                                                  fontFamily: "Poppins"
                                                 ),
                                               ),
                                               SizedBox(height:30.0),
@@ -1172,7 +1158,6 @@ class _SmallChildState extends State<SmallChild> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 18.0,
-                                                  fontFamily: "Poppins"
                                                 ),
                                               )
                                             ],
@@ -1197,7 +1182,6 @@ class _SmallChildState extends State<SmallChild> {
                         Text(
                           "ARTICLES",
                           style: TextStyle(
-                            fontFamily: "Poppins",
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             fontSize: 30.0,
@@ -1244,7 +1228,6 @@ class _SmallChildState extends State<SmallChild> {
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.0,
-                                                fontFamily: "Poppins",
                                                 fontWeight: FontWeight.bold
                                               ),
                                             ),
@@ -1283,7 +1266,6 @@ class _SmallChildState extends State<SmallChild> {
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.0,
-                                                fontFamily: "Poppins",
                                                 fontWeight: FontWeight.bold
                                               ),
                                             ),
@@ -1322,7 +1304,6 @@ class _SmallChildState extends State<SmallChild> {
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20.0,
-                                                fontFamily: "Poppins",
                                                 fontWeight: FontWeight.bold
                                               ),
                                             ),
@@ -1360,7 +1341,6 @@ class _SmallChildState extends State<SmallChild> {
                                 letterSpacing: 1,
                                 color: Colors.white,
                                 fontSize: 16.0,
-                                fontFamily: "Poppins"
                               ),
                             ),
                             ClipRRect(
@@ -1375,7 +1355,6 @@ class _SmallChildState extends State<SmallChild> {
                                 letterSpacing: 1,
                                 color: Colors.white,
                                 fontSize: 16.0,
-                                fontFamily: "Poppins"
                               ),
                             )
                           ],

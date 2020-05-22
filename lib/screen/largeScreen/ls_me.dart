@@ -36,7 +36,7 @@ class Me_LS extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 30,
                                   // fontWeight: FontWeight.bold,
-                                  fontFamily: "Poppins",
+                                  
                                   color: Colors.white
                                 )
                               ),
@@ -45,7 +45,6 @@ class Me_LS extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 30, 
                                   color: Colors.white,
-                                  fontFamily: "Poppins"
                                 ),
                               )
                             ],
@@ -70,7 +69,7 @@ class Me_LS extends StatelessWidget {
                                   "WELCOME TO MY PROFILE",
                                   style: TextStyle(
                                     fontSize: 18,
-                                    fontFamily: "Poppins",
+                                    
                                     color: Colors.white
                                   ),
                                 ),

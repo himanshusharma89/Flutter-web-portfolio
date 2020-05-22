@@ -11,7 +11,6 @@ class AboutMe_LS extends StatelessWidget {
         Text(
           "ABOUT ME",
           style: TextStyle(
-            fontFamily: "Poppins",
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 30.0,
@@ -31,7 +30,6 @@ class AboutMe_LS extends StatelessWidget {
             textAlign: TextAlign.justify,
             style: TextStyle(
               fontSize: 18.0,
-              fontFamily: "Poppins",
               color: Colors.white
             ),
           ),

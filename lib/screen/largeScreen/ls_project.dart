@@ -30,7 +30,6 @@ class Project_LS extends StatelessWidget {
         Text(
           "PROJECTS",
           style: TextStyle(
-            fontFamily: "Poppins",
             fontSize: 30.0,
             color: Colors.white,
             fontWeight: FontWeight.bold
@@ -153,7 +152,6 @@ class Project_LS extends StatelessWidget {
                         color: Color.fromRGBO(178, 190, 205,1),
                         fontSize: 17.0,
                         fontWeight: FontWeight.bold,
-                        fontFamily: "Poppins"
                       ),
                     ),
                     SizedBox(height: height*0.01,),
@@ -163,7 +161,6 @@ class Project_LS extends StatelessWidget {
                       style: TextStyle(
                         color: Color.fromRGBO(178, 190, 205,1),
                         fontSize: 14.0,
-                        fontFamily: "Poppins"
                       ),
                     )
                   ],
