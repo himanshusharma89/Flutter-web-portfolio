@@ -2,7 +2,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/utilities/dashedLine.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
+import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
+import 'package:my_portfolio/utilities/text_animation.dart';
 
 class Me_LS extends StatelessWidget {
   @override
@@ -22,62 +24,52 @@ class Me_LS extends StatelessWidget {
               Flexible(
                 child: FractionallySizedBox(
                   alignment: Alignment.centerLeft,
-                  // widthFactor: .4,
+                  widthFactor: 0.7,
                   child: Container(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 60),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Text("Hello! ",
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  // fontWeight: FontWeight.bold,
-                                  
-                                  color: Colors.white
-                                )
-                              ),
-                              Text(
-                                "My name is ",
-                                style: TextStyle(
-                                  fontSize: 30, 
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        TypingTextAnimation(
+                          text: 'Hello! My name is ',
+                          textStyle: TextStyle(
+                            letterSpacing: 0.2,
+                            fontSize: 30,
+                            color: ProfileTheme.subHeadingColor,
+                          ),
+                        ),
+                        FutureBuilder(
+                          future: Future.delayed(Duration(milliseconds: 2000)),
+                          builder: (BuildContext context,AsyncSnapshot snapshot) => snapshot.connectionState == ConnectionState.done
+                            ? TypingTextAnimation(
+                                text: 'HIMANSHU SHARMA',
+                                textStyle: TextStyle(
+                                  letterSpacing: 0.2,
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
                               )
-                            ],
-                          ),
-                          Text(
-                            "HIMANSHU SHARMA",
-                            style: TextStyle(
-                              letterSpacing: 0.2,
-                              fontSize: 50,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top:20.0),
-                            child: DottedBorder(
-                              dashPattern: [6, 4, 4, 6],
-                              color: Colors.black,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "WELCOME TO MY PROFILE",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    
-                                    color: Colors.white
-                                  ),
+                            : Container()
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top:20.0),
+                          child: DottedBorder(
+                            dashPattern: [6, 4, 4, 6],
+                            color: Colors.black,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "WELCOME TO MY PROFILE",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white
                                 ),
                               ),
-                            ).moveUpOnHover,
-                          ),
-                        ],
-                      ),
+                            ),
+                          ).moveUpOnHover,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -85,7 +77,7 @@ class Me_LS extends StatelessWidget {
               Flexible(
                 child: FractionallySizedBox(
                   alignment: Alignment.centerRight,
-                  // widthFactor: .4,
+                  widthFactor: 0.6,
                   child: Stack(
                     children: [
                       Container(
@@ -117,5 +109,19 @@ class Me_LS extends StatelessWidget {
         SizedBox(height:height*0.12),
       ],
     );
+  }
+
+  Widget getName(){
+    Future.delayed(Duration(milliseconds: 2000)).then((value){
+      TypingTextAnimation(
+        text: 'HIMANSHU SHARMA',
+        textStyle: TextStyle(
+          letterSpacing: 0.2,
+          fontSize: 50,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      );
+    });
   }
 }

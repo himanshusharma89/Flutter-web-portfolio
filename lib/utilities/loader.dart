@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:my_portfolio/screen/dashboard.dart';
+import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:ripple_effect/ripple_effect.dart';
 
 import 'responsiveLayout.dart';
@@ -48,7 +49,7 @@ class _LoaderState extends State<Loader> {
             children: [
               Center(
                 child: SpinKitFadingCube(
-                  color: Colors.black,
+                  color: ProfileTheme.backgroundColor,
                   size: ResponsiveLayout.isSmallScreen(context)?47: 60,
                 ),
               ),
@@ -57,7 +58,7 @@ class _LoaderState extends State<Loader> {
                 child: RippleEffect(
                   pageKey: pageKey, 
                   effectKey: effectKey, 
-                  color: Colors.black, 
+                  color: ProfileTheme.backgroundColor, 
                   child: Container(
                     width: 30,
                     height: 30,

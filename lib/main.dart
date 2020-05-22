@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Himanshu Shrama | Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.montserratTextTheme(
+        textTheme: GoogleFonts.spaceMonoTextTheme(
           Theme.of(context).textTheme,
         )
       ),

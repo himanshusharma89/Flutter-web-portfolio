@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/screen/home.dart';
 import 'package:my_portfolio/screen/navbar.dart';
+import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -27,7 +28,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: darkmode? Color(0xff12181b): Colors.white
+        color: darkmode? ProfileTheme.backgroundColor: Colors.white
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,

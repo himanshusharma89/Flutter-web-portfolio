@@ -1,0 +1,12 @@
+import 'package:flutter/material.dart';
+
+class ProfileTheme {
+  
+  ProfileTheme._();
+  static const Color backgroundColor = Color(0xff12181b);
+  static const Color navBarColor = Color.fromRGBO(42, 46, 53, 1);
+  static const Color cardColor = Color(0xff2a2e35);
+  static const Color cardTextColor = Color.fromRGBO(178, 190, 205,1);
+  static const Color subHeadingColor = Color.fromRGBO(118, 43, 255,1);
+
+}
