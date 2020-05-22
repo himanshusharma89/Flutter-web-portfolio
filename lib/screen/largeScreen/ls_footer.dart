@@ -10,6 +10,7 @@ class Footer_LS extends StatelessWidget {
     final height=MediaQuery.of(context).size.height;
     return Column(
       children: [
+        SizedBox(height:height*0.05),
         MySeparator(color: Colors.white,),
         SizedBox(height:height*0.05),
         Row(

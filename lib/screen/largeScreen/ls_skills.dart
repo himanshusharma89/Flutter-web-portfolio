@@ -6,8 +6,11 @@ import 'package:url_launcher/url_launcher.dart';
 class Skills_LS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final width=MediaQuery.of(context).size.width;
+    final height=MediaQuery.of(context).size.height;
     return Column(
       children: <Widget>[
+        SizedBox(height:height*0.05),
         Text(
           "SKILLS",
           style: TextStyle(
@@ -40,7 +43,7 @@ class Skills_LS extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 80.0,),
+        SizedBox(height:height*0.12),
       ],
     );
   }

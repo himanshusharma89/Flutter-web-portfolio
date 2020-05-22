@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/screen/home.dart';
 import 'package:my_portfolio/screen/navbar.dart';
+import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class Dashboard extends StatefulWidget {
@@ -11,6 +12,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   ItemScrollController controller;
   bool darkmode;
+  GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   @override
   void initState() {
@@ -29,12 +31,18 @@ class _DashboardState extends State<Dashboard> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Stack(
+        body: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
+        ? Stack(
           children: <Widget>[
-            Home(controller: controller,darkmode: true,),
+            Home(controller: controller,darkmode: true,drawerkey: _drawerKey),
             Navbar(controller: controller,darkmode: true,),
           ],
-        ),
+        )
+        : Stack(
+          children: <Widget>[
+            Home(controller: controller,darkmode: true,drawerkey: _drawerKey),
+          ],
+        )
       ),
     );
   }

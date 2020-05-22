@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class AboutMe_LS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final width=MediaQuery.of(context).size.width;
+    final height=MediaQuery.of(context).size.height;
     return Column(
       children: <Widget>[
+        SizedBox(height:height*0.05),
         Text(
           "ABOUT ME",
           style: TextStyle(
@@ -33,7 +36,7 @@ class AboutMe_LS extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 80.0,),
+        SizedBox(height:height*0.12),
       ],
     );
   }
