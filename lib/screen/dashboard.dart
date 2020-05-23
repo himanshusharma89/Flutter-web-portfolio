@@ -26,25 +26,20 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: darkmode? ProfileTheme.backgroundColor: Colors.white
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
-        ? Stack(
-          children: <Widget>[
-            Home(controller: controller,darkmode: true,drawerkey: _drawerKey),
-            Navbar(controller: controller,darkmode: true,),
-          ],
-        )
-        : Stack(
-          children: <Widget>[
-            Home(controller: controller,darkmode: true,drawerkey: _drawerKey),
-          ],
-        )
-      ),
+    return Scaffold(
+      backgroundColor: darkmode? ProfileTheme.backgroundColor: Colors.white,
+      body: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
+      ? Stack(
+        children: <Widget>[
+          Home(controller: controller,darkmode: true,drawerkey: _drawerKey),
+          Navbar(controller: controller,darkmode: true,),
+        ],
+      )
+      : Stack(
+        children: <Widget>[
+          Home(controller: controller,darkmode: true,drawerkey: _drawerKey),
+        ],
+      )
     );
   }
 }

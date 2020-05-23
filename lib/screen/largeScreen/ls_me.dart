@@ -6,7 +6,27 @@ import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/utilities/text_animation.dart';
 
-class Me_LS extends StatelessWidget {
+class Me_LS extends StatefulWidget {
+  @override
+  _Me_LSState createState() => _Me_LSState();
+}
+
+class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
+  AnimationController _controller;
+  Animation _welcomAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 6000));
+    _welcomAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+       parent: _controller,
+       curve: Interval(0.75, 1.0, curve: Curves.easeOut)));
+   _controller.forward();
+   _controller.addListener(() {
+     setState(() {});
+   });
+  }
   @override
   Widget build(BuildContext context) {
     final width=MediaQuery.of(context).size.width;
@@ -39,7 +59,7 @@ class Me_LS extends StatelessWidget {
                           ),
                         ),
                         FutureBuilder(
-                          future: Future.delayed(Duration(milliseconds: 2000)),
+                          future: Future.delayed(Duration(milliseconds: 5)),
                           builder: (BuildContext context,AsyncSnapshot snapshot) => snapshot.connectionState == ConnectionState.done
                             ? TypingTextAnimation(
                                 text: 'HIMANSHU SHARMA',
@@ -52,22 +72,25 @@ class Me_LS extends StatelessWidget {
                               )
                             : Container()
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top:20.0),
-                          child: DottedBorder(
-                            dashPattern: [6, 4, 4, 6],
-                            color: Colors.black,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "WELCOME TO MY PROFILE",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white
+                        Transform.scale(
+                          scale: _welcomAnimation.value,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top:20.0),
+                            child: DottedBorder(
+                              dashPattern: [6, 4, 4, 6],
+                              color: Colors.black,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "WELCOME TO MY PROFILE",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white
+                                  ),
                                 ),
                               ),
-                            ),
-                          ).moveUpOnHover,
+                            ).moveUpOnHover,
+                          ),
                         ),
                       ],
                     ),
@@ -109,19 +132,5 @@ class Me_LS extends StatelessWidget {
         SizedBox(height:height*0.12),
       ],
     );
-  }
-
-  Widget getName(){
-    Future.delayed(Duration(milliseconds: 2000)).then((value){
-      TypingTextAnimation(
-        text: 'HIMANSHU SHARMA',
-        textStyle: TextStyle(
-          letterSpacing: 0.2,
-          fontSize: 50,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      );
-    });
   }
 }
