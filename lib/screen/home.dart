@@ -16,10 +16,11 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
-  final ItemScrollController controller;
+  final PageController controller;
   bool darkmode;
+  int currentIndex;
   GlobalKey<ScaffoldState> drawerkey;
-  Home({this.controller,this.darkmode,this.drawerkey});
+  Home({this.controller,this.darkmode,this.drawerkey,this.currentIndex});
 
   @override
   _HomeState createState() => _HomeState();
@@ -36,9 +37,10 @@ class _HomeState extends State<Home> {
 }
 
 class LargeChild extends StatefulWidget {
-  final ItemScrollController controller;
+  final PageController controller;
   bool darkmode;
-  LargeChild({this.controller,this.darkmode});
+  int currentIndex;
+  LargeChild({this.controller,this.darkmode,this.currentIndex});
   
   @override
   _LargeChildState createState() => _LargeChildState();
@@ -46,7 +48,7 @@ class LargeChild extends StatefulWidget {
 
 class _LargeChildState extends State<LargeChild> {
 
-  ItemScrollController controller;
+  PageController controller;
   ItemPositionsListener itemPositionsListener;
   bool visibleFAB=true;
   List<Widget> homeList;
@@ -78,15 +80,19 @@ class _LargeChildState extends State<LargeChild> {
         children: [
           Padding(
             padding: (ResponsiveLayout.isMediumScreen(context)) ? const EdgeInsets.only(left:80,right: 20) : const EdgeInsets.only(left:130,right: 20),
-            child: ScrollablePositionedList.builder(
+            child: PageView.builder(
               scrollDirection: Axis.vertical,
-              physics: null,
-              itemScrollController: controller,
-              itemPositionsListener: itemPositionsListener,
+              physics: NeverScrollableScrollPhysics(),
+              controller: controller,
               itemCount: homeList.length, 
               itemBuilder: (context,index){
                 return homeList[index];
-              }
+              },
+              onPageChanged: (int index){
+                setState(() {
+                  widget.currentIndex=index;
+                });
+              },
             )
           ),
           Padding(
@@ -108,54 +114,54 @@ class _LargeChildState extends State<LargeChild> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: ValueListenableBuilder<Iterable<ItemPosition>>(
-                valueListenable: itemPositionsListener.itemPositions,
-                builder: (context, positions, child) {
-                  int min;
-                  int max;
-                  if (positions.isNotEmpty) {
-                    min = positions
-                        .where((ItemPosition position) => position.itemTrailingEdge > 0)
-                        .reduce((ItemPosition min, ItemPosition position) =>
-                          position.itemTrailingEdge < min.itemTrailingEdge
-                            ? position
-                            : min)
-                        .index;
-                    max = positions
-                        .where((ItemPosition position) => position.itemLeadingEdge < 1)
-                        .reduce((ItemPosition max, ItemPosition position) =>
-                          position.itemLeadingEdge > max.itemLeadingEdge
-                            ? position
-                            : max)
-                        .index;
-                  }
-                  if(min==0){
-                    return Container();
-                  } else {
-                    return FloatingActionButton(
-                      backgroundColor: widget.darkmode? Color.fromRGBO(42, 46, 53, 1): Colors.white,
-                      heroTag: null,
-                      onPressed: (){
-                        controller.scrollTo(
-                          index: 0,
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOutQuart,
-                        );
-                      },
-                      child: Icon(
-                        Icons.keyboard_arrow_up,
-                        color: widget.darkmode? Colors.white: Color.fromRGBO(42, 46, 53, 1),
-                      ),
-                    );
-                  }
-                },
-              ),
-            ),
-          )
+          // Padding(
+          //   padding: const EdgeInsets.all(12.0),
+          //   child: Align(
+          //     alignment: Alignment.bottomRight,
+          //     child: ValueListenableBuilder<Iterable<ItemPosition>>(
+          //       valueListenable: itemPositionsListener.itemPositions,
+          //       builder: (context, positions, child) {
+          //         int min;
+          //         int max;
+          //         if (positions.isNotEmpty) {
+          //           min = positions
+          //               .where((ItemPosition position) => position.itemTrailingEdge > 0)
+          //               .reduce((ItemPosition min, ItemPosition position) =>
+          //                 position.itemTrailingEdge < min.itemTrailingEdge
+          //                   ? position
+          //                   : min)
+          //               .index;
+          //           max = positions
+          //               .where((ItemPosition position) => position.itemLeadingEdge < 1)
+          //               .reduce((ItemPosition max, ItemPosition position) =>
+          //                 position.itemLeadingEdge > max.itemLeadingEdge
+          //                   ? position
+          //                   : max)
+          //               .index;
+          //         }
+          //         if(min==0){
+          //           return Container();
+          //         } else {
+          //           return FloatingActionButton(
+          //             backgroundColor: widget.darkmode? Color.fromRGBO(42, 46, 53, 1): Colors.white,
+          //             heroTag: null,
+          //             onPressed: (){
+          //               // controller.scrollTo(
+          //               //   index: 0,
+          //               //   duration: Duration(milliseconds: 500),
+          //               //   curve: Curves.easeInOutQuart,
+          //               // );
+          //             },
+          //             child: Icon(
+          //               Icons.keyboard_arrow_up,
+          //               color: widget.darkmode? Colors.white: Color.fromRGBO(42, 46, 53, 1),
+          //             ),
+          //           );
+          //         }
+          //       },
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );
@@ -163,7 +169,7 @@ class _LargeChildState extends State<LargeChild> {
 }
 
 class SmallChild extends StatefulWidget {
-  final ItemScrollController controller;
+  final PageController controller;
   final bool darkmode;
   GlobalKey<ScaffoldState> drawerkey;
   SmallChild({this.controller,this.darkmode,this.drawerkey});

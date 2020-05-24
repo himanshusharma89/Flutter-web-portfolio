@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/extensions/changeTextOnHover.dart';
+import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Navbar extends StatefulWidget {
-  final ItemScrollController controller;
+  final PageController controller;
+  int currentIndex;
   bool darkmode;
-  Navbar({this.controller,this.darkmode});
+  Navbar({this.controller,this.darkmode,this.currentIndex});
 
   @override
   _NavbarState createState() => _NavbarState();
 }
 
 class _NavbarState extends State<Navbar> {
-  ItemScrollController controller;
+  PageController controller;
 
   @override
   void initState() {
@@ -26,15 +29,15 @@ class _NavbarState extends State<Navbar> {
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
     return Container(
-      color: Color.fromRGBO(42, 46, 53, 1),
+      color: ProfileTheme.navBarColor,
       child: Column(
         children: <Widget>[
-          if(ResponsiveLayout.isLargeScreen(context))
+          if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
             Container(
-              width: width*0.072,
+              width: width*0.05,
               height: height,
               decoration: BoxDecoration(
-                color: Color.fromRGBO(42, 46, 53, 1),
+                color: ProfileTheme.navBarColor,
                 border: Border(
                   right: BorderSide(color: Colors.grey)
                 ),
@@ -50,46 +53,17 @@ class _NavbarState extends State<Navbar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  navBarItem(1,'me.png','ABOUT',60,60).showCursorOnHover.moveRightOnHover,
-                  navBarItem(2,'skill.png','SKILLS',60,60).showCursorOnHover.moveRightOnHover,
-                  navBarItem(3,'Experience.png','EXPERIENCE',50,50).showCursorOnHover.moveRightOnHover,
-                  navBarItem(4,'project.png','PROJECTS',50,50).showCursorOnHover.moveRightOnHover,
-                  navBarItem(0,'achievements.png','ACHIEVEMENTS',55,55).showCursorOnHover.moveRightOnHover,
-                  navBarItem(5,'article.png','ARTICLES',55,55).showCursorOnHover.moveRightOnHover,
+                  navBarItem(0,'home.png','HOME',60,60).showCursorOnHover,
+                  navBarItem(1,'me.png','ABOUT',60,60).showCursorOnHover,
+                  navBarItem(2,'skill.png','SKILLS',60,60).showCursorOnHover,
+                  navBarItem(3,'Experience.png','EXPERIENCE',50,50).showCursorOnHover,
+                  navBarItem(4,'project.png','PROJECTS',50,50).showCursorOnHover,
+                  // navBarItem(0,'achievements.png','ACHIEVEMENTS',55,55).showCursorOnHover,
+                  navBarItem(5,'article.png','ARTICLES',55,55).showCursorOnHover,
                 ],
               ),
             )
-          else if(ResponsiveLayout.isMediumScreen(context))
-            Container(
-              width: width*0.072,
-              height: height,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(42, 46, 53, 1),
-                border: Border(
-                  right: BorderSide(color: Colors.grey)
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    offset: Offset(0.0, 20.0),
-                    blurRadius: 20.0,
-                  ),
-                ], 
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  navBarItem(1,'me.png','ABOUT',60,60).showCursorOnHover.moveRightOnHover,
-                  navBarItem(2,'skill.png','SKILLS',60,60).showCursorOnHover.moveRightOnHover,
-                  navBarItem(3,'Experience.png','EXPERIENCE',50,50).showCursorOnHover.moveRightOnHover,
-                  navBarItem(4,'project.png','PROJECTS',50,50).showCursorOnHover.moveRightOnHover,
-                  navBarItem(0,'achievements.png','ACHIEVEMENTS',55,55).showCursorOnHover.moveRightOnHover,
-                  navBarItem(5,'article.png','ARTICLES',55,55).showCursorOnHover.moveRightOnHover,
-                ],
-              ),
-            )
-          else
+          else if(ResponsiveLayout.isSmallScreen(context))
           Container(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -172,39 +146,21 @@ class _NavbarState extends State<Navbar> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          controller.scrollTo(
-            index: index, 
-            duration: Duration(milliseconds: 1000),
-            curve: Curves.ease,
-          );
+          widget.currentIndex=index;
+          controller.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.ease);
         });
       },
       child: Container(
-        decoration: BoxDecoration(
-          color: Color.fromRGBO(42, 46, 53, 1),
-          border: Border(
-            right: BorderSide(color: Colors.grey)
-          )
-        ),
+        height: 50,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Image.asset(
-                imgUrl,
-                width: w,height: h,
-              ),
-              ResponsiveLayout.isMediumScreen(context)
-              ? Container()
-              : Text(
-                navText,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12
-                ),
-              )
-            ],
+          padding: const EdgeInsets.only(top:8.0,bottom: 8.0),
+          child: ChangeTextOnHover(
+            child: Image.asset(
+              imgUrl,
+              width: w,height: h,
+              color: (widget.currentIndex==index) ? ProfileTheme.subHeadingColor : null,
+            ),
+            text: navText,
           ),
         ),
       ),

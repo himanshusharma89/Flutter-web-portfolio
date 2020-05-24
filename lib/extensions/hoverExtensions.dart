@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/extensions/navbarOnHover.dart';
+import 'package:my_portfolio/extensions/changeTextOnHover.dart';
 import 'dart:html' as html;
 import 'package:my_portfolio/extensions/translateOnHover.dart';
 
@@ -25,8 +25,8 @@ extension HoverExtensions on Widget {
       child: this,
     );
   }
-  Widget get moveRightOnHover {
-    return NavbarOnHover(
+  Widget get changeTextOnHover {
+    return ChangeTextOnHover(
       child: this,
     );
   }

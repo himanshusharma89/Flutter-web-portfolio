@@ -33,6 +33,7 @@ dependencies:
   scrollable_positioned_list: ^0.1.6
   auto_size_text: ^2.1.0
   google_fonts: ^1.1.0
+  animations: ^1.0.0+5
 
 dev_dependencies:
   flutter_test:

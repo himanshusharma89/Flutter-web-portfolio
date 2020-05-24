@@ -104,7 +104,7 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                   child: Stack(
                     children: [
                       Container(
-                        margin: (ResponsiveLayout.isMediumScreen(context)) ? const EdgeInsets.only(top:150) : const EdgeInsets.only(top:100),
+                        margin: const EdgeInsets.only(top:100),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(22.0)),
                           boxShadow: [
@@ -117,7 +117,10 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12.0),
-                          child: Image.asset('self.jfif',),
+                          child: Image.asset(
+                            'self.jfif',
+                            fit: BoxFit.cover,
+                          ),
                         ).moveUpOnHover
                       ),
                     ],
@@ -127,9 +130,9 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
             ],
           ),
         ),
-        SizedBox(height:height*0.1),
-        MySeparator(color: Colors.grey,),
-        SizedBox(height:height*0.12),
+        // SizedBox(height:height*0.1),
+        // MySeparator(color: Colors.grey,),
+        // SizedBox(height:height*0.12),
       ],
     );
   }

@@ -11,9 +11,10 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  ItemScrollController controller;
+  PageController controller;
   bool darkmode;
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  int currentIndex=0;
 
   @override
   void initState() {
@@ -21,7 +22,7 @@ class _DashboardState extends State<Dashboard> {
       darkmode=true;
     });
     super.initState();
-    controller=ItemScrollController();
+    controller=PageController();
   }
 
   @override
@@ -31,8 +32,8 @@ class _DashboardState extends State<Dashboard> {
       body: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
       ? Stack(
         children: <Widget>[
-          Home(controller: controller,darkmode: true,drawerkey: _drawerKey),
-          Navbar(controller: controller,darkmode: true,),
+          Home(controller: controller,darkmode: true,drawerkey: _drawerKey,currentIndex: currentIndex),
+          Navbar(controller: controller,darkmode: true,currentIndex: currentIndex),
         ],
       )
       : Stack(
