@@ -7,7 +7,7 @@ import 'package:my_portfolio/screen/largeScreen/ls_experience.dart';
 import 'package:my_portfolio/screen/largeScreen/ls_me.dart';
 import 'package:my_portfolio/screen/largeScreen/ls_project.dart';
 import 'package:my_portfolio/screen/largeScreen/ls_skills.dart';
-import 'package:my_portfolio/screen/navbar.dart';
+import 'package:my_portfolio/navbar.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
@@ -70,30 +70,34 @@ class _LargeChildState extends State<LargeChild> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    widget.controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
     return Container(
       height: height,
-      width: width,
+      width: width*0.95,
       child: Stack(
         children: [
-          Padding(
-            padding: (ResponsiveLayout.isMediumScreen(context)) ? const EdgeInsets.only(left:80,right: 20) : const EdgeInsets.only(left:130,right: 20),
-            child: PageView.builder(
-              scrollDirection: Axis.vertical,
-              physics: NeverScrollableScrollPhysics(),
-              controller: controller,
-              itemCount: homeList.length, 
-              itemBuilder: (context,index){
-                return homeList[index];
-              },
-              onPageChanged: (int index){
-                setState(() {
-                  widget.currentIndex=index;
-                });
-              },
-            )
+          PageView.builder(
+            scrollDirection: Axis.vertical,
+            physics: NeverScrollableScrollPhysics(),
+            controller: controller,
+            itemCount: homeList.length, 
+            itemBuilder: (context,index){
+              return homeList[index];
+            },
+            onPageChanged: (int index){
+              setState(() {
+                widget.currentIndex=index;
+              });
+            },
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),

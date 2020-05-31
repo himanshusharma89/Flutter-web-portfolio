@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/screen/home.dart';
-import 'package:my_portfolio/screen/navbar.dart';
+import 'package:my_portfolio/home.dart';
+import 'package:my_portfolio/navbar.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -26,21 +26,27 @@ class _DashboardState extends State<Dashboard> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: darkmode? ProfileTheme.backgroundColor: Colors.white,
       body: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
-      ? Stack(
-        children: <Widget>[
-          Home(controller: controller,darkmode: true,drawerkey: _drawerKey,currentIndex: currentIndex),
-          Navbar(controller: controller,darkmode: true,currentIndex: currentIndex),
-        ],
+      ? Container(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Navbar(controller: controller,darkmode: true,currentIndex: currentIndex),
+            Home(controller: controller,darkmode: true,drawerkey: _drawerKey,currentIndex: currentIndex), 
+          ],
+        ),
       )
-      : Stack(
-        children: <Widget>[
-          Home(controller: controller,darkmode: true,drawerkey: _drawerKey),
-        ],
-      )
+      : Home(controller: controller,darkmode: true,drawerkey: _drawerKey)
     );
   }
 }

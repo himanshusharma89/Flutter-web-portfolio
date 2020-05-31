@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_portfolio/screen/dashboard.dart';
+import 'package:my_portfolio/dashboard.dart';
 import 'package:my_portfolio/utilities/loader.dart';
 
 void main() {

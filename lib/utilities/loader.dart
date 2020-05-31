@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:my_portfolio/screen/dashboard.dart';
+import 'package:my_portfolio/dashboard.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:ripple_effect/ripple_effect.dart';
 
