@@ -12,7 +12,7 @@ class Me_LS extends StatefulWidget {
 class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
   AnimationController _controller;
   Animation _welcomAnimation;
-  String hi ="Hi!";
+  String hi ="Hello! My name is";
   String name = "HIMANSHU SHARMA";
   Animation _hi;
   Animation _name;
@@ -21,11 +21,11 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 4000));
-    _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.2, curve: Curves.easeIn)));
-    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.2, 0.75, curve: Curves.easeIn)));
+    _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.33, curve: Curves.easeIn)));
+    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.33, 0.66, curve: Curves.easeIn)));
     _welcomAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
        parent: _controller,
-       curve: Interval(0.75, 1.0, curve: Curves.easeOut)));
+       curve: Interval(0.66, 1.0, curve: Curves.easeOut)));
    _controller.forward();
    _controller.addListener(() {
      setState(() {});
@@ -62,7 +62,7 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                               text, 
                               style: TextStyle(
                                 letterSpacing: 0.2,
-                                fontSize: 50,
+                                fontSize: 30,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
