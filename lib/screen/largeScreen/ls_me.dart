@@ -12,11 +12,17 @@ class Me_LS extends StatefulWidget {
 class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
   AnimationController _controller;
   Animation _welcomAnimation;
+  String hi ="Hi!";
+  String name = "HIMANSHU SHARMA";
+  Animation _hi;
+  Animation _name;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 6000));
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 4000));
+    _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.2, curve: Curves.easeIn)));
+    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.2, 0.75, curve: Curves.easeIn)));
     _welcomAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
        parent: _controller,
        curve: Interval(0.75, 1.0, curve: Curves.easeOut)));
@@ -48,27 +54,35 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        TypingTextAnimation(
-                          text: 'Hello! My name is ',
-                          textStyle: TextStyle(
-                            letterSpacing: 0.2,
-                            fontSize: 30,
-                            color: ProfileTheme.subHeadingColor,
-                          ),
+                        AnimatedBuilder(
+                          animation: _hi,
+                          builder: (BuildContext context, Widget child) {
+                            String text = hi.substring(0, _hi.value);
+                            return Text(
+                              text, 
+                              style: TextStyle(
+                                letterSpacing: 0.2,
+                                fontSize: 50,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            );
+                          },
                         ),
-                        FutureBuilder(
-                          future: Future.delayed(Duration(milliseconds: 5)),
-                          builder: (BuildContext context,AsyncSnapshot snapshot) => snapshot.connectionState == ConnectionState.done
-                            ? TypingTextAnimation(
-                                text: 'HIMANSHU SHARMA',
-                                textStyle: TextStyle(
-                                  letterSpacing: 0.2,
-                                  fontSize: 50,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              )
-                            : Container()
+                        AnimatedBuilder(
+                          animation: _name,
+                          builder: (BuildContext context, Widget child) {
+                            String text = name.substring(0, _name.value);
+                            return Text(
+                              text, 
+                              style: TextStyle(
+                                letterSpacing: 0.2,
+                                fontSize: 50,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            );
+                          },
                         ),
                         Transform.scale(
                           scale: _welcomAnimation.value,
