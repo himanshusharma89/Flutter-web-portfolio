@@ -71,7 +71,6 @@ class _LargeChildState extends State<LargeChild> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     widget.controller.dispose();
   }

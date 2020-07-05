@@ -1,6 +1,7 @@
- import 'package:auto_size_text/auto_size_text.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'dart:html' as html;
 
  class ChangeTextOnHover extends StatefulWidget {
   final Widget child;
@@ -14,30 +15,36 @@ import 'package:my_portfolio/utilities/profile_theme.dart';
 
 class _ChangeTextOnHoverState extends State<ChangeTextOnHover> {
   final nonHoverTransform = Matrix4.identity()..translate(0, 0, 0);
-  final hoverTransform = Matrix4.identity()..translate(0, -2, 0);
+  final hoverTransform = Matrix4.identity()..translate(0, -1.5, 0);
 
   bool _hovering = false;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (e) => _mouseEnter(true),
-      onExit: (e) => _mouseEnter(false),
+      onHover: (e) {
+        _mouseEnter(true);
+      },
+      onExit: (e) {
+        _mouseEnter(false);
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        curve: Curves.easeIn,
+        curve: Curves.easeOut,
         child: _hovering 
         ? Container(
-          height: 50,
           width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           child: Center(
             child: AutoSizeText(
               widget.text,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: ProfileTheme.subHeadingColor,
-                // fontSize: 12
+                fontWeight: FontWeight.w700
               ),
-              maxFontSize: 12,
+              minFontSize: 11,
+              maxFontSize: 11,
               maxLines: 1,
             ),
           ),

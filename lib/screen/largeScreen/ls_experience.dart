@@ -4,7 +4,6 @@ import 'package:my_portfolio/utilities/responsiveLayout.dart';
 class Experience_LS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
     return FractionallySizedBox(
       child: Column(

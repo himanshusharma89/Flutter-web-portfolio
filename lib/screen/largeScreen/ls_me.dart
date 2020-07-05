@@ -1,9 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/utilities/dashedLine.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/utilities/text_animation.dart';
 
 class Me_LS extends StatefulWidget {
@@ -89,7 +87,7 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                                   ),
                                 ),
                               ),
-                            ).moveUpOnHover,
+                            ).moveUpOnHover.showCursorOnHover,
                           ),
                         ),
                       ],

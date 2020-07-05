@@ -3,7 +3,6 @@ import 'package:my_portfolio/home.dart';
 import 'package:my_portfolio/navbar.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -27,7 +26,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     controller.dispose();
   }

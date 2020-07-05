@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/changeTextOnHover.dart';
+import 'package:my_portfolio/icons/my_flutter_app_icons.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Navbar extends StatefulWidget {
@@ -34,7 +34,7 @@ class _NavbarState extends State<Navbar> {
         children: <Widget>[
           if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
             Container(
-              width: width*0.05,
+              width: width*0.04,
               height: height,
               decoration: BoxDecoration(
                 color: ProfileTheme.navBarColor,
@@ -49,100 +49,118 @@ class _NavbarState extends State<Navbar> {
                   ),
                 ], 
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+              child: Stack(
                 children: [
-                  navBarItem(0,'home.png','HOME',60,60).showCursorOnHover,
-                  navBarItem(1,'me.png','ABOUT',60,60).showCursorOnHover,
-                  navBarItem(2,'skill.png','SKILLS',60,60).showCursorOnHover,
-                  navBarItem(3,'Experience.png','EXPERIENCE',50,50).showCursorOnHover,
-                  navBarItem(4,'project.png','PROJECTS',50,50).showCursorOnHover,
-                  // navBarItem(0,'achievements.png','ACHIEVEMENTS',55,55).showCursorOnHover,
-                  navBarItem(5,'article.png','ARTICLES',55,55).showCursorOnHover,
+                  Container(
+                    height: height*0.08,
+                    width: width,
+                    color: Colors.black,
+                  ).showCursorOnHover,
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        navBarItem(context,0,MyFlutterApp.home,'HOME'),
+                        SizedBox(height: height*0.02,),
+                        navBarItem(context,1,MyFlutterApp.me,'ABOUT'),
+                        SizedBox(height: height*0.02,),
+                        navBarItem(context,2,MyFlutterApp.skill,'SKILLS'),
+                        SizedBox(height: height*0.02,),
+                        navBarItem(context,3,MyFlutterApp.code,'WORK'),
+                        SizedBox(height: height*0.02,),
+                        navBarItem(context,4,MyFlutterApp.laptop,'PROJECTS'),
+                        SizedBox(height: height*0.02,),
+                        // navBarItem(context,0,'achievements.png','ACHIEVEMENTS',55,55),
+                        navBarItem(context,5,MyFlutterApp.article,'ARTICLES'),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             )
           else if(ResponsiveLayout.isSmallScreen(context))
-          Container(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Container(
-                  width: 60.0,
-                  height: 55.0,
-                  child: Center(
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left:8.0,right: 8.0,top: 9.0,bottom: 9.0),
-                        child: Text(
-                          "HS",
-                          style: TextStyle(
-                            letterSpacing: 0.5,
-                            fontSize: 24.0,
-                            color: Colors.blueAccent
+            Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Container(
+                    width: 60.0,
+                    height: 55.0,
+                    child: Center(
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left:8.0,right: 8.0,top: 9.0,bottom: 9.0),
+                          child: Text(
+                            "HS",
+                            style: TextStyle(
+                              letterSpacing: 0.5,
+                              fontSize: 24.0,
+                              color: Colors.blueAccent
+                            ),
                           ),
                         ),
                       ),
                     ),
+                  ).moveUpOnHover,
+                  SizedBox(height:20.0),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: () {
+                          _launchURL("https://github.com/himanshusharma89");
+                        },
+                        child: Image.asset('assets/social/github.png',
+                        width: 50.0,
+                        height: 50.0,),
+                      ).showCursorOnHover.moveUpOnHover,
+                      SizedBox(
+                        width: 30,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _launchURL("https://twitter.com/_SharmaHimanshu");
+                        },
+                        child: Image.asset('assets/social/twitter.png',
+                        width: 50.0,
+                        height: 50.0,),
+                      ).showCursorOnHover.moveUpOnHover,
+                      SizedBox(
+                        width: 30,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _launchURL("https://www.linkedin.com/in/himanshusharma89/");
+                        },
+                        child: Image.asset('assets/social/linkedIn.png',
+                        width: 50.0,
+                        height: 50.0,),
+                      ).showCursorOnHover.moveUpOnHover,
+                      SizedBox(
+                        width: 30,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
+                        },
+                        child: Image.asset('assets/social/stack-overflow.png',
+                        width: 50.0,
+                        height: 50.0,),
+                      ).showCursorOnHover.moveUpOnHover,
+                    ],
                   ),
-                ).moveUpOnHover,
-                SizedBox(height:20.0),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () {
-                        _launchURL("https://github.com/himanshusharma89");
-                      },
-                      child: Image.asset('assets/social/github.png',
-                       width: 50.0,
-                       height: 50.0,),
-                    ).showCursorOnHover.moveUpOnHover,
-                    SizedBox(
-                      width: 30,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchURL("https://twitter.com/_SharmaHimanshu");
-                      },
-                      child: Image.asset('assets/social/twitter.png',
-                      width: 50.0,
-                       height: 50.0,),
-                    ).showCursorOnHover.moveUpOnHover,
-                    SizedBox(
-                      width: 30,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchURL("https://www.linkedin.com/in/himanshusharma89/");
-                      },
-                      child: Image.asset('assets/social/linkedIn.png',
-                      width: 50.0,
-                       height: 50.0,),
-                    ).showCursorOnHover.moveUpOnHover,
-                     SizedBox(
-                      width: 30,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
-                      },
-                      child: Image.asset('assets/social/stack-overflow.png',
-                      width: 50.0,
-                       height: 50.0,),
-                    ).showCursorOnHover.moveUpOnHover,
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
         ],
       ),
     );
   }
 
-  Widget navBarItem(int index,String imgUrl, String navText, double w, double h){
+  Widget navBarItem(BuildContext context,int index,IconData icon, String navText){
+    final width=MediaQuery.of(context).size.width;
+    final height=MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -151,17 +169,15 @@ class _NavbarState extends State<Navbar> {
         });
       },
       child: Container(
-        height: 50,
-        child: Padding(
-          padding: const EdgeInsets.only(top:8.0,bottom: 8.0),
-          child: ChangeTextOnHover(
-            child: Image.asset(
-              imgUrl,
-              width: w,height: h,
-              color: (widget.currentIndex==index) ? ProfileTheme.subHeadingColor : null,
-            ),
-            text: navText,
+        height: height*0.05,
+        width: width,
+        child: ChangeTextOnHover(
+          child: Icon(
+            icon,
+            size: 28,
+            color: (widget.currentIndex==index) ? ProfileTheme.subHeadingColor : Colors.grey,
           ),
+          text: navText,
         ),
       ),
     );
@@ -169,10 +185,10 @@ class _NavbarState extends State<Navbar> {
 }
 
 _launchURL(String Url) async {
-    var url = Url;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+  var url = Url;
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
+}
