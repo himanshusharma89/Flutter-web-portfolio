@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/changeTextOnHover.dart';
+import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/icons/my_flutter_app_icons.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
@@ -51,11 +52,13 @@ class _NavbarState extends State<Navbar> {
               ),
               child: Stack(
                 children: [
-                  Container(
-                    height: height*0.08,
-                    width: width,
-                    color: Colors.black,
-                  ).showCursorOnHover,
+                  HandCursor(
+                    child: Container(
+                      height: height*0.08,
+                      width: width,
+                      color: Colors.black,
+                    ),
+                  ),
                   Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -84,70 +87,88 @@ class _NavbarState extends State<Navbar> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Container(
-                    width: 60.0,
-                    height: 55.0,
-                    child: Center(
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left:8.0,right: 8.0,top: 9.0,bottom: 9.0),
-                          child: Text(
-                            "HS",
-                            style: TextStyle(
-                              letterSpacing: 0.5,
-                              fontSize: 24.0,
-                              color: Colors.blueAccent
+                  TranslateOnHover(
+                    child: Container(
+                      width: 60.0,
+                      height: 55.0,
+                      child: Center(
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:8.0,right: 8.0,top: 9.0,bottom: 9.0),
+                            child: Text(
+                              "HS",
+                              style: TextStyle(
+                                letterSpacing: 0.5,
+                                fontSize: 24.0,
+                                color: Colors.blueAccent
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ).moveUpOnHover,
+                  ),
                   SizedBox(height:20.0),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          _launchURL("https://github.com/himanshusharma89");
-                        },
-                        child: Image.asset('assets/social/github.png',
-                        width: 50.0,
-                        height: 50.0,),
-                      ).showCursorOnHover.moveUpOnHover,
+                      TranslateOnHover(
+                        child: HandCursor(
+                          child: GestureDetector(
+                            onTap: () {
+                              _launchURL("https://github.com/himanshusharma89");
+                            },
+                            child: Image.asset('assets/social/github.png',
+                            width: 50.0,
+                            height: 50.0,),
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         width: 30,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          _launchURL("https://twitter.com/_SharmaHimanshu");
-                        },
-                        child: Image.asset('assets/social/twitter.png',
-                        width: 50.0,
-                        height: 50.0,),
-                      ).showCursorOnHover.moveUpOnHover,
+                      TranslateOnHover(
+                        child: HandCursor(
+                          child: GestureDetector(
+                            onTap: () {
+                              _launchURL("https://twitter.com/_SharmaHimanshu");
+                            },
+                            child: Image.asset('assets/social/twitter.png',
+                            width: 50.0,
+                            height: 50.0,),
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         width: 30,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          _launchURL("https://www.linkedin.com/in/himanshusharma89/");
-                        },
-                        child: Image.asset('assets/social/linkedIn.png',
-                        width: 50.0,
-                        height: 50.0,),
-                      ).showCursorOnHover.moveUpOnHover,
+                      TranslateOnHover(
+                        child: HandCursor(
+                          child: GestureDetector(
+                            onTap: () {
+                              _launchURL("https://www.linkedin.com/in/himanshusharma89/");
+                            },
+                            child: Image.asset('assets/social/linkedIn.png',
+                            width: 50.0,
+                            height: 50.0,),
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         width: 30,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
-                        },
-                        child: Image.asset('assets/social/stack-overflow.png',
-                        width: 50.0,
-                        height: 50.0,),
-                      ).showCursorOnHover.moveUpOnHover,
+                      TranslateOnHover(
+                        child: HandCursor(
+                          child: GestureDetector(
+                            onTap: () {
+                              _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
+                            },
+                            child: Image.asset('assets/social/stack-overflow.png',
+                            width: 50.0,
+                            height: 50.0,),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -161,23 +182,25 @@ class _NavbarState extends State<Navbar> {
   Widget navBarItem(BuildContext context,int index,IconData icon, String navText){
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          widget.currentIndex=index;
-          controller.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.ease);
-        });
-      },
-      child: Container(
-        height: height*0.05,
-        width: width,
-        child: ChangeTextOnHover(
-          child: Icon(
-            icon,
-            size: 28,
-            color: (widget.currentIndex==index) ? ProfileTheme.subHeadingColor : Colors.grey,
+    return HandCursor(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            widget.currentIndex=index;
+            controller.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.ease);
+          });
+        },
+        child: Container(
+          height: height*0.05,
+          width: width,
+          child: ChangeTextOnHover(
+            child: Icon(
+              icon,
+              size: 28,
+              color: (widget.currentIndex==index) ? ProfileTheme.subHeadingColor : Colors.grey,
+            ),
+            text: navText,
           ),
-          text: navText,
         ),
       ),
     );

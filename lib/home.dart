@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/screen/largeScreen/ls_article.dart';
 import 'package:my_portfolio/screen/largeScreen/ls_footer.dart';
 import 'package:my_portfolio/screen/largeScreen/ls_about_me.dart';
@@ -8,6 +9,7 @@ import 'package:my_portfolio/screen/largeScreen/ls_me.dart';
 import 'package:my_portfolio/screen/largeScreen/ls_project.dart';
 import 'package:my_portfolio/screen/largeScreen/ls_skills.dart';
 import 'package:my_portfolio/navbar.dart';
+import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
@@ -81,7 +83,7 @@ class _LargeChildState extends State<LargeChild> {
     final height=MediaQuery.of(context).size.height;
     return Container(
       height: height,
-      width: width*0.95,
+      width: width*0.96,
       child: Stack(
         children: [
           PageView.builder(
@@ -99,7 +101,7 @@ class _LargeChildState extends State<LargeChild> {
             },
           ),
           Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(5.0),
             child: Align(
               alignment: Alignment.topRight,
               child: FloatingActionButton(
@@ -115,6 +117,83 @@ class _LargeChildState extends State<LargeChild> {
                   color: widget.darkmode? Colors.white: Color.fromRGBO(42, 46, 53, 1),
                 ),
               ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Container(
+              width: width*0.035,
+              height: height*0.3,
+              decoration: BoxDecoration(
+                color: ProfileTheme.navBarColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  bottomLeft: Radius.circular(30)
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    offset: Offset(5.0, 20.0),
+                    blurRadius: 20.0,
+                  ),
+                ],
+              ),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    SizedBox(height: height*0.01,),
+                    HandCursor(
+                      child: GestureDetector(
+                        onTap: () {
+                          _launchURL("https://github.com/himanshusharma89");
+                        },
+                        child: Image.asset('assets/social/github.png',
+                        width: 30.0,
+                        height: 30.0,),
+                      ),
+                    ),
+                    // SizedBox(
+                    //   width: 30,
+                    // ),
+                    HandCursor(
+                      child: GestureDetector(
+                        onTap: () {
+                          _launchURL("https://twitter.com/_SharmaHimanshu");
+                        },
+                        child: Image.asset('assets/social/twitter.png',
+                        width: 30.0,
+                        height: 30.0,),
+                      ),
+                    ),
+                    // SizedBox(
+                    //   width: 30,
+                    // ),
+                    HandCursor(
+                      child: GestureDetector(
+                        onTap: () {
+                          _launchURL("https://www.linkedin.com/in/himanshusharma89/");
+                        },
+                        child: Image.asset('assets/social/linkedIn.png',
+                        width: 30.0,
+                        height: 30.0,),
+                      ),
+                    ),
+                    // SizedBox(
+                    //   width: 30,
+                    // ),
+                    HandCursor(
+                      child: GestureDetector(
+                        onTap: () {
+                          _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
+                        },
+                        child: Image.asset('assets/social/stack-overflow.png',
+                        width: 30.0,
+                        height: 30.0,),
+                      ),
+                    ),
+                    SizedBox(height: height*0.01,),
+                  ],
+                ),
             ),
           ),
           // Padding(
@@ -266,30 +345,34 @@ class _SmallChildState extends State<SmallChild> {
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.only(top: 20),
-                            child: DottedBorder(
-                              dashPattern: [6, 4, 4, 6],
-                              color: Colors.white,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "WELCOME TO MY PROFILE",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                                                      ),
+                            child: TranslateOnHover(
+                              child: DottedBorder(
+                                dashPattern: [6, 4, 4, 6],
+                                color: Colors.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "WELCOME TO MY PROFILE",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                                                        ),
+                                  ),
                                 ),
                               ),
-                            ).moveUpOnHover,
+                            ),
                           ),
                         ),
                         SizedBox(
                           height: 50,
                         ),
                         Center(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12.0),
-                            child: Image.network('https://avatars0.githubusercontent.com/u/44980497?s=460&u=b25b445a569e149aceb9257e95a17152b2683c09&v=4',
-                              width: 400.0,
-                            )).moveUpOnHover,
+                          child: TranslateOnHover(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12.0),
+                              child: Image.network('https://avatars0.githubusercontent.com/u/44980497?s=460&u=b25b445a569e149aceb9257e95a17152b2683c09&v=4',
+                                width: 400.0,
+                              )),
+                          ),
                         ),
                       ],
                     ),
@@ -317,12 +400,14 @@ class _SmallChildState extends State<SmallChild> {
                               fontSize: 20.0,
                                                           ),
                           ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(60.0),
-                            child: Image.asset('assets/flutter.png',
-                              width: 80.0,
-                            )
-                          ).moveUpOnHover,
+                          TranslateOnHover(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60.0),
+                              child: Image.asset('assets/flutter.png',
+                                width: 80.0,
+                              )
+                            ),
+                          ),
                           Text(
                             " FLUTTER DEVELOPER",
                             style: TextStyle(
@@ -421,7 +506,7 @@ class _SmallChildState extends State<SmallChild> {
                                         child: Image.asset(
                                           'assets/tech/c.png',
                                           width: 55.0,
-                                        ).showCursorOnHover,
+                                        ),
                                       ),
                                       circularStrokeCap: CircularStrokeCap.butt,
                                       backgroundColor: Colors.white24,
@@ -440,7 +525,7 @@ class _SmallChildState extends State<SmallChild> {
                                         child: Image.asset(
                                           'assets/tech/c++.png',
                                           width: 55.0,
-                                        ).showCursorOnHover,
+                                        ),
                                       ),
                                       circularStrokeCap: CircularStrokeCap.butt,
                                       backgroundColor: Colors.white24,
@@ -464,7 +549,7 @@ class _SmallChildState extends State<SmallChild> {
                                         child: Image.asset(
                                           'assets/tech/java.png',
                                           width: 55.0,
-                                        ).showCursorOnHover,
+                                        ),
                                       ),
                                       circularStrokeCap: CircularStrokeCap.butt,
                                       backgroundColor: Colors.white24,
@@ -483,7 +568,7 @@ class _SmallChildState extends State<SmallChild> {
                                         child: Image.asset(
                                           'assets/tech/html.png',
                                           width: 50.0,
-                                        ).showCursorOnHover,
+                                        ),
                                       ),
                                       circularStrokeCap: CircularStrokeCap.butt,
                                       backgroundColor: Colors.white24,
@@ -507,7 +592,7 @@ class _SmallChildState extends State<SmallChild> {
                                         child: Image.asset(
                                           'assets/tech/css.png',
                                           width: 50.0,
-                                        ).showCursorOnHover,
+                                        ),
                                       ),
                                       circularStrokeCap: CircularStrokeCap.butt,
                                       backgroundColor: Colors.white24,
@@ -526,7 +611,7 @@ class _SmallChildState extends State<SmallChild> {
                                         child: Image.asset(
                                           'assets/tech/dart.png',
                                           width: 50.0,
-                                        ).showCursorOnHover,
+                                        ),
                                       ),
                                       circularStrokeCap: CircularStrokeCap.butt,
                                       backgroundColor: Colors.white24,
@@ -653,7 +738,7 @@ class _SmallChildState extends State<SmallChild> {
                                           'assets/experience/jwoc.jfif',
                                           width: 150.0,
                                           height: 150.0,
-                                        ).showCursorOnHover,
+                                        ),
                                         SizedBox(width: MediaQuery.of(context).size.width*0.05,),
                                         Text(
                                           'JWOC Participant',
@@ -713,7 +798,7 @@ class _SmallChildState extends State<SmallChild> {
                                           'assets/experience/google.png',
                                           width: 150.0,
                                           height: 150.0,
-                                        ).showCursorOnHover,
+                                        ),
                                         // SizedBox(width: MediaQuery.of(context).size.width*0.05,),
                                         Text(
                                           'Build for Digital India \nTrainee',
@@ -773,7 +858,7 @@ class _SmallChildState extends State<SmallChild> {
                                           'assets/experience/QSwhite.png',
                                           width: 150.0,
                                           height: 150.0,
-                                        ).showCursorOnHover,
+                                        ),
                                         SizedBox(width: MediaQuery.of(context).size.width*0.05,),
                                         Text(
                                           'Flutter Developer',
@@ -833,7 +918,7 @@ class _SmallChildState extends State<SmallChild> {
                                           'assets/experience/ieee.png',
                                           width: 150.0,
                                           height: 150.0,
-                                        ).showCursorOnHover,
+                                        ),
                                         SizedBox(width: MediaQuery.of(context).size.width*0.05,),
                                         Text(
                                           'Content Writer',
@@ -893,7 +978,7 @@ class _SmallChildState extends State<SmallChild> {
                                           'assets/social/gfg2.png',
                                           width: 150.0,
                                           height: 150.0,
-                                        ).showCursorOnHover,
+                                        ),
                                         SizedBox(width: MediaQuery.of(context).size.width*0.05,),
                                         Text(
                                           'Campus Ambassador',
@@ -1027,7 +1112,7 @@ class _SmallChildState extends State<SmallChild> {
                                         ),
                                       ),
                                     ),
-                                  ).showCursorOnHover.moveUpOnHover,
+                                  ),
                                   SizedBox(height:40.0),
                                   Container(
                                     decoration: BoxDecoration(
@@ -1076,7 +1161,7 @@ class _SmallChildState extends State<SmallChild> {
                                         ),
                                       ),
                                     ),
-                                  ).showCursorOnHover.moveUpOnHover,
+                                  ),
                                   SizedBox(height:40.0),
                                   Container(
                                     decoration: BoxDecoration(
@@ -1125,7 +1210,7 @@ class _SmallChildState extends State<SmallChild> {
                                         ),
                                       ),
                                     ),
-                                  ).showCursorOnHover.moveUpOnHover,
+                                  ),
                                   SizedBox(height:40.0),
                                   Container(
                                     decoration: BoxDecoration(
@@ -1174,7 +1259,7 @@ class _SmallChildState extends State<SmallChild> {
                                         ),
                                       ),
                                     ),
-                                  ).showCursorOnHover.moveUpOnHover,
+                                  ),
                                 ],
                               ),
                               SizedBox(height:100.0)
@@ -1245,7 +1330,7 @@ class _SmallChildState extends State<SmallChild> {
                                       ),
                                     ),
                                   ),
-                                ).showCursorOnHover.moveUpOnHover,
+                                ),
                                 SizedBox(height:40.0),
                                 Container(
                                   decoration: BoxDecoration(
@@ -1283,7 +1368,7 @@ class _SmallChildState extends State<SmallChild> {
                                       ),
                                     ),
                                   ),
-                                ).showCursorOnHover.moveUpOnHover,
+                                ),
                                 SizedBox(height:40.0),
                                 Container(
                                   decoration: BoxDecoration(
@@ -1321,7 +1406,7 @@ class _SmallChildState extends State<SmallChild> {
                                       ),
                                     ),
                                   ),
-                                ).showCursorOnHover.moveUpOnHover,
+                                ),
                               ],
                             ),
                           ),
@@ -1357,7 +1442,7 @@ class _SmallChildState extends State<SmallChild> {
                               child: Image.asset('assets/flutter.png',
                                 width: 80.0,
                               )
-                            ).moveUpOnHover,
+                            ),
                             Text(
                               " FLUTTER WEB ❤",
                               style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/dashedLine.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -41,45 +42,61 @@ class Footer_LS extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    FloatingActionButton(
-                      backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                      onPressed: () {
-                        _launchURL("https://github.com/himanshusharma89");
-                      },
-                      child: Image.asset('assets/social/github.png',
-                        width: 45.0,
-                        height: 45.0,),
-                    ).showCursorOnHover.moveUpOnHover,
+                    TranslateOnHover(
+                      child: HandCursor(
+                        child: FloatingActionButton(
+                          backgroundColor: Color.fromRGBO(42, 46, 53, 1),
+                          onPressed: () {
+                            _launchURL("https://github.com/himanshusharma89");
+                          },
+                          child: Image.asset('assets/social/github.png',
+                            width: 45.0,
+                            height: 45.0,),
+                        ),
+                      ),
+                    ),
                     SizedBox(width: width*0.01,),
-                    FloatingActionButton(
-                      backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                      onPressed: () {
-                        _launchURL("https://twitter.com/_SharmaHimanshu");
-                      },
-                      child: Image.asset('assets/social/twitter.png',
-                      width: 45.0,
-                        height: 45.0,),
-                    ).showCursorOnHover.moveUpOnHover,
+                    TranslateOnHover(
+                      child: HandCursor(
+                        child: FloatingActionButton(
+                          backgroundColor: Color.fromRGBO(42, 46, 53, 1),
+                          onPressed: () {
+                            _launchURL("https://twitter.com/_SharmaHimanshu");
+                          },
+                          child: Image.asset('assets/social/twitter.png',
+                          width: 45.0,
+                            height: 45.0,),
+                        ),
+                      ),
+                    ),
                     SizedBox(width: width*0.01,),
-                    FloatingActionButton(
-                      backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                      onPressed: () {
-                        _launchURL("https://www.linkedin.com/in/himanshusharma89/");
-                      },
-                      child: Image.asset('assets/social/linkedIn.png',
-                      width: 45.0,
-                        height: 45.0,),
-                    ).showCursorOnHover.moveUpOnHover,
+                    TranslateOnHover(
+                      child: HandCursor(
+                        child: FloatingActionButton(
+                          backgroundColor: Color.fromRGBO(42, 46, 53, 1),
+                          onPressed: () {
+                            _launchURL("https://www.linkedin.com/in/himanshusharma89/");
+                          },
+                          child: Image.asset('assets/social/linkedIn.png',
+                          width: 45.0,
+                            height: 45.0,),
+                        ),
+                      ),
+                    ),
                     SizedBox(width: width*0.01,),
-                    FloatingActionButton(
-                      backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                      onPressed: () {
-                        _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
-                      },
-                      child: Image.asset('assets/social/stack-overflow.png',
-                      width: 45.0,
-                        height: 45.0,),
-                    ).showCursorOnHover.moveUpOnHover,
+                    TranslateOnHover(
+                      child: HandCursor(
+                        child: FloatingActionButton(
+                          backgroundColor: Color.fromRGBO(42, 46, 53, 1),
+                          onPressed: () {
+                            _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
+                          },
+                          child: Image.asset('assets/social/stack-overflow.png',
+                          width: 45.0,
+                            height: 45.0,),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(height:height*0.05),

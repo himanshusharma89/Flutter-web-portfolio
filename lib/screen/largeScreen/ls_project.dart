@@ -1,5 +1,6 @@
 // import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 
@@ -120,56 +121,60 @@ class Project_LS extends StatelessWidget {
   Widget _project({BuildContext context,String url,String imgUrl,String name, String description}){
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
-    return Container(
-      width: width*0.2,
-      child: GestureDetector(
-        onTap: () {
-          _launchURL(url);
-        },
-        child: Card(
-          elevation: 5,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-          color: Color(0xff2a2e35),
-          child: Column(
-            children: [
-              Image.asset(
-                imgUrl,
-                height: height*0.15,
-                width: width,
-                fit: BoxFit.cover,
+    return TranslateOnHover(
+      child: HandCursor(
+        child: Container(
+          width: width*0.2,
+          child: GestureDetector(
+            onTap: () {
+              _launchURL(url);
+            },
+            child: Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: height*0.01,),
-                    Text(
-                      name,
-                      style: TextStyle(
-                        color: Color.fromRGBO(178, 190, 205,1),
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+              color: Color(0xff2a2e35),
+              child: Column(
+                children: [
+                  Image.asset(
+                    imgUrl,
+                    height: height*0.15,
+                    width: width,
+                    fit: BoxFit.cover,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height: height*0.01,),
+                        Text(
+                          name,
+                          style: TextStyle(
+                            color: Color.fromRGBO(178, 190, 205,1),
+                            fontSize: 17.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: height*0.01,),
+                        Text(
+                          description,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            color: Color.fromRGBO(178, 190, 205,1),
+                            fontSize: 14.0,
+                          ),
+                        )
+                      ],
                     ),
-                    SizedBox(height: height*0.01,),
-                    Text(
-                      description,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        color: Color.fromRGBO(178, 190, 205,1),
-                        fontSize: 14.0,
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
-    ).showCursorOnHover.moveUpOnHover;
+    );
   }
 }
 

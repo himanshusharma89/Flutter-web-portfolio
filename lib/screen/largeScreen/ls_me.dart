@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
+import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/text_animation.dart';
 
@@ -11,21 +12,22 @@ class Me_LS extends StatefulWidget {
 
 class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
   AnimationController _controller;
-  Animation _welcomAnimation;
-  String hi ="Hello! My name is";
-  String name = "HIMANSHU SHARMA";
   Animation _hi;
   Animation _name;
+  Animation _designation;
+  Animation _welcomAnimation;
+  String hi ="Hey! I am";
+  String name = "HIMANSHU SHARMA";
+  String designation = "Flutter Developer";
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 4000));
-    _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.33, curve: Curves.easeIn)));
-    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.33, 0.66, curve: Curves.easeIn)));
-    _welcomAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-       parent: _controller,
-       curve: Interval(0.66, 1.0, curve: Curves.easeOut)));
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 5500));
+    _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.25, curve: Curves.easeIn)));
+    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.25, 0.60, curve: Curves.easeIn)));
+    _designation = StepTween(begin: 0, end: designation.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.50, 0.80, curve: Curves.easeIn)));
+    _welcomAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Interval(0.70, 1.0, curve: Curves.easeOut)));
    _controller.forward();
    _controller.addListener(() {
      setState(() {});
@@ -64,7 +66,7 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                                 letterSpacing: 0.2,
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: ProfileTheme.subHeadingColor,
                               ),
                             );
                           },
@@ -84,24 +86,43 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                             );
                           },
                         ),
-                        Transform.scale(
-                          scale: _welcomAnimation.value,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top:20.0),
-                            child: DottedBorder(
-                              dashPattern: [6, 4, 4, 6],
-                              color: Colors.black,
+                        AnimatedBuilder(
+                          animation: _designation,
+                          builder: (BuildContext context, Widget child) {
+                            String text = designation.substring(0, _designation.value);
+                            return Text(
+                              text, 
+                              style: TextStyle(
+                                letterSpacing: 0.2,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                              ),
+                            );
+                          },
+                        ),
+                        TranslateOnHover(
+                          child: HandCursor(
+                            child: Transform.scale(
+                              scale: _welcomAnimation.value,
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "WELCOME TO MY PROFILE",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white
+                                padding: const EdgeInsets.only(top:20.0),
+                                child: DottedBorder(
+                                  dashPattern: [6, 4, 4, 6],
+                                  color: Colors.black,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "WELCOME TO MY PROFILE",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ).moveUpOnHover.showCursorOnHover,
+                            ),
                           ),
                         ),
                       ],
@@ -127,13 +148,15 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                             )
                           ]
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12.0),
-                          child: Image.asset(
-                            'self.jfif',
-                            fit: BoxFit.cover,
+                        child: TranslateOnHover(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12.0),
+                            child: Image.asset(
+                              'self.jfif',
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ).moveUpOnHover
+                        )
                       ),
                     ],
                   ),

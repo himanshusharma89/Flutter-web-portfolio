@@ -1,32 +1,19 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'dart:html' as html;
-import 'package:my_portfolio/extensions/translateOnHover.dart';
+import 'package:universal_html/prefer_sdk/html.dart' as html;
 
-extension HoverExtensions on Widget {
+class HandCursor extends MouseRegion {
   // Get a regerence to the body of the view
-  static final appContainer = html.window.document.getElementById('app-container');
+  static final appContainer = html.window.document.querySelectorAll('flt-glass-pane')[0];
 
-  Widget get showCursorOnHover {
-    return MouseRegion(
-      child: this,
-      // When the mouse enters the widget set the cursor to pointer
-      onHover: (event) {
-        appContainer.style.cursor = 'pointer';
-      },
-      // When it exits set it back to default
-      onExit: (event) {
-        appContainer.style.cursor = 'default';
-      },
-    );
+  HandCursor({Widget child})
+    : super(
+        onHover: (PointerHoverEvent evt) {
+          appContainer.style.cursor = 'pointer';
+        },
+        onExit: (PointerExitEvent evt) {
+          appContainer.style.cursor = 'default';
+        },
+        child: child,
+      );
   }
-  Widget get moveUpOnHover {
-    return TranslateOnHover(
-      child: this,
-    );
-  }
-  // Widget get changeTextOnHover {
-  //   return ChangeTextOnHover(
-  //     child: this,
-  //   );
-  // }
-}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -46,25 +47,29 @@ class Skills_LS extends StatelessWidget {
     );
   }
   Widget _skill({double percentage,String url,String imgUrl, double width}){
-    return CircularPercentIndicator(
-      radius: 100.0,
-      animation: true,
-      animationDuration: 1200,
-      lineWidth: 15.0,
-      percent: percentage,
-      center: GestureDetector(
-        onTap: () {
-          _launchURL(url);
-        },
-        child: Image.asset(
-          imgUrl,
-          width: width,
-        ).showCursorOnHover,
+    return TranslateOnHover(
+      child: CircularPercentIndicator(
+        radius: 100.0,
+        animation: true,
+        animationDuration: 1200,
+        lineWidth: 15.0,
+        percent: percentage,
+        center: GestureDetector(
+          onTap: () {
+            _launchURL(url);
+          },
+          child: HandCursor(
+            child: Image.asset(
+              imgUrl,
+              width: width,
+            ),
+          ),
+        ),
+        circularStrokeCap: CircularStrokeCap.butt,
+        backgroundColor: Colors.white24,
+        progressColor: Colors.white,
       ),
-      circularStrokeCap: CircularStrokeCap.butt,
-      backgroundColor: Colors.white24,
-      progressColor: Colors.white,
-    ).moveUpOnHover;
+    );
   }
 }
 
