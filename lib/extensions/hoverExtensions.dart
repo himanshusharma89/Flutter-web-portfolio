@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 
 class HandCursor extends MouseRegion {
   // Get a regerence to the body of the view
