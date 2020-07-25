@@ -1,6 +1,7 @@
 // import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
+import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 
@@ -8,113 +9,70 @@ class Project_LS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height=MediaQuery.of(context).size.height;
-    return Column(
-      children: <Widget>[
-        SizedBox(height:height*0.05),
-        // Row(
-        //   mainAxisSize: MainAxisSize.min,
-        //   children: <Widget>[
-        //     RotateAnimatedTextKit(
-        //       totalRepeatCount: 1000,
-        //       text: ["CODE", "DEBUG", "ANALYZE", "DESIGN"],
-        //       textStyle: TextStyle(
-        //         fontSize: 40.0, 
-        //         fontFamily: "Star Jedi",
-        //         color: Colors.white
-        //       ),
-        //       textAlign: TextAlign.start,
-        //       alignment: AlignmentDirectional.topStart // or Alignment.topLeft
-        //     ),
-        //   ],
-        // ),
-        Text(
-          "PROJECTS",
-          style: TextStyle(
-            fontSize: 30.0,
-            color: Colors.white,
-            fontWeight: FontWeight.bold
+    final width=MediaQuery.of(context).size.width;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 50),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(height:height*0.05),
+          // Row(
+          //   mainAxisSize: MainAxisSize.min,
+          //   children: <Widget>[
+          //     RotateAnimatedTextKit(
+          //       totalRepeatCount: 1000,
+          //       text: ["CODE", "DEBUG", "ANALYZE", "DESIGN"],
+          //       textStyle: TextStyle(
+          //         fontSize: 40.0, 
+          //         fontFamily: "Star Jedi",
+          //         color: Colors.white
+          //       ),
+          //       textAlign: TextAlign.start,
+          //       alignment: AlignmentDirectional.topStart // or Alignment.topLeft
+          //     ),
+          //   ],
+          // ),
+          Text(
+            "PROJECTS",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: ProfileTheme.cardHeadingColor,
+              fontSize: 35.0,
+            ),
           ),
-        ),
-        Container(
-        width: MediaQuery.of(context).size.width*0.0625,
-          child: Divider(
-            color: Colors.white,
-            thickness: 3.0,
+          Container(
+            width: MediaQuery.of(context).size.width*0.0625,
+            child: Divider(
+              color: Colors.white,
+              thickness: 3.0,
+            )
           ),
-        ),
-        SizedBox(height:30.0),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 130),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  _project(
-                    context: context,
-                    url: 'https://github.com/himanshusharma89/Flutter-Blog-App',
-                    imgUrl:'assets/flutter1.png', 
-                    name: 'FLUTTER BLOG APP', 
-                    description: 'This is a Blog App developed with Flutter Framework and Dart programming language. It is just a blog adding and saving application. This is a fully functional app with Firebase backend.' 
+          SizedBox(height:height*0.01),
+          Container(
+            height: height*0.82,
+            width: width,
+            child: ListView.builder(
+              itemCount: projects.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40,),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _project(
+                      context: context,
+                      url: projects[index]['url'],
+                      imgUrl: projects[index]['imgUrl'],
+                      name: projects[index]['name'],
+                      description: projects[index]['description']
+                    ),
                   ),
-                  // SizedBox(width: 120.0,),
-                  _project(
-                    context: context,
-                    url: 'https://github.com/himanshusharma89/Way-Back-Home',
-                    imgUrl:'assets/flutter1.png', 
-                    name: 'WAY BACK HOME', 
-                    description: 'This is a app which is under development, developed with Flutter Framework and Dart programming for BUILD FOR DIGITAL INDIA #BFDI initiative by Govt. and Google' 
-                  ),
-                  _project(
-                    context: context,
-                    url: 'https://github.com/himanshusharma89/TIET-Makeathon-2.0',
-                    imgUrl:'assets/flutter1.png', 
-                    name: 'WATER MONITORING SYSTEM', 
-                    description: 'Water​ ​Monitoring​ ​System​ ​is​ ​an​ ​IOT​ ​based​ ​Flutter​ Project ​that​ ​has mechanisms​ ​to​ ​keep​ ​the​ ​user​ ​alerted​ ​in​ ​case​ ​of​ ​liquid​ ​overflow​. Developed for Makeathon 2.0 @ TIET.' 
-                  ),
-                ],
-              ),
-              SizedBox(height:70.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  _project(
-                    context: context,
-                    url: 'https://github.com/himanshusharma89/Flutter-Blog-App',
-                    imgUrl:'assets/flutter1.png', 
-                    name: 'FLUTTER BLOG APP', 
-                    description: 'This is a Blog App developed with Flutter Framework and Dart programming language. It is just a blog adding and saving application. This is a fully functional app with Firebase backend.' 
-                  ),
-                  // SizedBox(width: 120.0,),
-                  _project(
-                    context: context,
-                    url: 'https://github.com/himanshusharma89/Way-Back-Home',
-                    imgUrl:'assets/flutter1.png', 
-                    name: 'WAY BACK HOME', 
-                    description: 'This is a app which is under development, developed with Flutter Framework and Dart programming for BUILD FOR DIGITAL INDIA #BFDI initiative by Govt. and Google' 
-                  ),
-                  _project(
-                    context: context,
-                    url: 'https://github.com/himanshusharma89/TIET-Makeathon-2.0',
-                    imgUrl:'assets/flutter1.png', 
-                    name: 'WATER MONITORING SYSTEM', 
-                    description: 'Water​ ​Monitoring​ ​System​ ​is​ ​an​ ​IOT​ ​based​ ​Flutter​ Project ​that​ ​has mechanisms​ ​to​ ​keep​ ​the​ ​user​ ​alerted​ ​in​ ​case​ ​of​ ​liquid​ ​overflow​. Developed for Makeathon 2.0 @ TIET.' 
-                  ),
-                  // SizedBox(width: 120.0,),
-                  // _project(
-                  //   context: context,
-                  //   url: 'https://github.com/himanshusharma89/Flutter-Card-Carousel',
-                  //   imgUrl:'assets/flutter.png', 
-                  //   name: 'FLUTTER CARD CAROUSEL TEMPLATE', 
-                  //   description: 'This is template for creating card carousel in Flutter with the help of carousel_slider package' 
-                  // ),
-                ],
-              ),
-            ],
+                );
+              },
+            ),
           ),
-        ),
-        SizedBox(height:height*0.12),
-      ],
+        ],
+      ),
     );
   }
 
@@ -135,37 +93,40 @@ class Project_LS extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12.0),
               ),
               color: Color(0xff2a2e35),
-              child: Column(
+              child: Row(
                 children: [
-                  Image.asset(
-                    imgUrl,
-                    height: height*0.15,
-                    width: width,
-                    fit: BoxFit.cover,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(height: height*0.01,),
+                          Text(
+                            name,
+                            style: TextStyle(
+                              color: Color.fromRGBO(178, 190, 205,1),
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: height*0.01,),
+                          Text(
+                            description,
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              color: Color.fromRGBO(178, 190, 205,1),
+                              fontSize: 14.0,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(height: height*0.01,),
-                        Text(
-                          name,
-                          style: TextStyle(
-                            color: Color.fromRGBO(178, 190, 205,1),
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: height*0.01,),
-                        Text(
-                          description,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            color: Color.fromRGBO(178, 190, 205,1),
-                            fontSize: 14.0,
-                          ),
-                        )
-                      ],
+                  Expanded(
+                    child: Image.asset(
+                      imgUrl,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ],
@@ -186,3 +147,42 @@ _launchURL(String Url) async {
     throw 'Could not launch $url';
   }
 }
+
+  List projects=[
+  {
+    'url': 'https://github.com/himanshusharma89/Flutter-Blog-App',
+    'imgUrl':'assets/flutter1.png', 
+    'name': 'FLUTTER BLOG APP', 
+    'description': 'This is a Blog App developed with Flutter Framework and Dart programming language. It is just a blog adding and saving application. This is a fully functional app with Firebase backend.' 
+  },
+  {
+    'url': 'https://github.com/himanshusharma89/Way-Back-Home',
+    'imgUrl':'assets/flutter1.png', 
+    'name': 'WAY BACK HOME', 
+    'description': 'This is a app which is under development, developed with Flutter Framework and Dart programming for BUILD FOR DIGITAL INDIA #BFDI initiative by Govt. and Google' 
+  },
+  {
+    'url': 'https://github.com/himanshusharma89/TIET-Makeathon-2.0',
+    'imgUrl':'assets/flutter1.png', 
+    'name': 'WATER MONITORING SYSTEM', 
+    'description': 'Water​ ​Monitoring​ ​System​ ​is​ ​an​ ​IOT​ ​based​ ​Flutter​ Project ​that​ ​has mechanisms​ ​to​ ​keep​ ​the​ ​user​ ​alerted​ ​in​ ​case​ ​of​ ​liquid​ ​overflow​. Developed for Makeathon 2.0 @ TIET.' 
+  },
+  {
+    'url': 'https://github.com/himanshusharma89/Flutter-Blog-App',
+    'imgUrl':'assets/flutter1.png', 
+    'name': 'FLUTTER BLOG APP', 
+    'description': 'This is a Blog App developed with Flutter Framework and Dart programming language. It is just a blog adding and saving application. This is a fully functional app with Firebase backend.' 
+  },
+  {
+    'url': 'https://github.com/himanshusharma89/Way-Back-Home',
+    'imgUrl':'assets/flutter1.png', 
+    'name': 'WAY BACK HOME', 
+    'description': 'This is a app which is under development, developed with Flutter Framework and Dart programming for BUILD FOR DIGITAL INDIA #BFDI initiative by Govt. and Google' 
+  },
+  {
+    'url': 'https://github.com/himanshusharma89/TIET-Makeathon-2.0',
+    'imgUrl':'assets/flutter1.png', 
+    'name': 'WATER MONITORING SYSTEM', 
+    'description': 'Water​ ​Monitoring​ ​System​ ​is​ ​an​ ​IOT​ ​based​ ​Flutter​ Project ​that​ ​has mechanisms​ ​to​ ​keep​ ​the​ ​user​ ​alerted​ ​in​ ​case​ ​of​ ​liquid​ ​overflow​. Developed for Makeathon 2.0 @ TIET.' 
+  },
+];

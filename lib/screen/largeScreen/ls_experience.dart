@@ -1,100 +1,177 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
+
+List experience=[
+  {
+    'name':'GSSOC\'20 Participant',
+    'imgUrl':'assets/experience/gssoc.png',
+    'date':'03/20 to Present',
+    'description':'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
+    'organisation':'GIRLSCRIPT'
+  },
+  {
+    'name':'GSSOC\'20 Participant',
+    'imgUrl':'assets/experience/gssoc.png',
+    'date':'03/20 to Present',
+    'description':'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
+    'organisation':'GIRLSCRIPT'
+  },
+  {
+    'name':'GSSOC\'20 Participant',
+    'imgUrl':'assets/experience/gssoc.png',
+    'date':'03/20 to Present',
+    'description':'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
+    'organisation':'GIRLSCRIPT'
+  },
+  {
+    'name':'GSSOC\'20 Participant',
+    'imgUrl':'assets/experience/gssoc.png',
+    'date':'03/20 to Present',
+    'description':'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
+    'organisation':'GIRLSCRIPT'
+  },
+  {
+    'name':'GSSOC\'20 Participant',
+    'imgUrl':'assets/experience/gssoc.png',
+    'date':'03/20 to Present',
+    'description':'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
+    'organisation':'GIRLSCRIPT'
+  },
+  {
+    'name':'GSSOC\'20 Participant',
+    'imgUrl':'assets/experience/gssoc.png',
+    'date':'03/20 to Present',
+    'description':'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
+    'organisation':'GIRLSCRIPT'
+  },
+  {
+    'name':'GSSOC\'20 Participant',
+    'imgUrl':'assets/experience/gssoc.png',
+    'date':'03/20 to Present',
+    'description':'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
+    'organisation':'GIRLSCRIPT'
+  },
+];
 
 class Experience_LS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height=MediaQuery.of(context).size.height;
+    final width=MediaQuery.of(context).size.width;
     return FractionallySizedBox(
-      child: Column(
-        children: <Widget>[
-          SizedBox(height:height*0.05),
-          Text(
-            "EXPERIENCE",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontSize: 30.0,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "WORK EXPEREINCE",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: ProfileTheme.cardHeadingColor,
+                fontSize: 35.0,
+              ),
             ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width*0.0625,
-            child: Divider(
-              color: Colors.white,
-              thickness: 3.0,
-            )
-          ),
-          SizedBox(height:30.0),
-          Padding(
-            padding: (ResponsiveLayout.isMediumScreen(context)) ? const EdgeInsets.symmetric(horizontal:50.0) : const EdgeInsets.symmetric(horizontal:130.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _experience(
-                      context: context,
-                      imgUrl: 'assets/experience/gssoc.png',
-                      name: 'GSSOC\'20 Participant',
-                      organisation: 'GIRLSCRIPT',
-                      date: '03/20 to Present',
-                      description: 'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.'
-                    ),
-                    _experience(
-                      context: context,
-                      imgUrl: 'assets/experience/jwoc.jfif',
-                      name: 'JWOC Participant',
-                      organisation: 'JGEC Winter Of Code',
-                      date: '01/20 to 02/2020',
-                      description: 'Ranked 5th as a top contributor to Open Source projects on GitHub as a participant of JwoC (JGEC Winter of Code).'
-                    ),
-                    _experience(
-                      context: context,
-                      imgUrl: 'assets/experience/google.png',
-                      name: 'Build for Digital India Trainee',
-                      organisation: 'GOOGLE',
-                      date: '10/19 to 01/2020',
-                      description: 'Got selected as a ChangeMaker and developed a mobile application using Flutter and Dart and with Firebase and Google Cloud Platform Places API, under Build For Digital India program.'
-                    ),
-                  ],
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _experience(
-                      context: context,
-                      imgUrl: 'assets/experience/QSwhite.png',
-                      name: 'Flutter Developer',
-                      organisation: 'QUICKSTAY',
-                      date: '12/19 to Present',
-                      description: 'Developing a mobile application, using Flutter with Dart and Firebase as a backend for authentication and storage of user data for the startup QuickStay.'
-                    ),
-                    _experience(
-                      context: context,
-                      imgUrl: 'assets/experience/ieee.png',
-                      name: 'Content Writer',
-                      organisation: 'IEEE CIET STUDENT BRANCH',
-                      date: '05/19 to Present',
-                      description: 'Created content for various events like Workshops, Hackathons, Expert Talk, and Orientation Program for freshers organised by IEEE CIET Student Branch.'
-                    ),
-                    _experience(
-                      context: context,
-                      imgUrl: 'assets/social/gfg2.png',
-                      name: 'Campus Ambassador',
-                      organisation: 'GEEKSFORGEEKS',
-                      date: '06/19 to Present',
-                      description: 'Organizing and managing GeeksforGeeks presence in college fests and other technical events, and involving students from first to a final year to actively participate in GeeksforGeeks activities and contributions.'
-                    ),
-                  ],
-                )
-              ],
+            Container(
+              width: MediaQuery.of(context).size.width*0.0625,
+              child: Divider(
+                color: Colors.white,
+                thickness: 3.0,
+              )
             ),
-          ),
-          SizedBox(height:height*0.12),
-        ],
+            Padding(
+              padding: (ResponsiveLayout.isMediumScreen(context)) ? const EdgeInsets.symmetric(horizontal:50.0,vertical: 5) : const EdgeInsets.symmetric(horizontal:130.0,vertical: 5),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
+                  mainAxisSpacing: height*0.01,
+                  crossAxisSpacing: width*0.005,
+                  childAspectRatio: 1/1.1,
+                ), 
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: ScrollPhysics(),
+                itemCount: experience.length,
+                itemBuilder: (context, index) {
+                  return FittedBox(
+                    child: _experience(
+                      context: context,
+                      name: experience[index]['name'],
+                      imgUrl: experience[index]['imgUrl'],
+                      date: experience[index]['date'],
+                      description: experience[index]['description'],
+                      organisation: experience[index]['organisation'],
+                    ),
+                  );
+                },
+              )
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: <Widget>[
+                  //     _experience(
+                  //       context: context,
+                  //       imgUrl: 'assets/experience/gssoc.png',
+                  //       name: 'GSSOC\'20 Participant',
+                  //       organisation: 'GIRLSCRIPT',
+                  //       date: '03/20 to Present',
+                  //       description: 'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.'
+                  //     ),
+                  //     _experience(
+                  //       context: context,
+                  //       imgUrl: 'assets/experience/jwoc.jfif',
+                  //       name: 'JWOC Participant',
+                  //       organisation: 'JGEC Winter Of Code',
+                  //       date: '01/20 to 02/2020',
+                  //       description: 'Ranked 5th as a top contributor to Open Source projects on GitHub as a participant of JwoC (JGEC Winter of Code).'
+                  //     ),
+                  //     _experience(
+                  //       context: context,
+                  //       imgUrl: 'assets/experience/google.png',
+                  //       name: 'Build for Digital India Trainee',
+                  //       organisation: 'GOOGLE',
+                  //       date: '10/19 to 01/2020',
+                  //       description: 'Got selected as a ChangeMaker and developed a mobile application using Flutter and Dart and with Firebase and Google Cloud Platform Places API, under Build For Digital India program.'
+                  //     ),
+                  //   ],
+                  // ),
+                  // SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     _experience(
+                  //       context: context,
+                  //       imgUrl: 'assets/experience/QSwhite.png',
+                  //       name: 'Flutter Developer',
+                  //       organisation: 'QUICKSTAY',
+                  //       date: '12/19 to Present',
+                  //       description: 'Developing a mobile application, using Flutter with Dart and Firebase as a backend for authentication and storage of user data for the startup QuickStay.'
+                  //     ),
+                  //     _experience(
+                  //       context: context,
+                  //       imgUrl: 'assets/experience/ieee.png',
+                  //       name: 'Content Writer',
+                  //       organisation: 'IEEE CIET STUDENT BRANCH',
+                  //       date: '05/19 to Present',
+                  //       description: 'Created content for various events like Workshops, Hackathons, Expert Talk, and Orientation Program for freshers organised by IEEE CIET Student Branch.'
+                  //     ),
+                  //     _experience(
+                  //       context: context,
+                  //       imgUrl: 'assets/social/gfg2.png',
+                  //       name: 'Campus Ambassador',
+                  //       organisation: 'GEEKSFORGEEKS',
+                  //       date: '06/19 to Present',
+                  //       description: 'Organizing and managing GeeksforGeeks presence in college fests and other technical events, and involving students from first to a final year to actively participate in GeeksforGeeks activities and contributions.'
+                  //     ),
+                  //   ],
+                  // )
+            ),
+            SizedBox(height:height*0.12),
+          ],
+        ),
       ),
     );
   }

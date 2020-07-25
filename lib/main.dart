@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/dashboard.dart';
+import 'package:my_portfolio/animation.dart';
 import 'package:my_portfolio/utilities/loader.dart';
 
 void main() {
@@ -14,10 +15,11 @@ class MyApp extends StatelessWidget {
       title: 'Himanshu Shrama | Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.spaceMonoTextTheme(
+        textTheme: GoogleFonts.poppinsTextTheme(
           Theme.of(context).textTheme,
         )
       ),
+      // home: Home(),
       initialRoute: '/loader',
       routes: {
         '/main': (context)=>Dashboard(),

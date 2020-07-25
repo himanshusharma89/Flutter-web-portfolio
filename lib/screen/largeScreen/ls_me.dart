@@ -1,9 +1,6 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
-import 'package:my_portfolio/utilities/text_animation.dart';
 
 class Me_LS extends StatefulWidget {
   @override
@@ -15,7 +12,7 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
   Animation _hi;
   Animation _name;
   Animation _designation;
-  Animation _welcomAnimation;
+  // Animation _welcomAnimation;
   String hi ="Hey! I am";
   String name = "HIMANSHU SHARMA";
   String designation = "Flutter Developer";
@@ -25,9 +22,9 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
     super.initState();
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 5500));
     _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.25, curve: Curves.easeIn)));
-    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.25, 0.60, curve: Curves.easeIn)));
-    _designation = StepTween(begin: 0, end: designation.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.50, 0.80, curve: Curves.easeIn)));
-    _welcomAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Interval(0.70, 1.0, curve: Curves.easeOut)));
+    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.25, 0.65, curve: Curves.easeIn)));
+    _designation = StepTween(begin: 0, end: designation.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.65, 1, curve: Curves.easeIn)));
+    // _welcomAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Interval(0.70, 1.0, curve: Curves.easeOut)));
    _controller.forward();
    _controller.addListener(() {
      setState(() {});
@@ -52,6 +49,7 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                   alignment: Alignment.centerLeft,
                   widthFactor: 0.7,
                   child: Container(
+                    padding: const EdgeInsets.only(top:30),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -91,40 +89,40 @@ class _Me_LSState extends State<Me_LS> with SingleTickerProviderStateMixin  {
                           builder: (BuildContext context, Widget child) {
                             String text = designation.substring(0, _designation.value);
                             return Text(
-                              text, 
+                              text.toUpperCase(), 
                               style: TextStyle(
-                                letterSpacing: 0.2,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                                letterSpacing: 2,
+                                fontSize: 35,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.grey,
                               ),
                             );
                           },
                         ),
-                        TranslateOnHover(
-                          child: HandCursor(
-                            child: Transform.scale(
-                              scale: _welcomAnimation.value,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top:20.0),
-                                child: DottedBorder(
-                                  dashPattern: [6, 4, 4, 6],
-                                  color: Colors.black,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "WELCOME TO MY PROFILE",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // TranslateOnHover(
+                        //   child: HandCursor(
+                        //     child: Transform.scale(
+                        //       scale: _welcomAnimation.value,
+                        //       child: Padding(
+                        //         padding: const EdgeInsets.only(top:20.0),
+                        //         child: DottedBorder(
+                        //           dashPattern: [6, 4, 4, 6],
+                        //           color: Colors.black,
+                        //           child: Padding(
+                        //             padding: const EdgeInsets.all(8.0),
+                        //             child: Text(
+                        //               "WELCOME TO MY PROFILE",
+                        //               style: TextStyle(
+                        //                 fontSize: 18,
+                        //                 color: Colors.white
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

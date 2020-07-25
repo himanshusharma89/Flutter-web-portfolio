@@ -38,6 +38,29 @@ class _HomeState extends State<Home> {
   }
 }
 
+List socialPlatforms = [
+  {
+    'URL':'https://github.com/himanshusharma89',
+    'iconURL':'https://img.icons8.com/fluent/50/000000/github.png'
+  },
+  {
+    'URL':'https://twitter.com/_SharmaHimanshu',
+    'iconURL':'https://img.icons8.com/color/48/000000/twitter.png'
+  },
+  {
+    'URL':'https://www.linkedin.com/in/himanshusharma89/',
+    'iconURL':'https://img.icons8.com/color/48/000000/linkedin.png'
+  },
+  {
+    'URL':'https://stackoverflow.com/users/11545939/himanshu-sharma',
+    'iconURL':'https://img.icons8.com/color/48/000000/stackoverflow.png'
+  },
+  {
+    'URL':'https://codepen.io/himanshusharma89',
+    'iconURL':'https://img.icons8.com/ios-filled/50/000000/codepen.png'
+  },
+];
+
 class LargeChild extends StatefulWidget {
   final PageController controller;
   bool darkmode;
@@ -67,7 +90,7 @@ class _LargeChildState extends State<LargeChild> {
       Experience_LS(),
       Project_LS(),
       Article_LS(),
-      Footer_LS(),
+      // Footer_LS(),
     ];
   }
 
@@ -123,7 +146,7 @@ class _LargeChildState extends State<LargeChild> {
             alignment: Alignment.centerRight,
             child: Container(
               width: width*0.035,
-              height: height*0.3,
+              height: height*0.32,
               decoration: BoxDecoration(
                 color: ProfileTheme.navBarColor,
                 borderRadius: BorderRadius.only(
@@ -138,62 +161,30 @@ class _LargeChildState extends State<LargeChild> {
                   ),
                 ],
               ),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    SizedBox(height: height*0.01,),
-                    HandCursor(
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchURL("https://github.com/himanshusharma89");
-                        },
-                        child: Image.asset('assets/social/github.png',
-                        width: 30.0,
-                        height: 30.0,),
+              child: Center(
+                child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: socialPlatforms.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(7.0),
+                      child: HandCursor(
+                        child: GestureDetector(
+                          onTap: () {
+                            _launchURL(socialPlatforms[index]['URL']);
+                          },
+                          child: Image.network(
+                            socialPlatforms[index]['iconURL'],
+                            width: 30.0,
+                            height: 30.0,
+                          ),
+                        ),
                       ),
-                    ),
-                    // SizedBox(
-                    //   width: 30,
-                    // ),
-                    HandCursor(
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchURL("https://twitter.com/_SharmaHimanshu");
-                        },
-                        child: Image.asset('assets/social/twitter.png',
-                        width: 30.0,
-                        height: 30.0,),
-                      ),
-                    ),
-                    // SizedBox(
-                    //   width: 30,
-                    // ),
-                    HandCursor(
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchURL("https://www.linkedin.com/in/himanshusharma89/");
-                        },
-                        child: Image.asset('assets/social/linkedIn.png',
-                        width: 30.0,
-                        height: 30.0,),
-                      ),
-                    ),
-                    // SizedBox(
-                    //   width: 30,
-                    // ),
-                    HandCursor(
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
-                        },
-                        child: Image.asset('assets/social/stack-overflow.png',
-                        width: 30.0,
-                        height: 30.0,),
-                      ),
-                    ),
-                    SizedBox(height: height*0.01,),
-                  ],
+                    );
+                  },
                 ),
+              )
             ),
           ),
           // Padding(

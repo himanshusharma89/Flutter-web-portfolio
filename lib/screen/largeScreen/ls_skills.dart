@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
+import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,42 +9,42 @@ class Skills_LS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height=MediaQuery.of(context).size.height;
-    return Column(
-      children: <Widget>[
-        SizedBox(height:height*0.05),
-        Text(
-          "SKILLS",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontSize: 30.0,
-          ),
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width*0.0625,
-          child: Divider(
-            color: Colors.white,
-            thickness: 3.0,
-          )
-        ),
-        SizedBox(height:30.0),
-        Container(
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                _skill(percentage: 0.9,url: 'https://sourcerer.io/himanshusharma89',imgUrl: 'assets/tech/c.png',width:55),
-                _skill(percentage: 0.6,url: 'https://sourcerer.io/himanshusharma89',imgUrl: 'assets/tech/c++.png',width:55),
-                _skill(percentage: 0.7,url: 'https://sourcerer.io/himanshusharma89',imgUrl: 'assets/tech/java.png',width:55),
-                _skill(percentage: 0.9,url: 'https://sourcerer.io/himanshusharma89',imgUrl: 'assets/tech/html.png',width:40),
-                _skill(percentage: 0.8,url: 'https://sourcerer.io/himanshusharma89',imgUrl: 'assets/tech/css.png',width:40),
-                _skill(percentage: 0.8,url: 'https://sourcerer.io/himanshusharma89',imgUrl: 'assets/tech/dart.png',width:45),
-              ],
+    final width=MediaQuery.of(context).size.width;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 50),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "MY SKILLS",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: ProfileTheme.cardHeadingColor,
+              fontSize: 35.0,
             ),
           ),
-        ),
-        SizedBox(height:height*0.12),
-      ],
+          Container(
+            width: MediaQuery.of(context).size.width*0.0625,
+            child: Divider(
+              color: Colors.white,
+              thickness: 3.0,
+            )
+          ),
+          Container(
+            width: width*0.5,
+            padding: const EdgeInsets.only(top:5),
+            child: Text(
+              "Focused Computer Science major (9.84 CGPA) currently attending Chitkara University, with a aim to leverage a proven knowledge of competitive programming with C/C++ & Java, Flutter Application Development, and web designing skills. I am a content writer at IEEE CIET Branch, Open Source enthusiast and I also like to working on Alexa Skill and Google Assistant App development.\nI am a quick learner and frequently praised as hard-working by my peers",
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.white
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
   Widget _skill({double percentage,String url,String imgUrl, double width}){

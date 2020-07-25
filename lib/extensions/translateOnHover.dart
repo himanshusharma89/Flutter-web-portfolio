@@ -11,7 +11,7 @@
 
 class _TranslateOnHoverState extends State<TranslateOnHover> {
   final nonHoverTransform = Matrix4.identity()..translate(0, 0, 0);
-  final hoverTransform = Matrix4.identity()..translate(0, -8, 0);
+  final hoverTransform = Matrix4.identity()..translate(0, -5, 0);
 
   bool _hovering = false;
 
