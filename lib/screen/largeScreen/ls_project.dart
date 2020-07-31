@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 
@@ -52,13 +53,17 @@ class Project_LS extends StatelessWidget {
           Container(
             height: height*0.82,
             width: width,
-            child: ListView.builder(
+            child: GridView.builder(
+              scrollDirection: Axis.vertical,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: ResponsiveLayout.isMediumScreen(context) ? 1.5/0.8 : 1.1/0.45
+              ),
               itemCount: projects.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40,),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
+                  child: FittedBox(
                     child: _project(
                       context: context,
                       url: projects[index]['url'],
@@ -66,7 +71,7 @@ class Project_LS extends StatelessWidget {
                       name: projects[index]['name'],
                       description: projects[index]['description']
                     ),
-                  ),
+                  )
                 );
               },
             ),
@@ -82,7 +87,8 @@ class Project_LS extends StatelessWidget {
     return TranslateOnHover(
       child: HandCursor(
         child: Container(
-          width: width*0.2,
+          width: width*0.45,
+          height: height*0.38,
           child: GestureDetector(
             onTap: () {
               _launchURL(url);

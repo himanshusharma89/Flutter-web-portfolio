@@ -81,28 +81,31 @@ class Experience_LS extends StatelessWidget {
                 thickness: 3.0,
               )
             ),
-            Padding(
-              padding: (ResponsiveLayout.isMediumScreen(context)) ? const EdgeInsets.symmetric(horizontal:50.0,vertical: 5) : const EdgeInsets.symmetric(horizontal:130.0,vertical: 5),
+            Container(
+              height: height*0.82,
+              width: width,
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  mainAxisSpacing: height*0.01,
-                  crossAxisSpacing: width*0.005,
-                  childAspectRatio: 1/1.1,
+                  crossAxisCount: 4,
+                  // mainAxisSpacing: height*0.01,
+                  // crossAxisSpacing: width*0.005,
+                  childAspectRatio: 1/1.1
                 ), 
-                shrinkWrap: true,
+                // shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                physics: ScrollPhysics(),
                 itemCount: experience.length,
                 itemBuilder: (context, index) {
                   return FittedBox(
-                    child: _experience(
-                      context: context,
-                      name: experience[index]['name'],
-                      imgUrl: experience[index]['imgUrl'],
-                      date: experience[index]['date'],
-                      description: experience[index]['description'],
-                      organisation: experience[index]['organisation'],
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: _experience(
+                        context: context,
+                        name: experience[index]['name'],
+                        imgUrl: experience[index]['imgUrl'],
+                        date: experience[index]['date'],
+                        description: experience[index]['description'],
+                        organisation: experience[index]['organisation'],
+                      ),
                     ),
                   );
                 },
@@ -179,7 +182,8 @@ class Experience_LS extends StatelessWidget {
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
     return Container(
-      width: width*0.2,
+      width: width*0.35,
+      height: height*0.35,
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(
