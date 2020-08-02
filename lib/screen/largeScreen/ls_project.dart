@@ -56,8 +56,8 @@ class Project_LS extends StatelessWidget {
             child: GridView.builder(
               scrollDirection: Axis.vertical,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: ResponsiveLayout.isMediumScreen(context) ? 1.5/0.8 : 1.1/0.45
+                crossAxisCount: 3,
+                childAspectRatio: ResponsiveLayout.isMediumScreen(context) ? 1.5/0.8 : 0.8/0.6
               ),
               itemCount: projects.length,
               itemBuilder: (context, index) {
@@ -87,8 +87,8 @@ class Project_LS extends StatelessWidget {
     return TranslateOnHover(
       child: HandCursor(
         child: Container(
-          width: width*0.45,
-          height: height*0.38,
+          width: width*0.25,
+          height: height*0.48,
           child: GestureDetector(
             onTap: () {
               _launchURL(url);
@@ -99,40 +99,38 @@ class Project_LS extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12.0),
               ),
               color: Color(0xff2a2e35),
-              child: Row(
+              child: Column(
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(height: height*0.01,),
-                          Text(
-                            name,
-                            style: TextStyle(
-                              color: Color.fromRGBO(178, 190, 205,1),
-                              fontSize: 17.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: height*0.01,),
-                          Text(
-                            description,
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              color: Color.fromRGBO(178, 190, 205,1),
-                              fontSize: 14.0,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
                   Expanded(
                     child: Image.asset(
                       imgUrl,
                       fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(height: height*0.01,),
+                        Text(
+                          name,
+                          style: TextStyle(
+                            color: Color.fromRGBO(178, 190, 205,1),
+                            fontSize: 17.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: height*0.01,),
+                        Text(
+                          description,
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            color: Color.fromRGBO(178, 190, 205,1),
+                            fontSize: 15.0,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ],
