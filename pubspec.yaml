@@ -71,12 +71,9 @@ flutter:
     - family: Star Jedi
       fonts:
         - asset: assets/fonts/SfDistantGalaxyAlternate-OE4d.ttf
-    - family: Poppins
+    - family: Neue Helvetica
       fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Poppins-SemiBold.ttf
-          weight: 600
+        - asset: assets/fonts/Helvetica55Roman.ttf
     - family:  MyFlutterApp
       fonts:
         - asset: assets/icons/MyFlutterApp.ttf

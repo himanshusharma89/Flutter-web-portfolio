@@ -14,7 +14,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
   Animation _hi;
   Animation _name;
   Animation _designation;
-  // Animation _welcomAnimation;
+  Animation _imgAnimation;
   String hi ="Hey! I am";
   String name = "HIMANSHU SHARMA";
   String designation = "Flutter Developer";
@@ -24,14 +24,21 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
     super.initState();
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 5500));
     _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.25, curve: Curves.easeIn)));
-    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.25, 0.65, curve: Curves.easeIn)));
+    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.2, 0.7, curve: Curves.easeIn)));
     _designation = StepTween(begin: 0, end: designation.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.65, 1, curve: Curves.easeIn)));
-    // _welcomAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Interval(0.70, 1.0, curve: Curves.easeOut)));
+    _imgAnimation = CurvedAnimation(parent: _controller, curve: Interval(0.3, 0.6, curve: Curves.easeIn));
    _controller.forward();
    _controller.addListener(() {
      setState(() {});
    });
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final width=MediaQuery.of(context).size.width;
@@ -92,11 +99,12 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
                             builder: (BuildContext context, Widget child) {
                               String text = designation.substring(0, _designation.value);
                               return Text(
-                                text.toUpperCase(), 
+                                text, 
                                 style: TextStyle(
                                   letterSpacing: 2,
                                   fontSize: 35,
                                   fontWeight: FontWeight.w500,
+                                  fontFamily: 'Neue Helvetica',
                                   color: Colors.grey,
                                 ),
                               );
@@ -137,27 +145,30 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
                     widthFactor: 0.6,
                     child: Stack(
                       children: [
-                        Container(
-                          margin: const EdgeInsets.only(top:100),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(22.0)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black,
-                                offset: Offset(0.0, 3.0),
-                                blurRadius: 15
-                              )
-                            ]
-                          ),
-                          child: TranslateOnHover(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12.0),
-                              child: Image.asset(
-                                'self.jfif',
-                                fit: BoxFit.cover,
+                        FadeTransition(
+                          opacity: _imgAnimation,
+                          child: Container(
+                            margin: const EdgeInsets.only(top:100),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(22.0)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black,
+                                  offset: Offset(0.0, 3.0),
+                                  blurRadius: 15
+                                )
+                              ]
+                            ),
+                            child: TranslateOnHover(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12.0),
+                                child: Image.asset(
+                                  'self.jpg',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          )
+                          ),
                         ),
                       ],
                     ),

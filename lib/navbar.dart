@@ -185,7 +185,9 @@ class _NavbarState extends State<Navbar> {
   Widget navBarItem(BuildContext context,int index,IconData icon, String navText){
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
-    return HandCursor(
+    return Container(
+      height: height*0.05,
+      width: width,
       child: GestureDetector(
         onTap: () {
           setState(() {
@@ -193,9 +195,7 @@ class _NavbarState extends State<Navbar> {
             controller.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.ease);
           });
         },
-        child: Container(
-          height: height*0.05,
-          width: width,
+        child: HandCursor(
           child: ChangeTextOnHover(
             child: Icon(
               icon,

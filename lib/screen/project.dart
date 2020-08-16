@@ -37,7 +37,7 @@ class Project extends StatelessWidget {
             SizedBox(height:height*0.01),
             Center(
               child: Container(
-                height: height*0.82,
+                height: height*0.83,
                 width: width*0.82,
                 child: StaggeredGridView.countBuilder(
                   shrinkWrap: true,
