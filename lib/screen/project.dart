@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
@@ -18,22 +19,6 @@ class Project extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             SizedBox(height:height*0.05),
-            // Row(
-            //   mainAxisSize: MainAxisSize.min,
-            //   children: <Widget>[
-            //     RotateAnimatedTextKit(
-            //       totalRepeatCount: 1000,
-            //       text: ["CODE", "DEBUG", "ANALYZE", "DESIGN"],
-            //       textStyle: TextStyle(
-            //         fontSize: 40.0, 
-            //         fontFamily: "Star Jedi",
-            //         color: Colors.white
-            //       ),
-            //       textAlign: TextAlign.start,
-            //       alignment: AlignmentDirectional.topStart // or Alignment.topLeft
-            //     ),
-            //   ],
-            // ),
             Text(
               "PROJECTS",
               style: TextStyle(
@@ -50,30 +35,36 @@ class Project extends StatelessWidget {
               )
             ),
             SizedBox(height:height*0.01),
-            Container(
-              height: height*0.82,
-              width: width,
-              child: GridView.builder(
-                scrollDirection: Axis.vertical,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: ResponsiveLayout.isMediumScreen(context) ? 1.5/0.8 : 0.8/0.6
-                ),
-                itemCount: projects.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FittedBox(
+            Center(
+              child: Container(
+                height: height*0.83,
+                width: width*0.82,
+                child: StaggeredGridView.countBuilder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  crossAxisCount: 6,
+                  staggeredTileBuilder: (int index) =>
+                      new StaggeredTile.count(2, index.isEven ? 3 : 2),
+                  mainAxisSpacing: 4.0,
+                  crossAxisSpacing: 4.0,
+                  // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  //   crossAxisCount: 3,
+                  //   childAspectRatio: ResponsiveLayout.isMediumScreen(context) ? 1.5/0.8 : 0.8/0.6
+                  // ),
+                  itemCount: projects.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: _project(
                         context: context,
                         url: projects[index]['url'],
                         imgUrl: projects[index]['imgUrl'],
                         name: projects[index]['name'],
                         description: projects[index]['description']
-                      ),
-                    )
-                  );
-                },
+                      )
+                    );
+                  },
+                ),
               ),
             ),
           ],
@@ -84,61 +75,50 @@ class Project extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.only(top:30.0),
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: RadialGradient(
-                focalRadius: 1.0,
-                colors: [ Colors.blueAccent,Colors.black]
-              )
-            ),
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "PROJECTS",
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold
-                    ),
-                  ),
-                  Container(
-                  width: MediaQuery.of(context).size.width*0.0625,
-                    child: Divider(
-                      color: Colors.white,
-                      thickness: 3.0,
-                    ),
-                  ),
-                  SizedBox(height:30.0),
-                  Container(
-                    height: height*12,
-                    child: GridView.builder(
-                      scrollDirection: Axis.vertical,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.8/0.6
-                      ),
-                      itemCount: projects.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: FittedBox(
-                            child: _project(
-                              context: context,
-                              url: projects[index]['url'],
-                              imgUrl: projects[index]['imgUrl'],
-                              name: projects[index]['name'],
-                              description: projects[index]['description']
-                            ),
-                          )
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(height:100.0)
-                ],
+          child: Column(
+            children: <Widget>[
+              Text(
+                "PROJECTS",
+                style: TextStyle(
+                  fontSize: 30.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold
+                ),
               ),
-            ),
+              Container(
+              width: MediaQuery.of(context).size.width*0.0625,
+                child: Divider(
+                  color: Colors.white,
+                  thickness: 3.0,
+                ),
+              ),
+              SizedBox(height:30.0),
+              Container(
+                height: height*1,
+                child: GridView.builder(
+                  scrollDirection: Axis.vertical,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.8/0.6
+                  ),
+                  itemCount: projects.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: _project(
+                          context: context,
+                          url: projects[index]['url'],
+                          imgUrl: projects[index]['imgUrl'],
+                          name: projects[index]['name'],
+                          description: projects[index]['description']
+                        ),
+                      )
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       );
@@ -171,30 +151,33 @@ class Project extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(height: height*0.01,),
-                        Text(
-                          name,
-                          style: TextStyle(
-                            color: Color.fromRGBO(178, 190, 205,1),
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            name,
+                            style: TextStyle(
+                              color: Color.fromRGBO(178, 190, 205,1),
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: height*0.01,),
-                        Text(
-                          description,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            color: Color.fromRGBO(178, 190, 205,1),
-                            fontSize: 15.0,
-                          ),
-                        )
-                      ],
+                          SizedBox(height: height*0.02,),
+                          Expanded(
+                            child: Text(
+                              description,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                color: Color.fromRGBO(178, 190, 205,1),
+                                fontSize: 15.0,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -246,6 +229,12 @@ _launchURL(String Url) async {
     'imgUrl':'assets/flutter1.png', 
     'name': 'WAY BACK HOME', 
     'description': 'This is a app which is under development, developed with Flutter Framework and Dart programming for BUILD FOR DIGITAL INDIA #BFDI initiative by Govt. and Google' 
+  },
+  {
+    'url': 'https://github.com/himanshusharma89/TIET-Makeathon-2.0',
+    'imgUrl':'assets/flutter1.png', 
+    'name': 'WATER MONITORING SYSTEM', 
+    'description': 'Water​ ​Monitoring​ ​System​ ​is​ ​an​ ​IOT​ ​based​ ​Flutter​ Project ​that​ ​has mechanisms​ ​to​ ​keep​ ​the​ ​user​ ​alerted​ ​in​ ​case​ ​of​ ​liquid​ ​overflow​. Developed for Makeathon 2.0 @ TIET.' 
   },
   {
     'url': 'https://github.com/himanshusharma89/TIET-Makeathon-2.0',
