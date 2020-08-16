@@ -10,8 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 class Navbar extends StatefulWidget {
   final PageController controller;
   int currentIndex;
-  bool darkmode;
-  Navbar({this.controller,this.darkmode,this.currentIndex});
+  Navbar({this.controller,this.currentIndex});
 
   @override
   _NavbarState createState() => _NavbarState();
@@ -196,7 +195,13 @@ class _NavbarState extends State<Navbar> {
           });
         },
         child: HandCursor(
-          child: ChangeTextOnHover(
+          child: ResponsiveLayout.isMediumScreen(context)
+          ? Icon(
+              icon,
+              size: 28,
+              color: (widget.currentIndex==index) ? ProfileTheme.subHeadingColor : Colors.grey,
+            )
+          : ChangeTextOnHover(
             child: Icon(
               icon,
               size: 28,

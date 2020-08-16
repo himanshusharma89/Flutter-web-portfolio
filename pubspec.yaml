@@ -71,9 +71,6 @@ flutter:
     - family: Star Jedi
       fonts:
         - asset: assets/fonts/SfDistantGalaxyAlternate-OE4d.ttf
-    - family: Neue Helvetica
-      fonts:
-        - asset: assets/fonts/Helvetica55Roman.ttf
     - family:  MyFlutterApp
       fonts:
         - asset: assets/icons/MyFlutterApp.ttf

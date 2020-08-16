@@ -105,7 +105,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
                                   fontSize: 35,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: 'Neue Helvetica',
-                                  color: Colors.grey,
+                                  color: Colors.white,
                                 ),
                               );
                             },

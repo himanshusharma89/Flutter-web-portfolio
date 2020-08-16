@@ -16,10 +16,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   final PageController controller;
-  bool darkmode;
-  int currentIndex;
-  GlobalKey<ScaffoldState> drawerkey;
-  Home({this.controller,this.darkmode,this.drawerkey,this.currentIndex});
+  final int currentIndex;
+  final GlobalKey<ScaffoldState> drawerkey;
+  Home({this.controller,this.drawerkey,this.currentIndex});
 
   @override
   _HomeState createState() => _HomeState();
@@ -29,8 +28,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(
-      largeScreen: LargeChild(controller: widget.controller,darkmode: widget.darkmode,),
-      smallScreen: SmallChild(controller: widget.controller,darkmode: widget.darkmode,drawerkey: widget.drawerkey),
+      largeScreen: LargeChild(controller: widget.controller,),
+      smallScreen: SmallChild(controller: widget.controller,drawerkey: widget.drawerkey),
     );
   }
 }
@@ -60,9 +59,8 @@ List socialPlatforms = [
 
 class LargeChild extends StatefulWidget {
   final PageController controller;
-  bool darkmode;
   int currentIndex;
-  LargeChild({this.controller,this.darkmode,this.currentIndex});
+  LargeChild({this.controller,this.currentIndex});
   
   @override
   _LargeChildState createState() => _LargeChildState();
@@ -125,16 +123,13 @@ class _LargeChildState extends State<LargeChild> {
             child: Align(
               alignment: Alignment.topRight,
               child: FloatingActionButton(
-                backgroundColor: widget.darkmode? Color.fromRGBO(42, 46, 53, 1): Colors.white,
+                backgroundColor: Color.fromRGBO(42, 46, 53, 1),
                 heroTag: null,
                 onPressed: (){
-                  setState(() {
-                    widget.darkmode=false;
-                  });
                 },
                 child: Icon(
                   Icons.wb_sunny,
-                  color: widget.darkmode? Colors.white: Color.fromRGBO(42, 46, 53, 1),
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -240,9 +235,8 @@ class _LargeChildState extends State<LargeChild> {
 
 class SmallChild extends StatefulWidget {
   final PageController controller;
-  final bool darkmode;
   final GlobalKey<ScaffoldState> drawerkey;
-  SmallChild({this.controller,this.darkmode,this.drawerkey});
+  SmallChild({this.controller,this.drawerkey});
   @override
   _SmallChildState createState() => _SmallChildState();
 }
@@ -257,7 +251,7 @@ class _SmallChildState extends State<SmallChild> {
       backgroundColor: Colors.transparent,
       key: widget.drawerkey,
       drawer: Drawer(
-        child: Navbar(controller: widget.controller,darkmode: true,),
+        child: Navbar(controller: widget.controller,),
       ),
       body: Container(
         width: width,
