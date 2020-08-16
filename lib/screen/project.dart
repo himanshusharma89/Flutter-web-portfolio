@@ -1,5 +1,3 @@
-// import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
@@ -96,25 +94,9 @@ class Project extends StatelessWidget {
             child: Center(
               child: Column(
                 children: <Widget>[
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      RotateAnimatedTextKit(
-                        totalRepeatCount: 1000,
-                        text: ["CODE", "DEBUG", "ANALYZE", "DESIGN"],
-                        textStyle: TextStyle(
-                          fontSize: 55.0, 
-                          color: Colors.white
-                        ),
-                        textAlign: TextAlign.start,
-                        alignment: AlignmentDirectional.topStart // or Alignment.topLeft
-                      ),
-                    ],
-                  ),
                   Text(
                     "PROJECTS",
                     style: TextStyle(
-                      
                       fontSize: 30.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold
@@ -128,204 +110,30 @@ class Project extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height:30.0),
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.0),
-                          color: Colors.white,
-                        ),
-                        width: MediaQuery.of(context).size.width*0.56,
-                        child: GestureDetector(
-                          onTap: () {
-                            _launchURL('https://github.com/himanshusharma89/Flutter-Blog-App');
-                          },
-                          child: Card(
-                            color: Colors.black,
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(height:10.0),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                    child: Image.asset(
-                                      'assets/flutter.png',
-                                      width: 150.0,
-                                    ),
-                                  ),
-                                  SizedBox(height:30.0),
-                                  Text(
-                                    'FLUTTER BLOG APP',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold,
-                                                                                      ),
-                                  ),
-                                  SizedBox(height:30.0),
-                                  Text(
-                                    'This is a Blog App developed with Flutter Framework and Dart programming language. It is just a blog adding and saving application. This is a fully functional app with Firebase backend.',
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.0,
-                                                                                      ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                  Container(
+                    height: height*12,
+                    child: GridView.builder(
+                      scrollDirection: Axis.vertical,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.8/0.6
                       ),
-                      SizedBox(height:40.0),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.0),
-                          color: Colors.white,
-                        ),
-                        width: MediaQuery.of(context).size.width*0.56,
-                        child: GestureDetector(
-                          onTap: () {
-                            _launchURL('https://github.com/himanshusharma89/Way-Back-Home');
-                          },
-                          child: Card(
-                            color: Colors.black,
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(height:10.0),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                    child: Image.asset(
-                                      'assets/flutter.png',
-                                      width: 150.0,
-                                    ),
-                                  ),
-                                  SizedBox(height:30.0),
-                                  Text(
-                                    'WAY BACK HOME',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold,
-                                                                                      ),
-                                  ),
-                                  SizedBox(height:30.0),
-                                  Text(
-                                    'This is a app which is under development, developed with Flutter Framework and Dart programming for BUILD FOR DIGITAL INDIA #BFDI initiative by Govt. and Google',
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.0,
-                                                                                      ),
-                                  )
-                                ],
-                              ),
+                      itemCount: projects.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: FittedBox(
+                            child: _project(
+                              context: context,
+                              url: projects[index]['url'],
+                              imgUrl: projects[index]['imgUrl'],
+                              name: projects[index]['name'],
+                              description: projects[index]['description']
                             ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height:40.0),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.0),
-                          color: Colors.white,
-                        ),
-                        width: MediaQuery.of(context).size.width*0.56,
-                        child: GestureDetector(
-                          onTap: () {
-                            _launchURL('https://github.com/himanshusharma89/TIET-Makeathon-2.0');
-                          },
-                          child: Card(
-                            color: Colors.black,
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(height:10.0),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                    child: Image.asset(
-                                      'assets/flutter.png',
-                                      width: 150.0,
-                                    ),
-                                  ),
-                                  SizedBox(height:30.0),
-                                  Text(
-                                    'WATER MONITORING SYSTEM',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(height:30.0),
-                                  Text(
-                                    'Water​ ​Monitoring​ ​System​ ​is​ ​an​ ​IOT​ ​based​ ​Liquid​ ​Flutter​ Project ​that​ ​has mechanisms​ ​to​ ​keep​ ​the​ ​user​ ​alerted​ ​in​ ​case​ ​of​ ​liquid​ ​overflow​ ​or​ ​when​ ​tank​ ​depletes. This project was developed for Makeathon 2.0 @ TIET.',
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.0,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height:40.0),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.0),
-                          color: Colors.white,
-                        ),
-                        width: MediaQuery.of(context).size.width*0.56,
-                        child: GestureDetector(
-                          onTap: () {
-                            _launchURL('https://github.com/himanshusharma89/Flutter-Card-Carousel');
-                          },
-                          child: Card(
-                            color: Colors.black,
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(height:10.0),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                    child: Image.asset(
-                                      'assets/flutter.png',
-                                      width: 150.0,
-                                    ),
-                                  ),
-                                  SizedBox(height:30.0),
-                                  Text(
-                                    'FLUTTER CARD CAROUSEL TEMPLATE',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(height:30.0),
-                                  Text(
-                                    'This is template for creating card carousel in Flutter with the help of carousel_slider package',
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.0,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                          )
+                        );
+                      },
+                    ),
                   ),
                   SizedBox(height:100.0)
                 ],
@@ -343,7 +151,7 @@ class Project extends StatelessWidget {
     return TranslateOnHover(
       child: HandCursor(
         child: Container(
-          width: width*0.25,
+          width: ResponsiveLayout.isSmallScreen(context) ? width*0.56: width*0.25,
           height: height*0.48,
           child: GestureDetector(
             onTap: () {
