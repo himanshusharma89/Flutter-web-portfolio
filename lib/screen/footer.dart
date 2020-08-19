@@ -210,8 +210,7 @@ class Footer extends StatelessWidget {
   }
 }
 
-_launchURL(String Url) async {
-  var url = Url;
+_launchURL(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
   } else {

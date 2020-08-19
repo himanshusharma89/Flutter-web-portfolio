@@ -6,8 +6,13 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Skills extends StatelessWidget {
+class Skills extends StatefulWidget {
 
+  @override
+  _SkillsState createState() => _SkillsState();
+}
+
+class _SkillsState extends State<Skills> {
   List skill=[
     {
       'percentage': 0.9,
@@ -130,7 +135,7 @@ class Skills extends StatelessWidget {
       );
     }
   }
-  
+
   Widget _skill({double percentage,String url,String imgUrl, double width}){
     return TranslateOnHover(
       child: CircularPercentIndicator(
@@ -158,8 +163,7 @@ class Skills extends StatelessWidget {
   }
 }
 
-_launchURL(String Url) async {
-  var url = Url;
+_launchURL(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
   } else {

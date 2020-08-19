@@ -6,7 +6,6 @@ class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width=MediaQuery.of(context).size.width;
-    final height=MediaQuery.of(context).size.height;
     if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context)) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 50),

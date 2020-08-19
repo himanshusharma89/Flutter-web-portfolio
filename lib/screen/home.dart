@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/extensions/translateOnHover.dart';
+import 'package:my_portfolio/provider/drawer_controller.dart';
 import 'package:my_portfolio/screen/article.dart';
 import 'package:my_portfolio/screen/about_me.dart';
+import 'package:my_portfolio/screen/drawer.dart';
 import 'package:my_portfolio/screen/experience.dart';
 import 'package:my_portfolio/screen/footer.dart';
 import 'package:my_portfolio/screen/me.dart';
 import 'package:my_portfolio/screen/project.dart';
 import 'package:my_portfolio/screen/skills.dart';
-import 'package:my_portfolio/navbar.dart';
+import 'package:my_portfolio/screen/navbar.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
+import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -241,91 +243,80 @@ class SmallChild extends StatefulWidget {
   _SmallChildState createState() => _SmallChildState();
 }
 
-class _SmallChildState extends State<SmallChild> {
+class _SmallChildState extends State<SmallChild> with TickerProviderStateMixin{
+
+  AnimationController _animationController;
+  bool isMenu;
+
+  Curve scaleDownCurve = new Interval(0.0, 0.3, curve: Curves.easeOut);
+  Curve scaleUpCurve = new Interval(0.0, 1.0, curve: Curves.easeOut);
+  Curve slideOutCurve = new Interval(0.0, 1.0, curve: Curves.easeOut);
+  Curve slideInCurve = new Interval(0.0, 1.0, curve: Curves.easeOut);
+
+  @override
+  void initState() {
+    super.initState();
+    isMenu = false;
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        drawerScreen(),
+        homeScreen()
+      ],
+    );
+  }
+
+  Widget drawerScreen(){
+    return Container(
+      child: Scaffold(
+        body: DrawerScreen(context),
+      ),
+    );
+  }
+
+  Widget homeScreen(){
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      key: widget.drawerkey,
-      drawer: Drawer(
-        child: Navbar(controller: widget.controller,),
-      ),
-      body: Container(
-        width: width,
-        height: height,
-        child: SingleChildScrollView(
+    return zoomAndSlideContent(
+      Scaffold(
+        backgroundColor: Colors.transparent,
+        key: widget.drawerkey,
+        drawer: Drawer(
+          child: Navbar(controller: widget.controller,),
+        ),
+        body: Container(
+          width: width,
+          height: height,
+          color: ProfileTheme.backgroundColor,
           child: Stack(
             children: [
-              Column(
-                children: <Widget>[
-                  Me(),
-                  SizedBox(height:80.0),
-                  Container(
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.only(right: 10.0,left: 10.0),
-                            child: Divider(
-                              color: Colors.white,
-                              thickness: 3.0,
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              "I AM A ",
-                              style: TextStyle(
-                                letterSpacing: 1,
-                                color: Colors.white,
-                                fontSize: 20.0,
-                                                            ),
-                            ),
-                            TranslateOnHover(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(60.0),
-                                child: Image.asset('assets/flutter.png',
-                                  width: 80.0,
-                                )
-                              ),
-                            ),
-                            Text(
-                              " FLUTTER DEVELOPER",
-                              style: TextStyle(
-                                letterSpacing: 1,
-                                color: Colors.white,
-                                fontSize: 20.0,
-                                                            ),
-                            )
-                          ],
-                        ),
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.only(left:10.0,right:10.0),
-                            child: Divider(
-                              color: Colors.white,
-                              thickness: 3.0,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height:80.0),
-                  AboutMe(),
-                  SizedBox(height:80.0),
-                  Skills(),
-                  Experience(),
-                  Project(),
-                  SizedBox(height: 80.0,),// GAP
-                  Article(),
-                  Footer(),
-                  SizedBox(height:80.0)
-                ],
+              SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Me(),
+                    SizedBox(height:80.0),
+                    AboutMe(),
+                    SizedBox(height:80.0),
+                    Skills(),
+                    Experience(),
+                    Project(),
+                    SizedBox(height: 80.0,),// GAP
+                    Article(),
+                    Footer(),
+                    SizedBox(height:80.0)
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -334,13 +325,16 @@ class _SmallChildState extends State<SmallChild> {
                   width: 50,
                   child: FittedBox(
                     child: FloatingActionButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16.0))),
                       backgroundColor: Color.fromRGBO(42, 46, 53, 1),
                       onPressed: (){
-                        widget.drawerkey.currentState.openDrawer();
+                        _handleOnPressed();
+                        Provider.of<MenuController>(context, listen: false).toggle();
                       },
                       heroTag: null,
-                      child: Icon(
-                        Icons.menu,
+                      child: AnimatedIcon(
+                        icon: AnimatedIcons.menu_close,
+                        progress: _animationController,
                       ),
                     ),
                   ),
@@ -352,10 +346,69 @@ class _SmallChildState extends State<SmallChild> {
       ),
     );
   }
+
+  void _handleOnPressed() {
+    setState(() {
+      isMenu = !isMenu;
+      isMenu ? _animationController.forward() : _animationController.reverse();
+    });
+  }
+
+  zoomAndSlideContent(Widget content) {
+    var slidePercent, scalePercent;
+
+    switch (Provider.of<MenuController>(context, listen: true).state) {
+      case MenuState.closed:
+        slidePercent = 0.0;
+        scalePercent = 0.0;
+        break;
+      case MenuState.open:
+        slidePercent = 1.0;
+        scalePercent = 1.0;
+        break;
+      case MenuState.opening:
+        slidePercent = slideOutCurve.transform(
+            Provider.of<MenuController>(context, listen: true).percentOpen);
+        scalePercent = scaleDownCurve.transform(
+            Provider.of<MenuController>(context, listen: true).percentOpen);
+        break;
+      case MenuState.closing:
+        slidePercent = slideInCurve.transform(
+            Provider.of<MenuController>(context, listen: true).percentOpen);
+        scalePercent = scaleUpCurve.transform(
+            Provider.of<MenuController>(context, listen: true).percentOpen);
+        break;
+    }
+
+    final slideAmount = 275.0 * slidePercent;
+    final contentScale = 1.0 - (0.2 * scalePercent);
+    final cornerRadius =
+        16.0 * Provider.of<MenuController>(context, listen: true).percentOpen;
+
+    return new Transform(
+      transform: new Matrix4.translationValues(slideAmount, 0.0, 0.0)
+        ..scale(contentScale, contentScale),
+      alignment: Alignment.centerLeft,
+      child: new Container(
+        decoration: new BoxDecoration(
+          boxShadow: [
+            new BoxShadow(
+              color: Colors.black12,
+              offset: const Offset(0.0, 5.0),
+              blurRadius: 15.0,
+              spreadRadius: 10.0,
+            ),
+          ],
+        ),
+        child: new ClipRRect(
+            borderRadius: new BorderRadius.circular(cornerRadius),
+            child: content),
+      ),
+    );
+  }
 }
 
-_launchURL(String Url) async {
-  var url = Url;
+_launchURL(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
   } else {
