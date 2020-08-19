@@ -8,7 +8,6 @@ import 'package:my_portfolio/screen/footer.dart';
 import 'package:my_portfolio/screen/me.dart';
 import 'package:my_portfolio/screen/project.dart';
 import 'package:my_portfolio/screen/skills.dart';
-import 'package:my_portfolio/screen/navbar.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
@@ -19,8 +18,7 @@ import 'package:url_launcher/url_launcher.dart';
 class Home extends StatefulWidget {
   final PageController controller;
   final int currentIndex;
-  final GlobalKey<ScaffoldState> drawerkey;
-  Home({this.controller,this.drawerkey,this.currentIndex});
+  Home({this.controller,this.currentIndex});
 
   @override
   _HomeState createState() => _HomeState();
@@ -31,7 +29,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return ResponsiveLayout(
       largeScreen: LargeChild(controller: widget.controller,),
-      smallScreen: SmallChild(controller: widget.controller,drawerkey: widget.drawerkey),
+      smallScreen: SmallChild(controller: widget.controller),
     );
   }
 }
@@ -237,8 +235,7 @@ class _LargeChildState extends State<LargeChild> {
 
 class SmallChild extends StatefulWidget {
   final PageController controller;
-  final GlobalKey<ScaffoldState> drawerkey;
-  SmallChild({this.controller,this.drawerkey});
+  SmallChild({this.controller});
   @override
   _SmallChildState createState() => _SmallChildState();
 }
@@ -291,10 +288,6 @@ class _SmallChildState extends State<SmallChild> with TickerProviderStateMixin{
     return zoomAndSlideContent(
       Scaffold(
         backgroundColor: Colors.transparent,
-        key: widget.drawerkey,
-        drawer: Drawer(
-          child: Navbar(controller: widget.controller,),
-        ),
         body: Container(
           width: width,
           height: height,

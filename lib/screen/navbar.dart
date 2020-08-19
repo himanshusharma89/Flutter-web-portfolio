@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/changeTextOnHover.dart';
-import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/icons/my_flutter_app_icons.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Navbar extends StatefulWidget {
   final PageController controller;
@@ -29,7 +27,6 @@ class _NavbarState extends State<Navbar> {
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
     return Container(
-      color: ProfileTheme.color2,
       child: Column(
         children: <Widget>[
           if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
@@ -92,98 +89,6 @@ class _NavbarState extends State<Navbar> {
                 ],
               ),
             )
-          else if(ResponsiveLayout.isSmallScreen(context))
-            Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  TranslateOnHover(
-                    child: Container(
-                      width: 60.0,
-                      height: 55.0,
-                      child: Center(
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left:8.0,right: 8.0,top: 9.0,bottom: 9.0),
-                            child: Text(
-                              "HS",
-                              style: TextStyle(
-                                letterSpacing: 0.5,
-                                fontSize: 24.0,
-                                color: Colors.blueAccent
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height:20.0),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      TranslateOnHover(
-                        child: HandCursor(
-                          child: GestureDetector(
-                            onTap: () {
-                              _launchURL("https://github.com/himanshusharma89");
-                            },
-                            child: Image.asset('assets/social/github.png',
-                            width: 50.0,
-                            height: 50.0,),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      TranslateOnHover(
-                        child: HandCursor(
-                          child: GestureDetector(
-                            onTap: () {
-                              _launchURL("https://twitter.com/_SharmaHimanshu");
-                            },
-                            child: Image.asset('assets/social/twitter.png',
-                            width: 50.0,
-                            height: 50.0,),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      TranslateOnHover(
-                        child: HandCursor(
-                          child: GestureDetector(
-                            onTap: () {
-                              _launchURL("https://www.linkedin.com/in/himanshusharma89/");
-                            },
-                            child: Image.asset('assets/social/linkedIn.png',
-                            width: 50.0,
-                            height: 50.0,),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      TranslateOnHover(
-                        child: HandCursor(
-                          child: GestureDetector(
-                            onTap: () {
-                              _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
-                            },
-                            child: Image.asset('assets/social/stack-overflow.png',
-                            width: 50.0,
-                            height: 50.0,),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
         ],
       ),
     );
@@ -220,14 +125,5 @@ class _NavbarState extends State<Navbar> {
         ),
       ),
     );
-  }
-}
-
-_launchURL(String Url) async {
-  var url = Url;
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
   }
 }

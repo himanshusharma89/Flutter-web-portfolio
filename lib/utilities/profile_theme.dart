@@ -12,7 +12,7 @@ class ProfileTheme {
 
   static const Color color1 = Color(0xff4e2ec2);
   static const Color color2 = Color(0xff51a5cf);
-  static const Color color3 = Color(0xff2b53c3);
+  static const Color drawerColor = Color(0xff2b53c3);
 
   static const Color color4 = Color(0xff9d39f5);
   static const Color color5 = Color(0xff18313e);
