@@ -10,8 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 class Navbar extends StatefulWidget {
   final PageController controller;
   int currentIndex;
-  bool darkmode;
-  Navbar({this.controller,this.darkmode,this.currentIndex});
+  Navbar({this.controller,this.currentIndex});
 
   @override
   _NavbarState createState() => _NavbarState();
@@ -30,7 +29,7 @@ class _NavbarState extends State<Navbar> {
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
     return Container(
-      color: ProfileTheme.navBarColor,
+      color: ProfileTheme.color2,
       child: Column(
         children: <Widget>[
           if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
@@ -52,11 +51,19 @@ class _NavbarState extends State<Navbar> {
               ),
               child: Stack(
                 children: [
-                  HandCursor(
-                    child: Container(
-                      height: height*0.08,
-                      width: width,
-                      color: Colors.black,
+                  GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        controller.animateToPage(0, duration: Duration(milliseconds: 1000), curve: Curves.ease);
+                      });
+                    },
+                    child: HandCursor(
+                      child: Container(
+                        height: height*0.08,
+                        width: width,
+                        color: Colors.black,
+                        child: Image.asset('heart_blue.png'),
+                      ),
                     ),
                   ),
                   Center(
@@ -196,7 +203,13 @@ class _NavbarState extends State<Navbar> {
           });
         },
         child: HandCursor(
-          child: ChangeTextOnHover(
+          child: ResponsiveLayout.isMediumScreen(context)
+          ? Icon(
+              icon,
+              size: 28,
+              color: (widget.currentIndex==index) ? ProfileTheme.subHeadingColor : Colors.grey,
+            )
+          : ChangeTextOnHover(
             child: Icon(
               icon,
               size: 28,
