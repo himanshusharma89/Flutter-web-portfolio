@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
+import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:provider/provider.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -65,7 +66,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             left: 32,
             bottom: 8,
             right: MediaQuery.of(context).size.width / 2.9),
-        color: Color(0xff0a0548),
+        color: ProfileTheme.drawerColor,
         child: Column(
           children: <Widget>[
             Row(
