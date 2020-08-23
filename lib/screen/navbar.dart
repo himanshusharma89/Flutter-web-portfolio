@@ -15,86 +15,109 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  PageController controller;
+
+  List navBarItems=[];
 
   @override
   void initState() {
-    controller=widget.controller;
     super.initState();
+    navBarItems = [
+      {
+        'icon': MyFlutterApp.home,
+        'title': 'HOME',
+      },
+      {
+        'icon': MyFlutterApp.me,
+        'title': 'ABOUT',
+      },
+      {
+        'icon': MyFlutterApp.skill,
+        'title': 'SKILLS',
+      },
+      {
+        'icon': MyFlutterApp.code,
+        'title': 'WORK',
+      },
+      {
+        'icon': MyFlutterApp.laptop,
+        'title': 'PROJECTS',
+      },
+      {
+        'icon': MyFlutterApp.article,
+        'title': 'ARTICLES',
+      }
+    ];
   }
+
   @override
   Widget build(BuildContext context) {
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
-    return Container(
-      child: Column(
-        children: <Widget>[
-          if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
-            Container(
-              width: width*0.04,
-              height: height,
-              decoration: BoxDecoration(
-                color: ProfileTheme.navBarColor,
-                border: Border(
-                  right: BorderSide(color: Colors.grey)
+      return  Container(
+        width: width*0.05,
+        height: height,
+        decoration: BoxDecoration(
+          color: ProfileTheme.navBarColor,
+          border: Border(
+            right: BorderSide(color: Colors.grey)
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black,
+              offset: Offset(0.0, 20.0),
+              blurRadius: 20.0,
+            ),
+          ], 
+        ),
+        child: Stack(
+          children: [
+            GestureDetector(
+              onTap: (){
+                setState(() {
+                  widget.controller.animateToPage(0, duration: Duration(milliseconds: 1000), curve: Curves.ease);
+                });
+              },
+              child: HandCursor(
+                child: Container(
+                  height: height*0.08,
+                  width: width,
+                  color: Colors.black,
+                  child: Image.asset('heart_blue.png'),
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    offset: Offset(0.0, 20.0),
-                    blurRadius: 20.0,
-                  ),
-                ], 
               ),
-              child: Stack(
-                children: [
-                  GestureDetector(
-                    onTap: (){
-                      setState(() {
-                        controller.animateToPage(0, duration: Duration(milliseconds: 1000), curve: Curves.ease);
-                      });
-                    },
-                    child: HandCursor(
-                      child: Container(
-                        height: height*0.08,
-                        width: width,
-                        color: Colors.black,
-                        child: Image.asset('heart_blue.png'),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for(int i=0;i<navBarItems.length;i++)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6),
+                        child: navBarItem(
+                          context: context,
+                          index:i,
+                          icon:navBarItems[i]['icon'],
+                          navText:navBarItems[i]['title']
+                        ),
                       ),
-                    ),
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          navBarItem(context,0,MyFlutterApp.home,'HOME'),
-                          SizedBox(height: height*0.02,),
-                          navBarItem(context,1,MyFlutterApp.me,'ABOUT'),
-                          SizedBox(height: height*0.02,),
-                          navBarItem(context,2,MyFlutterApp.skill,'SKILLS'),
-                          SizedBox(height: height*0.02,),
-                          navBarItem(context,3,MyFlutterApp.code,'WORK'),
-                          SizedBox(height: height*0.02,),
-                          navBarItem(context,4,MyFlutterApp.laptop,'PROJECTS'),
-                          SizedBox(height: height*0.02,),
-                          // navBarItem(context,0,'achievements.png','ACHIEVEMENTS',55,55),
-                          navBarItem(context,5,MyFlutterApp.article,'ARTICLES'),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            )
-        ],
-      ),
-    );
+            ),
+          ],
+        ),
+      );
   }
 
-  Widget navBarItem(BuildContext context,int index,IconData icon, String navText){
+  Widget navBarItem({
+    BuildContext context,
+    int index,
+    IconData icon, 
+    String navText
+    }){
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
     return Container(
@@ -104,7 +127,7 @@ class _NavbarState extends State<Navbar> {
         onTap: () {
           setState(() {
             widget.currentIndex=index;
-            controller.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.ease);
+            widget.controller.animateToPage(index, duration: Duration(milliseconds: 1000), curve: Curves.ease);
           });
         },
         child: HandCursor(

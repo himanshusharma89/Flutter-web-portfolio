@@ -1,15 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
+import 'package:my_portfolio/utilities/launcher.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 
-class Article extends StatelessWidget {
+final Launcher launcher = Launcher();
+class Article extends StatefulWidget {
+  @override
+  _ArticleState createState() => _ArticleState();
+}
+
+class _ArticleState extends State<Article> {
+
+  List article=[];
+
+  @override
+  void initState() {
+    super.initState();
+    article=[
+      {
+        'url': 'https://medium.com/@rageremix/how-to-create-card-carousel-in-flutter-979bc8ecf19',
+        'imgURL': 'assets/social/medium.png',
+        'title': 'HOW TO CREATE CARD CAROUSEL IN FLUTTER?'
+      },
+      {
+        'url': 'https://www.geeksforgeeks.org/blockchain-in-brief/',
+        'imgURL': 'assets/social/gfg1.png',
+        'title': 'HOW TO CREATE CARD CAROUSEL IN FLUTTER?'
+      },
+      {
+        'url': 'https://medium.com/@rageremix/my-story-of-app-development-with-flutter-dart-ed6b41cc8226',
+        'imgURL': 'assets/social/medium.png',
+        'title': 'HOW TO CREATE CARD CAROUSEL IN FLUTTER?'
+      },
+      {
+        'url': 'https://medium.com/@rageremix/how-to-create-card-carousel-in-flutter-979bc8ecf19',
+        'imgURL': 'assets/social/medium.png',
+        'title': 'HOW TO CREATE CARD CAROUSEL IN FLUTTER?'
+      }
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final height=MediaQuery.of(context).size.height;
+    final width=MediaQuery.of(context).size.width;
     if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context)) {
       return Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           SizedBox(height:height*0.05),
           Text(
@@ -28,239 +66,130 @@ class Article extends StatelessWidget {
             )
           ),
           SizedBox(height:30.0),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 160),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _article(
-                      context: context,
-                      url: 'https://medium.com/@rageremix/how-to-create-card-carousel-in-flutter-979bc8ecf19',
-                      imgUrl: 'assets/social/medium.png',
-                      title: 'HOW TO CREATE CARD CAROUSEL IN FLUTTER?'
-                    ),
-                    _article(
-                      context: context,
-                      url: 'https://www.geeksforgeeks.org/blockchain-in-brief/',
-                      imgUrl: 'assets/social/gfg1.png',
-                      title: 'BLOCKCHAIN IN BRIEF?'
-                    ),
-                    _article(
-                      context: context,
-                      url: 'https://medium.com/@rageremix/my-story-of-app-development-with-flutter-dart-ed6b41cc8226',
-                      imgUrl: 'assets/social/medium.png',
-                      title: 'MY STORY OF APP DEVELOPMENT WITH FLUTTER & DART'
-                    ),
-                  ],
+          Center(
+            child: Container(
+              width: width*0.82,
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 6,
+                  mainAxisSpacing: 6,
+                  childAspectRatio: 1.5/0.5
                 ),
-              ],
+                itemCount: article.length,
+                itemBuilder: (_, index){
+                  return _article(
+                    context: context,
+                    url: article[index]['url'],
+                    imgUrl: article[index]['imgURL'],
+                    title: article[index]['title']
+                  );
+                }
+              ),
             ),
-          ),
-          SizedBox(height:height*0.12),
+          )
         ],
       );
     } else {
       return Container(
-        child: Column(
-          children: <Widget>[
-            Text(
-              "ARTICLES",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontSize: 30.0,
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width*0.0625,
-              child: Divider(
-                color: Colors.white,
-                thickness: 3.0,
-              )
-            ),
-            SizedBox(height:30.0),
-            Container(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        color: Colors.black,
-                      ),
-                      width: MediaQuery.of(context).size.width*0.56,
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchURL('https://medium.com/@rageremix/how-to-create-card-carousel-in-flutter-979bc8ecf19');
-                        },
-                        child: Card(
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              children: <Widget>[
-                                SizedBox(height:10.0),
-                                Image.asset(
-                                  'assets/social/medium.png',
-                                  width: 150.0,
-                                ),
-                                SizedBox(height:30.0),
-                                Text(
-                                  'HOW TO CREATE CARD CAROUSEL IN FLUTTER?',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height:40.0),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        color: Colors.black,
-                      ),
-                      width: MediaQuery.of(context).size.width*0.56,
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchURL('https://www.geeksforgeeks.org/blockchain-in-brief/');
-                        },
-                        child: Card(
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              children: <Widget>[
-                                SizedBox(height:10.0),
-                                Image.asset(
-                                  'assets/social/gfg1.png',
-                                  width: 150.0,
-                                ),
-                                SizedBox(height:30.0),
-                                Text(
-                                  'BLOCKCHAIN IN BRIEF?',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height:40.0),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        color: Colors.black,
-                      ),
-                      width: MediaQuery.of(context).size.width*0.56,
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchURL('https://medium.com/@rageremix/my-story-of-app-development-with-flutter-dart-ed6b41cc8226');
-                        },
-                        child: Card(
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              children: <Widget>[
-                                SizedBox(height:10.0),
-                                Image.asset(
-                                  'assets/social/medium.png',
-                                  width: 150.0,
-                                ),
-                                SizedBox(height:30.0),
-                                Text(
-                                  'MY STORY OF APP DEVELOPMENT WITH FLUTTER & DART',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                "ARTICLES",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 30.0,
                 ),
               ),
-            ),
-            SizedBox(height:80.0)
-          ],
+              Container(
+                width: MediaQuery.of(context).size.width*0.0625,
+                child: Divider(
+                  color: Colors.white,
+                  thickness: 3.0,
+                )
+              ),
+              SizedBox(height:30.0),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: article.length,
+                itemBuilder: (_, index){
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: _article(
+                      context: context,
+                      url: article[index]['url'],
+                      imgUrl: article[index]['imgURL'],
+                      title: article[index]['title']
+                    ),
+                  );
+                }
+              )
+            ],
+          ),
         ),
       );
     }
   }
-  Widget _article({BuildContext context,String url,String imgUrl,String title}){
-    final width=MediaQuery.of(context).size.width;
+
+  Widget _article({
+    BuildContext context,
+    String url,
+    String imgUrl,
+    String title
+    }){
     final height=MediaQuery.of(context).size.height;
     return TranslateOnHover(
       child: HandCursor(
-        child: Container(
-          width: width*0.2,
-          child: GestureDetector(
-            onTap: () {
-              _launchURL(url);
-            },
+        child: GestureDetector(
+          onTap: () {
+            launcher.launchURL(url);
+          },
+          child: Container(
+            height: height*0.16,
             child: Card(
               elevation: 5,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
               ),
               color: Color(0xff2a2e35),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height:10.0),
-                    Image.asset(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Center(
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            color: Color.fromRGBO(178, 190, 205,1),
+                            fontSize: 17.0,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    child: Image.asset(
                       imgUrl,
                       height: height*0.15,
                     ),
-                    SizedBox(height:30.0),
-                    Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color.fromRGBO(178, 190, 205,1),
-                        fontSize: 17.0,
-                                fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
         ),
       ),
     );
-  }
-}
-
-_launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
   }
 }

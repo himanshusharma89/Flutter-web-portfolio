@@ -8,76 +8,32 @@ import 'package:my_portfolio/screen/footer.dart';
 import 'package:my_portfolio/screen/me.dart';
 import 'package:my_portfolio/screen/project.dart';
 import 'package:my_portfolio/screen/skills.dart';
+import 'package:my_portfolio/utilities/launcher.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:provider/provider.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class Home extends StatefulWidget {
-  final PageController controller;
-  final int currentIndex;
-  Home({this.controller,this.currentIndex});
+final Launcher launcher = Launcher();
 
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    return ResponsiveLayout(
-      largeScreen: LargeChild(controller: widget.controller,),
-      smallScreen: SmallChild(controller: widget.controller),
-    );
-  }
-}
-
-List socialPlatforms = [
-  {
-    'URL':'https://github.com/himanshusharma89',
-    'iconURL':'https://img.icons8.com/fluent/50/000000/github.png'
-  },
-  {
-    'URL':'https://twitter.com/_SharmaHimanshu',
-    'iconURL':'https://img.icons8.com/color/48/000000/twitter.png'
-  },
-  {
-    'URL':'https://www.linkedin.com/in/himanshusharma89/',
-    'iconURL':'https://img.icons8.com/color/48/000000/linkedin.png'
-  },
-  {
-    'URL':'https://stackoverflow.com/users/11545939/himanshu-sharma',
-    'iconURL':'https://img.icons8.com/color/48/000000/stackoverflow.png'
-  },
-  {
-    'URL':'https://codepen.io/himanshusharma89',
-    'iconURL':'https://img.icons8.com/ios-filled/50/000000/codepen.png'
-  },
-];
-
-class LargeChild extends StatefulWidget {
+class DesktopWidget extends StatefulWidget {
   final PageController controller;
   int currentIndex;
-  LargeChild({this.controller,this.currentIndex});
+  DesktopWidget({this.controller,this.currentIndex});
   
   @override
-  _LargeChildState createState() => _LargeChildState();
+  _DesktopWidgetState createState() => _DesktopWidgetState();
 }
 
-class _LargeChildState extends State<LargeChild> {
-
-  PageController controller;
-  ItemPositionsListener itemPositionsListener;
+class _DesktopWidgetState extends State<DesktopWidget> {
+  // ItemPositionsListener itemPositionsListener;
   bool visibleFAB=true;
   List<Widget> homeList;
+  List socialPlatforms =[];
 
   @override
   void initState() {
     super.initState();
-    itemPositionsListener=ItemPositionsListener.create();
-    controller=widget.controller;
+    // itemPositionsListener=ItemPositionsListener.create();
     homeList=[
       Me(),
       AboutMe(),
@@ -85,14 +41,29 @@ class _LargeChildState extends State<LargeChild> {
       Experience(),
       Project(),
       Article(),
-      // Footer_LS(),
     ];
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    widget.controller.dispose();
+    socialPlatforms = [
+      {
+        'URL':'https://github.com/himanshusharma89',
+        'iconURL':'https://img.icons8.com/fluent/50/000000/github.png'
+      },
+      {
+        'URL':'https://twitter.com/_SharmaHimanshu',
+        'iconURL':'https://img.icons8.com/color/48/000000/twitter.png'
+      },
+      {
+        'URL':'https://www.linkedin.com/in/himanshusharma89/',
+        'iconURL':'https://img.icons8.com/color/48/000000/linkedin.png'
+      },
+      {
+        'URL':'https://stackoverflow.com/users/11545939/himanshu-sharma',
+        'iconURL':'https://img.icons8.com/color/48/000000/stackoverflow.png'
+      },
+      {
+        'URL':'https://codepen.io/himanshusharma89',
+        'iconURL':'https://img.icons8.com/ios-filled/50/000000/codepen.png'
+      },
+    ];
   }
 
   @override
@@ -101,13 +72,13 @@ class _LargeChildState extends State<LargeChild> {
     final height=MediaQuery.of(context).size.height;
     return Container(
       height: height,
-      width: width*0.96,
+      width: width*0.95,
       child: Stack(
         children: [
           PageView.builder(
             scrollDirection: Axis.vertical,
             physics: NeverScrollableScrollPhysics(),
-            controller: controller,
+            controller: widget.controller,
             itemCount: homeList.length, 
             itemBuilder: (context,index){
               return homeList[index];
@@ -137,7 +108,7 @@ class _LargeChildState extends State<LargeChild> {
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              width: width*0.035,
+              width: width*0.035 + 10,
               height: height*0.32,
               decoration: BoxDecoration(
                 color: ProfileTheme.navBarColor,
@@ -148,8 +119,8 @@ class _LargeChildState extends State<LargeChild> {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black,
-                    offset: Offset(5.0, 20.0),
-                    blurRadius: 20.0,
+                    offset: Offset(10.0, 10.0),
+                    blurRadius: 15.0,
                   ),
                 ],
               ),
@@ -164,7 +135,7 @@ class _LargeChildState extends State<LargeChild> {
                       child: HandCursor(
                         child: GestureDetector(
                           onTap: () {
-                            _launchURL(socialPlatforms[index]['URL']);
+                            launcher.launchURL(socialPlatforms[index]['URL']);
                           },
                           child: Image.network(
                             socialPlatforms[index]['iconURL'],
@@ -233,14 +204,12 @@ class _LargeChildState extends State<LargeChild> {
   }
 }
 
-class SmallChild extends StatefulWidget {
-  final PageController controller;
-  SmallChild({this.controller});
+class MobileWidget extends StatefulWidget {
   @override
-  _SmallChildState createState() => _SmallChildState();
+  _MobileWidgetState createState() => _MobileWidgetState();
 }
 
-class _SmallChildState extends State<SmallChild> with TickerProviderStateMixin{
+class _MobileWidgetState extends State<MobileWidget> with TickerProviderStateMixin{
 
   AnimationController _animationController;
   bool isMenu;
@@ -298,16 +267,18 @@ class _SmallChildState extends State<SmallChild> with TickerProviderStateMixin{
                 child: Column(
                   children: <Widget>[
                     Me(),
-                    SizedBox(height:80.0),
+                    SizedBox(height:height*0.05),
                     AboutMe(),
-                    SizedBox(height:80.0),
+                    SizedBox(height:height*0.05),
                     Skills(),
+                    SizedBox(height:height*0.05),
                     Experience(),
+                    SizedBox(height:height*0.05),
                     Project(),
-                    SizedBox(height: 80.0,),// GAP
+                    SizedBox(height:height*0.05),
                     Article(),
+                    SizedBox(height:height*0.05),
                     Footer(),
-                    SizedBox(height:80.0)
                   ],
                 ),
               ),
@@ -398,13 +369,5 @@ class _SmallChildState extends State<SmallChild> with TickerProviderStateMixin{
             child: content),
       ),
     );
-  }
-}
-
-_launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
   }
 }

@@ -92,7 +92,7 @@ class _SkillsState extends State<Skills> {
         child: Column(
           children: <Widget>[
             Text(
-              "SKILLS",
+              "Skills",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -106,28 +106,15 @@ class _SkillsState extends State<Skills> {
                 thickness: 3.0,
               )
             ),
-            Container(
-              height: height*0.8,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.5/0.3
-                  ), 
-                  itemCount: skill.length,
-                  itemBuilder: (_, index){
-                    return _skill(
-                      percentage: skill[index]['percentage'],
-                      url: 'https://sourcerer.io/himanshusharma89',
-                      imgUrl: skill[index]['imgUrl'],
-                      width: skill[index]['width'],
-                    );
-                  }
-                )
+            Padding(
+              padding: const EdgeInsets.only(top:30.0,left:50.0,right: 50.0),
+              child: Text(
+                "Focused Computer Science major (9.84 CGPA) currently attending Chitkara University, with a aim to leverage a proven knowledge of competitive programming with C/C++ & Java, Flutter Application Development, and web designing skills. I am a content writer at IEEE CIET Branch, Open Source enthusiast and I also like to working on Alexa Skill and Google Assistant App development.\nI am a quick learner and frequently praised as hard-working by my peers",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white
+                ),
               ),
             )
           ],

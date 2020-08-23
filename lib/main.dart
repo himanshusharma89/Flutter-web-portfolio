@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
           child: child,
         );
       },
-      // home: MyWidget(),
       initialRoute: '/main',
       routes: {
         '/main': (context)=>Dashboard(),

@@ -83,7 +83,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
                               text, 
                               style: TextStyle(
                                 letterSpacing: 0.2,
-                                fontSize: 50,
+                                fontSize: ResponsiveLayout.isMediumScreen(context) ? 45 : 50,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -139,12 +139,24 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
                     widthFactor: 0.6,
                     child: FadeTransition(
                       opacity: _imgAnimation,
-                      child: TranslateOnHover(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12.0),
-                          child: Image.asset(
-                            'self.jpg',
-                            fit: BoxFit.cover,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black,
+                              offset: Offset(0.0, 3.0),
+                              blurRadius: 15
+                            )
+                          ]
+                        ),
+                        child: TranslateOnHover(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12.0),
+                            child: Image.asset(
+                              'self.jpg',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -158,7 +170,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
       );
     } else {
       return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 65),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -228,7 +240,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
             //     ),
             //   ),
             // ),
-            SizedBox(height: height*0.03,),
+            SizedBox(height: height*0.05,),
             Center(
               child: FadeTransition(
                 opacity: _imgAnimation,

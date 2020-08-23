@@ -14,11 +14,12 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   PageController controller;
   MenuController menuController;
-  int currentIndex=0;
+  int currentIndex;
 
   @override
   void initState() {
     super.initState();
+    currentIndex = 0;
     menuController = MenuController(
       vsync: this,
     )..addListener(() => setState(() {}));
@@ -44,11 +45,11 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Navbar(controller: controller,currentIndex: currentIndex),
-              Home(controller: controller,currentIndex: currentIndex), 
+              DesktopWidget(controller: controller,currentIndex: currentIndex), 
             ],
           ),
         )
-        : Home(controller: controller)
+        : MobileWidget()
       ),
     );
   }
