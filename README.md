@@ -1,6 +1,6 @@
 # My Portfolio
 
-A new Flutter project.
+A Flutter Web project to create my own personal portfolio website. The work on website is still in progress and the current UI is going to be changed **soon**. 
 
 ## Getting Started
 
