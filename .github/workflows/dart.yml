@@ -23,6 +23,11 @@ jobs:
       with:
         name: web-build
         path: build/web
+    - name: Download Artifact
+      uses: actions/download-artifact@master
+      with:
+        name: web-build
+        path: web-build
 #     - name: Push WEB zip to Releases
 #       uses: ncipollo/release-action@v1
 #       with:
