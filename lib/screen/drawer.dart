@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
+import 'package:my_portfolio/utilities/launcher.dart';
 import 'package:my_portfolio/utilities/profile_theme.dart';
 import 'package:provider/provider.dart';
 
+final Launcher launcher = Launcher();
 class DrawerScreen extends StatefulWidget {
   final BuildContext context;
   
@@ -13,39 +15,47 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
-  final String imageUrl =
-      "https://celebritypets.net/wp-content/uploads/2016/12/Adriana-Lima.jpg";
 
-    List<MenuItem> options;
+  List<MenuItem> options;
 
   @override
   void initState() {
     super.initState();
     options = [
     MenuItem(
-      icon: Icons.search, 
-      title: 'Search',
-      onTap: (){}
+      icon: 'https://img.icons8.com/fluent/50/000000/github.png', 
+      title: 'GitHub',
+      onTap: (){
+        launcher.launchURL('https://github.com/himanshusharma89');
+      }
     ),
     MenuItem(
-      icon: Icons.info, 
-      title: 'About Us',
-      onTap: (){}
+      icon: 'https://img.icons8.com/color/48/000000/linkedin.png', 
+      title: 'LinkedIn',
+      onTap: (){
+        launcher.launchURL('https://www.linkedin.com/in/himanshusharma89/');
+      }
     ),
     MenuItem(
-      icon: Icons.favorite, 
-      title: 'Spread the Gospel',
-      onTap: (){}
+      icon: 'https://img.icons8.com/color/48/000000/twitter.png', 
+      title: 'Twitter',
+      onTap: (){
+        launcher.launchURL('https://twitter.com/_SharmaHimanshu');
+      }
     ),
     MenuItem(
-      icon: Icons.code, 
-      title: 'License',
-      onTap: (){}
+      icon: 'https://img.icons8.com/ios-filled/50/000000/codepen.png', 
+      title: 'Codepen',
+      onTap: (){
+        launcher.launchURL('https://codepen.io/himanshusharma89');
+      }
     ),
     MenuItem(
-      icon: Icons.rate_review, 
-      title: 'Rate Us',
-      onTap: (){}
+      icon: 'https://img.icons8.com/color/48/000000/stackoverflow.png', 
+      title: 'Stackoverflow',
+      onTap: (){
+        launcher.launchURL('https://stackoverflow.com/users/11545939/himanshu-sharma');
+      }
     ),
   ];
   }
@@ -60,85 +70,79 @@ class _DrawerScreenState extends State<DrawerScreen> {
           Provider.of<MenuController>(context, listen: false).toggle();
         }
       },
-      child: Container(
-        padding: EdgeInsets.only(
-            top: 62,
-            left: 32,
-            bottom: 8,
-            right: MediaQuery.of(context).size.width / 2.9),
-        color: ProfileTheme.drawerColor,
-        child: Column(
-          children: <Widget>[
-            Row(
+      child: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 62, left: 32, bottom: 8, right: MediaQuery.of(context).size.width / 2.9),
+            color: ProfileTheme.drawerColor,
+            child: Column(
               children: <Widget>[
-                Container(
-                  height: height*0.2,
-                  width: height*0.2,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2
+                Row(
+                  children: <Widget>[
+                    Container(
+                      height: height*0.2,
+                      width: height*0.2,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 2
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.image
+                      ),
                     ),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(imageUrl)
+                    SizedBox(width: height*0.02,),
+                    Text(
+                      'Tatiana',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
                     )
-                  ),
+                  ],
                 ),
-                SizedBox(width: height*0.02,),
-                Text(
-                  'Tatiana',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                )
-              ],
-            ),
-            Spacer(),
-            Column(
-              children: options.map((item) {
-                return ListTile(
+                Spacer(),
+                Column(
+                  children: options.map((item) {
+                    return ListTile(
+                      leading: Image.network(
+                        item.icon,
+                      ),
+                      title: Text(
+                        item.title,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      onTap: item.onTap,
+                    );
+                  }).toList(),
+                ),
+                Spacer(),
+                ListTile(
+                  onTap: () {},
                   leading: Icon(
-                    item.icon,
+                    Icons.settings,
                     color: Colors.white,
                     size: 20,
                   ),
-                  title: Text(
-                    item.title,
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  onTap: item.onTap,
-                );
-              }).toList(),
+                  title: Text('Support',
+                      style: TextStyle(fontSize: 14, color: Colors.white)),
+                ),
+              ],
             ),
-            Spacer(),
-            ListTile(
-              onTap: () {},
-              leading: Icon(
-                Icons.settings,
-                color: Colors.white,
-                size: 20,
-              ),
-              title: Text('Settings',
-                  style: TextStyle(fontSize: 14, color: Colors.white)),
-            ),
-            ListTile(
-              onTap: () {},
-              leading: Icon(
-                Icons.headset_mic,
-                color: Colors.white,
-                size: 20,
-              ),
-              title: Text('Support',
-                  style: TextStyle(fontSize: 14, color: Colors.white)),
-            ),
-          ],
-        ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Text(
+              'THIS WEBSITE IS CREATED WITH FLUTTER WEB ❤',
+                style: TextStyle(fontSize: 14, color: Colors.white,)
+            )
+          )
+        ],
       ),
     );
   }
@@ -146,7 +150,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
 class MenuItem {
   String title;
-  IconData icon;
+  String icon;
   Function onTap;
 
   MenuItem({this.icon, this.title, this.onTap});

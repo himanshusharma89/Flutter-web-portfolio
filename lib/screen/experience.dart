@@ -89,14 +89,13 @@ class Experience extends StatelessWidget {
               child: Container(
                 height: height*0.83,
                 width: width*0.82,
-                child: StaggeredGridView.countBuilder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  crossAxisCount: 6,
-                  staggeredTileBuilder: (int index) =>
-                      new StaggeredTile.count(2, index.isEven ? 3 : 2),
-                  mainAxisSpacing: 4.0,
-                  crossAxisSpacing: 4.0,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 4,
+                    mainAxisSpacing: 4,
+                    childAspectRatio: 1/0.4
+                  ), 
                   itemCount: experience.length,
                   itemBuilder: (context, index) {
                     return Padding(
@@ -110,8 +109,8 @@ class Experience extends StatelessWidget {
                         organisation: experience[index]['organisation'],
                       ),
                     );
-                  },
-                ),
+                  }
+                )
               )
             ),
           ],
@@ -182,25 +181,33 @@ class Experience extends StatelessWidget {
             color: Color(0xff2a2e35),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+              child: Stack(
+                fit: StackFit.expand,
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Center(
+                  FractionallySizedBox(
+                    alignment: ResponsiveLayout.isSmallScreen(context) ? Alignment.topCenter : Alignment.centerRight,
+                    widthFactor: ResponsiveLayout.isSmallScreen(context) ? 1 : 0.3,
+                    heightFactor: ResponsiveLayout.isSmallScreen(context) ? 0.3 : 1,
                     child: Image.asset(
                       imgUrl,
                       height: height*0.15,
                     ),
                   ),
-                  SizedBox(height: height*0.01,),
-                  Expanded(
+                  FractionallySizedBox(
+                    alignment: ResponsiveLayout.isSmallScreen(context) ? Alignment.bottomCenter : Alignment.centerLeft,
+                    widthFactor: ResponsiveLayout.isSmallScreen(context) ? 1 : 0.5,
+                    heightFactor: ResponsiveLayout.isSmallScreen(context) ? 0.65 : 1,
                     child: Column(
+                      mainAxisAlignment: ResponsiveLayout.isSmallScreen(context) ? MainAxisAlignment.start : MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           name,
                           style: TextStyle(
-                            fontSize: 17.0,
+                            fontSize: 15.0,
                             fontWeight: FontWeight.bold,
                             color: Color.fromRGBO(178, 190, 205,1),
                           ),
@@ -224,12 +231,12 @@ class Experience extends StatelessWidget {
                         Text(
                           date,
                           style: TextStyle(
-                            fontSize: 13.0,
+                            fontSize: 12.0,
                             color: Color.fromRGBO(178, 190, 205,1),
                           ),
                         ),
                       ],
-                    )
+                    ),
                   )
                 ],
               ),

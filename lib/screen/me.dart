@@ -220,26 +220,6 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
                 );
               },
             ),
-            // Center(
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(top: 20),
-            //     child: TranslateOnHover(
-            //       child: DottedBorder(
-            //         dashPattern: [6, 4, 4, 6],
-            //         color: Colors.white,
-            //         child: Padding(
-            //           padding: const EdgeInsets.all(8.0),
-            //           child: Text(
-            //             "WELCOME TO MY PROFILE",
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             SizedBox(height: height*0.05,),
             Center(
               child: FadeTransition(
