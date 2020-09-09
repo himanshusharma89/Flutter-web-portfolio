@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'package:my_portfolio/profile_theme.dart';
 
 class Footer extends StatelessWidget {
   @override

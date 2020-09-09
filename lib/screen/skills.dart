@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
-import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';

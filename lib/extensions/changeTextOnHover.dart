@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'package:my_portfolio/profile_theme.dart';
 
  class ChangeTextOnHover extends StatefulWidget {
   final Widget child;

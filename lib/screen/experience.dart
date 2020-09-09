@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
-import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 
 List experience=[

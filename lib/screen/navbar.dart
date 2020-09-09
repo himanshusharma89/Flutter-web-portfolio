@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/changeTextOnHover.dart';
 import 'package:my_portfolio/icons/my_flutter_app_icons.dart';
-import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
 import 'package:my_portfolio/utilities/launcher.dart';
-import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'package:my_portfolio/profile_theme.dart';
 import 'package:provider/provider.dart';
 
 final Launcher launcher = Launcher();

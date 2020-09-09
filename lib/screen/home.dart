@@ -9,7 +9,7 @@ import 'package:my_portfolio/screen/me.dart';
 import 'package:my_portfolio/screen/project.dart';
 import 'package:my_portfolio/screen/skills.dart';
 import 'package:my_portfolio/utilities/launcher.dart';
-import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:provider/provider.dart';
 
