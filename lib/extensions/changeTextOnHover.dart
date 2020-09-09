@@ -1,12 +1,13 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/profile_theme.dart';
 
  class ChangeTextOnHover extends StatefulWidget {
-  final Widget child;
   final String text;
+  final Color color;
+  final double fontSize;
   // You can also pass the translation in here if you want to
-  ChangeTextOnHover({Key key, this.child, this.text}) : super(key: key);
+  ChangeTextOnHover({Key key, this.text, this.color, this.fontSize}) : super(key: key);
 
   @override
   _ChangeTextOnHoverState createState() => _ChangeTextOnHoverState();
@@ -21,35 +22,28 @@ class _ChangeTextOnHoverState extends State<ChangeTextOnHover> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onHover: (e) {
         _mouseEnter(true);
       },
       onExit: (e) {
         _mouseEnter(false);
       },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+      child: AnimatedDefaultTextStyle(
+        duration: const Duration(milliseconds: 150),
         curve: Curves.easeOut,
-        child: _hovering 
-        ? Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Center(
-            child: AutoSizeText(
-              widget.text,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: ProfileTheme.subHeadingColor,
-                fontWeight: FontWeight.w700
-              ),
-              minFontSize: 11,
-              maxFontSize: 11,
-              maxLines: 1,
-            ),
+        child: Center(
+          child: Text(
+            widget.text,
+            maxLines: 1,
           ),
-        ) 
-        : widget.child,
-        transform: _hovering ? hoverTransform : nonHoverTransform,
+        ),
+        style: TextStyle(
+          color: _hovering ? ProfileTheme.subHeadingColor : widget.color,
+          fontWeight: FontWeight.normal,
+          fontSize: _hovering ? 13 : widget.fontSize
+        ),
+        // transform: _hovering ? hoverTransform : nonHoverTransform,
       ),
     );
   }

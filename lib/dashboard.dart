@@ -41,11 +41,14 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         backgroundColor: ProfileTheme.backgroundColor,
         body: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
         ? Container(
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
+          child: Stack(
+            fit: StackFit.expand,
             children: <Widget>[
-              Navbar(controller: controller,currentIndex: currentIndex),
               DesktopWidget(controller: controller,currentIndex: currentIndex), 
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Navbar(controller: controller,currentIndex: currentIndex)
+              ),
             ],
           ),
         )
