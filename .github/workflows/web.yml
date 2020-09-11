@@ -27,6 +27,7 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: web-build
+        path: ./
     
     - name: Display structure of downloaded files
       run: ls -R
