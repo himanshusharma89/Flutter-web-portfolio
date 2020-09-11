@@ -27,9 +27,8 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: web-build
-        path: web-build
-#     - name: Push WEB zip to Releases
-#       uses: ncipollo/release-action@v1
-#       with:
-#         artifacts: "build/web"
-#         token: ${{ secrets.WEB_RELEASE }}
+        path: ./
+    
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./
