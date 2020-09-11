@@ -3,8 +3,11 @@ import 'package:my_portfolio/provider/drawer_controller.dart';
 import 'package:my_portfolio/screen/home.dart';
 import 'package:my_portfolio/screen/navbar.dart';
 import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/screen/social.dart';
+import 'package:my_portfolio/utilities/pageIndicator.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:provider/provider.dart';
+// import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -49,6 +52,24 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                 alignment: Alignment.centerLeft,
                 child: Navbar(controller: controller,currentIndex: currentIndex)
               ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: SocialWidget(
+                  pageController: controller
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100, right: 25),
+                  child: RotatedBox(
+                    quarterTurns: 1,
+                    child: PageIndicator(
+                      pageController: controller,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         )

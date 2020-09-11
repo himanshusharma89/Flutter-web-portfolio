@@ -15,7 +15,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
   Animation _designation;
   Animation _imgAnimation;
   String hi ="Hey! I am";
-  String name = "HIMANSHU SHARMA";
+  String name = "HIMANSHU\nSHARMA";
   String designation = "Flutter Developer";
 
   @override
@@ -43,129 +43,167 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
     if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context)){
-      return Column(
+      return Stack(
         children: [
-          Container(
-            height: height,
-            width: width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Flexible(
-                  child: FractionallySizedBox(
-                    alignment: Alignment.centerLeft,
-                    widthFactor: 0.7,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        AnimatedBuilder(
-                          animation: _hi,
-                          builder: (BuildContext context, Widget child) {
-                            String text = hi.substring(0, _hi.value);
-                            return Text(
-                              text, 
-                              style: TextStyle(
-                                letterSpacing: 0.2,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                                color: ProfileTheme.subHeadingColor,
-                              ),
-                            );
-                          },
-                        ),
-                        AnimatedBuilder(
-                          animation: _name,
-                          builder: (BuildContext context, Widget child) {
-                            String text = name.substring(0, _name.value);
-                            return Text(
-                              text, 
-                              style: TextStyle(
-                                letterSpacing: 0.2,
-                                fontSize: ResponsiveLayout.isMediumScreen(context) ? 45 : 50,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            );
-                          },
-                        ),
-                        AnimatedBuilder(
-                          animation: _designation,
-                          builder: (BuildContext context, Widget child) {
-                            String text = designation.substring(0, _designation.value);
-                            return Text(
-                              text, 
-                              style: TextStyle(
-                                letterSpacing: 2,
-                                fontSize: 35,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                              ),
-                            );
-                          },
-                        ),
-                        // TranslateOnHover(
-                        //   child: HandCursor(
-                        //     child: Transform.scale(
-                        //       scale: _welcomAnimation.value,
-                        //       child: Padding(
-                        //         padding: const EdgeInsets.only(top:20.0),
-                        //         child: DottedBorder(
-                        //           dashPattern: [6, 4, 4, 6],
-                        //           color: Colors.black,
-                        //           child: Padding(
-                        //             padding: const EdgeInsets.all(8.0),
-                        //             child: Text(
-                        //               "WELCOME TO MY PROFILE",
-                        //               style: TextStyle(
-                        //                 fontSize: 18,
-                        //                 color: Colors.white
-                        //               ),
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                      ],
-                    ),
+          Center(
+            child: Container(
+              height: height*0.6,
+              width: height*0.6,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: ProfileTheme.navbarItemColor,
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0,3),
+                    color: ProfileTheme.navbarItemColor,
+                    blurRadius: 10
                   ),
-                ),
-                Flexible(
-                  child: FractionallySizedBox(
-                    alignment: Alignment.centerRight,
-                    widthFactor: 0.6,
-                    child: FadeTransition(
-                      opacity: _imgAnimation,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              offset: Offset(0.0, 3.0),
-                              blurRadius: 15
-                            )
-                          ]
-                        ),
-                        child: TranslateOnHover(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12.0),
-                            child: Image.asset(
-                              'self.jpg',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                  BoxShadow(
+                    offset: Offset(3,0),
+                    color: ProfileTheme.navbarItemColor,
+                    blurRadius: 10
+                  )
+                ]
+              ),
             ),
           ),
+          Transform.translate(
+            offset: Offset(width*0.55, height*0.8),
+            child: Text(
+              name, 
+              style: TextStyle(
+                letterSpacing: 0.2,
+                fontSize: ResponsiveLayout.isMediumScreen(context) ? 45 : 50,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ) 
+          )
+          // Column(
+          //   children: [
+          //     Container(
+          //       height: height,
+          //       width: width,
+          //       child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //         crossAxisAlignment: CrossAxisAlignment.center,
+          //         children: <Widget>[
+          //           Flexible(
+          //             child: FractionallySizedBox(
+          //               alignment: Alignment.centerLeft,
+          //               widthFactor: 0.7,
+          //               child: Column(
+          //                 crossAxisAlignment: CrossAxisAlignment.center,
+          //                 mainAxisAlignment: MainAxisAlignment.center,
+          //                 children: <Widget>[
+          //                   AnimatedBuilder(
+          //                     animation: _hi,
+          //                     builder: (BuildContext context, Widget child) {
+          //                       String text = hi.substring(0, _hi.value);
+          //                       return Text(
+          //                         text, 
+          //                         style: TextStyle(
+          //                           letterSpacing: 0.2,
+          //                           fontSize: 30,
+          //                           fontWeight: FontWeight.bold,
+          //                           color: ProfileTheme.headingColor,
+          //                         ),
+          //                       );
+          //                     },
+          //                   ),
+          //                   AnimatedBuilder(
+          //                     animation: _name,
+          //                     builder: (BuildContext context, Widget child) {
+          //                       String text = name.substring(0, _name.value);
+          //                       return Text(
+          //                         text, 
+          //                         style: TextStyle(
+          //                           letterSpacing: 0.2,
+          //                           fontSize: ResponsiveLayout.isMediumScreen(context) ? 45 : 60,
+          //                           fontWeight: FontWeight.bold,
+          //                           color: Colors.white,
+          //                         ),
+          //                       );
+          //                     },
+          //                   ),
+          //                   AnimatedBuilder(
+          //                     animation: _designation,
+          //                     builder: (BuildContext context, Widget child) {
+          //                       String text = designation.substring(0, _designation.value);
+          //                       return Text(
+          //                         text, 
+          //                         style: TextStyle(
+          //                           letterSpacing: 2,
+          //                           fontSize: 50,
+          //                           fontWeight: FontWeight.w500,
+          //                           color: Colors.white,
+          //                         ),
+          //                       );
+          //                     },
+          //                   ),
+          //                   // TranslateOnHover(
+          //                   //   child: HandCursor(
+          //                   //     child: Transform.scale(
+          //                   //       scale: _welcomAnimation.value,
+          //                   //       child: Padding(
+          //                   //         padding: const EdgeInsets.only(top:20.0),
+          //                   //         child: DottedBorder(
+          //                   //           dashPattern: [6, 4, 4, 6],
+          //                   //           color: Colors.black,
+          //                   //           child: Padding(
+          //                   //             padding: const EdgeInsets.all(8.0),
+          //                   //             child: Text(
+          //                   //               "WELCOME TO MY PROFILE",
+          //                   //               style: TextStyle(
+          //                   //                 fontSize: 18,
+          //                   //                 color: Colors.white
+          //                   //               ),
+          //                   //             ),
+          //                   //           ),
+          //                   //         ),
+          //                   //       ),
+          //                   //     ),
+          //                   //   ),
+          //                   // ),
+          //                 ],
+          //               ),
+          //             ),
+          //           ),
+          //           Flexible(
+          //             child: FractionallySizedBox(
+          //               alignment: Alignment.centerRight,
+          //               widthFactor: 0.6,
+          //               child: FadeTransition(
+          //                 opacity: _imgAnimation,
+          //                 child: Container(
+          //                   decoration: BoxDecoration(
+          //                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          //                     boxShadow: [
+          //                       BoxShadow(
+          //                         color: Colors.black,
+          //                         offset: Offset(0.0, 3.0),
+          //                         blurRadius: 15
+          //                       )
+          //                     ]
+          //                   ),
+          //                   child: TranslateOnHover(
+          //                     child: ClipRRect(
+          //                       borderRadius: BorderRadius.circular(12.0),
+          //                       child: Image.asset(
+          //                         'self.jpg',
+          //                         fit: BoxFit.cover,
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       );
     } else {
@@ -185,7 +223,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
                     letterSpacing: 0.2,
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: ProfileTheme.subHeadingColor,
+                    color: ProfileTheme.headingColor,
                   ),
                 );
               },

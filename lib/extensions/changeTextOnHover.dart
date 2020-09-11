@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/profile_theme.dart';
 
- class ChangeTextOnHover extends StatefulWidget {
+class ChangeTextOnHover extends StatefulWidget {
   final String text;
   final Color color;
   final double fontSize;
   // You can also pass the translation in here if you want to
-  ChangeTextOnHover({Key key, this.text, this.color, this.fontSize}) : super(key: key);
+  ChangeTextOnHover({Key key, this.text, this.color, this.fontSize})
+      : super(key: key);
 
   @override
   _ChangeTextOnHoverState createState() => _ChangeTextOnHoverState();
@@ -30,7 +31,7 @@ class _ChangeTextOnHoverState extends State<ChangeTextOnHover> {
         _mouseEnter(false);
       },
       child: AnimatedDefaultTextStyle(
-        duration: const Duration(milliseconds: 150),
+        duration: const Duration(milliseconds: 100),
         curve: Curves.easeOut,
         child: Center(
           child: Text(
@@ -39,10 +40,9 @@ class _ChangeTextOnHoverState extends State<ChangeTextOnHover> {
           ),
         ),
         style: TextStyle(
-          color: _hovering ? ProfileTheme.subHeadingColor : widget.color,
-          fontWeight: FontWeight.normal,
-          fontSize: _hovering ? 13 : widget.fontSize
-        ),
+            color: _hovering ? ProfileTheme.navbarItemColor : widget.color,
+            fontWeight: FontWeight.normal,
+            fontSize: _hovering ? 13 : widget.fontSize),
         // transform: _hovering ? hoverTransform : nonHoverTransform,
       ),
     );
