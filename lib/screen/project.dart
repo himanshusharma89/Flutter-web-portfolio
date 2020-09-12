@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/launcher.dart';
-import 'package:my_portfolio/utilities/profile_theme.dart';
+import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
 
@@ -194,15 +194,22 @@ class _ProjectState extends State<Project> {
                 borderRadius: BorderRadius.circular(12.0),
               ),
               color: Color(0xff2a2e35),
-              child: Column(
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Expanded(
+                  FractionallySizedBox(
+                    widthFactor: 1,
+                    heightFactor: 0.35,
+                    alignment: Alignment.topCenter,
                     child: Image.asset(
                       imgUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Expanded(
+                  FractionallySizedBox(
+                    widthFactor: 1,
+                    heightFactor: 0.65,
+                    alignment: Alignment.bottomCenter,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -214,7 +221,7 @@ class _ProjectState extends State<Project> {
                               name,
                               style: TextStyle(
                                 color: Color.fromRGBO(178, 190, 205,1),
-                                fontSize: 17.0,
+                                fontSize: 16.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -226,7 +233,7 @@ class _ProjectState extends State<Project> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Color.fromRGBO(178, 190, 205,1),
-                                fontSize: 15.0,
+                                fontSize: 14.0,
                               ),
                             ),
                           )

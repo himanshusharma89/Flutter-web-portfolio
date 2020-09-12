@@ -1,37 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/extensions/translateOnHover.dart';
-import 'package:my_portfolio/utilities/dashedLine.dart';
-import 'package:my_portfolio/utilities/profile_theme.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:my_portfolio/extensions/hoverExtensions.dart';
+import 'package:my_portfolio/profile_theme.dart';
 
 class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width=MediaQuery.of(context).size.width;
     final height=MediaQuery.of(context).size.height;
-    if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context)) {
       return Column(
         children: [
-          SizedBox(height:height*0.05),
-          MySeparator(color: Colors.white,),
-          SizedBox(height:height*0.05),
           ClipPath(
             clipper: AppBarClipper(),
             child: Container(
               height: height * 0.35,
+              width: width,
               decoration: BoxDecoration(
                 border: Border.all(color: ProfileTheme.backgroundColor),
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    ProfileTheme.navBarColor,
-                    ProfileTheme.backgroundColor,
-                    ProfileTheme.navBarColor,
-                  ],
-                ),
+                color: Colors.red,
                 boxShadow: [
                   BoxShadow(
                       offset: Offset(0.0, 3.0),
@@ -41,180 +25,12 @@ class Footer extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      TranslateOnHover(
-                        child: HandCursor(
-                          child: FloatingActionButton(
-                            backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                            onPressed: () {
-                              _launchURL("https://github.com/himanshusharma89");
-                            },
-                            child: Image.asset('assets/social/github.png',
-                              width: 45.0,
-                              height: 45.0,),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: width*0.01,),
-                      TranslateOnHover(
-                        child: HandCursor(
-                          child: FloatingActionButton(
-                            backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                            onPressed: () {
-                              _launchURL("https://twitter.com/_SharmaHimanshu");
-                            },
-                            child: Image.asset('assets/social/twitter.png',
-                            width: 45.0,
-                              height: 45.0,),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: width*0.01,),
-                      TranslateOnHover(
-                        child: HandCursor(
-                          child: FloatingActionButton(
-                            backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                            onPressed: () {
-                              _launchURL("https://www.linkedin.com/in/himanshusharma89/");
-                            },
-                            child: Image.asset('assets/social/linkedIn.png',
-                            width: 45.0,
-                              height: 45.0,),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: width*0.01,),
-                      TranslateOnHover(
-                        child: HandCursor(
-                          child: FloatingActionButton(
-                            backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                            onPressed: () {
-                              _launchURL("https://stackoverflow.com/users/11545939/himanshu-sharma");
-                            },
-                            child: Image.asset('assets/social/stack-overflow.png',
-                            width: 45.0,
-                              height: 45.0,),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height:height*0.05),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.code,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                        Text(
-                          " WITH ",
-                          style: TextStyle(
-                            letterSpacing: 1,
-                            color: ProfileTheme.subHeadingColor,
-                            fontSize: 15.0,
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(60.0),
-                          child: Image.asset('assets/flutter.png',
-                            width: 40.0,
-                          )
-                        ),
-                        Text(
-                          " WEB",
-                          style: TextStyle(
-                            letterSpacing: 1,
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                        Text(
-                          " AND ",
-                          style: TextStyle(
-                            letterSpacing: 1,
-                            color: ProfileTheme.subHeadingColor,
-                            fontSize: 15.0,
-                          ),
-                        ),
-                        Image.asset(
-                          'heart.png',
-                          width: 25,height: 25,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height:height*0.06),
                 ],
               )
             ),
           ),
         ],
       );
-    } else {
-      return Container(
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                margin: EdgeInsets.only(right: 10.0,left: 10.0),
-                child: Divider(
-                  color: Colors.white,
-                  thickness: 3.0,
-                ),
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                Text(
-                  "THIS WEBSITE IS CREATED WITH ",
-                  style: TextStyle(
-                    letterSpacing: 1,
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(60.0),
-                  child: Image.asset('assets/flutter.png',
-                    width: 80.0,
-                  )
-                ),
-                Text(
-                  " FLUTTER WEB ❤",
-                  style: TextStyle(
-                    letterSpacing: 1,
-                    color: Colors.white,
-                    fontSize: 16.0,
-                  ),
-                )
-              ],
-            ),
-            Expanded(
-              child: Container(
-                margin: EdgeInsets.only(left:10.0,right:10.0),
-                child: Divider(
-                  color: Colors.white,
-                  thickness: 3.0,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-  }
-}
-
-_launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
   }
 }
 

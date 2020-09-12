@@ -115,19 +115,22 @@ class _ArticleState extends State<Article> {
                 )
               ),
               SizedBox(height:30.0),
-              ListView.builder(
+              GridView.builder(
                 shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 4,
+                  mainAxisSpacing: 4,
+                  crossAxisSpacing: 1/2
+                ),
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: article.length,
                 itemBuilder: (_, index){
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    child: _article(
-                      context: context,
-                      url: article[index]['url'],
-                      imgUrl: article[index]['imgURL'],
-                      title: article[index]['title']
-                    ),
+                  return _article(
+                    context: context,
+                    url: article[index]['url'],
+                    imgUrl: article[index]['imgURL'],
+                    title: article[index]['title']
                   );
                 }
               )
@@ -170,7 +173,7 @@ class _ArticleState extends State<Article> {
                           title,
                           style: TextStyle(
                             color: Color.fromRGBO(178, 190, 205,1),
-                            fontSize: 17.0,
+                            fontSize: 15.0,
                             fontWeight: FontWeight.bold
                           ),
                         ),
@@ -181,7 +184,7 @@ class _ArticleState extends State<Article> {
                     color: Colors.white,
                     child: Image.asset(
                       imgUrl,
-                      height: height*0.15,
+                      // height: height*0.15,
                     ),
                   ),
                 ],
