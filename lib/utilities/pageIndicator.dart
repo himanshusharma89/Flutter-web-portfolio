@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/utilities/responsiveLayout.dart';
 
 class PageIndicator extends StatefulWidget {
   final PageController pageController;
@@ -13,21 +14,23 @@ class _PageIndicatorState extends State<PageIndicator> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: widget.pageController,
-      builder: (context, snapshot) {
-        return CustomPaint(
-          painter: PageIndicatorPainter(
-              pageCount: 6,
-              dotRadius: 7,
-              dotOutlineThickness: 2,
-              spacing: 15,
-              scrollPosition: widget.pageController.hasClients && widget.pageController.page!=null ? widget.pageController.page : 0.0,
-              dotFillColor: Colors.transparent,
-              dotOutlineColor: ProfileTheme.dotOutlineColor,
-              indicatorColor: ProfileTheme.color7),
-        );
-      }
-    );
+        animation: widget.pageController,
+        builder: (context, snapshot) {
+          return CustomPaint(
+            painter: PageIndicatorPainter(
+                pageCount: 6,
+                dotRadius: ResponsiveLayout.isMediumScreen(context) ? 5 : 7,
+                dotOutlineThickness: ResponsiveLayout.isMediumScreen(context) ? 1 : 2,
+                spacing: 15,
+                scrollPosition: widget.pageController.hasClients &&
+                        widget.pageController.page != null
+                    ? widget.pageController.page
+                    : 0.0,
+                dotFillColor: Colors.transparent,
+                dotOutlineColor: ProfileTheme.dotOutlineColor,
+                indicatorColor: ProfileTheme.color7),
+          );
+        });
   }
 }
 
@@ -65,23 +68,25 @@ class PageIndicatorPainter extends CustomPainter {
 
   void _drawPageIndicator(Canvas canvas, Offset center, double totalWidth) {
     final int pageIndexToLeft = scrollPosition.floor();
-    final double leftDotX = (center.dx - (totalWidth / 2)) + (pageIndexToLeft * ((2 * dotRadius) + spacing));
+    final double leftDotX = (center.dx - (totalWidth / 2)) +
+        (pageIndexToLeft * ((2 * dotRadius) + spacing));
     final double transitionPercent = scrollPosition - pageIndexToLeft;
 
-    final double laggingLeftPosition = (transitionPercent - 0.3).clamp(0.0, 1.0) / 0.7; 
+    final double laggingLeftPosition =
+        (transitionPercent - 0.3).clamp(0.0, 1.0) / 0.7;
 
-    final double indicatorleftX = leftDotX + (laggingLeftPosition * ((2 * dotRadius) + spacing));
-    
-    final acceleratedRightPositionPercent = (transitionPercent/0.5).clamp(0.0, 1.0);
-    
-    final double indicatorRightX = leftDotX + (acceleratedRightPositionPercent * ((2 * dotRadius) + spacing)) + (2 * dotRadius);
+    final double indicatorleftX =
+        leftDotX + (laggingLeftPosition * ((2 * dotRadius) + spacing));
+
+    final acceleratedRightPositionPercent =
+        (transitionPercent / 0.5).clamp(0.0, 1.0);
+
+    final double indicatorRightX = leftDotX +
+        (acceleratedRightPositionPercent * ((2 * dotRadius) + spacing)) +
+        (2 * dotRadius);
 
     canvas.drawRRect(
-        RRect.fromLTRBR(
-            indicatorleftX,
-            -dotRadius,
-            indicatorRightX,
-            dotRadius,
+        RRect.fromLTRBR(indicatorleftX, -dotRadius, indicatorRightX, dotRadius,
             Radius.circular(dotRadius)),
         indicatorPaint);
   }

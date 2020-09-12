@@ -8,203 +8,124 @@ class Me extends StatefulWidget {
   _MeState createState() => _MeState();
 }
 
-class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
+class _MeState extends State<Me> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation _hi;
   Animation _name;
   Animation _designation;
   Animation _imgAnimation;
-  String hi ="Hey! I am";
-  String name = "HIMANSHU\nSHARMA";
+  String hi = "Hey! I am";
+  String name = "HIMANSHU SHARMA";
   String designation = "Flutter Developer";
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 5500));
-    _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.0, 0.25, curve: Curves.easeIn)));
-    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.2, 0.7, curve: Curves.easeIn)));
-    _designation = StepTween(begin: 0, end: designation.length).animate(CurvedAnimation(parent: _controller, curve: Interval(0.65, 1, curve: Curves.easeIn)));
-    _imgAnimation = CurvedAnimation(parent: _controller, curve: Interval(0.3, 0.6, curve: Curves.easeIn));
-   _controller.forward();
-   _controller.addListener(() {
-     setState(() {});
-   });
+    _controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 5500));
+    _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(
+        parent: _controller, curve: Interval(0.0, 0.25, curve: Curves.easeIn)));
+    _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(
+        parent: _controller, curve: Interval(0.2, 0.7, curve: Curves.easeIn)));
+    _designation = StepTween(begin: 0, end: designation.length).animate(
+        CurvedAnimation(
+            parent: _controller,
+            curve: Interval(0.65, 1, curve: Curves.easeIn)));
+    _imgAnimation = CurvedAnimation(
+        parent: _controller, curve: Interval(0.3, 0.6, curve: Curves.easeIn));
+    _controller.forward();
+    _controller.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final width=MediaQuery.of(context).size.width;
-    final height=MediaQuery.of(context).size.height;
-    if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context)){
-      return Stack(
-        children: [
-          Center(
-            child: Container(
-              height: height*0.6,
-              width: height*0.6,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: ProfileTheme.navbarItemColor,
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0,3),
-                    color: ProfileTheme.navbarItemColor,
-                    blurRadius: 10
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    if (ResponsiveLayout.isLargeScreen(context) ||
+        ResponsiveLayout.isMediumScreen(context)) {
+      return Center(
+        child: FittedBox(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: width * 0.23,
+                  child: Text(
+                    name,
+                    textAlign: TextAlign.right,
+                    maxLines: 2,
+                    style: TextStyle(
+                      letterSpacing: 2.2,
+                      fontSize:
+                          ResponsiveLayout.isMediumScreen(context) ? 25 : 35,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
-                  BoxShadow(
-                    offset: Offset(3,0),
-                    color: ProfileTheme.navbarItemColor,
-                    blurRadius: 10
-                  )
-                ]
-              ),
+                ),
+                SizedBox(
+                  width: width * 0.01,
+                ),
+                Container(
+                  height: ResponsiveLayout.isMediumScreen(context)
+                      ? height * 0.6
+                      : height * 0.7,
+                  width: ResponsiveLayout.isMediumScreen(context)
+                      ? height * 0.6
+                      : height * 0.7,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        width: 23,
+                        color: ProfileTheme.navbarItemColor,
+                      )
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     offset: Offset(0,3),
+                      //     color: ProfileTheme.navbarItemColor,
+                      //     blurRadius: 10
+                      //   ),
+                      //   BoxShadow(
+                      //     offset: Offset(3,0),
+                      //     color: ProfileTheme.navbarItemColor,
+                      //     blurRadius: 10
+                      //   )
+                      // ]
+                      ),
+                ),
+                SizedBox(
+                  width: height * 0.01,
+                ),
+                Container(
+                  width: width * 0.23,
+                  child: Text(
+                    designation.toUpperCase(),
+                    textAlign: TextAlign.left,
+                    maxLines: 2,
+                    style: TextStyle(
+                      letterSpacing: 2.2,
+                      fontSize:
+                          ResponsiveLayout.isMediumScreen(context) ? 25 : 35,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(width*0.55, height*0.8),
-            child: Text(
-              name, 
-              style: TextStyle(
-                letterSpacing: 0.2,
-                fontSize: ResponsiveLayout.isMediumScreen(context) ? 45 : 50,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ) 
-          )
-          // Column(
-          //   children: [
-          //     Container(
-          //       height: height,
-          //       width: width,
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         children: <Widget>[
-          //           Flexible(
-          //             child: FractionallySizedBox(
-          //               alignment: Alignment.centerLeft,
-          //               widthFactor: 0.7,
-          //               child: Column(
-          //                 crossAxisAlignment: CrossAxisAlignment.center,
-          //                 mainAxisAlignment: MainAxisAlignment.center,
-          //                 children: <Widget>[
-          //                   AnimatedBuilder(
-          //                     animation: _hi,
-          //                     builder: (BuildContext context, Widget child) {
-          //                       String text = hi.substring(0, _hi.value);
-          //                       return Text(
-          //                         text, 
-          //                         style: TextStyle(
-          //                           letterSpacing: 0.2,
-          //                           fontSize: 30,
-          //                           fontWeight: FontWeight.bold,
-          //                           color: ProfileTheme.headingColor,
-          //                         ),
-          //                       );
-          //                     },
-          //                   ),
-          //                   AnimatedBuilder(
-          //                     animation: _name,
-          //                     builder: (BuildContext context, Widget child) {
-          //                       String text = name.substring(0, _name.value);
-          //                       return Text(
-          //                         text, 
-          //                         style: TextStyle(
-          //                           letterSpacing: 0.2,
-          //                           fontSize: ResponsiveLayout.isMediumScreen(context) ? 45 : 60,
-          //                           fontWeight: FontWeight.bold,
-          //                           color: Colors.white,
-          //                         ),
-          //                       );
-          //                     },
-          //                   ),
-          //                   AnimatedBuilder(
-          //                     animation: _designation,
-          //                     builder: (BuildContext context, Widget child) {
-          //                       String text = designation.substring(0, _designation.value);
-          //                       return Text(
-          //                         text, 
-          //                         style: TextStyle(
-          //                           letterSpacing: 2,
-          //                           fontSize: 50,
-          //                           fontWeight: FontWeight.w500,
-          //                           color: Colors.white,
-          //                         ),
-          //                       );
-          //                     },
-          //                   ),
-          //                   // TranslateOnHover(
-          //                   //   child: HandCursor(
-          //                   //     child: Transform.scale(
-          //                   //       scale: _welcomAnimation.value,
-          //                   //       child: Padding(
-          //                   //         padding: const EdgeInsets.only(top:20.0),
-          //                   //         child: DottedBorder(
-          //                   //           dashPattern: [6, 4, 4, 6],
-          //                   //           color: Colors.black,
-          //                   //           child: Padding(
-          //                   //             padding: const EdgeInsets.all(8.0),
-          //                   //             child: Text(
-          //                   //               "WELCOME TO MY PROFILE",
-          //                   //               style: TextStyle(
-          //                   //                 fontSize: 18,
-          //                   //                 color: Colors.white
-          //                   //               ),
-          //                   //             ),
-          //                   //           ),
-          //                   //         ),
-          //                   //       ),
-          //                   //     ),
-          //                   //   ),
-          //                   // ),
-          //                 ],
-          //               ),
-          //             ),
-          //           ),
-          //           Flexible(
-          //             child: FractionallySizedBox(
-          //               alignment: Alignment.centerRight,
-          //               widthFactor: 0.6,
-          //               child: FadeTransition(
-          //                 opacity: _imgAnimation,
-          //                 child: Container(
-          //                   decoration: BoxDecoration(
-          //                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
-          //                     boxShadow: [
-          //                       BoxShadow(
-          //                         color: Colors.black,
-          //                         offset: Offset(0.0, 3.0),
-          //                         blurRadius: 15
-          //                       )
-          //                     ]
-          //                   ),
-          //                   child: TranslateOnHover(
-          //                     child: ClipRRect(
-          //                       borderRadius: BorderRadius.circular(12.0),
-          //                       child: Image.asset(
-          //                         'self.jpg',
-          //                         fit: BoxFit.cover,
-          //                       ),
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ],
-          // ),
-        ],
+        ),
       );
     } else {
       return Padding(
@@ -218,7 +139,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
               builder: (BuildContext context, Widget child) {
                 String text = hi.substring(0, _hi.value);
                 return Text(
-                  text, 
+                  text,
                   style: TextStyle(
                     letterSpacing: 0.2,
                     fontSize: 25,
@@ -233,7 +154,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
               builder: (BuildContext context, Widget child) {
                 String text = name.substring(0, _name.value);
                 return Text(
-                  text, 
+                  text,
                   style: TextStyle(
                     letterSpacing: 0.2,
                     fontSize: 35,
@@ -248,7 +169,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
               builder: (BuildContext context, Widget child) {
                 String text = designation.substring(0, _designation.value);
                 return Text(
-                  text, 
+                  text,
                   style: TextStyle(
                     letterSpacing: 2,
                     fontSize: 30,
@@ -258,22 +179,22 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin  {
                 );
               },
             ),
-            SizedBox(height: height*0.05,),
+            SizedBox(
+              height: height * 0.05,
+            ),
             Center(
               child: FadeTransition(
                 opacity: _imgAnimation,
                 child: Container(
-                  height: height*0.55,
+                  height: height * 0.55,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(22.0)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black,
-                        offset: Offset(0.0, 3.0),
-                        blurRadius: 15
-                      )
-                    ]
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(22.0)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black,
+                            offset: Offset(0.0, 3.0),
+                            blurRadius: 15)
+                      ]),
                   child: TranslateOnHover(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12.0),

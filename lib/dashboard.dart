@@ -38,42 +38,52 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return ChangeNotifierProvider.value(
       value: menuController,
       child: Scaffold(
-        backgroundColor: ProfileTheme.backgroundColor,
-        body: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
-        ? Container(
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              DesktopWidget(controller: controller,currentIndex: currentIndex), 
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Navbar(controller: controller,currentIndex: currentIndex)
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: SocialWidget(
-                  pageController: controller
+        backgroundColor: ProfileTheme.color7,
+        body: Center(
+          child: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
+          ? Container(
+            height: height*0.985,
+            width: width*0.995,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: ProfileTheme.backgroundColor
+            ),
+            child: Stack(
+              fit: StackFit.expand,
+              children: <Widget>[
+                DesktopWidget(controller: controller,currentIndex: currentIndex), 
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Navbar(controller: controller,currentIndex: currentIndex)
                 ),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 100, right: 25),
-                  child: RotatedBox(
-                    quarterTurns: 1,
-                    child: PageIndicator(
-                      pageController: controller,
-                    ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: SocialWidget(
+                    pageController: controller
                   ),
                 ),
-              )
-            ],
-          ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 100, right: 25),
+                    child: RotatedBox(
+                      quarterTurns: 1,
+                      child: PageIndicator(
+                        pageController: controller,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+          : MobileWidget(),
         )
-        : MobileWidget()
       ),
     );
   }

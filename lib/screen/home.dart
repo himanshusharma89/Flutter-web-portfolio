@@ -114,57 +114,61 @@ class _MobileWidgetState extends State<MobileWidget>
     return zoomAndSlideContent(
       Scaffold(
         backgroundColor: Colors.transparent,
-        body: Container(
-          width: width,
-          height: height,
-          color: ProfileTheme.backgroundColor,
-          child: Stack(
-            children: [
-              SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Me(),
-                    SizedBox(height: height * 0.05),
-                    AboutMe(),
-                    SizedBox(height: height * 0.05),
-                    Skills(),
-                    SizedBox(height: height * 0.05),
-                    Experience(),
-                    SizedBox(height: height * 0.05),
-                    Project(),
-                    SizedBox(height: height * 0.05),
-                    Article(),
-                    SizedBox(height: height * 0.05),
-                    Footer(),
-                  ],
+        body: Center(
+          child: Container(
+            height: height * 0.99,
+            width: width * 0.985,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: ProfileTheme.backgroundColor),
+            child: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      Me(),
+                      SizedBox(height: height * 0.05),
+                      AboutMe(),
+                      SizedBox(height: height * 0.05),
+                      Skills(),
+                      SizedBox(height: height * 0.05),
+                      Experience(),
+                      SizedBox(height: height * 0.05),
+                      Project(),
+                      SizedBox(height: height * 0.05),
+                      Article(),
+                      SizedBox(height: height * 0.05),
+                      Footer(),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  child: FittedBox(
-                    child: FloatingActionButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(16.0))),
-                      backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                      onPressed: () {
-                        _handleOnPressed();
-                        Provider.of<MenuController>(context, listen: false)
-                            .toggle();
-                      },
-                      heroTag: null,
-                      child: AnimatedIcon(
-                        icon: AnimatedIcons.menu_close,
-                        progress: _animationController,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: FittedBox(
+                      child: FloatingActionButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(16.0))),
+                        backgroundColor: Color.fromRGBO(42, 46, 53, 1),
+                        onPressed: () {
+                          _handleOnPressed();
+                          Provider.of<MenuController>(context, listen: false)
+                              .toggle();
+                        },
+                        heroTag: null,
+                        child: AnimatedIcon(
+                          icon: AnimatedIcons.menu_close,
+                          progress: _animationController,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
