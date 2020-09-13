@@ -63,11 +63,14 @@ class _SocialWidgetState extends State<SocialWidget> {
                 onTap: () {
                   launcher.launchURL(socialPlatforms[index]['URL']);
                 },
-                child: Image.network(
-                  socialPlatforms[index]['iconURL'],
+                child: FadeInImage(
                   width: 28.0,
                   height: 28.0,
-                  color: ProfileTheme.dotOutlineColor,
+                  // color: ProfileTheme.dotOutlineColor,
+                  placeholder: AssetImage('assets/infinity.gif'),
+                  image: NetworkImage(
+                    socialPlatforms[index]['iconURL'],
+                  ),
                 ),
               ),
             ),
