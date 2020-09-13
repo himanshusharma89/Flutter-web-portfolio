@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
+import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/utilities/launcher.dart';
 // import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -56,7 +57,7 @@ class _SocialWidgetState extends State<SocialWidget> {
         itemCount: socialPlatforms.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(7.0),
+            padding: const EdgeInsets.all(7),
             child: HandCursor(
               child: GestureDetector(
                 onTap: () {
@@ -64,8 +65,9 @@ class _SocialWidgetState extends State<SocialWidget> {
                 },
                 child: Image.network(
                   socialPlatforms[index]['iconURL'],
-                  width: 30.0,
-                  height: 30.0,
+                  width: 28.0,
+                  height: 28.0,
+                  color: ProfileTheme.dotOutlineColor,
                 ),
               ),
             ),

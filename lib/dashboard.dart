@@ -47,8 +47,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         body: Center(
           child: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
           ? Container(
-            height: height*0.985,
-            width: width*0.995,
+            height: height - 10,
+            width: width - 10,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: ProfileTheme.backgroundColor

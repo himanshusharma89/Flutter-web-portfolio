@@ -116,8 +116,8 @@ class _MobileWidgetState extends State<MobileWidget>
         backgroundColor: Colors.transparent,
         body: Center(
           child: Container(
-            height: height * 0.99,
-            width: width * 0.985,
+            height: height - 10,
+            width: width - 10,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 color: ProfileTheme.backgroundColor),
