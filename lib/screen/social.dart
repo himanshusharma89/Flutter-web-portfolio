@@ -46,7 +46,6 @@ class _SocialWidgetState extends State<SocialWidget> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return Container(
       width: width * 0.02 + 20,
       alignment: Alignment.bottomCenter,
@@ -56,16 +55,20 @@ class _SocialWidgetState extends State<SocialWidget> {
         itemCount: socialPlatforms.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(7.0),
+            padding: const EdgeInsets.all(7),
             child: HandCursor(
               child: GestureDetector(
                 onTap: () {
                   launcher.launchURL(socialPlatforms[index]['URL']);
                 },
-                child: Image.network(
-                  socialPlatforms[index]['iconURL'],
-                  width: 30.0,
-                  height: 30.0,
+                child: FadeInImage(
+                  width: 28.0,
+                  height: 28.0,
+                  // color: ProfileTheme.dotOutlineColor,
+                  placeholder: AssetImage('assets/infinity.gif'),
+                  image: NetworkImage(
+                    socialPlatforms[index]['iconURL'],
+                  ),
                 ),
               ),
             ),

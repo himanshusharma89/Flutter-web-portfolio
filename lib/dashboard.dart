@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/provider/current_inex.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
 import 'package:my_portfolio/screen/home.dart';
 import 'package:my_portfolio/screen/navbar.dart';
@@ -26,7 +27,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     menuController = MenuController(
       vsync: this,
     )..addListener(() => setState(() {}));
-    controller=PageController();
+    controller=PageController( initialPage: Provider.of<CurrentPage>(context, listen: false).currentPage);
   }
 
   @override
@@ -47,8 +48,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         body: Center(
           child: (ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context))
           ? Container(
-            height: height*0.985,
-            width: width*0.995,
+            height: height - 10,
+            width: width - 10,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: ProfileTheme.backgroundColor

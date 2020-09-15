@@ -7,13 +7,12 @@ import 'package:my_portfolio/extensions/hoverExtensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Skills extends StatefulWidget {
-
   @override
   _SkillsState createState() => _SkillsState();
 }
 
 class _SkillsState extends State<Skills> {
-  List skill=[
+  List skill = [
     {
       'percentage': 0.9,
       'imgUrl': 'assets/tech/c.png',
@@ -48,42 +47,49 @@ class _SkillsState extends State<Skills> {
 
   @override
   Widget build(BuildContext context) {
-    final height=MediaQuery.of(context).size.height;
-    final width=MediaQuery.of(context).size.width;
-    if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context)) {
+    if (ResponsiveLayout.isLargeScreen(context) ||
+        ResponsiveLayout.isMediumScreen(context)) {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 60),
+        child: Stack(
+          fit: StackFit.expand,
           children: <Widget>[
-            Text(
-              "MY SKILLS",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: ProfileTheme.cardHeadingColor,
-                fontSize: 35.0,
-              ),
+            FractionallySizedBox(
+              widthFactor: 0.5,
+              alignment: Alignment.centerRight,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width*0.0625,
-              child: Divider(
-                color: Colors.white,
-                thickness: 3.0,
-              )
-            ),
-            Container(
-              width: width*0.5,
-              padding: const EdgeInsets.only(top:5),
-              child: Text(
-                "Focused Computer Science major (9.84 CGPA) currently attending Chitkara University, with a aim to leverage a proven knowledge of competitive programming with C/C++ & Java, Flutter Application Development, and web designing skills. I am a content writer at IEEE CIET Branch, Open Source enthusiast and I also like to working on Alexa Skill and Google Assistant App development.\nI am a quick learner and frequently praised as hard-working by my peers",
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white
+            FractionallySizedBox(
+              widthFactor: 0.5,
+              alignment: Alignment.centerLeft,
+              child: Center(
+                child: Text(
+                  "Focused Computer Science major (9.84 CGPA) currently attending Chitkara University, with a aim to leverage a proven knowledge of competitive programming with C/C++ & Java, Flutter Application Development, and web designing skills. I am a content writer at IEEE CIET Branch, Open Source enthusiast and I also like to working on Alexa Skill and Google Assistant App development.\nI am a quick learner and frequently praised as hard-working by my peers",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(fontSize: 16.0, color: Colors.white),
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(top: 50),
+              child: Column(
+                children: [
+                  Text(
+                    "MY SKILLS",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: ProfileTheme.cardHeadingColor,
+                      fontSize: 25.0,
+                    ),
+                  ),
+                  Container(
+                      width: MediaQuery.of(context).size.width * 0.0625,
+                      child: Divider(
+                        color: Colors.white,
+                        thickness: 2.0,
+                      )),
+                ],
+              ),
+            )
           ],
         ),
       );
@@ -100,21 +106,18 @@ class _SkillsState extends State<Skills> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width*0.125,
-              child: Divider(
-                color: Colors.white,
-                thickness: 3.0,
-              )
-            ),
+                width: MediaQuery.of(context).size.width * 0.125,
+                child: Divider(
+                  color: Colors.white,
+                  thickness: 3.0,
+                )),
             Padding(
-              padding: const EdgeInsets.only(top:30.0,left:50.0,right: 50.0),
+              padding:
+                  const EdgeInsets.only(top: 30.0, left: 50.0, right: 50.0),
               child: Text(
                 "Focused Computer Science major (9.84 CGPA) currently attending Chitkara University, with a aim to leverage a proven knowledge of competitive programming with C/C++ & Java, Flutter Application Development, and web designing skills. I am a content writer at IEEE CIET Branch, Open Source enthusiast and I also like to working on Alexa Skill and Google Assistant App development.\nI am a quick learner and frequently praised as hard-working by my peers",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white
-                ),
+                style: TextStyle(fontSize: 18.0, color: Colors.white),
               ),
             )
           ],
@@ -123,7 +126,7 @@ class _SkillsState extends State<Skills> {
     }
   }
 
-  Widget _skill({double percentage,String url,String imgUrl, double width}){
+  Widget _skill({double percentage, String url, String imgUrl, double width}) {
     return TranslateOnHover(
       child: CircularPercentIndicator(
         radius: 130.0,

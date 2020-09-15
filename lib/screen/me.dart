@@ -105,7 +105,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                       ),
                 ),
                 SizedBox(
-                  width: height * 0.01,
+                  width: width * 0.01,
                 ),
                 Container(
                   width: width * 0.23,
