@@ -3,23 +3,25 @@ import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/launcher.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
+import 'package:my_portfolio/utilities/title.dart';
 
 final Launcher launcher = Launcher();
+
 class Article extends StatefulWidget {
   @override
   _ArticleState createState() => _ArticleState();
 }
 
 class _ArticleState extends State<Article> {
-
-  List article=[];
+  List article = [];
 
   @override
   void initState() {
     super.initState();
-    article=[
+    article = [
       {
-        'url': 'https://medium.com/@rageremix/how-to-create-card-carousel-in-flutter-979bc8ecf19',
+        'url':
+            'https://medium.com/@rageremix/how-to-create-card-carousel-in-flutter-979bc8ecf19',
         'imgURL': 'assets/social/medium.png',
         'title': 'HOW TO CREATE CARD CAROUSEL IN FLUTTER?'
       },
@@ -29,12 +31,14 @@ class _ArticleState extends State<Article> {
         'title': 'HOW TO CREATE CARD CAROUSEL IN FLUTTER?'
       },
       {
-        'url': 'https://medium.com/@rageremix/my-story-of-app-development-with-flutter-dart-ed6b41cc8226',
+        'url':
+            'https://medium.com/@rageremix/my-story-of-app-development-with-flutter-dart-ed6b41cc8226',
         'imgURL': 'assets/social/medium.png',
         'title': 'HOW TO CREATE CARD CAROUSEL IN FLUTTER?'
       },
       {
-        'url': 'https://medium.com/@rageremix/how-to-create-card-carousel-in-flutter-979bc8ecf19',
+        'url':
+            'https://medium.com/@rageremix/how-to-create-card-carousel-in-flutter-979bc8ecf19',
         'imgURL': 'assets/social/medium.png',
         'title': 'HOW TO CREATE CARD CAROUSEL IN FLUTTER?'
       }
@@ -43,54 +47,40 @@ class _ArticleState extends State<Article> {
 
   @override
   Widget build(BuildContext context) {
-    final height=MediaQuery.of(context).size.height;
-    final width=MediaQuery.of(context).size.width;
-    if(ResponsiveLayout.isLargeScreen(context) || ResponsiveLayout.isMediumScreen(context)) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          SizedBox(height:height*0.05),
-          Text(
-            "ARTICLES",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontSize: 30.0,
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width*0.0625,
-            child: Divider(
-              color: Colors.white,
-              thickness: 3.0,
-            )
-          ),
-          SizedBox(height:30.0),
-          Center(
-            child: Container(
-              width: width*0.82,
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 6,
-                  mainAxisSpacing: 6,
-                  childAspectRatio: 1.5/0.5
-                ),
-                itemCount: article.length,
-                itemBuilder: (_, index){
-                  return _article(
-                    context: context,
-                    url: article[index]['url'],
-                    imgUrl: article[index]['imgURL'],
-                    title: article[index]['title']
-                  );
-                }
+    if (ResponsiveLayout.isLargeScreen(context) ||
+        ResponsiveLayout.isMediumScreen(context)) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 60),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            SizedBox(height: 50),
+            Center(child: PageTitle(title: "ARTICLES AND ACHEIVEMENTS")),
+            SizedBox(height: 30.0),
+            Flexible(
+              fit: FlexFit.loose,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 4,
+                        mainAxisSpacing: 4,
+                        childAspectRatio: 1 / 0.2),
+                    itemCount: article.length,
+                    itemBuilder: (_, index) {
+                      return _article(
+                          context: context,
+                          url: article[index]['url'],
+                          imgUrl: article[index]['imgURL'],
+                          title: article[index]['title']);
+                    }),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       );
     } else {
       return Container(
@@ -108,32 +98,28 @@ class _ArticleState extends State<Article> {
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.width*0.0625,
-                child: Divider(
-                  color: Colors.white,
-                  thickness: 3.0,
-                )
-              ),
-              SizedBox(height:30.0),
+                  width: MediaQuery.of(context).size.width * 0.0625,
+                  child: Divider(
+                    color: Colors.white,
+                    thickness: 3.0,
+                  )),
+              SizedBox(height: 30.0),
               GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 4,
-                  mainAxisSpacing: 4,
-                  crossAxisSpacing: 1/2
-                ),
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: article.length,
-                itemBuilder: (_, index){
-                  return _article(
-                    context: context,
-                    url: article[index]['url'],
-                    imgUrl: article[index]['imgURL'],
-                    title: article[index]['title']
-                  );
-                }
-              )
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 4,
+                      mainAxisSpacing: 4,
+                      crossAxisSpacing: 1 / 2),
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: article.length,
+                  itemBuilder: (_, index) {
+                    return _article(
+                        context: context,
+                        url: article[index]['url'],
+                        imgUrl: article[index]['imgURL'],
+                        title: article[index]['title']);
+                  })
             ],
           ),
         ),
@@ -141,54 +127,48 @@ class _ArticleState extends State<Article> {
     }
   }
 
-  Widget _article({
-    BuildContext context,
-    String url,
-    String imgUrl,
-    String title
-    }){
-    final height=MediaQuery.of(context).size.height;
+  Widget _article(
+      {BuildContext context, String url, String imgUrl, String title}) {
     return TranslateOnHover(
       child: HandCursor(
         child: GestureDetector(
           onTap: () {
             launcher.launchURL(url);
           },
-          child: Container(
-            height: height*0.16,
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              color: Color(0xff2a2e35),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Center(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: Color.fromRGBO(178, 190, 205,1),
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
+          child: Card(
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            color: Color(0xff2a2e35),
+            child: Row(
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Center(
+                      child: Text(
+                        title,
+                        style: TextStyle(
+                            color: Color.fromRGBO(178, 190, 205, 1),
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
-                  Container(
-                    color: Colors.white,
+                ),
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
                     child: Image.asset(
                       imgUrl,
                       // height: height*0.15,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

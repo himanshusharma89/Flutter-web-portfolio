@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/hoverExtensions.dart';
-import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/utilities/launcher.dart';
 // import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -47,7 +46,6 @@ class _SocialWidgetState extends State<SocialWidget> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return Container(
       width: width * 0.02 + 20,
       alignment: Alignment.bottomCenter,

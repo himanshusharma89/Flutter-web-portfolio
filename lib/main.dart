@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Himanshu Shrama | Flutter Dev',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme: GoogleFonts.openSansTextTheme(
+        textTheme: GoogleFonts.poppinsTextTheme(
           Theme.of(context).textTheme,
         )
       ),
