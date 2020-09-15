@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/provider/current_inex.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
 import 'package:my_portfolio/screen/home.dart';
 import 'package:my_portfolio/screen/navbar.dart';
@@ -26,7 +27,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     menuController = MenuController(
       vsync: this,
     )..addListener(() => setState(() {}));
-    controller=PageController();
+    controller=PageController( initialPage: Provider.of<CurrentPage>(context, listen: false).currentPage);
   }
 
   @override

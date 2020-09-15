@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/provider/current_inex.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
 import 'package:my_portfolio/screen/article.dart';
 import 'package:my_portfolio/screen/about_me.dart';
@@ -56,7 +57,7 @@ class _DesktopWidgetState extends State<DesktopWidget> {
         },
         onPageChanged: (int index) {
           setState(() {
-            widget.currentIndex = index;
+            Provider.of<CurrentPage>(context, listen: false).setCurrentPage(index);
           });
         },
       ),

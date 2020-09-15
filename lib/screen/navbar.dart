@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/extensions/changeTextOnHover.dart';
 import 'package:my_portfolio/icons/my_flutter_app_icons.dart';
 import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/provider/current_inex.dart';
+import 'package:provider/provider.dart';
 
 class Navbar extends StatefulWidget {
   final PageController controller;
@@ -96,7 +98,7 @@ class _NavbarState extends State<Navbar> {
         child: GestureDetector(
           onTap: () {
             setState(() {
-              widget.currentIndex = index;
+              Provider.of<CurrentPage>(context).setCurrentPage(index);
               widget.controller.animateToPage(index,
                   duration: Duration(milliseconds: 1000), curve: Curves.ease);
             });
@@ -105,10 +107,10 @@ class _NavbarState extends State<Navbar> {
             quarterTurns: -1,
             child: ChangeTextOnHover(
                 text: navText,
-                color: widget.currentIndex == index
+                color: Provider.of<CurrentPage>(context).currentPage == index
                     ? ProfileTheme.navbarItemColor
                     : Colors.white,
-                fontSize: widget.currentIndex == index ? 13 : 11),
+                fontSize: Provider.of<CurrentPage>(context).currentPage == index ? 13 : 11),
           ),
         ),
       ),
