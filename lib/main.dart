@@ -3,13 +3,16 @@ import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/dashboard.dart';
-import 'package:my_portfolio/provider/current_inex.dart';
+import 'package:my_portfolio/provider/article_provider.dart';
+import 'package:my_portfolio/provider/current_index.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<CurrentPage>(create: (context) => CurrentPage()),
+      ChangeNotifierProvider<ArticleProvider>(
+          create: (context) => ArticleProvider()),
     ],
     child: MyApp(),
   ));
