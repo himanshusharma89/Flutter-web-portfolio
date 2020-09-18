@@ -35,10 +35,13 @@ dependencies:
   animations: ^1.0.0+5
   flutter_staggered_grid_view: ^0.3.2
   provider: ^4.3.2+2
+  json_annotation: ^3.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^1.10.0
+  json_serializable: ^3.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -68,13 +71,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Star Jedi
-      fonts:
-        - asset: assets/fonts/SfDistantGalaxyAlternate-OE4d.ttf
-    - family:  MyFlutterApp
-      fonts:
-        - asset: assets/icons/MyFlutterApp.ttf
+  # fonts:
+  #   - family: Star Jedi
+  #     fonts:
+  #       - asset: assets/fonts/SfDistantGalaxyAlternate-OE4d.ttf
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

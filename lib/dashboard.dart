@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/provider/current_inex.dart';
+import 'package:my_portfolio/provider/current_index.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/screen/home.dart';
-import 'package:my_portfolio/screen/navbar.dart';
+import 'package:my_portfolio/home/home.dart';
+import 'package:my_portfolio/navbar.dart';
 import 'package:my_portfolio/profile_theme.dart';
-import 'package:my_portfolio/screen/social.dart';
+import 'package:my_portfolio/home/social.dart';
 import 'package:my_portfolio/utilities/pageIndicator.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:provider/provider.dart';
@@ -18,12 +18,10 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   PageController controller;
   MenuController menuController;
-  int currentIndex;
 
   @override
   void initState() {
     super.initState();
-    currentIndex = 0;
     menuController = MenuController(
       vsync: this,
     )..addListener(() => setState(() {}));
@@ -57,10 +55,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
-                DesktopWidget(controller: controller,currentIndex: currentIndex), 
+                DesktopWidget(controller: controller), 
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Navbar(controller: controller,currentIndex: currentIndex)
+                  child: Navbar(controller: controller)
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
