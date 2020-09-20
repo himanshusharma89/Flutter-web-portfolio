@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -5,64 +6,7 @@ import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/utilities/title.dart';
 
-List experience = [
-  {
-    'name': 'GSSOC\'20 Participant',
-    'imgUrl': 'assets/experience/gssoc.png',
-    'date': '03/20 to Present',
-    'description':
-        'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020. Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
-    'organisation': 'GIRLSCRIPT'
-  },
-  {
-    'name': 'GSSOC\'20 Participant',
-    'imgUrl': 'assets/experience/gssoc.png',
-    'date': '03/20 to Present',
-    'description':
-        'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020. Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
-    'organisation': 'GIRLSCRIPT'
-  },
-  {
-    'name': 'GSSOC\'20 Participant',
-    'imgUrl': 'assets/experience/gssoc.png',
-    'date': '03/20 to Present',
-    'description':
-        'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020. Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
-    'organisation': 'GIRLSCRIPT'
-  },
-  {
-    'name': 'GSSOC\'20 Participant',
-    'imgUrl': 'assets/experience/gssoc.png',
-    'date': '03/20 to Present',
-    'description':
-        'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020. Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
-    'organisation': 'GIRLSCRIPT'
-  },
-  {
-    'name': 'GSSOC\'20 Participant',
-    'imgUrl': 'assets/experience/gssoc.png',
-    'date': '03/20 to Present',
-    'description':
-        'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020. Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
-    'organisation': 'GIRLSCRIPT'
-  },
-  {
-    'name': 'GSSOC\'20 Participant',
-    'imgUrl': 'assets/experience/gssoc.png',
-    'date': '03/20 to Present',
-    'description':
-        'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020. Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
-    'organisation': 'GIRLSCRIPT'
-  },
-  {
-    'name': 'GSSOC\'20 Participant',
-    'imgUrl': 'assets/experience/gssoc.png',
-    'date': '03/20 to Present',
-    'description':
-        'Contributing to Open Source projects on GitHub as a participant of GSSOC 2020. Contributing to Open Source projects on GitHub as a participant of GSSOC 2020.',
-    'organisation': 'GIRLSCRIPT'
-  },
-];
+final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
 class Experience extends StatelessWidget {
   @override
@@ -80,35 +24,49 @@ class Experience extends StatelessWidget {
             Center(child: PageTitle(title: "WORK EXPERIENCE")),
             SizedBox(height: height * 0.01),
             Flexible(
-                fit: FlexFit.loose,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: GridView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 4,
-                          childAspectRatio:
-                              ResponsiveLayout.isMediumScreen(context)
-                                  ? 1 / 0.22
-                                  : 1 / 0.15),
-                      itemCount: experience.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: _experience(
-                            context: context,
-                            name: experience[index]['name'],
-                            imgUrl: experience[index]['imgUrl'],
-                            date: experience[index]['date'],
-                            description: experience[index]['description'],
-                            organisation: experience[index]['organisation'],
-                          ),
-                        );
-                      }),
-                )),
+              fit: FlexFit.loose,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: StreamBuilder(
+                    stream:
+                        firebaseFirestore.collection('experience').snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return GridView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 4,
+                                    childAspectRatio:
+                                        ResponsiveLayout.isMediumScreen(context)
+                                            ? 1 / 0.22
+                                            : 1 / 0.15),
+                            itemCount: snapshot.data.docs.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot experience =
+                                  snapshot.data.docs[index];
+                              Map getExperience = experience.data();
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: _experience(
+                                  context: context,
+                                  name: getExperience['title'],
+                                  imgUrl: getExperience['imgURL'],
+                                  date: getExperience['date'],
+                                  description: getExperience['desc'],
+                                  organisation: getExperience['org'],
+                                ),
+                              );
+                            });
+                      } else {
+                        return CircularProgressIndicator();
+                      }
+                    }),
+              ),
+            ),
           ],
         ),
       );
@@ -132,29 +90,39 @@ class Experience extends StatelessWidget {
                   thickness: 3.0,
                 )),
             SizedBox(height: 30.0),
-            StaggeredGridView.countBuilder(
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              crossAxisCount: 4,
-              staggeredTileBuilder: (int index) =>
-                  new StaggeredTile.count(2, index.isEven ? 3 : 2),
-              mainAxisSpacing: 4.0,
-              crossAxisSpacing: 4.0,
-              itemCount: experience.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: _experience(
-                    context: context,
-                    name: experience[index]['name'],
-                    imgUrl: experience[index]['imgUrl'],
-                    date: experience[index]['date'],
-                    description: experience[index]['description'],
-                    organisation: experience[index]['organisation'],
-                  ),
-                );
-              },
-            )
+            StreamBuilder(
+                stream: firebaseFirestore.collection('experience').snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return StaggeredGridView.countBuilder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      crossAxisCount: 4,
+                      staggeredTileBuilder: (int index) =>
+                          new StaggeredTile.count(2, index.isEven ? 3 : 2),
+                      mainAxisSpacing: 4.0,
+                      crossAxisSpacing: 4.0,
+                      itemCount: snapshot.data.docs.length,
+                      itemBuilder: (context, index) {
+                        DocumentSnapshot experience = snapshot.data.docs[index];
+                        Map getExpereince = experience.data();
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: _experience(
+                            context: context,
+                            name: getExpereince['title'],
+                            imgUrl: getExpereince['imgURL'],
+                            date: getExpereince['date'],
+                            description: getExpereince['desc'],
+                            organisation: getExpereince['org'],
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                })
           ],
         ),
       );
@@ -190,7 +158,7 @@ class Experience extends StatelessWidget {
                     BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
+                  child: Image.network(
                     imgUrl,
                   ),
                 ),

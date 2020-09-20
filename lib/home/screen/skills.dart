@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+// import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Skills extends StatefulWidget {
@@ -126,32 +126,32 @@ class _SkillsState extends State<Skills> {
     }
   }
 
-  Widget _skill({double percentage, String url, String imgUrl, double width}) {
-    return TranslateOnHover(
-      child: CircularPercentIndicator(
-        radius: 130.0,
-        animation: true,
-        animationDuration: 1200,
-        lineWidth: 15.0,
-        percent: percentage,
-        center: GestureDetector(
-          onTap: () {
-            _launchURL(url);
-          },
-          child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Image.asset(
-              imgUrl,
-              width: width,
-            ),
-          ),
-        ),
-        circularStrokeCap: CircularStrokeCap.butt,
-        backgroundColor: Colors.white24,
-        progressColor: Colors.white,
-      ),
-    );
-  }
+//   Widget _skill({double percentage, String url, String imgUrl, double width}) {
+//     return TranslateOnHover(
+//       child: CircularPercentIndicator(
+//         radius: 130.0,
+//         animation: true,
+//         animationDuration: 1200,
+//         lineWidth: 15.0,
+//         percent: percentage,
+//         center: GestureDetector(
+//           onTap: () {
+//             _launchURL(url);
+//           },
+//           child: MouseRegion(
+//             cursor: SystemMouseCursors.click,
+//             child: Image.asset(
+//               imgUrl,
+//               width: width,
+//             ),
+//           ),
+//         ),
+//         circularStrokeCap: CircularStrokeCap.butt,
+//         backgroundColor: Colors.white24,
+//         progressColor: Colors.white,
+//       ),
+//     );
+//   }
 }
 
 _launchURL(String url) async {
