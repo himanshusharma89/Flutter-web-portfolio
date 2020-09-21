@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/utilities/responsiveLayout.dart';
 
 import '../profile_theme.dart';
 
@@ -19,7 +20,7 @@ class _PageTitleState extends State<PageTitle> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: ProfileTheme.cardHeadingColor,
-            fontSize: 25.0,
+            fontSize: ResponsiveLayout.isSmallScreen(context) ? 20 : 25.0,
           ),
         ),
         Container(

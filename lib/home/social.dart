@@ -6,9 +6,6 @@ import 'package:my_portfolio/utilities/launcher.dart';
 final Launcher launcher = Launcher();
 
 class SocialWidget extends StatefulWidget {
-  final PageController pageController;
-
-  SocialWidget({this.pageController});
   @override
   _SocialWidgetState createState() => _SocialWidgetState();
 }
@@ -55,20 +52,29 @@ class _SocialWidgetState extends State<SocialWidget> {
         itemCount: socialPlatforms.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(7),
+            padding: const EdgeInsets.only(right:7,bottom: 7),
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () {
                   launcher.launchURL(socialPlatforms[index]['URL']);
                 },
-                child: FadeInImage(
-                  width: 28.0,
-                  height: 28.0,
-                  // color: ProfileTheme.dotOutlineColor,
-                  placeholder: AssetImage('assets/infinity.gif'),
-                  image: NetworkImage(
-                    socialPlatforms[index]['iconURL'],
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: FadeInImage(
+                      width: 28.0,
+                      height: 28.0,
+                      // color: ProfileTheme.dotOutlineColor,
+                      placeholder: AssetImage('assets/infinity.gif'),
+                      image: NetworkImage(
+                        socialPlatforms[index]['iconURL'],
+                      ),
+                    ),
                   ),
                 ),
               ),

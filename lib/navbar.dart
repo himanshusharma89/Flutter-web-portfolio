@@ -87,7 +87,8 @@ class _NavbarState extends State<Navbar> {
       child: Center(
         child: GestureDetector(
           onTap: () {
-            Provider.of<CurrentPage>(context, listen: false).setCurrentPage(index);
+            Provider.of<CurrentPage>(context, listen: false)
+                .setCurrentPage(index);
             widget.controller.animateToPage(index,
                 duration: Duration(milliseconds: 1000), curve: Curves.ease);
           },

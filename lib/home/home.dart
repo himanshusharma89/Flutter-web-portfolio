@@ -5,11 +5,10 @@ import 'package:my_portfolio/home/screen/article.dart';
 import 'package:my_portfolio/home/screen/about_me.dart';
 import 'package:my_portfolio/home/screen/drawer.dart';
 import 'package:my_portfolio/home/screen/experience.dart';
-import 'package:my_portfolio/home/screen/footer.dart';
 import 'package:my_portfolio/home/screen/me.dart';
 import 'package:my_portfolio/home/screen/project.dart';
 import 'package:my_portfolio/home/screen/skills.dart';
-import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/utilities/pageIndicator.dart';
 import 'package:provider/provider.dart';
 
 class DesktopWidget extends StatefulWidget {
@@ -56,7 +55,8 @@ class _DesktopWidgetState extends State<DesktopWidget> {
         },
         onPageChanged: (int index) {
           setState(() {
-            Provider.of<CurrentPage>(context, listen: false).setCurrentPage(index);
+            Provider.of<CurrentPage>(context, listen: false)
+                .setCurrentPage(index);
           });
         },
       ),
@@ -65,6 +65,9 @@ class _DesktopWidgetState extends State<DesktopWidget> {
 }
 
 class MobileWidget extends StatefulWidget {
+  final PageController controller;
+
+  MobileWidget({this.controller});
   @override
   _MobileWidgetState createState() => _MobileWidgetState();
 }
@@ -102,74 +105,66 @@ class _MobileWidgetState extends State<MobileWidget>
 
   Widget drawerScreen() {
     return Container(
-      child: Scaffold(
-        body: DrawerScreen(context),
-      ),
+      child: DrawerScreen(context),
     );
   }
 
   Widget homeScreen() {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return zoomAndSlideContent(
       Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Center(
-          child: Container(
-            height: height - 10,
-            width: width - 10,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: ProfileTheme.backgroundColor),
-            child: Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Column(
+        body: Stack(
+          children: [
+            Center(
+              child: Stack(
+                children: [
+                  PageView(
+                    controller: widget.controller,
                     children: <Widget>[
                       Me(),
-                      SizedBox(height: height * 0.05),
                       AboutMe(),
-                      SizedBox(height: height * 0.05),
                       Skills(),
-                      SizedBox(height: height * 0.05),
                       Experience(),
-                      SizedBox(height: height * 0.05),
                       Project(),
-                      SizedBox(height: height * 0.05),
                       Article(),
-                      SizedBox(height: height * 0.05),
-                      Footer(),
                     ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    child: FittedBox(
-                      child: FloatingActionButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(16.0))),
-                        backgroundColor: Color.fromRGBO(42, 46, 53, 1),
-                        onPressed: () {
-                          _handleOnPressed();
-                          Provider.of<MenuController>(context, listen: false)
-                              .toggle();
-                        },
-                        heroTag: null,
-                        child: AnimatedIcon(
-                          icon: AnimatedIcons.menu_close,
-                          progress: _animationController,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      child: FittedBox(
+                        child: FloatingActionButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                          backgroundColor: Color.fromRGBO(42, 46, 53, 1),
+                          onPressed: () {
+                            _handleOnPressed();
+                            Provider.of<MenuController>(context, listen: false)
+                                .toggle();
+                          },
+                          heroTag: null,
+                          child: AnimatedIcon(
+                            icon: AnimatedIcons.menu_close,
+                            progress: _animationController,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
-          ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 25),
+                child: PageIndicator(
+                  pageController: widget.controller,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

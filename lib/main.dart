@@ -1,8 +1,7 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio/dashboard.dart';
+import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/provider/article_provider.dart';
 import 'package:my_portfolio/provider/current_index.dart';
 import 'package:provider/provider.dart';
@@ -26,8 +25,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             textTheme: GoogleFonts.poppinsTextTheme(
-          Theme.of(context).textTheme,
-        )),
+              Theme.of(context).textTheme,
+            ),
+            scaffoldBackgroundColor: ProfileTheme.backgroundColor),
         builder: (context, child) {
           return ScrollConfiguration(
             behavior: MyBehavior(),
