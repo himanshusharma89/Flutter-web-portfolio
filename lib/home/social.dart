@@ -70,7 +70,7 @@ class _SocialWidgetState extends State<SocialWidget> {
                       width: 28.0,
                       height: 28.0,
                       // color: ProfileTheme.dotOutlineColor,
-                      placeholder: AssetImage('assets/infinity.gif'),
+                      placeholder: AssetImage('assets/placeholder.gif'),
                       image: NetworkImage(
                         socialPlatforms[index]['iconURL'],
                       ),

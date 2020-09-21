@@ -10,7 +10,6 @@ class Skills extends StatefulWidget {
 }
 
 class _SkillsState extends State<Skills> {
-
   @override
   Widget build(BuildContext context) {
     if (ResponsiveLayout.isLargeScreen(context) ||
@@ -23,6 +22,20 @@ class _SkillsState extends State<Skills> {
             FractionallySizedBox(
               widthFactor: 0.5,
               alignment: Alignment.centerRight,
+              // child: Column(
+              //   children: [
+              //     Expanded(
+              //       child: Image.network(
+              //         'https://wakatime.com/share/@HimanshuSharma/14a73c94-b047-4de8-bf99-34a1ca04fd54.png',
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: Image.network(
+              //         'https://wakatime.com/share/@HimanshuSharma/f20a52bd-9961-44fb-8f52-96148642ba00.png',
+              //       ),
+              //     )
+              //   ],
+              // ),
             ),
             FractionallySizedBox(
               widthFactor: 0.5,
