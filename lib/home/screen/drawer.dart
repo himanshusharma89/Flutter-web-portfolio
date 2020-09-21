@@ -62,7 +62,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.width;
     return GestureDetector(
       onPanUpdate: (details) {
         //on swiping left
@@ -90,7 +89,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                   onTap: item.onTap,
                 );
@@ -105,7 +104,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 'THIS WEBSITE IS CREATED WITH FLUTTER WEB ❤',
                   style: TextStyle(
                     fontSize: 15, 
-                    color: Colors.black,
+                    color: Colors.white,
                     fontWeight: FontWeight.w500
                   )
               )

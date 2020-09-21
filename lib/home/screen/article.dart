@@ -90,7 +90,7 @@ class _ArticleState extends State<Article> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               PageTitle(title: 'Articles'),
-              SizedBox(height: 30.0),
+              SizedBox(height: 10.0),
               Flexible(
                 child: ListView.builder(
                     shrinkWrap: true,
