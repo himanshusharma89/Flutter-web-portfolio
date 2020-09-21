@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/card.dart';
 import 'package:my_portfolio/utilities/launcher.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/utilities/title.dart';
+
+import '../../profile_theme.dart';
 
 final Launcher launcher = Launcher();
 final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -19,7 +22,7 @@ class _ProjectState extends State<Project> {
 
   @override
   void initState() {
-    project = firebaseFirestore.collection('projects').snapshots();
+    project = firebaseFirestore.collection('projects').orderBy('index', descending: false).snapshots();
     super.initState();
   }
 
@@ -51,7 +54,7 @@ class _ProjectState extends State<Project> {
                           scrollDirection: Axis.vertical,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
+                                  crossAxisCount: ResponsiveLayout.isMediumScreen(context) ? 2 : 3,
                                   mainAxisSpacing: 4.0,
                                   crossAxisSpacing: 4.0,
                                   childAspectRatio: 1 / 0.2),
@@ -62,13 +65,15 @@ class _ProjectState extends State<Project> {
                             Map getProjects = projects.data();
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: CardView(
-                                title: getProjects['title'],
-                                imgURL: getProjects['imgURL'],
-                                imgAlignment: Alignment.centerLeft,
-                                url: getProjects['URL'],
-                                desc: getProjects['desc'],
-                                trailingIcon: false,
+                              child: TranslateOnHover(
+                                child: CardView(
+                                  title: getProjects['title'],
+                                  imgURL: getProjects['imgURL'],
+                                  imgAlignment: Alignment.centerLeft,
+                                  url: getProjects['URL'],
+                                  desc: getProjects['desc'],
+                                  trailingIcon: false,
+                                ),
                               ),
                             );
                           },
@@ -84,6 +89,7 @@ class _ProjectState extends State<Project> {
       );
     } else {
       return Container(
+        color: ProfileTheme.backgroundColor,
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding:
@@ -92,30 +98,33 @@ class _ProjectState extends State<Project> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               PageTitle(title: 'Projects'),
-              SizedBox(height: 30.0),
+              SizedBox(height: 10.0),
               StreamBuilder(
                   stream: project,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: snapshot.data.docs.length,
-                        itemBuilder: (context, index) {
-                          DocumentSnapshot projects = snapshot.data.docs[index];
-                          Map getProjects = projects.data();
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CardView(
-                              title: getProjects['title'],
-                              imgURL: getProjects['imgURL'],
-                              imgAlignment: Alignment.centerLeft,
-                              url: getProjects['URL'],
-                              desc: getProjects['desc'],
-                              trailingIcon: false,
-                            ),
-                          );
-                        },
+                      return Container(
+                        height: height - 140,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: snapshot.data.docs.length,
+                          itemBuilder: (context, index) {
+                            DocumentSnapshot projects = snapshot.data.docs[index];
+                            Map getProjects = projects.data();
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CardView(
+                                title: getProjects['title'],
+                                imgURL: getProjects['imgURL'],
+                                imgAlignment: Alignment.centerLeft,
+                                url: getProjects['URL'],
+                                desc: getProjects['desc'],
+                                trailingIcon: false,
+                              ),
+                            );
+                          },
+                        ),
                       );
                     } else {
                       return Center(

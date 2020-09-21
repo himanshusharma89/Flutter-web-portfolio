@@ -22,20 +22,50 @@ class _SkillsState extends State<Skills> {
             FractionallySizedBox(
               widthFactor: 0.5,
               alignment: Alignment.centerRight,
-              // child: Column(
-              //   children: [
-              //     Expanded(
-              //       child: Image.network(
-              //         'https://wakatime.com/share/@HimanshuSharma/14a73c94-b047-4de8-bf99-34a1ca04fd54.png',
-              //       ),
-              //     ),
-              //     Expanded(
-              //       child: Image.network(
-              //         'https://wakatime.com/share/@HimanshuSharma/f20a52bd-9961-44fb-8f52-96148642ba00.png',
-              //       ),
-              //     )
-              //   ],
-              // ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      // TODO:
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: ProfileTheme.cardColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Image.asset(
+                          'assets/wakatime_icon.png',
+                          height: 90,
+                          width: 90,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // TODO:
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: ProfileTheme.cardColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Image.asset(
+                          'assets/github_icon.png',
+                          height: 90,
+                          width: 90,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
             FractionallySizedBox(
               widthFactor: 0.5,
@@ -74,6 +104,7 @@ class _SkillsState extends State<Skills> {
       );
     } else {
       return Container(
+        color: ProfileTheme.backgroundColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,

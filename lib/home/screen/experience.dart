@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/utilities/card.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
@@ -18,7 +19,7 @@ class _ExperienceState extends State<Experience> {
 
   @override
   void initState() {
-    experience=firebaseFirestore.collection('experience').snapshots();
+    experience=firebaseFirestore.collection('experience').orderBy('isActive', descending: true).snapshots();
     super.initState();
   }
   @override
@@ -62,16 +63,18 @@ class _ExperienceState extends State<Experience> {
                               Map getExperience = experience.data();
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: CardView(
-                                  title: getExperience['title'],
-                                  imgURL: getExperience['imgURL'],
-                                  imgAlignment: Alignment.centerLeft,
-                                  url: 'www.google.com',
-                                  date: getExperience['date'],
-                                  desc: getExperience['desc'],
-                                  org: getExperience['org'],
-                                  trailingIcon: true,
-                                  trailingIconData: Icons.launch_rounded,
+                                child: TranslateOnHover(
+                                  child: CardView(
+                                    title: getExperience['title'],
+                                    imgURL: getExperience['imgURL'],
+                                    imgAlignment: Alignment.centerLeft,
+                                    url: getExperience['URL'],
+                                    date: getExperience['date'],
+                                    desc: getExperience['desc'],
+                                    org: getExperience['org'],
+                                    trailingIcon: true,
+                                    trailingIconData: Icons.launch_rounded,
+                                  ),
                                 ),
                               );
                             });
@@ -93,7 +96,7 @@ class _ExperienceState extends State<Experience> {
           child: Column(
             children: <Widget>[
               PageTitle(title: 'Expereince'),
-              SizedBox(height: 30.0),
+              SizedBox(height: 10.0),
               StreamBuilder(
                   stream: experience,
                   builder: (context, snapshot) {
@@ -107,12 +110,12 @@ class _ExperienceState extends State<Experience> {
                               snapshot.data.docs[index];
                           Map getExperience = experience.data();
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(6.0),
                             child: CardView(
                               title: getExperience['title'],
                               imgURL: getExperience['imgURL'],
                               imgAlignment: Alignment.centerLeft,
-                              url: 'www.google.com',
+                              url: getExperience['URL'],
                               date: getExperience['date'],
                               desc: getExperience['desc'],
                               org: getExperience['org'],

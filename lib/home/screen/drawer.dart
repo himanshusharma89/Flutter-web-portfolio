@@ -73,74 +73,43 @@ class _DrawerScreenState extends State<DrawerScreen> {
       child: Stack(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 62, left: 32, bottom: 8, right: MediaQuery.of(context).size.width / 2.9),
+            padding: EdgeInsets.only(left: 20, right: MediaQuery.of(context).size.width / 2.9),
             color: ProfileTheme.drawerColor,
             child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Container(
-                      height: height*0.2,
-                      width: height*0.2,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 2
-                        ),
-                      ),
-                      child: Icon(
-                        Icons.image
-                      ),
-                    ),
-                    SizedBox(width: height*0.02,),
-                    Text(
-                      'Tatiana',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    )
-                  ],
-                ),
-                Spacer(),
-                Column(
-                  children: options.map((item) {
-                    return ListTile(
-                      leading: Image.network(
-                        item.icon,
-                      ),
-                      title: Text(
-                        item.title,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      onTap: item.onTap,
-                    );
-                  }).toList(),
-                ),
-                Spacer(),
-                ListTile(
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.settings,
-                    color: Colors.white,
-                    size: 20,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: options.map((item) {
+                return ListTile(
+                  leading: Image.network(
+                    item.icon,
+                    height: 50,
+                    width: 50,
                   ),
-                  title: Text('Support',
-                      style: TextStyle(fontSize: 14, color: Colors.white)),
-                ),
-              ],
+                  title: Text(
+                    item.title,
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  onTap: item.onTap,
+                );
+              }).toList(),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Text(
-              'THIS WEBSITE IS CREATED WITH FLUTTER WEB ❤',
-                style: TextStyle(fontSize: 14, color: Colors.white,)
-            )
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12, left: 8, right: 8),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                'THIS WEBSITE IS CREATED WITH FLUTTER WEB ❤',
+                  style: TextStyle(
+                    fontSize: 15, 
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500
+                  )
+              )
+            ),
           )
         ],
       ),

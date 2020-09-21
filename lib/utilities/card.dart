@@ -40,7 +40,7 @@ class _CardViewState extends State<CardView> {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: Container(
-        height: height * 0.11,
+        height: height * 0.1,
         width: ResponsiveLayout.isSmallScreen(context)
             ? width * 0.56
             : width * 0.25,
@@ -62,9 +62,12 @@ class _CardViewState extends State<CardView> {
                 FractionallySizedBox(
                   widthFactor: 0.25,
                   alignment: widget.imgAlignment,
-                  child: Image.network(
-                    widget.imgURL,
-                    fit: BoxFit.cover,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Image.network(
+                      widget.imgURL,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
                 FractionallySizedBox(
@@ -131,7 +134,9 @@ class _CardViewState extends State<CardView> {
                                 color: ProfileTheme.navbarItemColor,
                                 size: 15,
                               ),
-                              onPressed: () {})
+                              onPressed: () {
+                                launcher.launchURL(widget.url);
+                              })
                       ],
                     ),
                   ),
