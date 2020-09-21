@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -16,6 +15,7 @@ class ArticleProvider with ChangeNotifier {
 
   getStatus(http.Response response) {
     if (response.statusCode == 200) {
+      notifyListeners();
       return MediumModel.fromJson(json.decode(response.body));
     } else {
       print("Unable to fetch");

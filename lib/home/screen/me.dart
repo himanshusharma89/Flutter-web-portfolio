@@ -142,7 +142,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                   text,
                   style: TextStyle(
                     letterSpacing: 0.2,
-                    fontSize: 25,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: ProfileTheme.headingColor,
                   ),
@@ -153,13 +153,15 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
               animation: _name,
               builder: (BuildContext context, Widget child) {
                 String text = name.substring(0, _name.value);
-                return Text(
-                  text,
-                  style: TextStyle(
-                    letterSpacing: 0.2,
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                return Center(
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      letterSpacing: 0.2,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 );
               },
@@ -168,13 +170,15 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
               animation: _designation,
               builder: (BuildContext context, Widget child) {
                 String text = designation.substring(0, _designation.value);
-                return Text(
-                  text,
-                  style: TextStyle(
-                    letterSpacing: 2,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
+                return Center(
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      letterSpacing: 2,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
                   ),
                 );
               },

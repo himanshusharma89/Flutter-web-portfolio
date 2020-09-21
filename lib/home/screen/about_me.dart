@@ -1,8 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/extensions/translateOnHover.dart';
 import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/utilities/title.dart';
 
-class AboutMe extends StatelessWidget {
+class AboutMe extends StatefulWidget {
+  @override
+  _AboutMeState createState() => _AboutMeState();
+}
+
+class _AboutMeState extends State<AboutMe> with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation _imgAnimation;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1200));
+    _imgAnimation = CurvedAnimation(
+        parent: _controller, curve: Interval(0.3, 0.6, curve: Curves.easeIn));
+    _controller.forward();
+    _controller.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (ResponsiveLayout.isLargeScreen(context) ||
@@ -15,6 +43,26 @@ class AboutMe extends StatelessWidget {
             FractionallySizedBox(
               widthFactor: 0.5,
               alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 150, horizontal: 150),
+                child: FadeTransition(
+                  opacity: _imgAnimation,
+                  child: TranslateOnHover(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            'self.jpg'
+                          )
+                        )
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
             FractionallySizedBox(
               widthFactor: 0.5,
@@ -28,41 +76,27 @@ class AboutMe extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 50),
-              child: PageTitle(title: "ABOUT ME")
-            ),
+                padding: const EdgeInsets.only(top: 50),
+                child: PageTitle(title: "ABOUT ME")),
           ],
         ),
       );
     } else {
-      return Container(
-        child: Column(
-          children: <Widget>[
-            Text(
-              "About Me",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontSize: 30.0,
-              ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Center(child: PageTitle(title: 'About Me')),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 30.0, left: 50.0, right: 50.0),
+            child: Text(
+              "Focused Computer Science major (9.84 CGPA) currently attending Chitkara University, with a aim to leverage a proven knowledge of competitive programming with C/C++ & Java, Flutter Application Development, and web designing skills. I am a content writer at IEEE CIET Branch, Open Source enthusiast and I also like to working on Alexa Skill and Google Assistant App development.\nI am a quick learner and frequently praised as hard-working by my peers",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 13.0, color: Colors.white),
             ),
-            Container(
-                width: MediaQuery.of(context).size.width * 0.125,
-                child: Divider(
-                  color: Colors.white,
-                  thickness: 3.0,
-                )),
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: 30.0, left: 50.0, right: 50.0),
-              child: Text(
-                "Focused Computer Science major (9.84 CGPA) currently attending Chitkara University, with a aim to leverage a proven knowledge of competitive programming with C/C++ & Java, Flutter Application Development, and web designing skills. I am a content writer at IEEE CIET Branch, Open Source enthusiast and I also like to working on Alexa Skill and Google Assistant App development.\nI am a quick learner and frequently praised as hard-working by my peers",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18.0, color: Colors.white),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       );
     }
   }

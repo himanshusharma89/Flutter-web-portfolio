@@ -14,7 +14,8 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
-  PageController controller;
+  PageController desktopController;
+  PageController mobileController;
   MenuController menuController;
 
   @override
@@ -23,16 +24,18 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     menuController = MenuController(
       vsync: this,
     )..addListener(() => setState(() {}));
-    controller = PageController(
+    desktopController = PageController(
         initialPage:
             Provider.of<CurrentPage>(context, listen: false).currentPage);
+    mobileController = PageController();
   }
 
   @override
   void dispose() {
     super.dispose();
     menuController.dispose();
-    controller.dispose();
+    desktopController.dispose();
+    mobileController.dispose();
   }
 
   @override
@@ -46,10 +49,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
             ? Stack(
               fit: StackFit.expand,
               children: <Widget>[
-                DesktopWidget(controller: controller),
+                DesktopWidget(controller: desktopController),
                 Align(
                     alignment: Alignment.centerLeft,
-                    child: Navbar(controller: controller)),
+                    child: Navbar(controller: desktopController)),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: SocialWidget(),
@@ -61,14 +64,14 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                     child: RotatedBox(
                       quarterTurns: 1,
                       child: PageIndicator(
-                        pageController: controller,
+                        pageController: desktopController,
                       ),
                     ),
                   ),
                 )
               ],
             )
-            : MobileWidget(),
+            : MobileWidget(controller: mobileController),
       )),
     );
   }
