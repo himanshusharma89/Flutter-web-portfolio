@@ -9,6 +9,8 @@ import 'package:my_portfolio/utilities/responsiveLayout.dart';
 import 'package:my_portfolio/utilities/title.dart';
 import 'package:provider/provider.dart';
 
+import '../../profile_theme.dart';
+
 final Launcher launcher = Launcher();
 
 class Article extends StatefulWidget {
@@ -52,7 +54,7 @@ class _ArticleState extends State<Article> {
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: ResponsiveLayout.isMediumScreen(context) ? 2 : 3,
                         crossAxisSpacing: 4,
                         mainAxisSpacing: 4,
                         childAspectRatio: 1 / 0.2),
@@ -80,6 +82,7 @@ class _ArticleState extends State<Article> {
       );
     } else {
       return Container(
+        color: ProfileTheme.backgroundColor,
         child: Padding(
           padding:
               const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
@@ -87,7 +90,7 @@ class _ArticleState extends State<Article> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               PageTitle(title: 'Articles'),
-              SizedBox(height: 30.0),
+              SizedBox(height: 10.0),
               Flexible(
                 child: ListView.builder(
                     shrinkWrap: true,

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_portfolio/model/medium/medium_model.dart';
-import 'package:my_portfolio/secrets.dart' as Secrets;
 
 class ArticleProvider with ChangeNotifier {
   Future getMediumArticles() async {
@@ -22,20 +21,20 @@ class ArticleProvider with ChangeNotifier {
     }
   }
 
-  Future getDevArticles() async {
-    var x =
-        'curl -H "api-key: ${Secrets.GET_DEV_ARTICLES}" https://dev.to/api/articles/me/published';
-    // curl -H "api-key: zV2qAk96vxkEMukhFmd5yaiC" https://dev.to/api/articles/me/published
-    var uri = Uri.https('www.dev.to', '/api/articles/me/published');
-    http.Response response = await http.get(uri, headers: {
-      'api-key': 'zV2qAk96vxkEMukhFmd5yaiC',
-      'content-type': 'application/json',
-    });
-    // print(HttpRequest.request('https://dev.to/api/articles/me/published',
-    //     requestHeaders: {
-    //       'api-key': 'zV2qAk96vxkEMukhFmd5yaiC',
-    //       'content-type': 'application/json',
-    //     }));
-    // print(response);
-  }
+  // Future getDevArticles() async {
+  //   var x =
+  //       'curl -H "api-key: ${Secrets.GET_DEV_ARTICLES}" https://dev.to/api/articles/me/published';
+  //   // curl -H "api-key: zV2qAk96vxkEMukhFmd5yaiC" https://dev.to/api/articles/me/published
+  //   var uri = Uri.https('www.dev.to', '/api/articles/me/published');
+  //   http.Response response = await http.get(uri, headers: {
+  //     'api-key': 'zV2qAk96vxkEMukhFmd5yaiC',
+  //     'content-type': 'application/json',
+  //   });
+  //   // print(HttpRequest.request('https://dev.to/api/articles/me/published',
+  //   //     requestHeaders: {
+  //   //       'api-key': 'zV2qAk96vxkEMukhFmd5yaiC',
+  //   //       'content-type': 'application/json',
+  //   //     }));
+  //   // print(response);
+  // }
 }

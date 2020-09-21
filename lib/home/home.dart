@@ -203,7 +203,7 @@ class _MobileWidgetState extends State<MobileWidget>
         break;
     }
 
-    final slideAmount = 275.0 * slidePercent;
+    final slideAmount = 225.0 * slidePercent;
     final contentScale = 1.0 - (0.2 * scalePercent);
     final cornerRadius =
         16.0 * Provider.of<MenuController>(context, listen: true).percentOpen;

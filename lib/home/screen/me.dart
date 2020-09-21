@@ -128,90 +128,93 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
         ),
       );
     } else {
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 65),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            AnimatedBuilder(
-              animation: _hi,
-              builder: (BuildContext context, Widget child) {
-                String text = hi.substring(0, _hi.value);
-                return Text(
-                  text,
-                  style: TextStyle(
-                    letterSpacing: 0.2,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: ProfileTheme.headingColor,
-                  ),
-                );
-              },
-            ),
-            AnimatedBuilder(
-              animation: _name,
-              builder: (BuildContext context, Widget child) {
-                String text = name.substring(0, _name.value);
-                return Center(
-                  child: Text(
+      return Container(
+        color: ProfileTheme.backgroundColor,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 65),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              AnimatedBuilder(
+                animation: _hi,
+                builder: (BuildContext context, Widget child) {
+                  String text = hi.substring(0, _hi.value);
+                  return Text(
                     text,
                     style: TextStyle(
                       letterSpacing: 0.2,
-                      fontSize: 25,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: ProfileTheme.headingColor,
                     ),
-                  ),
-                );
-              },
-            ),
-            AnimatedBuilder(
-              animation: _designation,
-              builder: (BuildContext context, Widget child) {
-                String text = designation.substring(0, _designation.value);
-                return Center(
-                  child: Text(
-                    text,
-                    style: TextStyle(
-                      letterSpacing: 2,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                  );
+                },
+              ),
+              AnimatedBuilder(
+                animation: _name,
+                builder: (BuildContext context, Widget child) {
+                  String text = name.substring(0, _name.value);
+                  return Center(
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                        letterSpacing: 0.2,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-            SizedBox(
-              height: height * 0.05,
-            ),
-            Center(
-              child: FadeTransition(
-                opacity: _imgAnimation,
-                child: Container(
-                  height: height * 0.55,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(22.0)),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black,
-                            offset: Offset(0.0, 3.0),
-                            blurRadius: 15)
-                      ]),
-                  child: TranslateOnHover(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12.0),
-                      child: Image.asset(
-                        'self.jpg',
-                        fit: BoxFit.cover,
+                  );
+                },
+              ),
+              AnimatedBuilder(
+                animation: _designation,
+                builder: (BuildContext context, Widget child) {
+                  String text = designation.substring(0, _designation.value);
+                  return Center(
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                        letterSpacing: 2,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              SizedBox(
+                height: height * 0.05,
+              ),
+              Center(
+                child: FadeTransition(
+                  opacity: _imgAnimation,
+                  child: Container(
+                    height: height * 0.55,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(22.0)),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black,
+                              offset: Offset(0.0, 3.0),
+                              blurRadius: 15)
+                        ]),
+                    child: TranslateOnHover(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12.0),
+                        child: Image.asset(
+                          'self.jpg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }
