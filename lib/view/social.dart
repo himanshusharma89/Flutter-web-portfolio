@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/utilities/launcher.dart';
+import 'package:my_portfolio/helpers/launcher.dart';
 // import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 final Launcher launcher = Launcher();

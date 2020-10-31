@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_portfolio/model/medium/medium_model.dart';
+import 'package:my_portfolio/model/medium/medium.dart';
 
 class ArticleProvider with ChangeNotifier {
   Future getMediumArticles() async {

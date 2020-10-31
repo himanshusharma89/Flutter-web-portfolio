@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/extensions/translateOnHover.dart';
+import 'package:my_portfolio/helpers/translateOnHover.dart';
 import 'package:my_portfolio/profile_theme.dart';
-import 'package:my_portfolio/utilities/launcher.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
-import 'package:my_portfolio/utilities/title.dart';
+import 'package:my_portfolio/helpers/launcher.dart';
+import 'package:my_portfolio/helpers/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/title.dart';
 
 final Launcher launcher = Launcher();
 
@@ -29,8 +29,11 @@ class AboutMe extends StatelessWidget {
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(12)),
                   child: FadeInImage(
-                      placeholder: AssetImage('assets/placeholder.gif'),
-                      image: AssetImage('self.jpg')),
+                    placeholder: AssetImage('assets/placeholder.gif'),
+                    image: NetworkImage(
+                      'https://avatars0.githubusercontent.com/u/44980497?v=4',
+                    ),
+                  ),
                 )),
               ),
             ),

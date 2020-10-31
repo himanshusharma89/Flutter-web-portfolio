@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/extensions/changeTextOnHover.dart';
+import 'package:my_portfolio/helpers/changeTextOnHover.dart';
 import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/provider/current_index.dart';
 import 'package:provider/provider.dart';

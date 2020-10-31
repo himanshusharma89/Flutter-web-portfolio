@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/profile_theme.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 class ChangeTextOnHover extends StatefulWidget {
   final String text;

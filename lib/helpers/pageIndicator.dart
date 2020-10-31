@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/profile_theme.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 class PageIndicator extends StatefulWidget {
   final PageController pageController;

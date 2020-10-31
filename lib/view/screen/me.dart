@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/extensions/translateOnHover.dart';
+import 'package:my_portfolio/helpers/translateOnHover.dart';
 import 'package:my_portfolio/profile_theme.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 class Me extends StatefulWidget {
   @override
@@ -204,8 +204,8 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                     child: TranslateOnHover(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12.0),
-                        child: Image.asset(
-                          'self.jpg',
+                        child: Image.network(
+                          'https://avatars0.githubusercontent.com/u/44980497?v=4',
                           fit: BoxFit.cover,
                         ),
                       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/utilities/launcher.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/launcher.dart';
+import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 import '../profile_theme.dart';
 

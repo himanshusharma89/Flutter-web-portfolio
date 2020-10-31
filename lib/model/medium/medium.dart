@@ -4,7 +4,7 @@ import 'medium_feed.dart';
 
 import 'medium_items.dart';
 
-part 'medium_model.g.dart';
+part 'medium.g.dart';
 
 @JsonSerializable()
 

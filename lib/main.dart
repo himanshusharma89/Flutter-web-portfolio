@@ -4,6 +4,8 @@ import 'package:my_portfolio/dashboard.dart';
 import 'package:my_portfolio/profile_theme.dart';
 import 'package:my_portfolio/provider/article_provider.dart';
 import 'package:my_portfolio/provider/current_index.dart';
+import 'package:my_portfolio/provider/expereince_provider.dart';
+import 'package:my_portfolio/provider/project_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,6 +14,9 @@ void main() {
       ChangeNotifierProvider<CurrentPage>(create: (context) => CurrentPage()),
       ChangeNotifierProvider<ArticleProvider>(
           create: (context) => ArticleProvider()),
+      ChangeNotifierProvider<ExperienceProvider>(
+          create: (context) => ExperienceProvider()),
+      ChangeNotifierProvider<ProjectProvider>(create: (context) => ProjectProvider())
     ],
     child: MyApp(),
   ));

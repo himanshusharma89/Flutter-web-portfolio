@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/current_index.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/home/screen/article.dart';
-import 'package:my_portfolio/home/screen/about_me.dart';
-import 'package:my_portfolio/home/screen/drawer.dart';
-import 'package:my_portfolio/home/screen/experience.dart';
-import 'package:my_portfolio/home/screen/me.dart';
-import 'package:my_portfolio/home/screen/project.dart';
-import 'package:my_portfolio/home/screen/skills.dart';
-import 'package:my_portfolio/utilities/pageIndicator.dart';
+import 'package:my_portfolio/view/screen/article.dart';
+import 'package:my_portfolio/view/screen/about_me.dart';
+import 'package:my_portfolio/view/screen/drawer.dart';
+import 'package:my_portfolio/view/screen/experience.dart';
+import 'package:my_portfolio/view/screen/me.dart';
+import 'package:my_portfolio/view/screen/project.dart';
+import 'package:my_portfolio/view/screen/skills.dart';
+import 'package:my_portfolio/helpers/pageIndicator.dart';
 import 'package:provider/provider.dart';
 
 class DesktopWidget extends StatefulWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/current_index.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/home/home.dart';
+import 'package:my_portfolio/view/home.dart';
 import 'package:my_portfolio/navbar.dart';
-import 'package:my_portfolio/home/social.dart';
-import 'package:my_portfolio/utilities/pageIndicator.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
+import 'package:my_portfolio/view/social.dart';
+import 'package:my_portfolio/helpers/pageIndicator.dart';
+import 'package:my_portfolio/helpers/responsiveLayout.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {

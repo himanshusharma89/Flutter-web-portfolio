@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/home/screen/about_me.dart';
+import 'package:my_portfolio/view/screen/about_me.dart';
 import 'package:my_portfolio/profile_theme.dart';
-import 'package:my_portfolio/utilities/responsiveLayout.dart';
-import 'package:my_portfolio/utilities/title.dart';
+import 'package:my_portfolio/helpers/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/title.dart';
 
 class Skills extends StatefulWidget {
   @override
