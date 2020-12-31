@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/current_index.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/view/home.dart';
+import 'package:my_portfolio/view/home/desktop.dart';
+import 'package:my_portfolio/view/home/mobile.dart';
 import 'package:my_portfolio/navbar.dart';
 import 'package:my_portfolio/view/social.dart';
 import 'package:my_portfolio/helpers/pageIndicator.dart';
@@ -14,8 +15,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
-  PageController desktopController;
-  PageController mobileController;
+  PageController desktopController, mobileController;
   MenuController menuController;
 
   @override
@@ -27,7 +27,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     desktopController = PageController(
         initialPage:
             Provider.of<CurrentPage>(context, listen: false).currentPage);
-    mobileController = PageController();
+    mobileController = PageController(
+        initialPage:
+            Provider.of<CurrentPage>(context, listen: false).currentPage);
   }
 
   @override
@@ -43,36 +45,46 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     return ChangeNotifierProvider.value(
       value: menuController,
       child: Scaffold(
-          body: Center(
-        child: (ResponsiveLayout.isLargeScreen(context) ||
-                ResponsiveLayout.isMediumScreen(context))
-            ? Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                DesktopWidget(controller: desktopController),
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: Navbar(controller: desktopController)),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: SocialWidget(),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 100, right: 25),
-                    child: RotatedBox(
-                      quarterTurns: 1,
-                      child: PageIndicator(
-                        pageController: desktopController,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            )
-            : MobileWidget(controller: mobileController),
-      )),
+          body: ResponsiveLayout.isSmallScreen(context)
+              ? MobileWidget(controller: mobileController)
+              : Stack(
+                  fit: StackFit.expand,
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    DesktopWidget(controller: desktopController),
+                    navBarWidget(),
+                    socialWidget(),
+                    pageIndicator()
+                  ],
+                )),
+    );
+  }
+
+  Widget navBarWidget() {
+    return Align(
+        alignment: Alignment.centerLeft,
+        child: Navbar(controller: desktopController));
+  }
+
+  Widget socialWidget() {
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: SocialWidget(),
+    );
+  }
+
+  Widget pageIndicator() {
+    return Align(
+      alignment: Alignment.topRight,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 100, right: 25),
+        child: RotatedBox(
+          quarterTurns: 1,
+          child: PageIndicator(
+            pageController: desktopController,
+          ),
+        ),
+      ),
     );
   }
 }

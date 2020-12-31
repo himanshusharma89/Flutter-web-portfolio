@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/launcher.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
-import '../profile_theme.dart';
-
-final Launcher launcher = Launcher();
+import '../main.dart';
+import '../profile_colors.dart';
 
 class CardView extends StatefulWidget {
   final String title;
@@ -131,7 +129,7 @@ class _CardViewState extends State<CardView> {
                           IconButton(
                               icon: Icon(
                                 widget.trailingIconData,
-                                color: ProfileTheme.navbarItemColor,
+                                color: ProfileColors.navbarItemColor,
                                 size: 15,
                               ),
                               onPressed: () {

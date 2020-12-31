@@ -14,8 +14,9 @@ class ArticleProvider with ChangeNotifier {
 
   getStatus(http.Response response) {
     if (response.statusCode == 200) {
+      var x = MediumModel.fromJson(json.decode(response.body));
       notifyListeners();
-      return MediumModel.fromJson(json.decode(response.body));
+      return x;
     } else {
       print("Unable to fetch");
     }

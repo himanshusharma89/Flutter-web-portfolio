@@ -1,68 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/provider/current_index.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/view/screen/article.dart';
-import 'package:my_portfolio/view/screen/about_me.dart';
-import 'package:my_portfolio/view/screen/drawer.dart';
-import 'package:my_portfolio/view/screen/experience.dart';
-import 'package:my_portfolio/view/screen/me.dart';
-import 'package:my_portfolio/view/screen/project.dart';
-import 'package:my_portfolio/view/screen/skills.dart';
+import 'package:my_portfolio/view/article.dart';
+import 'package:my_portfolio/view/about_me.dart';
+import 'package:my_portfolio/view/drawer.dart';
+import 'package:my_portfolio/view/experience.dart';
+import 'package:my_portfolio/view/me.dart';
+import 'package:my_portfolio/view/project.dart';
+import 'package:my_portfolio/view/skills.dart';
 import 'package:my_portfolio/helpers/pageIndicator.dart';
 import 'package:provider/provider.dart';
-
-class DesktopWidget extends StatefulWidget {
-  final PageController controller;
-  DesktopWidget({this.controller});
-
-  @override
-  _DesktopWidgetState createState() => _DesktopWidgetState();
-}
-
-class _DesktopWidgetState extends State<DesktopWidget> {
-  // ItemPositionsListener itemPositionsListener;
-  bool visibleFAB = true;
-  List<Widget> homeList;
-
-  @override
-  void initState() {
-    super.initState();
-    // itemPositionsListener=ItemPositionsListener.create();
-    homeList = [
-      Me(),
-      AboutMe(),
-      Skills(),
-      Experience(),
-      Project(),
-      Article(),
-    ];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-    return Container(
-      height: height,
-      width: width * 0.95,
-      child: PageView.builder(
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        controller: widget.controller,
-        itemCount: homeList.length,
-        itemBuilder: (context, index) {
-          return homeList[index];
-        },
-        onPageChanged: (int index) {
-          setState(() {
-            Provider.of<CurrentPage>(context, listen: false)
-                .setCurrentPage(index);
-          });
-        },
-      ),
-    );
-  }
-}
 
 class MobileWidget extends StatefulWidget {
   final PageController controller;
@@ -105,7 +51,7 @@ class _MobileWidgetState extends State<MobileWidget>
 
   Widget drawerScreen() {
     return Container(
-      child: DrawerScreen(context),
+      child: DrawerScreen(),
     );
   }
 
@@ -136,7 +82,8 @@ class _MobileWidgetState extends State<MobileWidget>
                       child: FittedBox(
                         child: FloatingActionButton(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16.0))),
                           backgroundColor: Color.fromRGBO(42, 46, 53, 1),
                           onPressed: () {
                             _handleOnPressed();

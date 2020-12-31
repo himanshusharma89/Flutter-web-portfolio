@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/profile_colors.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 class ChangeTextOnHover extends StatefulWidget {
@@ -41,7 +41,7 @@ class _ChangeTextOnHoverState extends State<ChangeTextOnHover> {
           ),
         ),
         style: TextStyle(
-            color: _hovering ? ProfileTheme.navbarItemColor : widget.color,
+            color: _hovering ? ProfileColors.navbarItemColor : widget.color,
             fontWeight: FontWeight.normal,
             fontSize: _hovering
                 ? ResponsiveLayout.isMediumScreen(context) ? 11 : 13

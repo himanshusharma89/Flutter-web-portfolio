@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/translateOnHover.dart';
-import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/profile_colors.dart';
 import 'package:my_portfolio/helpers/card.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 import 'package:my_portfolio/helpers/title.dart';
@@ -9,12 +9,7 @@ import 'package:my_portfolio/provider/expereince_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:my_portfolio/model/experience/expereince.dart';
 
-class Experience extends StatefulWidget {
-  @override
-  _ExperienceState createState() => _ExperienceState();
-}
-
-class _ExperienceState extends State<Experience> {
+class Experience extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +37,7 @@ class _ExperienceState extends State<Experience> {
       );
     } else {
       return Container(
-        color: ProfileTheme.backgroundColor,
+        color: ProfileColors.backgroundColor,
         child: Padding(
           padding:
               const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
@@ -67,7 +62,7 @@ class _ExperienceState extends State<Experience> {
               if (snapshot.hasData) {
                 if (ResponsiveLayout.isLargeScreen(context) ||
                     ResponsiveLayout.isMediumScreen(context))
-                  return _gridView(exp.experience);
+                  return _gridView(exp.experience, context);
                 else
                   return _listView(exp.experience);
               } else {
@@ -84,22 +79,23 @@ class _ExperienceState extends State<Experience> {
       } else {
         if (ResponsiveLayout.isLargeScreen(context) ||
             ResponsiveLayout.isMediumScreen(context))
-          return _gridView(exp.experience);
+          return _gridView(exp.experience, context);
         else
           return _listView(exp.experience);
       }
     });
   }
 
-  Widget _gridView(List list) {
+  Widget _gridView(List list, BuildContext context) {
     return GridView.builder(
-        physics: NeverScrollableScrollPhysics(),
+      primary: false,
+        // physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 4,
             childAspectRatio:
-                ResponsiveLayout.isMediumScreen(context) ? 1 / 0.22 : 1 / 0.15),
+                ResponsiveLayout.isMediumScreen(context) ? 1 / 0.22 : 1 / 0.18),
         itemCount: list.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
@@ -126,6 +122,7 @@ class _ExperienceState extends State<Experience> {
   Widget _listView(List list) {
     return ListView.builder(
       shrinkWrap: true,
+      primary: false,
       scrollDirection: Axis.vertical,
       itemCount: list.length,
       itemBuilder: (context, index) {

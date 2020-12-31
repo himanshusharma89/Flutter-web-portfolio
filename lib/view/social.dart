@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/launcher.dart';
-// import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-final Launcher launcher = Launcher();
+import '../main.dart';
 
 class SocialWidget extends StatefulWidget {
   @override
@@ -47,8 +45,9 @@ class _SocialWidgetState extends State<SocialWidget> {
       width: width * 0.02 + 20,
       alignment: Alignment.bottomCenter,
       child: ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        // physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
+        primary: false,
         itemCount: socialPlatforms.length,
         itemBuilder: (context, index) {
           return Padding(

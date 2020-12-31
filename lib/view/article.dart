@@ -4,21 +4,13 @@ import 'package:my_portfolio/helpers/translateOnHover.dart';
 import 'package:my_portfolio/model/medium/medium.dart';
 import 'package:my_portfolio/provider/article_provider.dart';
 import 'package:my_portfolio/helpers/card.dart';
-import 'package:my_portfolio/helpers/launcher.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 import 'package:my_portfolio/helpers/title.dart';
 import 'package:provider/provider.dart';
 
-import '../../profile_theme.dart';
+import '../profile_colors.dart';
 
-final Launcher launcher = Launcher();
-
-class Article extends StatefulWidget {
-  @override
-  _ArticleState createState() => _ArticleState();
-}
-
-class _ArticleState extends State<Article> {
+class Article extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (ResponsiveLayout.isLargeScreen(context) ||
@@ -47,7 +39,7 @@ class _ArticleState extends State<Article> {
                                 child: CircularProgressIndicator()));
                       } else {
                         MediumModel mediumModel = snapshot.data;
-                        return _gridView(mediumModel.items);
+                        return _gridView(mediumModel.items, context);
                       }
                     }),
               ),
@@ -57,7 +49,7 @@ class _ArticleState extends State<Article> {
       );
     } else {
       return Container(
-        color: ProfileTheme.backgroundColor,
+        color: ProfileColors.backgroundColor,
         child: Padding(
           padding:
               const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
@@ -90,10 +82,11 @@ class _ArticleState extends State<Article> {
     }
   }
 
-  Widget _gridView(List list) {
+  Widget _gridView(List list, BuildContext context) {
     return GridView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        primary: false,
+        // physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: ResponsiveLayout.isMediumScreen(context) ? 2 : 3,
             crossAxisSpacing: 4,
@@ -116,6 +109,7 @@ class _ArticleState extends State<Article> {
   Widget _listView(List list) {
     return ListView.builder(
         shrinkWrap: true,
+        primary: false,
         itemCount: list.length,
         itemBuilder: (_, index) {
           return CardView(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/profile_colors.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 class PageIndicator extends StatefulWidget {
@@ -20,15 +20,16 @@ class _PageIndicatorState extends State<PageIndicator> {
             painter: PageIndicatorPainter(
                 pageCount: 6,
                 dotRadius: ResponsiveLayout.isMediumScreen(context) ? 5 : 7,
-                dotOutlineThickness: ResponsiveLayout.isMediumScreen(context) ? 1 : 2,
+                dotOutlineThickness:
+                    ResponsiveLayout.isMediumScreen(context) ? 1 : 2,
                 spacing: 15,
                 scrollPosition: widget.pageController.hasClients &&
                         widget.pageController.page != null
                     ? widget.pageController.page
                     : 0.0,
                 dotFillColor: Colors.transparent,
-                dotOutlineColor: ProfileTheme.dotOutlineColor,
-                indicatorColor: ProfileTheme.color7),
+                dotOutlineColor: ProfileColors.dotOutlineColor,
+                indicatorColor: ProfileColors.pageIndicatorColor),
           );
         });
   }

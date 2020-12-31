@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/helpers/changeTextOnHover.dart';
-import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/profile_colors.dart';
 import 'package:my_portfolio/provider/current_index.dart';
 import 'package:provider/provider.dart';
 
@@ -97,7 +97,7 @@ class _NavbarState extends State<Navbar> {
             child: ChangeTextOnHover(
                 text: navText,
                 color: Provider.of<CurrentPage>(context).currentPage == index
-                    ? ProfileTheme.navbarItemColor
+                    ? ProfileColors.navbarItemColor
                     : Colors.white,
                 fontSize: Provider.of<CurrentPage>(context).currentPage == index
                     ? 13

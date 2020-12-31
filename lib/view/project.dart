@@ -1,26 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/translateOnHover.dart';
 import 'package:my_portfolio/helpers/card.dart';
-import 'package:my_portfolio/helpers/launcher.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 import 'package:my_portfolio/helpers/title.dart';
 import 'package:my_portfolio/model/project/project.dart';
 import 'package:my_portfolio/provider/project_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../profile_theme.dart';
+import '../profile_colors.dart';
 
-final Launcher launcher = Launcher();
-final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-
-class Project extends StatefulWidget {
-  @override
-  _ProjectState createState() => _ProjectState();
-}
-
-class _ProjectState extends State<Project> {
+class Project extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -47,7 +37,7 @@ class _ProjectState extends State<Project> {
       );
     } else {
       return Container(
-        color: ProfileTheme.backgroundColor,
+        color: ProfileColors.backgroundColor,
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding:
@@ -74,9 +64,9 @@ class _ProjectState extends State<Project> {
               if (snapshot.hasData) {
                 if (ResponsiveLayout.isLargeScreen(context) ||
                     ResponsiveLayout.isMediumScreen(context))
-                  return _gridView(prjt.project);
+                  return _gridView(prjt.project, context);
                 else
-                  return _listView(prjt.project);
+                  return _listView(prjt.project, context);
               } else {
                 return Center(
                     child: ResponsiveLayout.isLargeScreen(context) ||
@@ -90,16 +80,17 @@ class _ProjectState extends State<Project> {
             });
       else if (ResponsiveLayout.isLargeScreen(context) ||
           ResponsiveLayout.isMediumScreen(context))
-        return _gridView(prjt.project);
+        return _gridView(prjt.project, context);
       else
-        return _listView(prjt.project);
+        return _listView(prjt.project, context);
     });
   }
 
-  Widget _gridView(List list) {
+  Widget _gridView(List list, BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      primary: false,
+      // physics: NeverScrollableScrollPhysics(),
       scrollDirection: Axis.vertical,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: ResponsiveLayout.isMediumScreen(context) ? 2 : 3,
@@ -126,12 +117,13 @@ class _ProjectState extends State<Project> {
     );
   }
 
-  Widget _listView(List list) {
+  Widget _listView(List list, BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Container(
       height: height - 140,
       child: ListView.builder(
         shrinkWrap: true,
+        primary: false,
         scrollDirection: Axis.vertical,
         itemCount: list.length,
         itemBuilder: (context, index) {

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/translateOnHover.dart';
-import 'package:my_portfolio/profile_theme.dart';
-import 'package:my_portfolio/helpers/launcher.dart';
+import 'package:my_portfolio/profile_colors.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 import 'package:my_portfolio/helpers/title.dart';
 
-final Launcher launcher = Launcher();
+import '../main.dart';
 
 class AboutMe extends StatelessWidget {
   @override
@@ -62,13 +61,13 @@ class AboutMe extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                             border: Border.all(
-                                color: ProfileTheme.dotOutlineColor)),
+                                color: ProfileColors.dotOutlineColor)),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'CONTACT ME',
                             style:
-                                TextStyle(color: ProfileTheme.dotOutlineColor),
+                                TextStyle(color: ProfileColors.dotOutlineColor),
                           ),
                         ),
                       ),
@@ -85,7 +84,7 @@ class AboutMe extends StatelessWidget {
       );
     } else {
       return Container(
-        color: ProfileTheme.backgroundColor,
+        color: ProfileColors.backgroundColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -109,12 +108,12 @@ class AboutMe extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                    border: Border.all(color: ProfileTheme.dotOutlineColor)),
+                    border: Border.all(color: ProfileColors.dotOutlineColor)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'CONTACT ME',
-                    style: TextStyle(color: ProfileTheme.dotOutlineColor),
+                    style: TextStyle(color: ProfileColors.dotOutlineColor),
                   ),
                 ),
               ),

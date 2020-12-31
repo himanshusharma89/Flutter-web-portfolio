@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/helpers/launcher.dart';
-import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/profile_colors.dart';
 import 'package:provider/provider.dart';
 
-final Launcher launcher = Launcher();
+import '../main.dart';
+
 class DrawerScreen extends StatefulWidget {
-  final BuildContext context;
-  
-  DrawerScreen(this.context);
 
   @override
   _DrawerScreenState createState() => _DrawerScreenState();
@@ -73,7 +70,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
         children: [
           Container(
             padding: EdgeInsets.only(left: 20, right: MediaQuery.of(context).size.width / 2.9),
-            color: ProfileTheme.drawerColor,
+            color: ProfileColors.drawerColor,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
-import '../profile_theme.dart';
+import '../profile_colors.dart';
 
 class PageTitle extends StatefulWidget {
   final String title;
@@ -19,7 +19,7 @@ class _PageTitleState extends State<PageTitle> {
           widget.title.toUpperCase(),
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: ProfileTheme.cardHeadingColor,
+            color: ProfileColors.cardHeadingColor,
             fontSize: ResponsiveLayout.isSmallScreen(context) ? 20 : 25.0,
           ),
         ),

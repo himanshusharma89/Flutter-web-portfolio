@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/view/screen/about_me.dart';
-import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/profile_colors.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 import 'package:my_portfolio/helpers/title.dart';
 
-class Skills extends StatefulWidget {
-  @override
-  _SkillsState createState() => _SkillsState();
-}
+import '../main.dart';
 
-class _SkillsState extends State<Skills> {
+class Skills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (ResponsiveLayout.isLargeScreen(context) ||
@@ -23,13 +19,13 @@ class _SkillsState extends State<Skills> {
             FractionallySizedBox(
                 widthFactor: 0.5,
                 alignment: Alignment.centerRight,
-                child: skillWidget()),
+                child: skillWidget(context)),
             FractionallySizedBox(
               widthFactor: 0.5,
               alignment: Alignment.centerLeft,
               child: Center(
                 child: Text(
-                  "The main area of my expertise is Flutter App Development and Firebase (analytics and growth).\nI am proficient with programming languages like C/C++ and Java.\nFor web development, I work with Flutter web and also have experience with HTML, CSS, JS, jquery and Bootstrap.\nI work with these tools on daily basis:\nVersion Control System: Git and GitHub.\nAutomate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.",
+                  "The main area of my expertise is Flutter App Development and Firebase (analytics and growth).\n\nI am proficient with programming languages like C/C++ and Java.\nFor web development, I work with Flutter web and also have experience with HTML, CSS, JS, jquery and Bootstrap.\n\nI work with these tools on daily basis:\nVersion Control System: Git and GitHub.\nAutomate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(fontSize: 16.0, color: Colors.white),
                 ),
@@ -43,7 +39,7 @@ class _SkillsState extends State<Skills> {
                     "MY SKILLS",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: ProfileTheme.cardHeadingColor,
+                      color: ProfileColors.cardHeadingColor,
                       fontSize: 25.0,
                     ),
                   ),
@@ -61,7 +57,7 @@ class _SkillsState extends State<Skills> {
       );
     } else {
       return Container(
-        color: ProfileTheme.backgroundColor,
+        color: ProfileColors.backgroundColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -79,31 +75,34 @@ class _SkillsState extends State<Skills> {
             SizedBox(
               height: 20,
             ),
-            skillWidget()
+            skillWidget(context)
           ],
         ),
       );
     }
   }
 
-  Widget skillWidget() {
+  Widget skillWidget(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        GestureDetector(
-          onTap: () {
-            launcher.launchURL('https://wakatime.com/@HimanshuSharma');
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                color: ProfileTheme.cardColor,
-                borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Image.asset(
-                'assets/wakatime_icon.png',
-                height: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
-                width: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              launcher.launchURL('https://wakatime.com/@HimanshuSharma');
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: ProfileColors.cardColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  'assets/wakatime_icon.png',
+                  height: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
+                  width: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
+                ),
               ),
             ),
           ),
@@ -111,20 +110,23 @@ class _SkillsState extends State<Skills> {
         SizedBox(
           width: 30,
         ),
-        GestureDetector(
-          onTap: () {
-            launcher.launchURL('https://github.com/himanshusharma89');
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                color: ProfileTheme.cardColor,
-                borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Image.asset(
-                'assets/github_icon.png',
-                height: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
-                width: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () {
+              launcher.launchURL('https://github.com/himanshusharma89');
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: ProfileColors.cardColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  'assets/github_icon.png',
+                  height: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
+                  width: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
+                ),
               ),
             ),
           ),

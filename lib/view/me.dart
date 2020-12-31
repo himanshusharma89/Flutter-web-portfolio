@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/helpers/translateOnHover.dart';
-import 'package:my_portfolio/profile_theme.dart';
+import 'package:my_portfolio/profile_colors.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 class Me extends StatefulWidget {
@@ -88,17 +88,17 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                       shape: BoxShape.circle,
                       border: Border.all(
                         width: 23,
-                        color: ProfileTheme.navbarItemColor,
+                        color: ProfileColors.navbarItemColor,
                       )
                       // boxShadow: [
                       //   BoxShadow(
                       //     offset: Offset(0,3),
-                      //     color: ProfileTheme.navbarItemColor,
+                      //     color: ProfileColors.navbarItemColor,
                       //     blurRadius: 10
                       //   ),
                       //   BoxShadow(
                       //     offset: Offset(3,0),
-                      //     color: ProfileTheme.navbarItemColor,
+                      //     color: ProfileColors.navbarItemColor,
                       //     blurRadius: 10
                       //   )
                       // ]
@@ -129,7 +129,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
       );
     } else {
       return Container(
-        color: ProfileTheme.backgroundColor,
+        color: ProfileColors.backgroundColor,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 40, vertical: 65),
           child: Column(
@@ -146,7 +146,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                       letterSpacing: 0.2,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: ProfileTheme.headingColor,
+                      color: ProfileColors.headingColor,
                     ),
                   );
                 },
