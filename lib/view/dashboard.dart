@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/current_index.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/view/home/desktop.dart';
-import 'package:my_portfolio/view/home/mobile.dart';
-import 'package:my_portfolio/navbar.dart';
-import 'package:my_portfolio/view/social.dart';
+import 'package:my_portfolio/view/screens/home/desktop.dart';
+import 'package:my_portfolio/view/screens/home/mobile.dart';
+import 'package:my_portfolio/view/navbar.dart';
+import 'package:my_portfolio/widgets/social.dart';
 import 'package:my_portfolio/helpers/pageIndicator.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 import 'package:provider/provider.dart';

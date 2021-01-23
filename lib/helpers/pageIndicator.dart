@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/profile_colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 class PageIndicator extends StatefulWidget {

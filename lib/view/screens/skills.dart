@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/profile_colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
-import 'package:my_portfolio/helpers/title.dart';
+import 'package:my_portfolio/widgets/title.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 class Skills extends StatelessWidget {
   @override
@@ -16,6 +16,7 @@ class Skills extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
+            PageTitle(title: "MY SKILLS"),
             FractionallySizedBox(
                 widthFactor: 0.5,
                 alignment: Alignment.centerRight,
@@ -31,27 +32,7 @@ class Skills extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 50),
-              child: Column(
-                children: [
-                  Text(
-                    "MY SKILLS",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: ProfileColors.cardHeadingColor,
-                      fontSize: 25.0,
-                    ),
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width * 0.0625,
-                      child: Divider(
-                        color: Colors.white,
-                        thickness: 2.0,
-                      )),
-                ],
-              ),
-            )
+            
           ],
         ),
       );

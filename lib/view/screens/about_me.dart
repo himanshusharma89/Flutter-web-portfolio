@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/translateOnHover.dart';
-import 'package:my_portfolio/profile_colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
-import 'package:my_portfolio/helpers/title.dart';
+import 'package:my_portfolio/widgets/title.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 class AboutMe extends StatelessWidget {
   @override
@@ -20,21 +20,10 @@ class AboutMe extends StatelessWidget {
             FractionallySizedBox(
               widthFactor: 0.5,
               alignment: Alignment.centerLeft,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 150, horizontal: 150),
-                child: TranslateOnHover(
-                    child: Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                  child: FadeInImage(
-                    placeholder: AssetImage('assets/placeholder.gif'),
-                    image: NetworkImage(
-                      'https://avatars0.githubusercontent.com/u/44980497?v=4',
-                    ),
-                  ),
-                )),
-              ),
+              child: TranslateOnHover(
+                  child: Image.asset(
+                'assets/about_me.png',
+              )),
             ),
             FractionallySizedBox(
               widthFactor: 0.5,
@@ -76,9 +65,7 @@ class AboutMe extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-                padding: const EdgeInsets.only(top: 50),
-                child: PageTitle(title: "ABOUT ME")),
+            PageTitle(title: "ABOUT ME"),
           ],
         ),
       );

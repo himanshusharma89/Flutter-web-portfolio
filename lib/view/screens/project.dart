@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/translateOnHover.dart';
-import 'package:my_portfolio/helpers/card.dart';
+import 'package:my_portfolio/widgets/card.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
-import 'package:my_portfolio/helpers/title.dart';
+import 'package:my_portfolio/widgets/title.dart';
 import 'package:my_portfolio/model/project/project.dart';
 import 'package:my_portfolio/provider/project_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../profile_colors.dart';
+import '../../helpers/constants.dart';
 
 class Project extends StatelessWidget {
   @override
@@ -22,7 +22,6 @@ class Project extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            SizedBox(height: 50),
             Center(child: PageTitle(title: "PROJECTS")),
             SizedBox(height: height * 0.01),
             Flexible(
@@ -41,7 +40,7 @@ class Project extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         child: Padding(
           padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
+              const EdgeInsets.only(left: 20, right: 20, bottom: 10),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[

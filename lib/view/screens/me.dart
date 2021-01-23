@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/helpers/translateOnHover.dart';
-import 'package:my_portfolio/profile_colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
+import 'package:my_portfolio/widgets/text.dart';
 
 class Me extends StatefulWidget {
   @override
@@ -51,85 +52,51 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
     final height = MediaQuery.of(context).size.height;
     if (ResponsiveLayout.isLargeScreen(context) ||
         ResponsiveLayout.isMediumScreen(context)) {
-      return Center(
-        child: FittedBox(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: width * 0.23,
-                  child: Text(
-                    name,
-                    textAlign: TextAlign.right,
-                    maxLines: 2,
-                    style: TextStyle(
-                      letterSpacing: 2.2,
-                      fontSize:
-                          ResponsiveLayout.isMediumScreen(context) ? 25 : 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          MeTextWidget(
+            text: name,
+            textAlign: TextAlign.right,
+          ),
+          Flexible(
+            flex: 4,
+            fit: FlexFit.tight,
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Container(
+                width: width - 10,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 23,
+                      color: ProfileColors.navbarItemColor,
+                    )
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     offset: Offset(0,3),
+                    //     color: ProfileColors.navbarItemColor,
+                    //     blurRadius: 10
+                    //   ),
+                    //   BoxShadow(
+                    //     offset: Offset(3,0),
+                    //     color: ProfileColors.navbarItemColor,
+                    //     blurRadius: 10
+                    //   )
+                    // ]
                     ),
-                  ),
-                ),
-                SizedBox(
-                  width: width * 0.01,
-                ),
-                Container(
-                  height: ResponsiveLayout.isMediumScreen(context)
-                      ? height * 0.6
-                      : height * 0.7,
-                  width: ResponsiveLayout.isMediumScreen(context)
-                      ? height * 0.6
-                      : height * 0.7,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: 23,
-                        color: ProfileColors.navbarItemColor,
-                      )
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     offset: Offset(0,3),
-                      //     color: ProfileColors.navbarItemColor,
-                      //     blurRadius: 10
-                      //   ),
-                      //   BoxShadow(
-                      //     offset: Offset(3,0),
-                      //     color: ProfileColors.navbarItemColor,
-                      //     blurRadius: 10
-                      //   )
-                      // ]
-                      ),
-                ),
-                SizedBox(
-                  width: width * 0.01,
-                ),
-                Container(
-                  width: width * 0.23,
-                  child: Text(
-                    designation.toUpperCase(),
-                    textAlign: TextAlign.left,
-                    maxLines: 2,
-                    style: TextStyle(
-                      letterSpacing: 2.2,
-                      fontSize:
-                          ResponsiveLayout.isMediumScreen(context) ? 25 : 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
           ),
-        ),
+          MeTextWidget(
+            text: designation,
+            textAlign: TextAlign.left,
+          )
+        ],
       );
     } else {
       return Container(
-        color: ProfileColors.backgroundColor,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 40, vertical: 65),
           child: Column(

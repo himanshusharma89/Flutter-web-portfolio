@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 class ProfileColors {
   ProfileColors._();
@@ -24,3 +25,9 @@ class ProfileColors {
   // static const Color color11 = Color(0xffe9c14a);
   // static const Color color12 = Color(0xff24f6ff);
 }
+//TODO: Update font size of the whole app
+double fontSize(BuildContext context) => ResponsiveLayout.isLargeScreen(context)
+    ? 16
+    : ResponsiveLayout.isMediumScreen(context)
+        ? 14
+        : 13;

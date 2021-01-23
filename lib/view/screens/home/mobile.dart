@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/view/article.dart';
-import 'package:my_portfolio/view/about_me.dart';
+import 'package:my_portfolio/view/screens/article.dart';
+import 'package:my_portfolio/view/screens/about_me.dart';
 import 'package:my_portfolio/view/drawer.dart';
-import 'package:my_portfolio/view/experience.dart';
-import 'package:my_portfolio/view/me.dart';
-import 'package:my_portfolio/view/project.dart';
-import 'package:my_portfolio/view/skills.dart';
+import 'package:my_portfolio/view/screens/experience.dart';
+import 'package:my_portfolio/view/screens/me.dart';
+import 'package:my_portfolio/view/screens/project.dart';
+import 'package:my_portfolio/view/screens/skills.dart';
 import 'package:my_portfolio/helpers/pageIndicator.dart';
 import 'package:provider/provider.dart';
 

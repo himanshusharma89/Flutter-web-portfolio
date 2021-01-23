@@ -3,12 +3,12 @@ import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/translateOnHover.dart';
 import 'package:my_portfolio/model/medium/medium.dart';
 import 'package:my_portfolio/provider/article_provider.dart';
-import 'package:my_portfolio/helpers/card.dart';
+import 'package:my_portfolio/widgets/card.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
-import 'package:my_portfolio/helpers/title.dart';
+import 'package:my_portfolio/widgets/title.dart';
 import 'package:provider/provider.dart';
 
-import '../profile_colors.dart';
+import '../../helpers/constants.dart';
 
 class Article extends StatelessWidget {
   @override
@@ -20,7 +20,6 @@ class Article extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            SizedBox(height: 50),
             Center(child: PageTitle(title: "ARTICLES AND ACHEIVEMENTS")),
             SizedBox(height: 30.0),
             Flexible(
@@ -52,7 +51,7 @@ class Article extends StatelessWidget {
         color: ProfileColors.backgroundColor,
         child: Padding(
           padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
+              const EdgeInsets.only(left: 20, right: 20, bottom: 10),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[

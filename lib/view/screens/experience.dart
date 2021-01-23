@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/translateOnHover.dart';
-import 'package:my_portfolio/profile_colors.dart';
-import 'package:my_portfolio/helpers/card.dart';
+import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/widgets/card.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
-import 'package:my_portfolio/helpers/title.dart';
+import 'package:my_portfolio/widgets/title.dart';
 import 'package:my_portfolio/provider/expereince_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:my_portfolio/model/experience/expereince.dart';
@@ -22,7 +22,6 @@ class Experience extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            SizedBox(height: 50),
             Center(child: PageTitle(title: "WORK EXPERIENCE")),
             SizedBox(height: height * 0.01),
             Flexible(
@@ -40,7 +39,7 @@ class Experience extends StatelessWidget {
         color: ProfileColors.backgroundColor,
         child: Padding(
           padding:
-              const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
+              const EdgeInsets.only(left: 20, right: 20, bottom: 10),
           child: Column(
             children: <Widget>[
               PageTitle(title: 'Expereince'),

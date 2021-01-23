@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/responsiveLayout.dart';
 
 import '../main.dart';
-import '../profile_colors.dart';
+import '../helpers/constants.dart';
 
 class CardView extends StatefulWidget {
   final String title;

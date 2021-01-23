@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/profile_colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
