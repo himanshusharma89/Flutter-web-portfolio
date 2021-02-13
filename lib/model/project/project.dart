@@ -4,13 +4,13 @@ part 'project.g.dart';
 
 @JsonSerializable()
 class ProjectModel {
-  final String URL;
+  ProjectModel({this.url, this.desc, this.imgURL, this.index, this.title});
+
+  factory ProjectModel.fromSnapshot(Map<String, dynamic> snapshot) =>
+      _$ProjectModelFromJson(snapshot);
+  final String url;
   final String desc;
   final String imgURL;
   final int index;
   final String title;
-
-  ProjectModel({this.URL, this.desc, this.imgURL, this.index, this.title});
-
-  factory ProjectModel.fromSnapshot(Map<dynamic, dynamic> snapshot) => _$ProjectModelFromJson(snapshot);
 }

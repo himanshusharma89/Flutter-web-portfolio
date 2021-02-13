@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
 
 class MeTextWidget extends StatelessWidget {
+  const MeTextWidget({this.text, this.textAlign});
+
   final String text;
   final TextAlign textAlign;
-  MeTextWidget({this.text, this.textAlign});
   @override
   Widget build(BuildContext context) {
     return Flexible(
       flex: 3,
       fit: FlexFit.tight,
       child: Text(
-        text.toUpperCase().replaceAll(" ", "\n"),
+        text.toUpperCase().replaceAll(' ', '\n'),
         textAlign: textAlign,
         maxLines: 2,
         style: TextStyle(

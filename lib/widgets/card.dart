@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/responsiveLayout.dart';
-
-import '../main.dart';
-import '../helpers/constants.dart';
+import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'package:my_portfolio/widgets/expereine_card.dart';
 
 class CardView extends StatefulWidget {
+  const CardView(
+      {@required this.title,
+      @required this.imgURL,
+      @required this.url,
+      @required this.imgAlignment,
+      @required this.trailingIcon,
+      this.date,
+      this.desc,
+      this.org,
+      this.trailingIconData = Icons.launch_rounded});
   final String title;
   final String date;
   final String desc;
@@ -16,16 +25,6 @@ class CardView extends StatefulWidget {
   final IconData trailingIconData;
   final String url;
 
-  CardView(
-      {@required this.title,
-      @required this.imgURL,
-      @required this.url,
-      @required this.imgAlignment,
-      @required this.trailingIcon,
-      this.date,
-      this.desc,
-      this.org,
-      this.trailingIconData = Icons.launch_rounded});
   @override
   _CardViewState createState() => _CardViewState();
 }
@@ -33,39 +32,47 @@ class CardView extends StatefulWidget {
 class _CardViewState extends State<CardView> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: Container(
+      child: SizedBox(
         height: height * 0.1,
         width: ResponsiveLayout.isSmallScreen(context)
             ? width * 0.56
             : width * 0.25,
         // height: height*0.48,
         child: GestureDetector(
-          onTap: () {
-            launcher.launchURL(widget.url);
-          },
+          onTap: () => showDialog(
+            context: context,
+            builder: (_) => ExperienceCard(
+              description: widget.desc,
+              title: widget.title,
+              imgURL: widget.imgURL,
+              date: widget.date,
+              org: widget.org,
+            ),
+          ),
           child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.0),
             ),
-            color: Color(0xff2a2e35),
+            color: ProfileColors.cardColor,
             child: Stack(
               fit: StackFit.expand,
               // fit: StackFit.expand,
-              children: [
+              children: <Widget>[
                 FractionallySizedBox(
                   widthFactor: 0.25,
                   alignment: widget.imgAlignment,
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: Image.network(
-                      widget.imgURL,
-                      fit: BoxFit.contain,
-                    ),
+                    child: FadeInImage(
+                        placeholder: const AssetImage('assets/placeholder.gif'),
+                        image: NetworkImage(
+                          widget.imgURL,
+                        )),
                   ),
                 ),
                 FractionallySizedBox(
@@ -76,35 +83,29 @@ class _CardViewState extends State<CardView> {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      children: <Widget>[
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
-                            children: [
+                            children: <Widget>[
                               Flexible(
-                                fit: FlexFit.loose,
                                 child: Text(
                                   widget.title,
                                   style: TextStyle(
-                                    fontSize:
-                                        ResponsiveLayout.isSmallScreen(context)
-                                            ? 13
-                                            : 14.0,
+                                    fontSize: fontSize(context),
                                     fontWeight: FontWeight.bold,
-                                    color: Color.fromRGBO(178, 190, 205, 1),
+                                    color: ProfileColors.cardTextColor,
                                   ),
                                 ),
                               ),
                               if (widget.org != null)
                                 Flexible(
-                                  fit: FlexFit.loose,
                                   child: Text(
                                     widget.org,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 12.0,
-                                      color: Color.fromRGBO(178, 190, 205, 1),
+                                      color: ProfileColors.cardTextColor,
                                     ),
                                   ),
                                 ),
@@ -116,9 +117,9 @@ class _CardViewState extends State<CardView> {
                                   child: Text(
                                     widget.desc,
                                     overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 13.0,
-                                      color: Color.fromRGBO(178, 190, 205, 1),
+                                      color: ProfileColors.cardTextColor,
                                     ),
                                   ),
                                 ),

@@ -7,14 +7,11 @@ import 'medium_items.dart';
 part 'medium.g.dart';
 
 @JsonSerializable()
+class MediumModel {
+  MediumModel({this.status, this.feed, this.items});
 
-class MediumModel{
-
-  MediumModel({
-    this.status,
-    this.feed,
-    this.items
-  });
+  factory MediumModel.fromJson(Map<String, dynamic> parsedJson) =>
+      _$MediumModelFromJson(parsedJson);
 
   final String status;
   final MediumFeed feed;
@@ -24,5 +21,4 @@ class MediumModel{
   //   var item = itm as List;
   //   List<MediumItems> itemDetails = item.map((e) => MediumItems.fromJson(e)).toList();
 
-  factory MediumModel.fromJson(Map<String,dynamic> parsedJson) => _$MediumModelFromJson(parsedJson);
 }

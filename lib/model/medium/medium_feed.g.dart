@@ -17,12 +17,3 @@ MediumFeed _$MediumFeedFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$MediumFeedToJson(MediumFeed instance) =>
-    <String, dynamic>{
-      'url': instance.url,
-      'title': instance.title,
-      'link': instance.link,
-      'author': instance.author,
-      'description': instance.description,
-      'image': instance.image,
-    };

@@ -19,14 +19,3 @@ MediumItems _$MediumItemsFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$MediumItemsToJson(MediumItems instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'pubDate': instance.pubDate,
-      'link': instance.link,
-      'guid': instance.guid,
-      'author': instance.author,
-      'thumbnail': instance.thumbnail,
-      'description': instance.description,
-      'categories': instance.categories,
-    };

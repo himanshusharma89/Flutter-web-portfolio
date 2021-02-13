@@ -4,16 +4,8 @@ part 'expereince.g.dart';
 
 @JsonSerializable()
 class ExperienceModel {
-  final String URL;
-  final String date;
-  final String desc;
-  final String imgURL;
-  final bool isActive;
-  final String org;
-  final String title;
-
   ExperienceModel(
-      {this.URL,
+      {this.url,
       this.date,
       this.desc,
       this.imgURL,
@@ -21,6 +13,14 @@ class ExperienceModel {
       this.org,
       this.title});
 
-  factory ExperienceModel.fromSnapshot(Map<dynamic, dynamic> snapshot) =>
+  factory ExperienceModel.fromSnapshot(Map<String, dynamic> snapshot) =>
       _$ExperienceModelFromJson(snapshot);
+
+  final String url;
+  final String date;
+  final String desc;
+  final String imgURL;
+  final bool isActive;
+  final String org;
+  final String title;
 }

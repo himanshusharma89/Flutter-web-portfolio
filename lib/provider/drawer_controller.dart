@@ -2,13 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 class MenuController extends ChangeNotifier {
-  final TickerProvider vsync;
-  final AnimationController _animationController;
-  MenuState state = MenuState.closed;
-
   MenuController({
     this.vsync,
-  }) : _animationController = new AnimationController(vsync: vsync) {
+  }) : _animationController = AnimationController(vsync: vsync) {
     _animationController
       ..duration = const Duration(milliseconds: 250)
       ..addListener(() {
@@ -32,26 +28,28 @@ class MenuController extends ChangeNotifier {
         notifyListeners();
       });
   }
-
+  final TickerProvider vsync;
+  final AnimationController _animationController;
+  MenuState state = MenuState.closed;
   @override
   dispose() {
     _animationController.dispose();
     super.dispose();
   }
 
-  get percentOpen {
+  double get percentOpen {
     return _animationController.value;
   }
 
-  open() {
+  void open() {
     _animationController.forward();
   }
 
-  close() {
+  void close() {
     _animationController.reverse();
   }
 
-  toggle() {
+  void toggle() {
     if (state == MenuState.open) {
       close();
     } else if (state == MenuState.closed) {

@@ -1,51 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/changeTextOnHover.dart';
+import 'package:my_portfolio/helpers/change_text_on_hover.dart';
 import 'package:my_portfolio/helpers/constants.dart';
 import 'package:my_portfolio/provider/current_index.dart';
 import 'package:provider/provider.dart';
 
-class Navbar extends StatefulWidget {
+import '../helpers/responsive_layout.dart';
+
+class Navbar extends StatelessWidget {
+  const Navbar({this.controller});
   final PageController controller;
-  Navbar({this.controller});
-
-  @override
-  _NavbarState createState() => _NavbarState();
-}
-
-class _NavbarState extends State<Navbar> {
-  List navBarItems = [];
-
-  @override
-  void initState() {
-    super.initState();
-    navBarItems = [
-      {
-        'title': 'HOME',
-      },
-      {
-        'title': 'ABOUT',
-      },
-      {
-        'title': 'SKILLS',
-      },
-      {
-        'title': 'WORK',
-      },
-      {
-        'title': 'PROJECTS',
-      },
-      {
-        'title': 'ARTICLES',
-      }
-    ];
-  }
-
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-    return Container(
-      width: width * 0.02 + 20,
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    return SizedBox(
+      width: width * 0.022 + navBarWidth(context),
       height: height,
       // decoration: BoxDecoration(
       //   color: ProfileTheme.navBarColor,
@@ -63,16 +32,15 @@ class _NavbarState extends State<Navbar> {
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
-          children: [
+          children: <Widget>[
             for (int i = 0; i < navBarItems.length; i++)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: navBarItem(
                     context: context,
                     index: i,
-                    navText: navBarItems[i]['title']),
+                    navText: navBarItems[i]['title'].toString()),
               ),
           ],
         ),
@@ -81,16 +49,17 @@ class _NavbarState extends State<Navbar> {
   }
 
   Widget navBarItem({BuildContext context, int index, String navText}) {
-    final height = MediaQuery.of(context).size.height;
-    return Container(
-      height: height * 0.1,
+    final double height = MediaQuery.of(context).size.height;
+    return SizedBox(
+      height: height * 0.11,
       child: Center(
         child: GestureDetector(
           onTap: () {
             Provider.of<CurrentPage>(context, listen: false)
                 .setCurrentPage(index);
-            widget.controller.animateToPage(index,
-                duration: Duration(milliseconds: 1000), curve: Curves.ease);
+            controller.animateToPage(index,
+                duration: const Duration(milliseconds: 1000),
+                curve: Curves.ease);
           },
           child: RotatedBox(
             quarterTurns: -1,
@@ -100,8 +69,10 @@ class _NavbarState extends State<Navbar> {
                     ? ProfileColors.navbarItemColor
                     : Colors.white,
                 fontSize: Provider.of<CurrentPage>(context).currentPage == index
-                    ? 13
-                    : 11),
+                    ? fontSize(context)
+                    : ResponsiveLayout.isMediumScreen(context)
+                        ? fontSize(context) - 2
+                        : fontSize(context) - 4),
           ),
         ),
       ),

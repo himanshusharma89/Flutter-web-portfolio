@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/helpers/constants.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
 import 'package:my_portfolio/view/screens/article.dart';
 import 'package:my_portfolio/view/screens/about_me.dart';
@@ -7,13 +8,13 @@ import 'package:my_portfolio/view/screens/experience.dart';
 import 'package:my_portfolio/view/screens/me.dart';
 import 'package:my_portfolio/view/screens/project.dart';
 import 'package:my_portfolio/view/screens/skills.dart';
-import 'package:my_portfolio/helpers/pageIndicator.dart';
+import 'package:my_portfolio/helpers/page_indicator.dart';
 import 'package:provider/provider.dart';
 
 class MobileWidget extends StatefulWidget {
+  const MobileWidget({this.controller});
   final PageController controller;
 
-  MobileWidget({this.controller});
   @override
   _MobileWidgetState createState() => _MobileWidgetState();
 }
@@ -23,17 +24,17 @@ class _MobileWidgetState extends State<MobileWidget>
   AnimationController _animationController;
   bool isMenu;
 
-  Curve scaleDownCurve = new Interval(0.0, 0.3, curve: Curves.easeOut);
-  Curve scaleUpCurve = new Interval(0.0, 1.0, curve: Curves.easeOut);
-  Curve slideOutCurve = new Interval(0.0, 1.0, curve: Curves.easeOut);
-  Curve slideInCurve = new Interval(0.0, 1.0, curve: Curves.easeOut);
+  Curve scaleDownCurve = const Interval(0.0, 0.3, curve: Curves.easeOut);
+  Curve scaleUpCurve = const Interval(0.0, 1.0, curve: Curves.easeOut);
+  Curve slideOutCurve = const Interval(0.0, 1.0, curve: Curves.easeOut);
+  Curve slideInCurve = const Interval(0.0, 1.0, curve: Curves.easeOut);
 
   @override
   void initState() {
     super.initState();
     isMenu = false;
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
   }
 
   @override
@@ -45,24 +46,22 @@ class _MobileWidgetState extends State<MobileWidget>
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [drawerScreen(), homeScreen()],
+      children: <Widget>[drawerScreen(), homeScreen()],
     );
   }
 
   Widget drawerScreen() {
-    return Container(
-      child: DrawerScreen(),
-    );
+    return DrawerScreen();
   }
 
   Widget homeScreen() {
     return zoomAndSlideContent(
       Scaffold(
         body: Stack(
-          children: [
+          children: <Widget>[
             Center(
               child: Stack(
-                children: [
+                children: <Widget>[
                   PageView(
                     controller: widget.controller,
                     children: <Widget>[
@@ -76,15 +75,15 @@ class _MobileWidgetState extends State<MobileWidget>
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
+                    child: SizedBox(
                       height: 40,
                       width: 40,
                       child: FittedBox(
                         child: FloatingActionButton(
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(16.0))),
-                          backgroundColor: Color.fromRGBO(42, 46, 53, 1),
+                          backgroundColor: ProfileColors.navBarColor,
                           onPressed: () {
                             _handleOnPressed();
                             Provider.of<MenuController>(context, listen: false)
@@ -124,8 +123,8 @@ class _MobileWidgetState extends State<MobileWidget>
     });
   }
 
-  zoomAndSlideContent(Widget content) {
-    var slidePercent, scalePercent;
+  Widget zoomAndSlideContent(Widget content) {
+    double slidePercent = 0.0, scalePercent = 0.0;
 
     switch (Provider.of<MenuController>(context, listen: true).state) {
       case MenuState.closed:
@@ -137,42 +136,51 @@ class _MobileWidgetState extends State<MobileWidget>
         scalePercent = 1.0;
         break;
       case MenuState.opening:
-        slidePercent = slideOutCurve.transform(
-            Provider.of<MenuController>(context, listen: true).percentOpen);
-        scalePercent = scaleDownCurve.transform(
-            Provider.of<MenuController>(context, listen: true).percentOpen);
+        slidePercent = slideOutCurve.transform(double.parse(
+            Provider.of<MenuController>(context, listen: true)
+                .percentOpen
+                .toString()));
+        scalePercent = scaleDownCurve.transform(double.parse(
+            Provider.of<MenuController>(context, listen: true)
+                .percentOpen
+                .toString()));
         break;
       case MenuState.closing:
-        slidePercent = slideInCurve.transform(
-            Provider.of<MenuController>(context, listen: true).percentOpen);
-        scalePercent = scaleUpCurve.transform(
-            Provider.of<MenuController>(context, listen: true).percentOpen);
+        slidePercent = slideInCurve.transform(double.parse(
+            Provider.of<MenuController>(context, listen: true)
+                .percentOpen
+                .toString()));
+        scalePercent = scaleUpCurve.transform(double.parse(
+            Provider.of<MenuController>(context, listen: true)
+                .percentOpen
+                .toString()));
         break;
     }
 
-    final slideAmount = 225.0 * slidePercent;
-    final contentScale = 1.0 - (0.2 * scalePercent);
-    final cornerRadius =
-        16.0 * Provider.of<MenuController>(context, listen: true).percentOpen;
+    final double slideAmount = 225.0 * num.parse(slidePercent.toString());
+    final double contentScale = 1.0 - (0.2 * num.parse(scalePercent.toString()));
+    final double cornerRadius = 16.0 *
+        num.parse(Provider.of<MenuController>(context, listen: true)
+            .percentOpen
+            .toString());
 
-    return new Transform(
-      transform: new Matrix4.translationValues(slideAmount, 0.0, 0.0)
+    return Transform(
+      transform: Matrix4.translationValues(slideAmount, 0.0, 0.0)
         ..scale(contentScale, contentScale),
       alignment: Alignment.centerLeft,
-      child: new Container(
-        decoration: new BoxDecoration(
-          boxShadow: [
-            new BoxShadow(
+      child: Container(
+        decoration: const BoxDecoration(
+          boxShadow: <BoxShadow>[
+            BoxShadow(
               color: Colors.black12,
-              offset: const Offset(0.0, 5.0),
+              offset: Offset(0.0, 5.0),
               blurRadius: 15.0,
               spreadRadius: 10.0,
             ),
           ],
         ),
-        child: new ClipRRect(
-            borderRadius: new BorderRadius.circular(cornerRadius),
-            child: content),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(cornerRadius), child: content),
       ),
     );
   }

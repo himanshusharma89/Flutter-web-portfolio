@@ -19,9 +19,3 @@ MediumModel _$MediumModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$MediumModelToJson(MediumModel instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'feed': instance.feed,
-      'items': instance.items,
-    };

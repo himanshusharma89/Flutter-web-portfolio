@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/model/project/project.dart';
 
 class ProjectProvider with ChangeNotifier{
-  List<ProjectModel> project = [];
+  List<ProjectModel> project = <ProjectModel>[];
 
   Future<List<ProjectModel>> getProjects() async {
-    List<QueryDocumentSnapshot> _ = await FirebaseFirestore.instance
+    final List<QueryDocumentSnapshot> _ = await FirebaseFirestore.instance
         .collection('projects')
         .get()
-        .then((e) => e.docs);
+        .then((QuerySnapshot e) => e.docs);
 
-    _.forEach((event) {
-      this.project.add(ProjectModel.fromSnapshot(event.data()));
+    _.forEach((QueryDocumentSnapshot event) {
+      project.add(ProjectModel.fromSnapshot(event.data()));
     });
     notifyListeners();
     return project;

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
 
 import '../helpers/constants.dart';
 
 class PageTitle extends StatefulWidget {
+  const PageTitle({@required this.title});
   final String title;
-  PageTitle({@required this.title});
+
   @override
   _PageTitleState createState() => _PageTitleState();
 }
@@ -16,7 +17,7 @@ class _PageTitleState extends State<PageTitle> {
     return Padding(
       padding: const EdgeInsets.only(top: 50),
       child: Column(
-        children: [
+        children: <Widget>[
           Text(
             widget.title.toUpperCase(),
             style: TextStyle(
@@ -25,9 +26,9 @@ class _PageTitleState extends State<PageTitle> {
               fontSize: ResponsiveLayout.isSmallScreen(context) ? 20 : 25.0,
             ),
           ),
-          Container(
+          SizedBox(
               width: MediaQuery.of(context).size.width * 0.0625,
-              child: Divider(
+              child: const Divider(
                 color: Colors.white,
                 thickness: 1.0,
               )),

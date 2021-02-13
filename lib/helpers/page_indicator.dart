@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/helpers/constants.dart';
-import 'package:my_portfolio/helpers/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
 
 class PageIndicator extends StatefulWidget {
+  const PageIndicator({this.pageController});
+
   final PageController pageController;
 
-  PageIndicator({this.pageController});
   @override
   _PageIndicatorState createState() => _PageIndicatorState();
 }
@@ -15,7 +16,7 @@ class _PageIndicatorState extends State<PageIndicator> {
   Widget build(BuildContext context) {
     return AnimatedBuilder(
         animation: widget.pageController,
-        builder: (context, snapshot) {
+        builder: (_, __) {
           return CustomPaint(
             painter: PageIndicatorPainter(
                 pageCount: 6,
@@ -41,13 +42,13 @@ class PageIndicatorPainter extends CustomPainter {
     @required this.dotRadius,
     @required this.dotOutlineThickness,
     @required this.spacing,
-    this.scrollPosition = 0.0,
     @required Color dotFillColor,
     @required Color dotOutlineColor,
     @required Color indicatorColor,
-  })  : this.dotFillPaint = Paint()..color = dotFillColor,
-        this.dotOutlinePaint = Paint()..color = dotOutlineColor,
-        this.indicatorPaint = Paint()..color = indicatorColor;
+    this.scrollPosition = 0.0,
+  })  : dotFillPaint = Paint()..color = dotFillColor,
+        dotOutlinePaint = Paint()..color = dotOutlineColor,
+        indicatorPaint = Paint()..color = indicatorColor;
 
   final int pageCount;
   final double dotRadius;
@@ -79,7 +80,7 @@ class PageIndicatorPainter extends CustomPainter {
     final double indicatorleftX =
         leftDotX + (laggingLeftPosition * ((2 * dotRadius) + spacing));
 
-    final acceleratedRightPositionPercent =
+    final num acceleratedRightPositionPercent =
         (transitionPercent / 0.5).clamp(0.0, 1.0);
 
     final double indicatorRightX = leftDotX +
@@ -104,7 +105,7 @@ class PageIndicatorPainter extends CustomPainter {
   void _drawDot(Canvas canvas, Offset dotCenter) {
     canvas.drawCircle(dotCenter, dotRadius - dotOutlineThickness, dotFillPaint);
 
-    Path outlinePath = Path()
+    final Path outlinePath = Path()
       ..addOval(Rect.fromCircle(radius: dotRadius, center: dotCenter))
       ..addOval(Rect.fromCircle(
           radius: dotRadius - dotOutlineThickness, center: dotCenter))

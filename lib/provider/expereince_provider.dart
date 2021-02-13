@@ -3,16 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_portfolio/model/experience/expereince.dart';
 
 class ExperienceProvider with ChangeNotifier{
-  List<ExperienceModel> experience = [];
+  List<ExperienceModel> experience = <ExperienceModel>[];
 
   Future<List<ExperienceModel>> getExperience() async {
-    List<QueryDocumentSnapshot> _ = await FirebaseFirestore.instance
+    final List<QueryDocumentSnapshot> _ = await FirebaseFirestore.instance
         .collection('experience')
         .get()
-        .then((e) => e.docs);
+        .then((QuerySnapshot e) => e.docs);
 
-    _.forEach((event) {
-      this.experience.add(ExperienceModel.fromSnapshot(event.data()));
+    _.forEach((QueryDocumentSnapshot event) {
+      experience.add(ExperienceModel.fromSnapshot(event.data()));
     });
     notifyListeners();
     return experience;

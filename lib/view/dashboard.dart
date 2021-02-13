@@ -5,8 +5,8 @@ import 'package:my_portfolio/view/screens/home/desktop.dart';
 import 'package:my_portfolio/view/screens/home/mobile.dart';
 import 'package:my_portfolio/view/navbar.dart';
 import 'package:my_portfolio/widgets/social.dart';
-import 'package:my_portfolio/helpers/pageIndicator.dart';
-import 'package:my_portfolio/helpers/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/page_indicator.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
@@ -42,7 +42,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
+    return ChangeNotifierProvider<MenuController>.value(
       value: menuController,
       child: Scaffold(
           body: ResponsiveLayout.isSmallScreen(context)

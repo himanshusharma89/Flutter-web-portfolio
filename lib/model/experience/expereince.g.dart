@@ -8,7 +8,7 @@ part of 'expereince.dart';
 
 ExperienceModel _$ExperienceModelFromJson(Map<String, dynamic> json) {
   return ExperienceModel(
-    URL: json['URL'] as String,
+    url: json['URL'] as String,
     date: json['date'] as String,
     desc: json['desc'] as String,
     imgURL: json['imgURL'] as String,
@@ -18,13 +18,3 @@ ExperienceModel _$ExperienceModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ExperienceModelToJson(ExperienceModel instance) =>
-    <String, dynamic>{
-      'URL': instance.URL,
-      'date': instance.date,
-      'desc': instance.desc,
-      'imgURL': instance.imgURL,
-      'isActive': instance.isActive,
-      'org': instance.org,
-      'title': instance.title,
-    };

@@ -8,24 +8,18 @@ import 'package:my_portfolio/provider/expereince_provider.dart';
 import 'package:my_portfolio/provider/project_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'helpers/launcher.dart';
-
 void main() {
   runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider<CurrentPage>(create: (context) => CurrentPage()),
-      ChangeNotifierProvider<ArticleProvider>(
-          create: (context) => ArticleProvider()),
+    providers: <ChangeNotifierProvider<ChangeNotifier>>[
+      ChangeNotifierProvider<CurrentPage>(create: (_) => CurrentPage()),
+      ChangeNotifierProvider<ArticleProvider>(create: (_) => ArticleProvider()),
       ChangeNotifierProvider<ExperienceProvider>(
-          create: (context) => ExperienceProvider()),
-      ChangeNotifierProvider<ProjectProvider>(
-          create: (context) => ProjectProvider())
+          create: (_) => ExperienceProvider()),
+      ChangeNotifierProvider<ProjectProvider>(create: (_) => ProjectProvider())
     ],
     child: MyApp(),
   ));
 }
-
-final Launcher launcher = Launcher();
 
 class MyApp extends StatelessWidget {
   @override
@@ -34,19 +28,19 @@ class MyApp extends StatelessWidget {
         title: 'Himanshu Shrama | Flutter Dev',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            textTheme: GoogleFonts.poppinsTextTheme(
+            textTheme: GoogleFonts.montserratTextTheme(
               Theme.of(context).textTheme,
             ),
             scaffoldBackgroundColor: ProfileColors.backgroundColor),
-        builder: (context, child) {
+        builder: (_, Widget child) {
           return ScrollConfiguration(
             behavior: MyBehavior(),
             child: child,
           );
         },
         initialRoute: '/',
-        routes: {
-          '/': (context) => Dashboard(),
+        routes: <String, Widget Function(BuildContext)>{
+          '/': (_) => Dashboard(),
         });
   }
 }

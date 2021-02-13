@@ -9,9 +9,8 @@ import 'package:my_portfolio/view/screens/skills.dart';
 import 'package:provider/provider.dart';
 
 class DesktopWidget extends StatefulWidget {
+  const DesktopWidget({this.controller});
   final PageController controller;
-  DesktopWidget({this.controller});
-
   @override
   _DesktopWidgetState createState() => _DesktopWidgetState();
 }
@@ -22,7 +21,7 @@ class _DesktopWidgetState extends State<DesktopWidget> {
   @override
   void initState() {
     super.initState();
-    homeList = [
+    homeList = <Widget>[
       Me(),
       AboutMe(),
       Skills(),
@@ -34,17 +33,17 @@ class _DesktopWidgetState extends State<DesktopWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-    return Container(
+    final double width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    return SizedBox(
       height: height,
       width: width * 0.95,
       child: PageView.builder(
         scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         controller: widget.controller,
         itemCount: homeList.length,
-        itemBuilder: (context, index) => homeList[index],
+        itemBuilder: (_, int index) => homeList[index],
         onPageChanged: (int index) => setState(() {
           Provider.of<CurrentPage>(context, listen: false)
               .setCurrentPage(index);

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/translateOnHover.dart';
+import 'package:my_portfolio/helpers/translate_on_hover.dart';
 import 'package:my_portfolio/helpers/constants.dart';
-import 'package:my_portfolio/helpers/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
 import 'package:my_portfolio/widgets/title.dart';
-
-import '../../main.dart';
 
 class AboutMe extends StatelessWidget {
   @override
@@ -21,8 +19,8 @@ class AboutMe extends StatelessWidget {
               widthFactor: 0.5,
               alignment: Alignment.centerLeft,
               child: TranslateOnHover(
-                  child: Image.asset(
-                'assets/about_me.png',
+                  child: Image.network(
+                'https://media-exp1.licdn.com/dms/image/C4E03AQEPWg_0mWYwaw/profile-displayphoto-shrink_400_400/0/1607276904548?e=1618444800&v=beta&t=_bm1lzC7rU7_G8_a2z5jDndXpuX-EazPDPaJakp2t28',
               )),
             ),
             FractionallySizedBox(
@@ -31,13 +29,14 @@ class AboutMe extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: <Widget>[
                   Text(
-                    "Focused Computer Science major (9.89 CGPA) currently attending Chitkara University. I am a Flutter Application Developer, an Open Source contributor and a writer. I like to contribute to the community a lot. I am a writer at Flutter Community and IEEE CIET Branch. I also like to work on Alexa Skill and Google Assistant App development sometimes.\nI am a hard-working individual who is developing new applications and content for the community and trying to stay occupied all the time. Also, I am a Microsoft Learn Student Ambassador and learning new skills. I am a quick learner and frequently praised as hard-working by my peers.",
+                    'Focused Computer Science major (9.89 CGPA) currently attending Chitkara University. I am a Flutter Application Developer, an Open Source contributor and a writer. I like to contribute to the community a lot. I am a writer at Flutter Community and IEEE CIET Branch. I also like to work on Alexa Skill and Google Assistant App development sometimes.\nI am a hard-working individual who is developing new applications and content for the community and trying to stay occupied all the time. Also, I am a Microsoft Learn Student Ambassador and learning new skills. I am a quick learner and frequently praised as hard-working by my peers.',
                     textAlign: TextAlign.justify,
-                    style: TextStyle(fontSize: 16.0, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: fontSize(context), color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   MouseRegion(
@@ -51,8 +50,8 @@ class AboutMe extends StatelessWidget {
                         decoration: BoxDecoration(
                             border: Border.all(
                                 color: ProfileColors.dotOutlineColor)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             'CONTACT ME',
                             style:
@@ -65,7 +64,7 @@ class AboutMe extends StatelessWidget {
                 ],
               ),
             ),
-            PageTitle(title: "ABOUT ME"),
+            const PageTitle(title: 'ABOUT ME'),
           ],
         ),
       );
@@ -73,20 +72,20 @@ class AboutMe extends StatelessWidget {
       return Container(
         color: ProfileColors.backgroundColor,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            PageTitle(title: 'About Me'),
+            const PageTitle(title: 'About Me'),
             Padding(
               padding:
                   const EdgeInsets.only(top: 10.0, left: 50.0, right: 50.0),
               child: Text(
-                "Focused Computer Science major (9.89 CGPA) currently attending Chitkara University. I am a Flutter Application Developer, an Open Source contributor and a writer. I like to contribute to the community a lot. I am a writer at Flutter Community and IEEE CIET Branch. I also like to work on Alexa Skill and Google Assistant App development sometimes.\nI am a hard-working individual who is developing new applications and content for the community and trying to stay occupied all the time. Also, I am a Microsoft Learn Student Ambassador and learning new skills. I am a quick learner and frequently praised as hard-working by my peers.",
+                'Focused Computer Science major (9.89 CGPA) currently attending Chitkara University. I am a Flutter Application Developer, an Open Source contributor and a writer. I like to contribute to the community a lot. I am a writer at Flutter Community and IEEE CIET Branch. I also like to work on Alexa Skill and Google Assistant App development sometimes.\nI am a hard-working individual who is developing new applications and content for the community and trying to stay occupied all the time. Also, I am a Microsoft Learn Student Ambassador and learning new skills. I am a quick learner and frequently praised as hard-working by my peers.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 13.0, color: Colors.white),
+                style:
+                    TextStyle(fontSize: fontSize(context), color: Colors.white),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             GestureDetector(
@@ -96,8 +95,8 @@ class AboutMe extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     border: Border.all(color: ProfileColors.dotOutlineColor)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     'CONTACT ME',
                     style: TextStyle(color: ProfileColors.dotOutlineColor),

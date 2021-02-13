@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/responsiveLayout.dart';
+import 'package:my_portfolio/helpers/launcher.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
+
+final Launcher launcher = Launcher();
 
 class ProfileColors {
   ProfileColors._();
@@ -25,9 +28,98 @@ class ProfileColors {
   // static const Color color11 = Color(0xffe9c14a);
   // static const Color color12 = Color(0xff24f6ff);
 }
-//TODO: Update font size of the whole app
+
 double fontSize(BuildContext context) => ResponsiveLayout.isLargeScreen(context)
-    ? 16
+    ? 15
     : ResponsiveLayout.isMediumScreen(context)
         ? 14
         : 13;
+
+double navBarWidth(BuildContext context) =>
+    ResponsiveLayout.isLargeScreen(context) ? 20 : 25;
+
+List<Map<String, String>> navBarItems = <Map<String, String>>[
+  {
+    'title': 'HOME',
+  },
+  {
+    'title': 'ABOUT',
+  },
+  {
+    'title': 'SKILLS',
+  },
+  {
+    'title': 'WORK',
+  },
+  {
+    'title': 'PROJECTS',
+  },
+  {
+    'title': 'ARTICLES',
+  }
+];
+
+List<MenuItem> options = <MenuItem>[
+  MenuItem(
+      icon: 'https://img.icons8.com/fluent/50/000000/github.png',
+      title: 'GitHub',
+      onTap: () {
+        launcher.launchURL('https://github.com/himanshusharma89');
+      }),
+  MenuItem(
+      icon: 'https://img.icons8.com/color/48/000000/linkedin.png',
+      title: 'LinkedIn',
+      onTap: () {
+        launcher.launchURL('https://www.linkedin.com/in/himanshusharma89/');
+      }),
+  MenuItem(
+      icon: 'https://img.icons8.com/color/48/000000/twitter.png',
+      title: 'Twitter',
+      onTap: () {
+        launcher.launchURL('https://twitter.com/_SharmaHimanshu');
+      }),
+  MenuItem(
+      icon: 'https://img.icons8.com/ios-filled/50/000000/codepen.png',
+      title: 'Codepen',
+      onTap: () {
+        launcher.launchURL('https://codepen.io/himanshusharma89');
+      }),
+  MenuItem(
+      icon: 'https://img.icons8.com/color/48/000000/stackoverflow.png',
+      title: 'Stackoverflow',
+      onTap: () {
+        launcher.launchURL(
+            'https://stackoverflow.com/users/11545939/himanshu-sharma');
+      }),
+];
+
+class MenuItem {
+  MenuItem({this.icon, this.title, this.onTap});
+
+  String title;
+  String icon;
+  void Function() onTap;
+}
+
+List<Map<String, String>> socialPlatforms = <Map<String, String>>[
+  {
+    'URL': 'https://github.com/himanshusharma89',
+    'iconURL': 'https://img.icons8.com/fluent/50/000000/github.png'
+  },
+  {
+    'URL': 'https://twitter.com/_SharmaHimanshu',
+    'iconURL': 'https://img.icons8.com/color/48/000000/twitter.png'
+  },
+  {
+    'URL': 'https://www.linkedin.com/in/himanshusharma89/',
+    'iconURL': 'https://img.icons8.com/color/48/000000/linkedin.png'
+  },
+  {
+    'URL': 'https://stackoverflow.com/users/11545939/himanshu-sharma',
+    'iconURL': 'https://img.icons8.com/color/48/000000/stackoverflow.png'
+  },
+  {
+    'URL': 'https://codepen.io/himanshusharma89',
+    'iconURL': 'https://img.icons8.com/ios-filled/50/000000/codepen.png'
+  },
+];

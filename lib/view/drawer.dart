@@ -3,78 +3,25 @@ import 'package:my_portfolio/provider/drawer_controller.dart';
 import 'package:my_portfolio/helpers/constants.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-
-class DrawerScreen extends StatefulWidget {
-
-  @override
-  _DrawerScreenState createState() => _DrawerScreenState();
-}
-
-class _DrawerScreenState extends State<DrawerScreen> {
-
-  List<MenuItem> options;
-
-  @override
-  void initState() {
-    super.initState();
-    options = [
-    MenuItem(
-      icon: 'https://img.icons8.com/fluent/50/000000/github.png', 
-      title: 'GitHub',
-      onTap: (){
-        launcher.launchURL('https://github.com/himanshusharma89');
-      }
-    ),
-    MenuItem(
-      icon: 'https://img.icons8.com/color/48/000000/linkedin.png', 
-      title: 'LinkedIn',
-      onTap: (){
-        launcher.launchURL('https://www.linkedin.com/in/himanshusharma89/');
-      }
-    ),
-    MenuItem(
-      icon: 'https://img.icons8.com/color/48/000000/twitter.png', 
-      title: 'Twitter',
-      onTap: (){
-        launcher.launchURL('https://twitter.com/_SharmaHimanshu');
-      }
-    ),
-    MenuItem(
-      icon: 'https://img.icons8.com/ios-filled/50/000000/codepen.png', 
-      title: 'Codepen',
-      onTap: (){
-        launcher.launchURL('https://codepen.io/himanshusharma89');
-      }
-    ),
-    MenuItem(
-      icon: 'https://img.icons8.com/color/48/000000/stackoverflow.png', 
-      title: 'Stackoverflow',
-      onTap: (){
-        launcher.launchURL('https://stackoverflow.com/users/11545939/himanshu-sharma');
-      }
-    ),
-  ];
-  }
-
+class DrawerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onPanUpdate: (details) {
+      onPanUpdate: (DragUpdateDetails details) {
         //on swiping left
         if (details.delta.dx < -6) {
           Provider.of<MenuController>(context, listen: false).toggle();
         }
       },
       child: Stack(
-        children: [
+        children: <Widget>[
           Container(
-            padding: EdgeInsets.only(left: 20, right: MediaQuery.of(context).size.width / 2.9),
+            padding: EdgeInsets.only(
+                left: 20, right: MediaQuery.of(context).size.width / 2.9),
             color: ProfileColors.drawerColor,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: options.map((item) {
+              children: options.map((MenuItem item) {
                 return ListTile(
                   leading: Image.network(
                     item.icon,
@@ -83,7 +30,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   ),
                   title: Text(
                     item.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
@@ -93,30 +40,18 @@ class _DrawerScreenState extends State<DrawerScreen> {
               }).toList(),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 12, left: 8, right: 8),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 12, left: 8, right: 8),
             child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                'THIS WEBSITE IS CREATED WITH FLUTTER WEB ❤',
-                  style: TextStyle(
-                    fontSize: 15, 
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500
-                  )
-              )
-            ),
+                alignment: Alignment.bottomCenter,
+                child: Text('THIS WEBSITE IS CREATED WITH FLUTTER WEB ❤',
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500))),
           )
         ],
       ),
     );
   }
-}
-
-class MenuItem {
-  String title;
-  String icon;
-  Function onTap;
-
-  MenuItem({this.icon, this.title, this.onTap});
 }
