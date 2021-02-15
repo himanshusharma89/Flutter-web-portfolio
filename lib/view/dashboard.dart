@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/provider/article_provider.dart';
 import 'package:my_portfolio/provider/current_index.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
+import 'package:my_portfolio/provider/expereince_provider.dart';
+import 'package:my_portfolio/provider/project_provider.dart';
 import 'package:my_portfolio/view/screens/home/desktop.dart';
 import 'package:my_portfolio/view/screens/home/mobile.dart';
 import 'package:my_portfolio/view/navbar.dart';
@@ -21,6 +24,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    Provider.of<ExperienceProvider>(context, listen: false).getExperience();
+    Provider.of<ProjectProvider>(context, listen: false).getProjects();
+    Provider.of<ArticleProvider>(context, listen: false).getMediumArticles();
     menuController = MenuController(
       vsync: this,
     )..addListener(() => setState(() {}));

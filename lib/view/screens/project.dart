@@ -101,14 +101,7 @@ class Project extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: TranslateOnHover(
-            child: CardView(
-              title: projects.title,
-              imgURL: projects.imgURL,
-              imgAlignment: Alignment.centerLeft,
-              url: projects.url,
-              desc: projects.desc,
-              trailingIcon: false,
-            ),
+            child: object(projects),
           ),
         );
       },
@@ -127,17 +120,24 @@ class Project extends StatelessWidget {
           final ProjectModel projects = list[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CardView(
-              title: projects.title,
-              imgURL: projects.imgURL,
-              imgAlignment: Alignment.centerLeft,
-              url: projects.url,
-              desc: projects.desc,
-              trailingIcon: false,
-            ),
+            child: object(projects),
           );
         },
       ),
+    );
+  }
+
+  Widget object(ProjectModel projects) {
+    return CardView(
+      title: projects.title,
+      imgURL: projects.imgURL,
+      imgAlignment: Alignment.centerLeft,
+      url: projects.url,
+      desc: projects.desc,
+      trailingIcon: false,
+      startAt: projects.startAt,
+      endAt: projects.endAt,
+      projectLink: projects.projectLink,
     );
   }
 }

@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:my_portfolio/view/dashboard.dart';
 import 'package:my_portfolio/helpers/constants.dart';
 import 'package:my_portfolio/provider/article_provider.dart';
@@ -9,6 +11,9 @@ import 'package:my_portfolio/provider/project_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsBinding.instance;
+  Firebase.initializeApp();
+  initializeDateFormatting();
   runApp(MultiProvider(
     providers: <ChangeNotifierProvider<ChangeNotifier>>[
       ChangeNotifierProvider<CurrentPage>(create: (_) => CurrentPage()),

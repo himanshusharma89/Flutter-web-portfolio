@@ -27,7 +27,7 @@ class Skills extends StatelessWidget {
                   'The main area of my expertise is Flutter App Development and Firebase (analytics and growth).\n\nI am proficient with programming languages like C/C++ and Java.\nFor web development, I work with Flutter web and also have experience with HTML, CSS, JS, jquery and Bootstrap.\n\nI work with these tools on daily basis:\nVersion Control System: Git and GitHub.\nAutomate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.',
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                      fontSize: fontSize(context), color: Colors.white),
+                      fontSize: fontSize(context, 15), color: Colors.white),
                 ),
               ),
             ),
@@ -49,7 +49,7 @@ class Skills extends StatelessWidget {
                 'The main area of my expertise is Flutter App Development and Firebase (analytics and growth).\nI am proficient with programming languages like C/C++ and Java.\nFor web development, I work with Flutter web and also have experience with HTML, CSS, JS, jquery and Bootstrap.\nI work with these tools on daily basis:\nVersion Control System: Git and GitHub.\nAutomate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.',
                 textAlign: TextAlign.center,
                 style:
-                    TextStyle(fontSize: fontSize(context), color: Colors.white),
+                    TextStyle(fontSize: fontSize(context, 15), color: Colors.white),
               ),
             ),
             const SizedBox(

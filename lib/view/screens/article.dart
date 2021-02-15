@@ -95,13 +95,7 @@ class Article extends StatelessWidget {
         itemCount: list.length,
         itemBuilder: (_, int index) {
           return TranslateOnHover(
-            child: CardView(
-              title: list[index].title.toString(),
-              imgURL: list[index].thumbnail.toString(),
-              imgAlignment: Alignment.centerRight,
-              url: list[index].link.toString(),
-              trailingIcon: false,
-            ),
+            child: object(list[index])
           );
         });
   }
@@ -112,13 +106,18 @@ class Article extends StatelessWidget {
         primary: false,
         itemCount: list.length,
         itemBuilder: (_, int index) {
-          return CardView(
-            title: list[index].title.toString(),
-            imgURL: list[index].thumbnail.toString(),
-            imgAlignment: Alignment.centerRight,
-            url: list[index].link.toString(),
-            trailingIcon: false,
-          );
+          return object(list[index]);
         });
+  }
+
+  Widget object(MediumItems items) {
+    return CardView(
+      title: items.title.toString(),
+      imgURL: items.thumbnail.toString(),
+      imgAlignment: Alignment.centerRight,
+      url: items.link.toString(),
+      trailingIcon: false,
+      articleLink: items.link,
+    );
   }
 }

@@ -69,10 +69,10 @@ class Navbar extends StatelessWidget {
                     ? ProfileColors.navbarItemColor
                     : Colors.white,
                 fontSize: Provider.of<CurrentPage>(context).currentPage == index
-                    ? fontSize(context)
+                    ? fontSize(context, 15)
                     : ResponsiveLayout.isMediumScreen(context)
-                        ? fontSize(context) - 2
-                        : fontSize(context) - 4),
+                        ? fontSize(context, 15) - 2
+                        : fontSize(context, 15) - 4),
           ),
         ),
       ),

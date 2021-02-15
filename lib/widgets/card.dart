@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/constants.dart';
 import 'package:my_portfolio/helpers/responsive_layout.dart';
-import 'package:my_portfolio/widgets/expereine_card.dart';
+import 'package:my_portfolio/widgets/dialog_view.dart';
 
 class CardView extends StatefulWidget {
   const CardView(
@@ -11,12 +12,14 @@ class CardView extends StatefulWidget {
       @required this.url,
       @required this.imgAlignment,
       @required this.trailingIcon,
-      this.date,
       this.desc,
       this.org,
-      this.trailingIconData = Icons.launch_rounded});
+      this.trailingIconData = Icons.launch_rounded,
+      this.startAt,
+      this.endAt,
+      this.articleLink,
+      this.projectLink});
   final String title;
-  final String date;
   final String desc;
   final String org;
   final String imgURL;
@@ -24,6 +27,10 @@ class CardView extends StatefulWidget {
   final bool trailingIcon;
   final IconData trailingIconData;
   final String url;
+  final Timestamp startAt;
+  final Timestamp endAt;
+  final String articleLink;
+  final String projectLink;
 
   @override
   _CardViewState createState() => _CardViewState();
@@ -43,16 +50,20 @@ class _CardViewState extends State<CardView> {
             : width * 0.25,
         // height: height*0.48,
         child: GestureDetector(
-          onTap: () => showDialog(
-            context: context,
-            builder: (_) => ExperienceCard(
-              description: widget.desc,
-              title: widget.title,
-              imgURL: widget.imgURL,
-              date: widget.date,
-              org: widget.org,
-            ),
-          ),
+          onTap: () => widget.articleLink != null
+              ? launcher.launchURL(widget.articleLink)
+              : showDialog(
+                  context: context,
+                  builder: (_) => DialogView(
+                    description: widget.desc,
+                    title: widget.title,
+                    imgURL: widget.imgURL,
+                    org: widget.org,
+                    startAt: widget.startAt,
+                    endAt: widget.endAt,
+                    projectLink: widget.projectLink,
+                  ),
+                ),
           child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(
@@ -93,7 +104,7 @@ class _CardViewState extends State<CardView> {
                                 child: Text(
                                   widget.title,
                                   style: TextStyle(
-                                    fontSize: fontSize(context),
+                                    fontSize: fontSize(context, 15),
                                     fontWeight: FontWeight.bold,
                                     color: ProfileColors.cardTextColor,
                                   ),

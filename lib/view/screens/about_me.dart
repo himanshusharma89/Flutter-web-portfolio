@@ -34,7 +34,7 @@ class AboutMe extends StatelessWidget {
                     'Focused Computer Science major (9.89 CGPA) currently attending Chitkara University. I am a Flutter Application Developer, an Open Source contributor and a writer. I like to contribute to the community a lot. I am a writer at Flutter Community and IEEE CIET Branch. I also like to work on Alexa Skill and Google Assistant App development sometimes.\nI am a hard-working individual who is developing new applications and content for the community and trying to stay occupied all the time. Also, I am a Microsoft Learn Student Ambassador and learning new skills. I am a quick learner and frequently praised as hard-working by my peers.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
-                        fontSize: fontSize(context), color: Colors.white),
+                        fontSize: fontSize(context, 15), color: Colors.white),
                   ),
                   const SizedBox(
                     height: 20,
@@ -82,7 +82,7 @@ class AboutMe extends StatelessWidget {
                 'Focused Computer Science major (9.89 CGPA) currently attending Chitkara University. I am a Flutter Application Developer, an Open Source contributor and a writer. I like to contribute to the community a lot. I am a writer at Flutter Community and IEEE CIET Branch. I also like to work on Alexa Skill and Google Assistant App development sometimes.\nI am a hard-working individual who is developing new applications and content for the community and trying to stay occupied all the time. Also, I am a Microsoft Learn Student Ambassador and learning new skills. I am a quick learner and frequently praised as hard-working by my peers.',
                 textAlign: TextAlign.center,
                 style:
-                    TextStyle(fontSize: fontSize(context), color: Colors.white),
+                    TextStyle(fontSize: fontSize(context, 15), color: Colors.white),
               ),
             ),
             const SizedBox(

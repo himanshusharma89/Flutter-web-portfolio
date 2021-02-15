@@ -29,11 +29,12 @@ class ProfileColors {
   // static const Color color12 = Color(0xff24f6ff);
 }
 
-double fontSize(BuildContext context) => ResponsiveLayout.isLargeScreen(context)
-    ? 15
-    : ResponsiveLayout.isMediumScreen(context)
-        ? 14
-        : 13;
+double fontSize(BuildContext context, double size) =>
+    ResponsiveLayout.isLargeScreen(context)
+        ? size
+        : ResponsiveLayout.isMediumScreen(context)
+            ? size - 2
+            : size - 4;
 
 double navBarWidth(BuildContext context) =>
     ResponsiveLayout.isLargeScreen(context) ? 20 : 25;

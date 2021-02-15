@@ -23,8 +23,9 @@ dependencies:
   cloud_firestore: ^0.14.0+2
   firebase_core: ^0.5.0
   google_fonts: ^1.1.0
-  intl: ^0.17.0
+  intl: ^0.15.7
   json_annotation: ^3.0.1
+  path: ^1.7.0
   provider: ^4.3.2+2
   url_launcher: ^5.4.2
 

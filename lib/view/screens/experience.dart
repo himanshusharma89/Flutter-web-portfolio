@@ -50,7 +50,8 @@ class Experience extends StatelessWidget {
   }
 
   Widget consumerWidget() {
-    return Consumer<ExperienceProvider>(builder: (BuildContext context, ExperienceProvider exp, Widget child) {
+    return Consumer<ExperienceProvider>(
+        builder: (BuildContext context, ExperienceProvider exp, Widget child) {
       if (exp.experience.isEmpty) {
         return FutureBuilder<List<ExperienceModel>>(
             future: exp.getExperience(),
@@ -101,16 +102,7 @@ class Experience extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: TranslateOnHover(
-              child: CardView(
-                title: experience.title,
-                imgURL: experience.imgURL,
-                imgAlignment: Alignment.centerLeft,
-                url: experience.url,
-                date: experience.date,
-                desc: experience.desc,
-                org: experience.org,
-                trailingIcon: true,
-              ),
+              child: object(experience),
             ),
           );
         });
@@ -125,18 +117,23 @@ class Experience extends StatelessWidget {
         final ExperienceModel experience = list[index];
         return Padding(
           padding: const EdgeInsets.all(6.0),
-          child: CardView(
-            title: experience.title,
-            imgURL: experience.imgURL,
-            imgAlignment: Alignment.centerLeft,
-            url: experience.url,
-            date: experience.date,
-            desc: experience.desc,
-            org: experience.org,
-            trailingIcon: true,
-          ),
+          child: object(experience),
         );
       },
+    );
+  }
+
+  Widget object(ExperienceModel experience) {
+    return CardView(
+      title: experience.title,
+      imgURL: experience.imgURL,
+      imgAlignment: Alignment.centerLeft,
+      url: experience.url,
+      desc: experience.desc,
+      org: experience.org,
+      trailingIcon: true,
+      startAt: experience.startAt,
+      endAt: experience.endAt,
     );
   }
 }
