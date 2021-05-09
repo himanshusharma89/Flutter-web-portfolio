@@ -65,3 +65,5 @@ linter:
     - unnecessary_this
     - unrelated_type_equality_checks
     - use_key_in_widget_constructors
+    - sort_constructors_first
+    - always_put_required_named_parameters_first

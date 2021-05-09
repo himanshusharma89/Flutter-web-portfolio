@@ -37,8 +37,7 @@ class AboutMe extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  MouseRegion(
-                      cursor: SystemMouseCursors.click, child: buttons())
+                  buttons()
                 ],
               ),
             ),

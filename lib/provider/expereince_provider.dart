@@ -13,7 +13,8 @@ class ExperienceProvider with ChangeNotifier {
         .then((QuerySnapshot e) => e.docs);
 
     _.forEach((QueryDocumentSnapshot event) {
-      experience.add(ExperienceModel.fromSnapshot(event.data()));
+      experience.add(
+          ExperienceModel.fromSnapshot(event.data()! as Map<String, dynamic>));
     });
     notifyListeners();
     return experience;

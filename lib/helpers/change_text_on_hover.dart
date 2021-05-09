@@ -1,6 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/src/gestures/events.dart';
 import 'colors.dart';
 import 'functions.dart';
 
@@ -43,7 +43,7 @@ class _ChangeTextOnHoverState extends State<ChangeTextOnHover> {
         style: TextStyle(
             color: _hovering ? ProfileColors.navbarItemColor : widget.color,
             fontWeight: FontWeight.normal,
-            fontSize: _hovering ? fontSize(context, 16) : widget.fontSize),
+            fontSize: _hovering ? fontSize(context, 15) : widget.fontSize),
         child: Center(
           child: Text(
             widget.text,

@@ -1,29 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import '../helpers/colors.dart';
 
 import '../main.dart';
 
-class ProfileButton extends StatelessWidget {
-  const ProfileButton({required this.text, required this.link, Key? key})
+class ProfileButton extends StatefulWidget {
+  const ProfileButton(
+      {required this.text,
+      required this.link,
+      this.height,
+      this.width,
+      Key? key})
       : super(key: key);
+
   final String text, link;
+  final double? height, width;
+
+  @override
+  _ProfileButtonState createState() => _ProfileButtonState();
+}
+
+class _ProfileButtonState extends State<ProfileButton> {
+  bool _hovering = false;
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        launcher.launchURL(link);
-      },
-      child: Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: ProfileColors.dotOutlineColor)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            text,
-            style: const TextStyle(color: ProfileColors.dotOutlineColor),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onHover: (event) => _mouseEnter(true),
+      onExit: (event) => _mouseEnter(false),
+      child: GestureDetector(
+        onTap: () {
+          launcher.launchURL(widget.link);
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOutCubic,
+          height: widget.height,
+          width: widget.width,
+          decoration: BoxDecoration(
+              border: Border.all(color: ProfileColors.dotOutlineColor),
+              borderRadius: BorderRadius.circular(22),
+              color: _hovering
+                  ? ProfileColors.dotOutlineColor
+                  : Colors.transparent),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+            child: Text(
+              widget.text,
+              style: TextStyle(
+                  color:
+                      _hovering ? Colors.white : ProfileColors.dotOutlineColor),
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void _mouseEnter(bool hover) {
+    setState(() {
+      _hovering = hover;
+    });
   }
 }

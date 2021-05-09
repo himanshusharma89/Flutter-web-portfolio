@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../helpers/colors.dart';
-import '../../../helpers/page_indicator.dart';
 import '../../../provider/drawer_controller.dart';
 import '../../../views/drawer.dart';
 import '../../../views/screens/about_me.dart';
@@ -10,10 +9,11 @@ import '../../../views/screens/experience.dart';
 import '../../../views/screens/me.dart';
 import '../../../views/screens/project.dart';
 import '../../../views/screens/skills.dart';
+import '../../../widgets/page_indicator.dart';
 
 class MobileWidget extends StatefulWidget {
-  const MobileWidget({this.controller, Key? key}) : super(key: key);
-  final PageController? controller;
+  const MobileWidget({required this.controller, Key? key}) : super(key: key);
+  final PageController controller;
 
   @override
   _MobileWidgetState createState() => _MobileWidgetState();
@@ -103,11 +103,8 @@ class _MobileWidgetState extends State<MobileWidget>
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 25),
-                child: PageIndicator(
-                  pageController: widget.controller,
-                ),
-              ),
+                  padding: const EdgeInsets.only(bottom: 25),
+                  child: pageIndicator(widget.controller)),
             )
           ],
         ),

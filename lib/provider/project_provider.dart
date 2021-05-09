@@ -13,7 +13,8 @@ class ProjectProvider with ChangeNotifier {
         .then((QuerySnapshot e) => e.docs);
 
     _.forEach((QueryDocumentSnapshot event) {
-      project.add(ProjectModel.fromSnapshot(event.data()));
+      project.add(
+          ProjectModel.fromSnapshot(event.data()! as Map<String, dynamic>));
     });
     notifyListeners();
     return project;
