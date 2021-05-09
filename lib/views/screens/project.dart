@@ -7,18 +7,14 @@ import 'package:my_portfolio/widgets/title.dart';
 import 'package:my_portfolio/model/project/project.dart';
 import 'package:my_portfolio/provider/project_provider.dart';
 import 'package:provider/provider.dart';
-
-import '../../helpers/constants.dart';
+import 'package:my_portfolio/helpers/colors.dart';
 
 class Project extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
-    if (ResponsiveLayout.isLargeScreen(context) ||
-        ResponsiveLayout.isMediumScreen(context)) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50),
-        child: Column(
+    return ResponsiveLayout(
+        largeScreen: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -31,29 +27,26 @@ class Project extends StatelessWidget {
             ),
           ],
         ),
-      );
-    } else {
-      return Container(
-        color: ProfileColors.backgroundColor,
-        width: MediaQuery.of(context).size.width,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              const PageTitle(title: 'Projects'),
-              const SizedBox(height: 10.0),
-              consumerWidget()
-            ],
+        smallScreen: Container(
+          color: ProfileColors.backgroundColor,
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const PageTitle(title: 'Projects'),
+                const SizedBox(height: 10.0),
+                consumerWidget()
+              ],
+            ),
           ),
-        ),
-      );
-    }
+        ));
   }
 
   Widget consumerWidget() {
     return Consumer<ProjectProvider>(
-        builder: (BuildContext context, ProjectProvider prjt, Widget child) {
+        builder: (BuildContext context, ProjectProvider prjt, Widget? child) {
       if (prjt.project.isEmpty) {
         return FutureBuilder<List<ProjectModel>>(
             future: prjt.getProjects(),

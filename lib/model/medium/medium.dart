@@ -13,9 +13,9 @@ class MediumModel {
   factory MediumModel.fromJson(Map<String, dynamic> parsedJson) =>
       _$MediumModelFromJson(parsedJson);
 
-  final String status;
-  final MediumFeed feed;
-  final List<MediumItems> items;
+  final String? status;
+  final MediumFeed? feed;
+  final List<MediumItems>? items;
 
   // var itm = parsedJson['items'];
   //   var item = itm as List;

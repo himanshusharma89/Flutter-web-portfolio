@@ -19,12 +19,12 @@ class ExperienceModel {
   factory ExperienceModel.fromSnapshot(Map<String, dynamic> snapshot) =>
       _$ExperienceModelFromJson(snapshot);
 
-  final String url;
-  final String desc;
-  final String imgURL;
-  final bool isActive;
-  final String org;
-  final String title;
-  final Timestamp startAt;
-  final Timestamp endAt;
+  final String? url;
+  final String? desc;
+  final String? imgURL;
+  final bool? isActive;
+  final String? org;
+  final String? title;
+  final Timestamp? startAt;
+  final Timestamp? endAt;
 }

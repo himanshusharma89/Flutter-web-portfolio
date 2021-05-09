@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/current_index.dart';
-import 'package:my_portfolio/view/screens/article.dart';
-import 'package:my_portfolio/view/screens/about_me.dart';
-import 'package:my_portfolio/view/screens/experience.dart';
-import 'package:my_portfolio/view/screens/me.dart';
-import 'package:my_portfolio/view/screens/project.dart';
-import 'package:my_portfolio/view/screens/skills.dart';
+import 'package:my_portfolio/views/screens/about_me.dart';
+import 'package:my_portfolio/views/screens/experience.dart';
+import 'package:my_portfolio/views/screens/me.dart';
+import 'package:my_portfolio/views/screens/project.dart';
+import 'package:my_portfolio/views/screens/skills.dart';
 import 'package:provider/provider.dart';
 
 class DesktopWidget extends StatefulWidget {
   const DesktopWidget({this.controller});
-  final PageController controller;
+  final PageController? controller;
   @override
   _DesktopWidgetState createState() => _DesktopWidgetState();
 }
 
 class _DesktopWidgetState extends State<DesktopWidget> {
-  List<Widget> homeList;
+  late List<Widget> homeList;
 
   @override
   void initState() {
@@ -26,8 +25,7 @@ class _DesktopWidgetState extends State<DesktopWidget> {
       AboutMe(),
       Skills(),
       Experience(),
-      Project(),
-      Article(),
+      Project()
     ];
   }
 
@@ -37,10 +35,10 @@ class _DesktopWidgetState extends State<DesktopWidget> {
     final double height = MediaQuery.of(context).size.height;
     return SizedBox(
       height: height,
-      width: width * 0.95,
+      width: width,
       child: PageView.builder(
         scrollDirection: Axis.vertical,
-        physics: const ClampingScrollPhysics(),
+        physics: const PageScrollPhysics(),
         controller: widget.controller,
         itemCount: homeList.length,
         itemBuilder: (_, int index) => homeList[index],

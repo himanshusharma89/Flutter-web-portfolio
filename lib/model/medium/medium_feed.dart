@@ -15,10 +15,10 @@ class MediumFeed {
   factory MediumFeed.fromJson(Map<String, dynamic> parsedJson) =>
       _$MediumFeedFromJson(parsedJson);
 
-  final String url;
-  final String title;
-  final String link;
-  final String author;
-  final String description;
-  final String image;
+  final String? url;
+  final String? title;
+  final String? link;
+  final String? author;
+  final String? description;
+  final String? image;
 }

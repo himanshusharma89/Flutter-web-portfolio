@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/main.dart';
+
 class SocialWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,8 @@ class SocialWidget extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: FadeInImage(
-                      width: 28.0,
-                      height: 28.0,
+                      width: 30.0,
+                      height: 30.0,
                       // color: ProfileTheme.dotOutlineColor,
                       placeholder: const AssetImage('assets/placeholder.gif'),
                       image: NetworkImage(

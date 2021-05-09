@@ -4,12 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/main.dart';
+import 'package:my_portfolio/helpers/functions.dart';
 import 'package:my_portfolio/helpers/responsive_layout.dart';
 
 class DialogView extends StatelessWidget {
   const DialogView(
-      {Key key,
+      {Key? key,
       this.description,
       this.title,
       this.org,
@@ -18,13 +19,13 @@ class DialogView extends StatelessWidget {
       this.endAt,
       this.projectLink})
       : super(key: key);
-  final String description;
-  final String title;
-  final String org;
-  final String imgURL;
-  final Timestamp startAt;
-  final Timestamp endAt;
-  final String projectLink;
+  final String? description;
+  final String? title;
+  final String? org;
+  final String? imgURL;
+  final Timestamp? startAt;
+  final Timestamp? endAt;
+  final String? projectLink;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class DialogView extends StatelessWidget {
       FadeInImage(
           height: 100,
           placeholder: const AssetImage('assets/placeholder.gif'),
-          image: NetworkImage(imgURL)),
+          image: NetworkImage(imgURL!)),
       SizedBox(
         width: ResponsiveLayout.isSmallScreen(context) ? 0 : 10,
         height: ResponsiveLayout.isSmallScreen(context) ? 10 : 0,
@@ -44,7 +45,7 @@ class DialogView extends StatelessWidget {
             : CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            org == null ? title : '$org | $title',
+            org == null ? title! : '$org | $title',
             style: TextStyle(fontSize: fontSize(context, 20)),
           ),
           if (startAt != null) ...<Widget>[
@@ -52,7 +53,7 @@ class DialogView extends StatelessWidget {
               height: 5,
             ),
             Text(
-              '${DateFormat.yMMM().format(startAt.toDate())} - ${endAt == null ? "Present" : DateFormat.yMMM().format(endAt.toDate())} ${projectLink != null ? "" : "| Remote Work"}',
+              '${DateFormat.yMMM().format(startAt!.toDate())} - ${endAt == null ? "Present" : DateFormat.yMMM().format(endAt!.toDate())} ${projectLink != null ? "" : "| Remote Work"}',
               style: TextStyle(fontSize: fontSize(context, 18)),
             )
           ]
@@ -86,7 +87,7 @@ class DialogView extends StatelessWidget {
                     width: 5,
                   ),
                   Text(
-                    description.replaceAll('•', '\n•'),
+                    description!.replaceAll('•', '\n•'),
                     style: TextStyle(
                         height: 1.25, fontSize: fontSize(context, 16)),
                   ),
@@ -99,8 +100,8 @@ class DialogView extends StatelessWidget {
                         width: ResponsiveLayout.isSmallScreen(context)
                             ? width * 0.5
                             : width * 0.15,
-                        child: RaisedButton(
-                          onPressed: () => launcher.launchURL(projectLink),
+                        child: ElevatedButton(
+                          onPressed: () => launcher.launchURL(projectLink!),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const <Widget>[

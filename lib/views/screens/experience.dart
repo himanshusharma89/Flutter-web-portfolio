@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_portfolio/helpers/translate_on_hover.dart';
-import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/helpers/colors.dart';
 import 'package:my_portfolio/widgets/card.dart';
 import 'package:my_portfolio/helpers/responsive_layout.dart';
 import 'package:my_portfolio/widgets/title.dart';
@@ -13,27 +13,22 @@ class Experience extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
-    if (ResponsiveLayout.isLargeScreen(context) ||
-        ResponsiveLayout.isMediumScreen(context)) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 60),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Center(child: PageTitle(title: 'WORK EXPERIENCE')),
-            SizedBox(height: height * 0.01),
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: consumerWidget(),
-              ),
+    return ResponsiveLayout(
+      largeScreen: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const Center(child: PageTitle(title: 'WORK EXPERIENCE')),
+          SizedBox(height: height * 0.01),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: consumerWidget(),
             ),
-          ],
-        ),
-      );
-    } else {
-      return Container(
+          ),
+        ],
+      ),
+      smallScreen: Container(
         color: ProfileColors.backgroundColor,
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
@@ -45,13 +40,13 @@ class Experience extends StatelessWidget {
             ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
 
   Widget consumerWidget() {
     return Consumer<ExperienceProvider>(
-        builder: (BuildContext context, ExperienceProvider exp, Widget child) {
+        builder: (BuildContext context, ExperienceProvider exp, Widget? child) {
       if (exp.experience.isEmpty) {
         return FutureBuilder<List<ExperienceModel>>(
             future: exp.getExperience(),

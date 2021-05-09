@@ -8,7 +8,7 @@ class ArticleProvider with ChangeNotifier {
   Future<dynamic> getMediumArticles() async {
     const String url =
         'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@himanshusharma89';
-    final http.Response response = await http.get(url);
+    final http.Response response = await http.get(Uri.parse(url));
     return getStatus(response);
   }
 

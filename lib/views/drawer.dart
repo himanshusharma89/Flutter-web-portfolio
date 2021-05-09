@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
 import 'package:my_portfolio/helpers/constants.dart';
 import 'package:provider/provider.dart';
+import 'package:my_portfolio/helpers/colors.dart';
 
 class DrawerScreen extends StatelessWidget {
   @override
@@ -17,21 +18,21 @@ class DrawerScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(
-                left: 20, right: MediaQuery.of(context).size.width / 2.9),
+                left: 15, right: MediaQuery.of(context).size.width / 2.9),
             color: ProfileColors.drawerColor,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: options.map((MenuItem item) {
                 return ListTile(
                   leading: Image.network(
-                    item.icon,
-                    height: 50,
-                    width: 50,
+                    item.icon!,
+                    height: 35,
+                    width: 35,
                   ),
                   title: Text(
-                    item.title,
+                    item.title!,
                     style: const TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
@@ -44,11 +45,10 @@ class DrawerScreen extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 12, left: 8, right: 8),
             child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Text('THIS WEBSITE IS CREATED WITH FLUTTER WEB ❤',
+                child: Text('This wesite is created with Flutter Web ❤',
                     style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500))),
+                        fontSize: 16,
+                        color: Colors.white))),
           )
         ],
       ),

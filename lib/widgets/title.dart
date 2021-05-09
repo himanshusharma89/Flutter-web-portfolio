@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/helpers/responsive_layout.dart';
-
-import '../helpers/constants.dart';
+import 'package:my_portfolio/helpers/colors.dart';
 
 class PageTitle extends StatefulWidget {
-  const PageTitle({@required this.title});
+  const PageTitle({required this.title});
   final String title;
 
   @override

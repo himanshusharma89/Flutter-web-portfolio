@@ -9,19 +9,17 @@ import 'package:my_portfolio/helpers/responsive_layout.dart';
 import 'package:my_portfolio/widgets/title.dart';
 import 'package:provider/provider.dart';
 
-import '../../helpers/constants.dart';
+import 'package:my_portfolio/helpers/colors.dart';
 
 class Article extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (ResponsiveLayout.isLargeScreen(context) ||
-        ResponsiveLayout.isMediumScreen(context)) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 60),
-        child: Column(
+    return ResponsiveLayout(
+        largeScreen: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Center(child: PageTitle(title: 'ARTICLES AND ACHEIVEMENTS')),
+            const Center(
+                child: PageTitle(title: 'ARTICLES AND ACHEIVEMENTS')),
             const SizedBox(height: 30.0),
             Flexible(
               child: Padding(
@@ -39,47 +37,44 @@ class Article extends StatelessWidget {
                       } else {
                         final MediumModel mediumModel =
                             snapshot.data as MediumModel;
-                        return _gridView(mediumModel.items, context);
+                        return _gridView(mediumModel.items!, context);
                       }
                     }),
               ),
             )
           ],
         ),
-      );
-    } else {
-      return Container(
-        color: ProfileColors.backgroundColor,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              const PageTitle(title: 'Articles'),
-              const SizedBox(height: 10.0),
-              Flexible(
-                child: FutureBuilder<dynamic>(
-                    future: Provider.of<ArticleProvider>(context)
-                        .getMediumArticles(),
-                    builder: (_, AsyncSnapshot<dynamic> snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Center(
-                            child: SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: CircularProgressIndicator()));
-                      } else {
-                        final MediumModel mediumModel =
-                            snapshot.data as MediumModel;
-                        return _listView(mediumModel.items);
-                      }
-                    }),
-              )
-            ],
+        smallScreen: Container(
+          color: ProfileColors.backgroundColor,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const PageTitle(title: 'Articles'),
+                const SizedBox(height: 10.0),
+                Flexible(
+                  child: FutureBuilder<dynamic>(
+                      future: Provider.of<ArticleProvider>(context)
+                          .getMediumArticles(),
+                      builder: (_, AsyncSnapshot<dynamic> snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(
+                              child: SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: CircularProgressIndicator()));
+                        } else {
+                          final MediumModel mediumModel =
+                              snapshot.data as MediumModel;
+                          return _listView(mediumModel.items!);
+                        }
+                      }),
+                )
+              ],
+            ),
           ),
-        ),
-      );
-    }
+        ));
   }
 
   Widget _gridView(List<MediumItems> list, BuildContext context) {
@@ -94,9 +89,7 @@ class Article extends StatelessWidget {
             childAspectRatio: 1 / 0.2),
         itemCount: list.length,
         itemBuilder: (_, int index) {
-          return TranslateOnHover(
-            child: object(list[index])
-          );
+          return TranslateOnHover(child: object(list[index]));
         });
   }
 

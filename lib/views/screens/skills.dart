@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/main.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/functions.dart';
 import 'package:my_portfolio/helpers/responsive_layout.dart';
 import 'package:my_portfolio/widgets/title.dart';
 
 class Skills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (ResponsiveLayout.isLargeScreen(context) ||
-        ResponsiveLayout.isMediumScreen(context)) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 60),
-        child: Stack(
+    return ResponsiveLayout(
+        largeScreen: Stack(
           fit: StackFit.expand,
           children: <Widget>[
             const PageTitle(title: 'MY SKILLS'),
@@ -22,44 +21,41 @@ class Skills extends StatelessWidget {
             FractionallySizedBox(
               widthFactor: 0.5,
               alignment: Alignment.centerLeft,
-              child: Center(
-                child: Text(
-                  'The main area of my expertise is Flutter App Development and Firebase (analytics and growth).\n\nI am proficient with programming languages like C/C++ and Java.\nFor web development, I work with Flutter web and also have experience with HTML, CSS, JS, jquery and Bootstrap.\n\nI work with these tools on daily basis:\nVersion Control System: Git and GitHub.\nAutomate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.',
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                      fontSize: fontSize(context, 15), color: Colors.white),
-                ),
-              ),
+              child: Center(child: text(context)),
             ),
           ],
         ),
-      );
-    } else {
-      return Container(
-        color: ProfileColors.backgroundColor,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Center(child: PageTitle(title: 'Skills')),
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: 10.0, left: 50.0, right: 50.0),
-              child: Text(
-                'The main area of my expertise is Flutter App Development and Firebase (analytics and growth).\nI am proficient with programming languages like C/C++ and Java.\nFor web development, I work with Flutter web and also have experience with HTML, CSS, JS, jquery and Bootstrap.\nI work with these tools on daily basis:\nVersion Control System: Git and GitHub.\nAutomate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.',
-                textAlign: TextAlign.center,
-                style:
-                    TextStyle(fontSize: fontSize(context, 15), color: Colors.white),
+        smallScreen: Container(
+          color: ProfileColors.backgroundColor,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Center(child: PageTitle(title: 'Skills')),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 10.0, left: 50.0, right: 50.0),
+                child: text(context),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            skillWidget(context)
-          ],
-        ),
-      );
-    }
+              const SizedBox(
+                height: 20,
+              ),
+              skillWidget(context)
+            ],
+          ),
+        ));
+  }
+
+  Widget text(BuildContext context) {
+    return Text(
+      'The main area of my expertise is Flutter App Development and Firebase (analytics and growth).\nI am proficient with programming languages like C/C++ and Java.\nFor web development, I work with Flutter web and also have experience with HTML, CSS, JS, jquery and Bootstrap.\nI work with these tools on daily basis:\nVersion Control System: Git and GitHub.\nAutomate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+          fontSize: fontSize(context, 16),
+          color: Colors.white,
+          height: 1.2,
+          letterSpacing: 0.2),
+    );
   }
 
   Widget skillWidget(BuildContext context) {

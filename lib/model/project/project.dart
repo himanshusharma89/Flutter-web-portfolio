@@ -18,12 +18,12 @@ class ProjectModel {
 
   factory ProjectModel.fromSnapshot(Map<String, dynamic> snapshot) =>
       _$ProjectModelFromJson(snapshot);
-  final String url;
-  final String desc;
-  final String imgURL;
-  final int index;
-  final String title;
-  final Timestamp startAt;
-  final Timestamp endAt;
-  final String projectLink;
+  final String? url;
+  final String? desc;
+  final String? imgURL;
+  final int? index;
+  final String? title;
+  final Timestamp? startAt;
+  final Timestamp? endAt;
+  final String? projectLink;
 }

@@ -1,17 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/main.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/functions.dart';
 import 'package:my_portfolio/helpers/responsive_layout.dart';
 import 'package:my_portfolio/widgets/dialog_view.dart';
 
 class CardView extends StatefulWidget {
   const CardView(
-      {@required this.title,
-      @required this.imgURL,
-      @required this.url,
-      @required this.imgAlignment,
-      @required this.trailingIcon,
+      {required this.title,
+      required this.imgURL,
+      required this.url,
+      required this.imgAlignment,
+      required this.trailingIcon,
       this.desc,
       this.org,
       this.trailingIconData = Icons.launch_rounded,
@@ -19,18 +21,18 @@ class CardView extends StatefulWidget {
       this.endAt,
       this.articleLink,
       this.projectLink});
-  final String title;
-  final String desc;
-  final String org;
-  final String imgURL;
+  final String? title;
+  final String? desc;
+  final String? org;
+  final String? imgURL;
   final Alignment imgAlignment;
   final bool trailingIcon;
   final IconData trailingIconData;
-  final String url;
-  final Timestamp startAt;
-  final Timestamp endAt;
-  final String articleLink;
-  final String projectLink;
+  final String? url;
+  final Timestamp? startAt;
+  final Timestamp? endAt;
+  final String? articleLink;
+  final String? projectLink;
 
   @override
   _CardViewState createState() => _CardViewState();
@@ -51,7 +53,7 @@ class _CardViewState extends State<CardView> {
         // height: height*0.48,
         child: GestureDetector(
           onTap: () => widget.articleLink != null
-              ? launcher.launchURL(widget.articleLink)
+              ? launcher.launchURL(widget.articleLink!)
               : showDialog(
                   context: context,
                   builder: (_) => DialogView(
@@ -82,7 +84,7 @@ class _CardViewState extends State<CardView> {
                     child: FadeInImage(
                         placeholder: const AssetImage('assets/placeholder.gif'),
                         image: NetworkImage(
-                          widget.imgURL,
+                          widget.imgURL!,
                         )),
                   ),
                 ),
@@ -102,7 +104,7 @@ class _CardViewState extends State<CardView> {
                             children: <Widget>[
                               Flexible(
                                 child: Text(
-                                  widget.title,
+                                  widget.title!,
                                   style: TextStyle(
                                     fontSize: fontSize(context, 15),
                                     fontWeight: FontWeight.bold,
@@ -113,7 +115,7 @@ class _CardViewState extends State<CardView> {
                               if (widget.org != null)
                                 Flexible(
                                   child: Text(
-                                    widget.org,
+                                    widget.org!,
                                     style: const TextStyle(
                                       fontSize: 12.0,
                                       color: ProfileColors.cardTextColor,
@@ -126,7 +128,7 @@ class _CardViewState extends State<CardView> {
                               if (widget.desc != null)
                                 Expanded(
                                   child: Text(
-                                    widget.desc,
+                                    widget.desc!,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
                                       fontSize: 13.0,
@@ -145,7 +147,7 @@ class _CardViewState extends State<CardView> {
                                 size: 15,
                               ),
                               onPressed: () {
-                                launcher.launchURL(widget.url);
+                                launcher.launchURL(widget.url!);
                               })
                       ],
                     ),

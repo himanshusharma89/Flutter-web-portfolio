@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/constants.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'package:my_portfolio/helpers/colors.dart';
 
 class PageIndicator extends StatefulWidget {
   const PageIndicator({this.pageController});
 
-  final PageController pageController;
+  final PageController? pageController;
 
   @override
   _PageIndicatorState createState() => _PageIndicatorState();
@@ -15,18 +14,17 @@ class _PageIndicatorState extends State<PageIndicator> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: widget.pageController,
+        animation: widget.pageController!,
         builder: (_, __) {
           return CustomPaint(
             painter: PageIndicatorPainter(
-                pageCount: 6,
-                dotRadius: ResponsiveLayout.isMediumScreen(context) ? 5 : 7,
-                dotOutlineThickness:
-                    ResponsiveLayout.isMediumScreen(context) ? 1 : 2,
+                pageCount: 5,
+                dotRadius: 7,
+                dotOutlineThickness: 2,
                 spacing: 15,
-                scrollPosition: widget.pageController.hasClients &&
-                        widget.pageController.page != null
-                    ? widget.pageController.page
+                scrollPosition: widget.pageController!.hasClients &&
+                        widget.pageController!.page != null
+                    ? widget.pageController!.page
                     : 0.0,
                 dotFillColor: Colors.transparent,
                 dotOutlineColor: ProfileColors.dotOutlineColor,
@@ -38,13 +36,13 @@ class _PageIndicatorState extends State<PageIndicator> {
 
 class PageIndicatorPainter extends CustomPainter {
   PageIndicatorPainter({
-    @required this.pageCount,
-    @required this.dotRadius,
-    @required this.dotOutlineThickness,
-    @required this.spacing,
-    @required Color dotFillColor,
-    @required Color dotOutlineColor,
-    @required Color indicatorColor,
+    required this.pageCount,
+    required this.dotRadius,
+    required this.dotOutlineThickness,
+    required this.spacing,
+    required Color dotFillColor,
+    required Color dotOutlineColor,
+    required Color indicatorColor,
     this.scrollPosition = 0.0,
   })  : dotFillPaint = Paint()..color = dotFillColor,
         dotOutlinePaint = Paint()..color = dotOutlineColor,
@@ -54,7 +52,7 @@ class PageIndicatorPainter extends CustomPainter {
   final double dotRadius;
   final double dotOutlineThickness;
   final double spacing;
-  final double scrollPosition;
+  final double? scrollPosition;
   final Paint dotFillPaint;
   final Paint dotOutlinePaint;
   final Paint indicatorPaint;
@@ -69,10 +67,10 @@ class PageIndicatorPainter extends CustomPainter {
   }
 
   void _drawPageIndicator(Canvas canvas, Offset center, double totalWidth) {
-    final int pageIndexToLeft = scrollPosition.floor();
+    final int pageIndexToLeft = scrollPosition!.floor();
     final double leftDotX = (center.dx - (totalWidth / 2)) +
         (pageIndexToLeft * ((2 * dotRadius) + spacing));
-    final double transitionPercent = scrollPosition - pageIndexToLeft;
+    final double transitionPercent = scrollPosition! - pageIndexToLeft;
 
     final double laggingLeftPosition =
         (transitionPercent - 0.3).clamp(0.0, 1.0) / 0.7;

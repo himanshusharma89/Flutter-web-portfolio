@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 class MenuController extends ChangeNotifier {
   MenuController({
-    this.vsync,
+    required this.vsync,
   }) : _animationController = AnimationController(vsync: vsync) {
     _animationController
       ..duration = const Duration(milliseconds: 250)
@@ -31,8 +31,9 @@ class MenuController extends ChangeNotifier {
   final TickerProvider vsync;
   final AnimationController _animationController;
   MenuState state = MenuState.closed;
+
   @override
-  dispose() {
+  void dispose() {
     _animationController.dispose();
     super.dispose();
   }

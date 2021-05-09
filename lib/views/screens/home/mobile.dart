@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/helpers/colors.dart';
 import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/view/screens/article.dart';
-import 'package:my_portfolio/view/screens/about_me.dart';
-import 'package:my_portfolio/view/drawer.dart';
-import 'package:my_portfolio/view/screens/experience.dart';
-import 'package:my_portfolio/view/screens/me.dart';
-import 'package:my_portfolio/view/screens/project.dart';
-import 'package:my_portfolio/view/screens/skills.dart';
+import 'package:my_portfolio/views/screens/about_me.dart';
+import 'package:my_portfolio/views/drawer.dart';
+import 'package:my_portfolio/views/screens/experience.dart';
+import 'package:my_portfolio/views/screens/me.dart';
+import 'package:my_portfolio/views/screens/project.dart';
+import 'package:my_portfolio/views/screens/skills.dart';
 import 'package:my_portfolio/helpers/page_indicator.dart';
 import 'package:provider/provider.dart';
 
 class MobileWidget extends StatefulWidget {
   const MobileWidget({this.controller});
-  final PageController controller;
+  final PageController? controller;
 
   @override
   _MobileWidgetState createState() => _MobileWidgetState();
@@ -21,8 +20,8 @@ class MobileWidget extends StatefulWidget {
 
 class _MobileWidgetState extends State<MobileWidget>
     with TickerProviderStateMixin {
-  AnimationController _animationController;
-  bool isMenu;
+  late AnimationController _animationController;
+  late bool isMenu;
 
   Curve scaleDownCurve = const Interval(0.0, 0.3, curve: Curves.easeOut);
   Curve scaleUpCurve = const Interval(0.0, 1.0, curve: Curves.easeOut);
@@ -69,8 +68,7 @@ class _MobileWidgetState extends State<MobileWidget>
                       AboutMe(),
                       Skills(),
                       Experience(),
-                      Project(),
-                      Article(),
+                      Project()
                     ],
                   ),
                   Padding(

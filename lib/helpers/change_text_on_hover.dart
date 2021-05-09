@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/gestures/events.dart';
-import 'package:my_portfolio/helpers/constants.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/functions.dart';
 
 class ChangeTextOnHover extends StatefulWidget {
   // You can also pass the translation in here if you want to
-  const ChangeTextOnHover({Key key, this.text, this.color, this.fontSize})
-      : super(key: key);
+  const ChangeTextOnHover({
+    required this.text,
+    required this.fontSize,
+    Key? key,
+    this.color,
+  }) : super(key: key);
 
   final String text;
-  final Color color;
+  final Color? color;
   final double fontSize;
 
   @override
@@ -18,8 +22,8 @@ class ChangeTextOnHover extends StatefulWidget {
 }
 
 class _ChangeTextOnHoverState extends State<ChangeTextOnHover> {
-  final Matrix4 nonHoverTransform = Matrix4.identity()..translate(0, 0, 0);
-  final Matrix4 hoverTransform = Matrix4.identity()..translate(0, -1.5, 0);
+  final Matrix4 nonHoverTransform = Matrix4.identity()..translate(0);
+  final Matrix4 hoverTransform = Matrix4.identity()..translate(0, -1.5);
 
   bool _hovering = false;
 
@@ -39,20 +43,13 @@ class _ChangeTextOnHoverState extends State<ChangeTextOnHover> {
         style: TextStyle(
             color: _hovering ? ProfileColors.navbarItemColor : widget.color,
             fontWeight: FontWeight.normal,
-            fontSize: _hovering
-                ? ResponsiveLayout.isMediumScreen(context)
-                    ? 11
-                    : 13
-                : ResponsiveLayout.isMediumScreen(context)
-                    ? widget.fontSize - 2
-                    : widget.fontSize),
+            fontSize: _hovering ? fontSize(context, 16) : widget.fontSize),
         child: Center(
           child: Text(
             widget.text,
             maxLines: 1,
           ),
         ),
-        // transform: _hovering ? hoverTransform : nonHoverTransform,
       ),
     );
   }
