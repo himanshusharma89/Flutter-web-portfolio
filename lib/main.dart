@@ -2,15 +2,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:my_portfolio/helpers/launcher.dart';
-import 'package:my_portfolio/provider/article_provider.dart';
-import 'package:my_portfolio/provider/current_index.dart';
-import 'package:my_portfolio/provider/expereince_provider.dart';
-import 'package:my_portfolio/provider/project_provider.dart';
-import 'package:my_portfolio/views/dashboard.dart';
 import 'package:provider/provider.dart';
 
 import 'helpers/colors.dart';
+import 'helpers/launcher.dart';
+import 'provider/article_provider.dart';
+import 'provider/current_index.dart';
+import 'provider/expereince_provider.dart';
+import 'provider/project_provider.dart';
+import 'views/dashboard.dart';
 
 final Launcher launcher = Launcher();
 
@@ -26,11 +26,12 @@ Future<void> main() async {
           create: (_) => ExperienceProvider()),
       ChangeNotifierProvider<ProjectProvider>(create: (_) => ProjectProvider())
     ],
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
         },
         initialRoute: '/',
         routes: <String, Widget Function(BuildContext)>{
-          '/': (_) => Dashboard(),
+          '/': (_) => const Dashboard(),
         });
   }
 }

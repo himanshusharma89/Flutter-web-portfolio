@@ -19,6 +19,7 @@ class MediumModel {
 
   // var itm = parsedJson['items'];
   //   var item = itm as List;
-  //   List<MediumItems> itemDetails = item.map((e) => MediumItems.fromJson(e)).toList();
+  //   List<MediumItems> itemDetails = 
+  //item.map((e) => MediumItems.fromJson(e)).toList();
 
 }

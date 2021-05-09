@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/change_text_on_hover.dart';
-import 'package:my_portfolio/helpers/colors.dart';
-import 'package:my_portfolio/helpers/functions.dart';
-import 'package:my_portfolio/provider/article_provider.dart';
-import 'package:my_portfolio/provider/current_index.dart';
-import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/provider/expereince_provider.dart';
-import 'package:my_portfolio/provider/project_provider.dart';
-import 'package:my_portfolio/views/screens/home/desktop.dart';
-import 'package:my_portfolio/views/screens/home/mobile.dart';
-import 'package:my_portfolio/views/navbar.dart';
-import 'package:my_portfolio/widgets/social.dart';
-import 'package:my_portfolio/helpers/page_indicator.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/change_text_on_hover.dart';
+import '../helpers/colors.dart';
+import '../helpers/functions.dart';
+import '../helpers/page_indicator.dart';
+import '../helpers/responsive_layout.dart';
+import '../provider/article_provider.dart';
+import '../provider/current_index.dart';
+import '../provider/drawer_controller.dart';
+import '../provider/expereince_provider.dart';
+import '../provider/project_provider.dart';
+import '../views/navbar.dart';
+import '../views/screens/home/desktop.dart';
+import '../views/screens/home/mobile.dart';
+import '../widgets/social.dart';
+
 class Dashboard extends StatefulWidget {
+  const Dashboard({Key? key}) : super(key: key);
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -86,7 +88,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-                            SocialWidget(),
+                            const SocialWidget(),
                           ],
                         ),
                       ),
@@ -107,7 +109,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   }
 
   Widget socialWidget() {
-    return Align(
+    return const Align(
       alignment: Alignment.bottomRight,
       child: SocialWidget(),
     );

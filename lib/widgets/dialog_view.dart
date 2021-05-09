@@ -4,9 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_portfolio/main.dart';
-import 'package:my_portfolio/helpers/functions.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
+
+import '../helpers/functions.dart';
+import '../helpers/responsive_layout.dart';
+import '../main.dart';
 
 class DialogView extends StatelessWidget {
   const DialogView(
@@ -29,8 +30,8 @@ class DialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final List<Widget> children = <Widget>[
+    final width = MediaQuery.of(context).size.width;
+    final children = <Widget>[
       FadeInImage(
           height: 100,
           placeholder: const AssetImage('assets/placeholder.gif'),
@@ -53,7 +54,9 @@ class DialogView extends StatelessWidget {
               height: 5,
             ),
             Text(
-              '${DateFormat.yMMM().format(startAt!.toDate())} - ${endAt == null ? "Present" : DateFormat.yMMM().format(endAt!.toDate())} ${projectLink != null ? "" : "| Remote Work"}',
+              '${DateFormat.yMMM().format(startAt!.toDate())} - '
+              '${endAt == null ? "Present" : DateFormat.yMMM().format(endAt!.toDate())} '
+              '${projectLink != null ? "" : "| Remote Work"}',
               style: TextStyle(fontSize: fontSize(context, 18)),
             )
           ]

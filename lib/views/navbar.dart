@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/change_text_on_hover.dart';
-import 'package:my_portfolio/helpers/colors.dart';
-import 'package:my_portfolio/helpers/constants.dart';
-import 'package:my_portfolio/helpers/functions.dart';
-import 'package:my_portfolio/provider/current_index.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/change_text_on_hover.dart';
+import '../helpers/colors.dart';
+import '../helpers/constants.dart';
+import '../helpers/functions.dart';
+import '../provider/current_index.dart';
+
 class Navbar extends StatelessWidget {
-  const Navbar({required this.controller});
+  const Navbar({required this.controller, Key? key}) : super(key: key);
   final PageController controller;
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return SizedBox(
       width: width * 0.025 + navBarWidth(context),
       height: height,
@@ -41,7 +42,7 @@ class Navbar extends StatelessWidget {
     required String navText,
     required int index,
   }) {
-    final double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return SizedBox(
         height: height * 0.11,
         child: Center(

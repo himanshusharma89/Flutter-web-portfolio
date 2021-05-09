@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/main.dart';
-import 'package:my_portfolio/helpers/colors.dart';
-import 'package:my_portfolio/helpers/functions.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
-import 'package:my_portfolio/widgets/dialog_view.dart';
+
+import '../helpers/colors.dart';
+import '../helpers/functions.dart';
+import '../helpers/responsive_layout.dart';
+import '../main.dart';
+import '../widgets/dialog_view.dart';
 
 class CardView extends StatefulWidget {
   const CardView(
@@ -20,7 +21,10 @@ class CardView extends StatefulWidget {
       this.startAt,
       this.endAt,
       this.articleLink,
-      this.projectLink});
+      this.projectLink,
+      Key? key})
+      : super(key: key);
+
   final String? title;
   final String? desc;
   final String? org;
@@ -41,8 +45,8 @@ class CardView extends StatefulWidget {
 class _CardViewState extends State<CardView> {
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: SizedBox(

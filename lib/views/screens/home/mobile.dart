@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/colors.dart';
-import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/views/screens/about_me.dart';
-import 'package:my_portfolio/views/drawer.dart';
-import 'package:my_portfolio/views/screens/experience.dart';
-import 'package:my_portfolio/views/screens/me.dart';
-import 'package:my_portfolio/views/screens/project.dart';
-import 'package:my_portfolio/views/screens/skills.dart';
-import 'package:my_portfolio/helpers/page_indicator.dart';
 import 'package:provider/provider.dart';
 
+import '../../../helpers/colors.dart';
+import '../../../helpers/page_indicator.dart';
+import '../../../provider/drawer_controller.dart';
+import '../../../views/drawer.dart';
+import '../../../views/screens/about_me.dart';
+import '../../../views/screens/experience.dart';
+import '../../../views/screens/me.dart';
+import '../../../views/screens/project.dart';
+import '../../../views/screens/skills.dart';
+
 class MobileWidget extends StatefulWidget {
-  const MobileWidget({this.controller});
+  const MobileWidget({this.controller, Key? key}) : super(key: key);
   final PageController? controller;
 
   @override
@@ -50,7 +51,7 @@ class _MobileWidgetState extends State<MobileWidget>
   }
 
   Widget drawerScreen() {
-    return DrawerScreen();
+    return const DrawerScreen();
   }
 
   Widget homeScreen() {
@@ -63,7 +64,7 @@ class _MobileWidgetState extends State<MobileWidget>
                 children: <Widget>[
                   PageView(
                     controller: widget.controller,
-                    children: <Widget>[
+                    children: const <Widget>[
                       Me(),
                       AboutMe(),
                       Skills(),
@@ -122,7 +123,7 @@ class _MobileWidgetState extends State<MobileWidget>
   }
 
   Widget zoomAndSlideContent(Widget content) {
-    double slidePercent = 0.0, scalePercent = 0.0;
+    var slidePercent = 0.0, scalePercent = 0.0;
 
     switch (Provider.of<MenuController>(context, listen: true).state) {
       case MenuState.closed:
@@ -155,9 +156,9 @@ class _MobileWidgetState extends State<MobileWidget>
         break;
     }
 
-    final double slideAmount = 225.0 * num.parse(slidePercent.toString());
-    final double contentScale = 1.0 - (0.2 * num.parse(scalePercent.toString()));
-    final double cornerRadius = 16.0 *
+    final slideAmount = 225.0 * num.parse(slidePercent.toString());
+    final contentScale = 1.0 - (0.2 * num.parse(scalePercent.toString()));
+    final cornerRadius = 16.0 *
         num.parse(Provider.of<MenuController>(context, listen: true)
             .percentOpen
             .toString());

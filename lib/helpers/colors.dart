@@ -6,7 +6,7 @@ class ProfileColors {
   static const Color navBarColor = Color.fromRGBO(42, 46, 53, 1);
   static const Color cardColor = Color(0xff2a2e35);
   static const Color cardTextColor = Color.fromRGBO(178, 190, 205, 1);
-  static const Color headingColor = Color(0xffe9c14a);
+  static const Color headingColor = Color(0xff50f5aa);
   static const Color navbarItemColor = Color(0xff50f5aa);
   static const Color cardHeadingColor = Color(0xffe9c14a);
   static const Color circleShadow = Color(0xff86fac5);

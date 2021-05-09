@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/translate_on_hover.dart';
-import 'package:my_portfolio/model/medium/medium.dart';
-import 'package:my_portfolio/model/medium/medium_items.dart';
-import 'package:my_portfolio/provider/article_provider.dart';
-import 'package:my_portfolio/widgets/card.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
-import 'package:my_portfolio/widgets/title.dart';
 import 'package:provider/provider.dart';
 
-import 'package:my_portfolio/helpers/colors.dart';
+import '../../helpers/colors.dart';
+import '../../helpers/responsive_layout.dart';
+import '../../helpers/translate_on_hover.dart';
+import '../../model/medium/medium.dart';
+import '../../model/medium/medium_items.dart';
+import '../../provider/article_provider.dart';
+import '../../widgets/card.dart';
+import '../../widgets/title.dart';
 
 class Article extends StatelessWidget {
+  const Article({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(
         largeScreen: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Center(
-                child: PageTitle(title: 'ARTICLES AND ACHEIVEMENTS')),
+            const Center(child: PageTitle(title: 'ARTICLES AND ACHEIVEMENTS')),
             const SizedBox(height: 30.0),
             Flexible(
               child: Padding(
@@ -35,8 +35,7 @@ class Article extends StatelessWidget {
                                 width: 50,
                                 child: CircularProgressIndicator()));
                       } else {
-                        final MediumModel mediumModel =
-                            snapshot.data as MediumModel;
+                        final mediumModel = snapshot.data as MediumModel;
                         return _gridView(mediumModel.items!, context);
                       }
                     }),
@@ -65,8 +64,7 @@ class Article extends StatelessWidget {
                                   width: 50,
                                   child: CircularProgressIndicator()));
                         } else {
-                          final MediumModel mediumModel =
-                              snapshot.data as MediumModel;
+                          final mediumModel = snapshot.data as MediumModel;
                           return _listView(mediumModel.items!);
                         }
                       }),

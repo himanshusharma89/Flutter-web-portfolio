@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/main.dart';
-import 'package:my_portfolio/helpers/colors.dart';
-import 'package:my_portfolio/helpers/functions.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
-import 'package:my_portfolio/widgets/title.dart';
+
+import '../../helpers/colors.dart';
+import '../../helpers/constants.dart';
+import '../../helpers/functions.dart';
+import '../../helpers/responsive_layout.dart';
+import '../../main.dart';
+import '../../widgets/title.dart';
 
 class Skills extends StatelessWidget {
+  const Skills({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(
@@ -48,7 +51,7 @@ class Skills extends StatelessWidget {
 
   Widget text(BuildContext context) {
     return Text(
-      'The main area of my expertise is Flutter App Development and Firebase (analytics and growth).\nI am proficient with programming languages like C/C++ and Java.\nFor web development, I work with Flutter web and also have experience with HTML, CSS, JS, jquery and Bootstrap.\nI work with these tools on daily basis:\nVersion Control System: Git and GitHub.\nAutomate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.',
+      skills,
       textAlign: TextAlign.center,
       style: TextStyle(
           fontSize: fontSize(context, 16),
@@ -64,50 +67,42 @@ class Skills extends StatelessWidget {
       children: <Widget>[
         MouseRegion(
           cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            onTap: () {
-              launcher.launchURL('https://wakatime.com/@HimanshuSharma');
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  color: ProfileColors.cardColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image.asset(
-                  'assets/wakatime_icon.png',
-                  height: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
-                  width: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
-                ),
-              ),
-            ),
-          ),
+          child: tile(context,
+              link: 'https://wakatime.com/@HimanshuSharma',
+              imageURL: 'assets/wakatime_icon.png'),
         ),
         const SizedBox(
           width: 30,
         ),
         MouseRegion(
           cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            onTap: () {
-              launcher.launchURL('https://github.com/himanshusharma89');
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  color: ProfileColors.cardColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Image.asset(
-                  'assets/github_icon.png',
-                  height: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
-                  width: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
-                ),
-              ),
-            ),
-          ),
+          child: tile(context,
+              link: 'https://github.com/himanshusharma89',
+              imageURL: 'assets/github_icon.png'),
         )
       ],
+    );
+  }
+
+  Widget tile(BuildContext context,
+      {required String link, required String imageURL}) {
+    return GestureDetector(
+      onTap: () {
+        launcher.launchURL(link);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            color: ProfileColors.cardColor,
+            borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Image.asset(
+            imageURL,
+            height: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
+            width: ResponsiveLayout.isSmallScreen(context) ? 60 : 90,
+          ),
+        ),
+      ),
     );
   }
 }

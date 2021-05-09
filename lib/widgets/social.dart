@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/constants.dart';
-import 'package:my_portfolio/main.dart';
+import '../helpers/constants.dart';
+import '../main.dart';
 
 class SocialWidget extends StatelessWidget {
+  const SocialWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
     return Container(
       width: width * 0.02 + 20,
       alignment: Alignment.bottomCenter,

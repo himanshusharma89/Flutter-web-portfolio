@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/colors.dart';
+import 'colors.dart';
 
 class PageIndicator extends StatefulWidget {
-  const PageIndicator({this.pageController});
+  const PageIndicator({this.pageController, Key? key}) : super(key: key);
 
   final PageController? pageController;
 
@@ -59,29 +59,28 @@ class PageIndicatorPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Offset center = size.center(Offset.zero);
-    final double totalWidth =
+    final center = size.center(Offset.zero);
+    final totalWidth =
         (pageCount * (2 * dotRadius)) + ((pageCount - 1) * spacing);
     _drawDots(canvas, center, totalWidth);
     _drawPageIndicator(canvas, center, totalWidth);
   }
 
   void _drawPageIndicator(Canvas canvas, Offset center, double totalWidth) {
-    final int pageIndexToLeft = scrollPosition!.floor();
-    final double leftDotX = (center.dx - (totalWidth / 2)) +
+    final pageIndexToLeft = scrollPosition!.floor();
+    final leftDotX = (center.dx - (totalWidth / 2)) +
         (pageIndexToLeft * ((2 * dotRadius) + spacing));
-    final double transitionPercent = scrollPosition! - pageIndexToLeft;
+    final transitionPercent = scrollPosition! - pageIndexToLeft;
 
-    final double laggingLeftPosition =
-        (transitionPercent - 0.3).clamp(0.0, 1.0) / 0.7;
+    final laggingLeftPosition = (transitionPercent - 0.3).clamp(0.0, 1.0) / 0.7;
 
-    final double indicatorleftX =
+    final indicatorleftX =
         leftDotX + (laggingLeftPosition * ((2 * dotRadius) + spacing));
 
     final num acceleratedRightPositionPercent =
         (transitionPercent / 0.5).clamp(0.0, 1.0);
 
-    final double indicatorRightX = leftDotX +
+    final indicatorRightX = leftDotX +
         (acceleratedRightPositionPercent * ((2 * dotRadius) + spacing)) +
         (2 * dotRadius);
 
@@ -92,9 +91,9 @@ class PageIndicatorPainter extends CustomPainter {
   }
 
   void _drawDots(Canvas canvas, Offset center, double totalWidth) {
-    Offset dotCenter = center.translate((-totalWidth / 2) + dotRadius, 0);
+    var dotCenter = center.translate((-totalWidth / 2) + dotRadius, 0);
 
-    for (int i = 0; i < pageCount; i++) {
+    for (var i = 0; i < pageCount; i++) {
       _drawDot(canvas, dotCenter);
       dotCenter = dotCenter.translate((2 * dotRadius) + spacing, 0);
     }
@@ -103,7 +102,7 @@ class PageIndicatorPainter extends CustomPainter {
   void _drawDot(Canvas canvas, Offset dotCenter) {
     canvas.drawCircle(dotCenter, dotRadius - dotOutlineThickness, dotFillPaint);
 
-    final Path outlinePath = Path()
+    final outlinePath = Path()
       ..addOval(Rect.fromCircle(radius: dotRadius, center: dotCenter))
       ..addOval(Rect.fromCircle(
           radius: dotRadius - dotOutlineThickness, center: dotCenter))

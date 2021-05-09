@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/provider/drawer_controller.dart';
-import 'package:my_portfolio/helpers/constants.dart';
 import 'package:provider/provider.dart';
-import 'package:my_portfolio/helpers/colors.dart';
+
+import '../helpers/colors.dart';
+import '../helpers/constants.dart';
+import '../provider/drawer_controller.dart';
 
 class DrawerScreen extends StatelessWidget {
+  const DrawerScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -46,9 +48,7 @@ class DrawerScreen extends StatelessWidget {
             child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text('This wesite is created with Flutter Web ❤',
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white))),
+                    style: TextStyle(fontSize: 16, color: Colors.white))),
           )
         ],
       ),

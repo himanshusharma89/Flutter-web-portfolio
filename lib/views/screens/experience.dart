@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/translate_on_hover.dart';
-import 'package:my_portfolio/helpers/colors.dart';
-import 'package:my_portfolio/widgets/card.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
-import 'package:my_portfolio/widgets/title.dart';
-import 'package:my_portfolio/provider/expereince_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:my_portfolio/model/experience/expereince.dart';
+
+import '../../helpers/colors.dart';
+import '../../helpers/responsive_layout.dart';
+import '../../helpers/translate_on_hover.dart';
+import '../../model/experience/expereince.dart';
+import '../../provider/expereince_provider.dart';
+import '../../widgets/card.dart';
+import '../../widgets/title.dart';
 
 class Experience extends StatelessWidget {
+  const Experience({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return ResponsiveLayout(
       largeScreen: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,31 +54,24 @@ class Experience extends StatelessWidget {
             future: exp.getExperience(),
             builder: (_, AsyncSnapshot<List<ExperienceModel>> snapshot) {
               if (snapshot.hasData) {
-                if (ResponsiveLayout.isLargeScreen(context) ||
-                    ResponsiveLayout.isMediumScreen(context)) {
-                  return _gridView(exp.experience, context);
-                } else {
-                  return _listView(exp.experience);
-                }
+                return ResponsiveLayout(
+                  largeScreen: _gridView(exp.experience, context),
+                  smallScreen: _listView(exp.experience),
+                );
               } else {
-                return Center(
-                    child: ResponsiveLayout.isLargeScreen(context) ||
-                            ResponsiveLayout.isMediumScreen(context)
-                        ? const CircularProgressIndicator()
-                        : const SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: CircularProgressIndicator()));
+                return const ResponsiveLayout(
+                    largeScreen: CircularProgressIndicator(),
+                    smallScreen: SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: CircularProgressIndicator()));
               }
             });
-      } else {
-        if (ResponsiveLayout.isLargeScreen(context) ||
-            ResponsiveLayout.isMediumScreen(context)) {
-          return _gridView(exp.experience, context);
-        } else {
-          return _listView(exp.experience);
-        }
       }
+      return ResponsiveLayout(
+        largeScreen: _gridView(exp.experience, context),
+        smallScreen: _listView(exp.experience),
+      );
     });
   }
 
@@ -93,11 +88,11 @@ class Experience extends StatelessWidget {
         itemCount: list.length,
         shrinkWrap: true,
         itemBuilder: (_, int index) {
-          final ExperienceModel experience = list[index];
+          final experience = list[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: TranslateOnHover(
-              child: object(experience),
+              child: listItem(experience),
             ),
           );
         });
@@ -109,16 +104,16 @@ class Experience extends StatelessWidget {
       primary: false,
       itemCount: list.length,
       itemBuilder: (_, int index) {
-        final ExperienceModel experience = list[index];
+        final experience = list[index];
         return Padding(
           padding: const EdgeInsets.all(6.0),
-          child: object(experience),
+          child: listItem(experience),
         );
       },
     );
   }
 
-  Widget object(ExperienceModel experience) {
+  Widget listItem(ExperienceModel experience) {
     return CardView(
       title: experience.title,
       imgURL: experience.imgURL,

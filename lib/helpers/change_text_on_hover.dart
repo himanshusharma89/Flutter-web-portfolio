@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/gestures/events.dart';
-import 'package:my_portfolio/helpers/colors.dart';
-import 'package:my_portfolio/helpers/functions.dart';
+import 'colors.dart';
+import 'functions.dart';
 
 class ChangeTextOnHover extends StatefulWidget {
   // You can also pass the translation in here if you want to

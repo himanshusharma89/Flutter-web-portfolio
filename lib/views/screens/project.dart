@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/helpers/translate_on_hover.dart';
-import 'package:my_portfolio/widgets/card.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
-import 'package:my_portfolio/widgets/title.dart';
-import 'package:my_portfolio/model/project/project.dart';
-import 'package:my_portfolio/provider/project_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:my_portfolio/helpers/colors.dart';
+
+import '../../helpers/colors.dart';
+import '../../helpers/responsive_layout.dart';
+import '../../helpers/translate_on_hover.dart';
+import '../../model/project/project.dart';
+import '../../provider/project_provider.dart';
+import '../../widgets/card.dart';
+import '../../widgets/title.dart';
 
 class Project extends StatelessWidget {
+  const Project({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return ResponsiveLayout(
         largeScreen: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,29 +54,25 @@ class Project extends StatelessWidget {
             future: prjt.getProjects(),
             builder: (_, AsyncSnapshot<List<ProjectModel>> snapshot) {
               if (snapshot.hasData) {
-                if (ResponsiveLayout.isLargeScreen(context) ||
-                    ResponsiveLayout.isMediumScreen(context)) {
-                  return _gridView(prjt.project, context);
-                } else {
-                  return _listView(prjt.project, context);
-                }
+                return ResponsiveLayout(
+                  largeScreen: _gridView(prjt.project, context),
+                  smallScreen: _listView(prjt.project, context),
+                );
               } else {
-                return Center(
-                    child: ResponsiveLayout.isLargeScreen(context) ||
-                            ResponsiveLayout.isMediumScreen(context)
-                        ? const CircularProgressIndicator()
-                        : const SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: CircularProgressIndicator()));
+                return const ResponsiveLayout(
+                  largeScreen: CircularProgressIndicator(),
+                  smallScreen: SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: CircularProgressIndicator()),
+                );
               }
             });
-      } else if (ResponsiveLayout.isLargeScreen(context) ||
-          ResponsiveLayout.isMediumScreen(context)) {
-        return _gridView(prjt.project, context);
-      } else {
-        return _listView(prjt.project, context);
       }
+      return ResponsiveLayout(
+        largeScreen: _gridView(prjt.project, context),
+        smallScreen: _listView(prjt.project, context),
+      );
     });
   }
 
@@ -90,11 +88,11 @@ class Project extends StatelessWidget {
           childAspectRatio: 1 / 0.2),
       itemCount: list.length,
       itemBuilder: (_, int index) {
-        final ProjectModel projects = list[index];
+        final projects = list[index];
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: TranslateOnHover(
-            child: object(projects),
+            child: listItem(projects),
           ),
         );
       },
@@ -102,7 +100,7 @@ class Project extends StatelessWidget {
   }
 
   Widget _listView(List<ProjectModel> list, BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return SizedBox(
       height: height - 140,
       child: ListView.builder(
@@ -110,17 +108,17 @@ class Project extends StatelessWidget {
         primary: false,
         itemCount: list.length,
         itemBuilder: (_, int index) {
-          final ProjectModel projects = list[index];
+          final projects = list[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: object(projects),
+            child: listItem(projects),
           );
         },
       ),
     );
   }
 
-  Widget object(ProjectModel projects) {
+  Widget listItem(ProjectModel projects) {
     return CardView(
       title: projects.title,
       imgURL: projects.imgURL,

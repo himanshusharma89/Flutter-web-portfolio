@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'responsive_layout.dart';
 
 double fontSize(BuildContext context, double size) =>
     ResponsiveLayout.isLargeScreen(context)

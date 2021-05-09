@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/helpers/colors.dart';
-import 'package:my_portfolio/helpers/responsive_layout.dart';
-import 'package:my_portfolio/helpers/translate_on_hover.dart';
-import 'package:my_portfolio/widgets/text.dart';
 
+import '../../helpers/colors.dart';
+import '../../helpers/constants.dart';
 import '../../helpers/responsive_layout.dart';
+import '../../helpers/translate_on_hover.dart';
+import '../../widgets/text.dart';
 
 class Me extends StatefulWidget {
+  const Me({Key? key}) : super(key: key);
   @override
   _MeState createState() => _MeState();
 }
@@ -15,11 +16,8 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<int> _hi;
   late Animation<int> _name;
-  late Animation<int> _designation;
+  late Animation<int> _role;
   late Animation<double> _imgAnimation;
-  String hi = 'Hey! I am';
-  String name = 'HIMANSHU SHARMA';
-  String designation = 'Flutter Developer';
 
   @override
   void initState() {
@@ -32,7 +30,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
     _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.2, 0.7, curve: Curves.easeIn)));
-    _designation = StepTween(begin: 0, end: designation.length).animate(
+    _role = StepTween(begin: 0, end: role.length).animate(
         CurvedAnimation(
             parent: _controller,
             curve: const Interval(0.65, 1, curve: Curves.easeIn)));
@@ -53,51 +51,29 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     return ResponsiveLayout(
         largeScreen: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            MeTextWidget(
+            //TODO: Add Responsive
+            const MeTextWidget(
               text: name,
               textAlign: TextAlign.right,
             ),
             Flexible(
-              flex: ResponsiveLayout.isMediumScreen(context) ? 6 : 4,
+              flex: 4,
               fit: FlexFit.tight,
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
-                  width: width - 10,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: 23,
-                        color: ProfileColors.navbarItemColor,
-                      ),
-                      image: const DecorationImage(
-                          fit: BoxFit.contain,
-                          image: NetworkImage(
-                              'https://avatars.githubusercontent.com/u/44980497?v=4'))
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     offset: Offset(0,3),
-                      //     color: ProfileColors.navbarItemColor,
-                      //     blurRadius: 10
-                      //   ),
-                      //   BoxShadow(
-                      //     offset: Offset(3,0),
-                      //     color: ProfileColors.navbarItemColor,
-                      //     blurRadius: 10
-                      //   )
-                      // ]
-                      ),
+                  decoration: centerImageDecoration(),
                 ),
               ),
             ),
-            MeTextWidget(
-              text: designation,
+            //TODO: Add Responsive
+            const MeTextWidget(
+              text: role,
               textAlign: TextAlign.left,
             )
           ],
@@ -110,51 +86,50 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
               AnimatedBuilder(
                 animation: _hi,
                 builder: (BuildContext context, Widget? child) {
-                  final String text =
-                      hi.substring(0, int.parse(_hi.value.toString()));
+                  final text = hi.substring(0, int.parse(_hi.value.toString()));
                   return Text(
                     text,
                     style: const TextStyle(
-                      letterSpacing: 0.2,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: ProfileColors.headingColor,
-                    ),
+                        letterSpacing: 0.2,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: ProfileColors.headingColor,
+                        height: 1.5),
                   );
                 },
               ),
               AnimatedBuilder(
                 animation: _name,
                 builder: (BuildContext context, Widget? child) {
-                  final String text =
+                  final text =
                       name.substring(0, int.parse(_name.value.toString()));
                   return Center(
                     child: Text(
                       text,
                       style: const TextStyle(
-                        letterSpacing: 0.2,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                          letterSpacing: 0.2,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          height: 1.5),
                     ),
                   );
                 },
               ),
               AnimatedBuilder(
-                animation: _designation,
+                animation: _role,
                 builder: (BuildContext context, Widget? child) {
-                  final String text = designation.substring(
-                      0, int.parse(_designation.value.toString()));
+                  final text = role.substring(
+                      0, int.parse(_role.value.toString()));
                   return Center(
                     child: Text(
                       text,
                       style: const TextStyle(
-                        letterSpacing: 2,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
+                          letterSpacing: 2,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          height: 1.5),
                     ),
                   );
                 },
@@ -168,32 +143,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
                   child: TranslateOnHover(
                     child: Container(
                       height: height * 0.55,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            width: 23,
-                            color: ProfileColors.navbarItemColor,
-                          ),
-                          boxShadow: const <BoxShadow>[
-                            BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 15)
-                          ],
-                          image: const DecorationImage(
-                              fit: BoxFit.contain,
-                              image: NetworkImage(
-                                  'https://avatars.githubusercontent.com/u/44980497?v=4'))
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     offset: Offset(0,3),
-                          //     color: ProfileColors.navbarItemColor,
-                          //     blurRadius: 10
-                          //   ),
-                          //   BoxShadow(
-                          //     offset: Offset(3,0),
-                          //     color: ProfileColors.navbarItemColor,
-                          //     blurRadius: 10
-                          //   )
-                          // ]
-                          ),
+                      decoration: centerImageDecoration(),
                     ),
                   ),
                 ),
@@ -201,5 +151,21 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
             ],
           ),
         ));
+  }
+
+  BoxDecoration centerImageDecoration() {
+    return BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          width: 20,
+          color: ProfileColors.navbarItemColor,
+        ),
+        boxShadow: const <BoxShadow>[
+          BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 15)
+        ],
+        image: const DecorationImage(
+            fit: BoxFit.contain,
+            image: NetworkImage(
+                'https://avatars.githubusercontent.com/u/44980497?v=4')));
   }
 }
