@@ -10,3 +10,10 @@ double fontSize(BuildContext context, double size) =>
 
 double navBarWidth(BuildContext context) =>
     ResponsiveLayout.isLargeScreen(context) ? 20 : 25;
+
+Future<void> animateToPage(PageController controller, int index) async {
+  if (controller.hasClients) {
+    controller.animateToPage(index,
+        duration: const Duration(milliseconds: 1000), curve: Curves.ease);
+  }
+}

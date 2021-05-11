@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../helpers/animate_to_page.dart';
 import '../helpers/colors.dart';
+import '../helpers/functions.dart';
 
 Widget pageIndicator(PageController controller) {
   return Center(

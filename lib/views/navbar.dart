@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../helpers/animate_to_page.dart';
 import '../helpers/change_text_on_hover.dart';
 import '../helpers/colors.dart';
 import '../helpers/constants.dart';
@@ -25,12 +24,12 @@ class Navbar extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: navBarItems
               .map(
-                (Map<String, String> e) => Padding(
+                (String e) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: navBarItem(
                       context: context,
                       index: navBarItems.indexOf(e),
-                      navText: e['title'].toString()),
+                      navText: e),
                 ),
               )
               .toList(),

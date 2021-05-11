@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import 'helpers/colors.dart';
 import 'helpers/launcher.dart';
-import 'provider/article_provider.dart';
 import 'provider/current_index.dart';
 import 'provider/expereince_provider.dart';
 import 'provider/project_provider.dart';
@@ -21,7 +20,6 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: <ChangeNotifierProvider<ChangeNotifier>>[
       ChangeNotifierProvider<CurrentPage>(create: (_) => CurrentPage()),
-      ChangeNotifierProvider<ArticleProvider>(create: (_) => ArticleProvider()),
       ChangeNotifierProvider<ExperienceProvider>(
           create: (_) => ExperienceProvider()),
       ChangeNotifierProvider<ProjectProvider>(create: (_) => ProjectProvider())

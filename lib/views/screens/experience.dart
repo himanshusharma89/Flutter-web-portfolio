@@ -8,7 +8,7 @@ import '../../helpers/translate_on_hover.dart';
 import '../../model/experience/expereince.dart';
 import '../../provider/expereince_provider.dart';
 import '../../widgets/card.dart';
-import '../../widgets/title.dart';
+import '../../widgets/page_title.dart';
 
 class Experience extends StatelessWidget {
   const Experience({Key? key}) : super(key: key);

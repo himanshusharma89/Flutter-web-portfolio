@@ -7,7 +7,7 @@ import '../../helpers/functions.dart';
 import '../../helpers/responsive_layout.dart';
 import '../../helpers/translate_on_hover.dart';
 import '../../widgets/button.dart';
-import '../../widgets/title.dart';
+import '../../widgets/page_title.dart';
 
 class AboutMe extends StatelessWidget {
   const AboutMe({Key? key}) : super(key: key);

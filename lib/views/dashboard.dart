@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../helpers/functions.dart';
 import '../helpers/responsive_layout.dart';
-import '../provider/article_provider.dart';
 import '../provider/current_index.dart';
 import '../provider/drawer_controller.dart';
 import '../provider/expereince_provider.dart';
@@ -11,7 +10,6 @@ import '../provider/project_provider.dart';
 import '../views/navbar.dart';
 import '../views/screens/home/desktop.dart';
 import '../views/screens/home/mobile.dart';
-import '../widgets/button.dart';
 import '../widgets/page_indicator.dart';
 import '../widgets/social.dart';
 
@@ -30,7 +28,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     super.initState();
     Provider.of<ExperienceProvider>(context, listen: false).getExperience();
     Provider.of<ProjectProvider>(context, listen: false).getProjects();
-    Provider.of<ArticleProvider>(context, listen: false).getMediumArticles();
     menuController = MenuController(
       vsync: this,
     )..addListener(() => setState(() {}));
@@ -79,17 +76,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                       children: <Widget>[
                         Expanded(
                             child: Column(
-                          children: [
-                            // Padding(
-                            //   padding: const EdgeInsets.only(top: 7),
-                            //   child: ProfileButton(
-                            //       height: height * 0.05,
-                            //       text: 'Blog',
-                            //       link: 'https://blog.himanshusharma.tech/'),
-                            // ),
-                            // const Spacer()
-                          ],
-                        )),
+                                //TODO
+                                )),
                         Expanded(child: pageIndicator(desktopController)),
                         const Expanded(child: SocialWidget()),
                       ],

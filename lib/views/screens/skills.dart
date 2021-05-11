@@ -6,7 +6,7 @@ import '../../helpers/constants.dart';
 import '../../helpers/functions.dart';
 import '../../helpers/responsive_layout.dart';
 import '../../main.dart';
-import '../../widgets/title.dart';
+import '../../widgets/page_title.dart';
 
 class Skills extends StatelessWidget {
   const Skills({Key? key}) : super(key: key);
@@ -65,28 +65,22 @@ class Skills extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: tile(context,
-              link: 'https://wakatime.com/@HimanshuSharma',
-              imageURL: 'assets/wakatime_icon.png'),
-        ),
+        tile(context,
+            link: 'https://wakatime.com/@HimanshuSharma',
+            imageURL: 'assets/wakatime_icon.png'),
         const SizedBox(
           width: 30,
         ),
-        MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: tile(context,
-              link: 'https://github.com/himanshusharma89',
-              imageURL: 'assets/github_icon.png'),
-        )
+        tile(context,
+            link: 'https://github.com/himanshusharma89',
+            imageURL: 'assets/github_icon.png')
       ],
     );
   }
 
   Widget tile(BuildContext context,
       {required String link, required String imageURL}) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         launcher.launchURL(link);
       },

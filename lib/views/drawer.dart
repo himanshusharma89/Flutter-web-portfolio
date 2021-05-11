@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../helpers/colors.dart';
 import '../helpers/constants.dart';
+import '../model/social_platform_item.dart';
 import '../provider/drawer_controller.dart';
 
 class DrawerScreen extends StatelessWidget {
@@ -24,15 +25,15 @@ class DrawerScreen extends StatelessWidget {
             color: ProfileColors.drawerColor,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: options.map((MenuItem item) {
+              children: socialPlatforms.map((SocialPlatformsItem item) {
                 return ListTile(
                   leading: Image.network(
-                    item.icon!,
+                    item.icon,
                     height: 35,
                     width: 35,
                   ),
                   title: Text(
-                    item.title!,
+                    item.title,
                     style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

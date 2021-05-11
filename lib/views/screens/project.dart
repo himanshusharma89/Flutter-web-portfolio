@@ -8,7 +8,7 @@ import '../../helpers/translate_on_hover.dart';
 import '../../model/project/project.dart';
 import '../../provider/project_provider.dart';
 import '../../widgets/card.dart';
-import '../../widgets/title.dart';
+import '../../widgets/page_title.dart';
 
 class Project extends StatelessWidget {
   const Project({Key? key}) : super(key: key);
