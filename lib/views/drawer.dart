@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../helpers/colors.dart';
 import '../helpers/constants.dart';
+import '../main.dart';
 import '../model/social_platform_item.dart';
 import '../provider/drawer_controller.dart';
 
@@ -39,7 +40,9 @@ class DrawerScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  onTap: item.onTap,
+                  onTap: () {
+                    launcher.launchURL(item.url);
+                  },
                 );
               }).toList(),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/constants.dart';
 import '../helpers/functions.dart';
 import '../helpers/responsive_layout.dart';
 import '../provider/current_index.dart';
@@ -49,7 +50,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return ChangeNotifierProvider<MenuController>.value(
         value: menuController,
@@ -71,20 +71,31 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                 Flexible(
                   child: SizedBox(
                     width: width * 0.025 + navBarWidth(context),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Expanded(
-                            child: Column(
-                                //TODO
-                                )),
-                        Expanded(
-                            child: Center(
-                              child: pageIndicator(desktopController,
-                                  axisDirection: Axis.vertical),
-                            )),
-                        const Expanded(child: SocialWidget()),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3.5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Expanded(
+                              child: Align(
+                            alignment: Alignment.topCenter,
+                            child: SocialWidget(
+                              socials: socialPlatforms.sublist(0, 1),
+                            ),
+                          )),
+                          Expanded(
+                              child: Center(
+                            child: pageIndicator(desktopController,
+                                axisDirection: Axis.vertical),
+                          )),
+                          Expanded(
+                              child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: SocialWidget(
+                                    socials: socialPlatforms.sublist(1),
+                                  ))),
+                        ],
+                      ),
                     ),
                   ),
                 ),

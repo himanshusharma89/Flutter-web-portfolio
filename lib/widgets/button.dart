@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../helpers/colors.dart';
 
-import '../main.dart';
-
 class ProfileButton extends StatefulWidget {
   const ProfileButton(
       {required this.text,
-      required this.link,
+      required this.onTap,
       this.height,
       this.width,
       Key? key})
       : super(key: key);
 
-  final String text, link;
+  final String text;
   final double? height, width;
+  final Function() onTap;
 
   @override
   _ProfileButtonState createState() => _ProfileButtonState();
@@ -30,9 +29,7 @@ class _ProfileButtonState extends State<ProfileButton> {
       onHover: (event) => _mouseEnter(true),
       onExit: (event) => _mouseEnter(false),
       child: GestureDetector(
-        onTap: () {
-          launcher.launchURL(widget.link);
-        },
+        onTap: widget.onTap,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeOutCubic,

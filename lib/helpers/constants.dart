@@ -1,4 +1,3 @@
-import '../main.dart';
 import '../model/social_platform_item.dart';
 
 const List<String> navBarItems = <String>[
@@ -6,41 +5,35 @@ const List<String> navBarItems = <String>[
   'ABOUT',
   'SKILLS',
   'WORK',
-  'PROJECTS'
+  'PROJECTS',
+  'EXTRA'
 ];
 
-List<SocialPlatformsItem> socialPlatforms = <SocialPlatformsItem>[
+const List<SocialPlatformsItem> socialPlatforms = <SocialPlatformsItem>[
+  SocialPlatformsItem(
+      icon: 'https://img.icons8.com/windows/64/000000/blog-logo.png',
+      title: 'Blogs',
+      url: 'https://blog.himanshusharma.tech/'),
   SocialPlatformsItem(
       icon: 'https://img.icons8.com/fluent/50/000000/github.png',
       title: 'GitHub',
-      onTap: () {
-        launcher.launchURL('https://github.com/himanshusharma89');
-      }),
+      url: 'https://github.com/himanshusharma89'),
   SocialPlatformsItem(
       icon: 'https://img.icons8.com/color/48/000000/linkedin.png',
       title: 'LinkedIn',
-      onTap: () {
-        launcher.launchURL('https://www.linkedin.com/in/himanshusharma89/');
-      }),
+      url: 'https://www.linkedin.com/in/himanshusharma89/'),
   SocialPlatformsItem(
       icon: 'https://img.icons8.com/color/48/000000/twitter.png',
       title: 'Twitter',
-      onTap: () {
-        launcher.launchURL('https://twitter.com/_SharmaHimanshu');
-      }),
+      url: 'https://twitter.com/_SharmaHimanshu'),
   SocialPlatformsItem(
       icon: 'https://img.icons8.com/ios-filled/50/000000/codepen.png',
       title: 'Codepen',
-      onTap: () {
-        launcher.launchURL('https://codepen.io/himanshusharma89');
-      }),
+      url: 'https://codepen.io/himanshusharma89'),
   SocialPlatformsItem(
       icon: 'https://img.icons8.com/color/48/000000/stackoverflow.png',
       title: 'Stackoverflow',
-      onTap: () {
-        launcher.launchURL(
-            'https://stackoverflow.com/users/11545939/himanshu-sharma');
-      }),
+      url: 'https://stackoverflow.com/users/11545939/himanshu-sharma')
 ];
 
 const String aboutMe = '''

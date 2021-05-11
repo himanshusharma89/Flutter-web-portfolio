@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:my_portfolio/widgets/contact_me_dialog.dart';
 
 import '../../helpers/colors.dart';
 import '../../helpers/constants.dart';
@@ -24,8 +25,9 @@ class AboutMe extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: TranslateOnHover(
                 child: FadeInImage.memoryNetwork(
-                  placeholderCacheHeight: 80,
-                    placeholder: unit8ListPlaceholder, image: aboutMeImage),
+                    placeholderCacheHeight: 80,
+                    placeholder: unit8ListPlaceholder,
+                    image: aboutMeImage),
               ),
             ),
             FractionallySizedBox(
@@ -39,7 +41,7 @@ class AboutMe extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  buttons()
+                  buttons(context)
                 ],
               ),
             ),
@@ -60,7 +62,7 @@ class AboutMe extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              buttons()
+              buttons(context)
             ],
           ),
         ));
@@ -74,20 +76,23 @@ class AboutMe extends StatelessWidget {
     );
   }
 
-  Widget buttons() {
+  Widget buttons(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const <Widget>[
+      children: <Widget>[
         ProfileButton(
           text: 'CONTACT ME',
-          link: 'mailto:contact@himanshusharma.tech',
+          onTap: () {
+            showDialog(
+                context: context, builder: (_) => const ContactMeDialog());
+          },
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         ProfileButton(
           text: 'MY RESUME',
-          link: 'mailto:contact@himanshusharma.tech',
+          onTap: () => launcher.launchURL('mailto:contact@himanshusharma.tech'),
         )
       ],
     );

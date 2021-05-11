@@ -6,11 +6,12 @@ import '../../../views/screens/about_me.dart';
 import '../../../views/screens/experience.dart';
 import '../../../views/screens/project.dart';
 import '../../../views/screens/skills.dart';
+import '../extra.dart';
 import '../hero.dart' as hero;
 
 class DesktopWidget extends StatefulWidget {
-  const DesktopWidget({this.controller, Key? key}) : super(key: key);
-  final PageController? controller;
+  const DesktopWidget({required this.controller, Key? key}) : super(key: key);
+  final PageController controller;
   @override
   _DesktopWidgetState createState() => _DesktopWidgetState();
 }
@@ -26,7 +27,8 @@ class _DesktopWidgetState extends State<DesktopWidget> {
       AboutMe(),
       Skills(),
       Experience(),
-      Project()
+      Project(),
+      Extra()
     ];
   }
 

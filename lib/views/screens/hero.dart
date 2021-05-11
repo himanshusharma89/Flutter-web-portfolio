@@ -4,6 +4,7 @@ import '../../helpers/colors.dart';
 import '../../helpers/constants.dart';
 import '../../helpers/responsive_layout.dart';
 import '../../helpers/translate_on_hover.dart';
+import '../../main.dart';
 import '../../widgets/text.dart';
 
 class Hero extends StatefulWidget {
@@ -65,9 +66,7 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
               fit: FlexFit.tight,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Container(
-                  decoration: centerImageDecoration(),
-                ),
+                child: centerImage(),
               ),
             ),
             //TODO: Add Responsive
@@ -140,10 +139,7 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
                 child: FadeTransition(
                   opacity: _imgAnimation,
                   child: TranslateOnHover(
-                    child: Container(
-                      height: height * 0.55,
-                      decoration: centerImageDecoration(),
-                    ),
+                    child: centerImage(height: height * 0.55),
                   ),
                 ),
               ),
@@ -152,17 +148,26 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
         ));
   }
 
-  BoxDecoration centerImageDecoration() {
-    return BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          width: 20,
-          color: ProfileColors.navbarItemColor,
-        ),
-        boxShadow: const <BoxShadow>[
-          BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 15)
-        ],
-        image: const DecorationImage(
-            fit: BoxFit.contain, image: NetworkImage(heroImage)));
+  Widget centerImage({double? height}) {
+    return Container(
+      height: height,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            width: 20,
+            color: ProfileColors.navbarItemColor,
+          ),
+          color: ProfileColors.backgroundColor,
+          boxShadow: const <BoxShadow>[
+            BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 15)
+          ]),
+      child: ClipOval(
+        child: FadeInImage.memoryNetwork(
+            placeholderCacheHeight: 20,
+            placeholderScale: 0.2,
+            placeholder: unit8ListPlaceholder,
+            image: heroImage),
+      ),
+    );
   }
 }

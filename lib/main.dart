@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ import 'views/dashboard.dart';
 
 final Launcher launcher = Launcher();
 late Uint8List unit8ListPlaceholder;
+final ImageFilter imageFilter = ImageFilter.blur(sigmaX: 2.6, sigmaY: 2.6);
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

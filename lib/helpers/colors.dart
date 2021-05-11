@@ -13,6 +13,7 @@ class ProfileColors {
   static const Color drawerColor = cardColor;
   static const Color dotOutlineColor = Color(0xff9d39f5);
   static const Color pageIndicatorColor = Color(0xff50f5aa);
+  static const Color formColor = Color(0xffF4F8fa);
 
   // static const Color color1 = Color(0xff4e2ec2);
   // static const Color bottomWidgets = Color(0xff51a5cf);

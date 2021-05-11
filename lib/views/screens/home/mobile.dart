@@ -9,6 +9,7 @@ import '../../../views/screens/experience.dart';
 import '../../../views/screens/project.dart';
 import '../../../views/screens/skills.dart';
 import '../../../widgets/page_indicator.dart';
+import '../extra.dart';
 import '../hero.dart' as hero;
 
 class MobileWidget extends StatefulWidget {
@@ -69,7 +70,8 @@ class _MobileWidgetState extends State<MobileWidget>
                       AboutMe(),
                       Skills(),
                       Experience(),
-                      Project()
+                      Project(),
+                      Extra()
                     ],
                   ),
                   Padding(

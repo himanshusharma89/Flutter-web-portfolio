@@ -63,7 +63,7 @@ class DialogView extends StatelessWidget {
     ];
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 2.6, sigmaY: 2.6),
+        filter: imageFilter,
         child: Dialog(
           child: Container(
               width: MediaQuery.of(context).size.width * 0.55,
