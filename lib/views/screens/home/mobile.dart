@@ -6,10 +6,10 @@ import '../../../provider/drawer_controller.dart';
 import '../../../views/drawer.dart';
 import '../../../views/screens/about_me.dart';
 import '../../../views/screens/experience.dart';
-import '../../../views/screens/me.dart';
 import '../../../views/screens/project.dart';
 import '../../../views/screens/skills.dart';
 import '../../../widgets/page_indicator.dart';
+import '../hero.dart' as hero;
 
 class MobileWidget extends StatefulWidget {
   const MobileWidget({required this.controller, Key? key}) : super(key: key);
@@ -65,7 +65,7 @@ class _MobileWidgetState extends State<MobileWidget>
                   PageView(
                     controller: widget.controller,
                     children: const <Widget>[
-                      Me(),
+                      hero.Hero(),
                       AboutMe(),
                       Skills(),
                       Experience(),

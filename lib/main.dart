@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
@@ -12,11 +15,14 @@ import 'provider/project_provider.dart';
 import 'views/dashboard.dart';
 
 final Launcher launcher = Launcher();
+late Uint8List unit8ListPlaceholder;
 
 Future<void> main() async {
-  WidgetsBinding.instance;
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await initializeDateFormatting();
+  final bytes = await rootBundle.load('assets/placeholder.gif');
+  unit8ListPlaceholder = bytes.buffer.asUint8List();
   runApp(MultiProvider(
     providers: <ChangeNotifierProvider<ChangeNotifier>>[
       ChangeNotifierProvider<CurrentPage>(create: (_) => CurrentPage()),

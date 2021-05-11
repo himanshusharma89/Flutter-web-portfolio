@@ -78,7 +78,11 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             child: Column(
                                 //TODO
                                 )),
-                        Expanded(child: pageIndicator(desktopController)),
+                        Expanded(
+                            child: Center(
+                              child: pageIndicator(desktopController,
+                                  axisDirection: Axis.vertical),
+                            )),
                         const Expanded(child: SocialWidget()),
                       ],
                     ),

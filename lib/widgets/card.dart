@@ -82,11 +82,8 @@ class _CardViewState extends State<CardView> {
                 alignment: widget.imgAlignment,
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
-                  child: FadeInImage(
-                      placeholder: const AssetImage('assets/placeholder.gif'),
-                      image: NetworkImage(
-                        widget.imgURL!,
-                      )),
+                  child: FadeInImage.memoryNetwork(
+                      placeholder: unit8ListPlaceholder, image: widget.imgURL!),
                 ),
               ),
               FractionallySizedBox(

@@ -6,13 +6,13 @@ import '../../helpers/responsive_layout.dart';
 import '../../helpers/translate_on_hover.dart';
 import '../../widgets/text.dart';
 
-class Me extends StatefulWidget {
-  const Me({Key? key}) : super(key: key);
+class Hero extends StatefulWidget {
+  const Hero({Key? key}) : super(key: key);
   @override
-  _MeState createState() => _MeState();
+  _HeroState createState() => _HeroState();
 }
 
-class _MeState extends State<Me> with SingleTickerProviderStateMixin {
+class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<int> _hi;
   late Animation<int> _name;
@@ -30,10 +30,9 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
     _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.2, 0.7, curve: Curves.easeIn)));
-    _role = StepTween(begin: 0, end: role.length).animate(
-        CurvedAnimation(
-            parent: _controller,
-            curve: const Interval(0.65, 1, curve: Curves.easeIn)));
+    _role = StepTween(begin: 0, end: role.length).animate(CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.65, 1, curve: Curves.easeIn)));
     _imgAnimation = CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.3, 0.6, curve: Curves.easeIn));
@@ -65,7 +64,7 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
               flex: 4,
               fit: FlexFit.tight,
               child: Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Container(
                   decoration: centerImageDecoration(),
                 ),
@@ -119,8 +118,8 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
               AnimatedBuilder(
                 animation: _role,
                 builder: (BuildContext context, Widget? child) {
-                  final text = role.substring(
-                      0, int.parse(_role.value.toString()));
+                  final text =
+                      role.substring(0, int.parse(_role.value.toString()));
                   return Center(
                     child: Text(
                       text,
@@ -164,8 +163,6 @@ class _MeState extends State<Me> with SingleTickerProviderStateMixin {
           BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 15)
         ],
         image: const DecorationImage(
-            fit: BoxFit.contain,
-            image: NetworkImage(
-                'https://avatars.githubusercontent.com/u/44980497?v=4')));
+            fit: BoxFit.contain, image: NetworkImage(heroImage)));
   }
 }

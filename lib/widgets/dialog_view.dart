@@ -32,10 +32,8 @@ class DialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final children = <Widget>[
-      FadeInImage(
-          height: 100,
-          placeholder: const AssetImage('assets/placeholder.gif'),
-          image: NetworkImage(imgURL!)),
+      FadeInImage.memoryNetwork(
+          height: 100, placeholder: unit8ListPlaceholder, image: imgURL!),
       SizedBox(
         width: ResponsiveLayout.isSmallScreen(context) ? 0 : 10,
         height: ResponsiveLayout.isSmallScreen(context) ? 10 : 0,
@@ -107,19 +105,18 @@ class DialogView extends StatelessWidget {
                           onPressed: () => launcher.launchURL(projectLink!),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const <Widget>[
-                              Text(
+                            children: <Widget>[
+                              const Text(
                                 'Project Link',
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
-                              FadeInImage(
+                              FadeInImage.memoryNetwork(
                                   height: 30,
-                                  placeholder:
-                                      AssetImage('assets/placeholder.gif'),
-                                  image: NetworkImage(
-                                      'https://img.icons8.com/fluent/50/000000/github.png'))
+                                  placeholder: unit8ListPlaceholder,
+                                  image:
+                                      'https://img.icons8.com/fluent/50/000000/github.png')
                             ],
                           ),
                         ),

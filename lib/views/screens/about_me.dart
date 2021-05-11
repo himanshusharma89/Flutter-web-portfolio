@@ -6,6 +6,7 @@ import '../../helpers/constants.dart';
 import '../../helpers/functions.dart';
 import '../../helpers/responsive_layout.dart';
 import '../../helpers/translate_on_hover.dart';
+import '../../main.dart';
 import '../../widgets/button.dart';
 import '../../widgets/page_title.dart';
 
@@ -19,12 +20,13 @@ class AboutMe extends StatelessWidget {
           children: <Widget>[
             FractionallySizedBox(
               widthFactor: 0.5,
+              heightFactor: 0.45,
               alignment: Alignment.centerLeft,
               child: TranslateOnHover(
-                  child: Image.network(
-                // TODO: Update link
-                'https://media-exp1.licdn.com/dms/image/C4E03AQEPWg_0mWYwaw/profile-displayphoto-shrink_400_400/0/1607276904548?e=1618444800&v=beta&t=_bm1lzC7rU7_G8_a2z5jDndXpuX-EazPDPaJakp2t28',
-              )),
+                child: FadeInImage.memoryNetwork(
+                  placeholderCacheHeight: 80,
+                    placeholder: unit8ListPlaceholder, image: aboutMeImage),
+              ),
             ),
             FractionallySizedBox(
               widthFactor: 0.5,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import '../helpers/constants.dart';
+import '../main.dart';
 
 class SocialWidget extends StatelessWidget {
   const SocialWidget({Key? key}) : super(key: key);
@@ -23,13 +25,11 @@ class SocialWidget extends StatelessWidget {
               child: InkWell(
                 onTap: socialPlatforms[index].onTap,
                 customBorder: const CircleBorder(),
-                child: FadeInImage(
+                child: FadeInImage.memoryNetwork(
                   width: 30.0,
                   height: 30.0,
-                  placeholder: const AssetImage('assets/placeholder.gif'),
-                  image: NetworkImage(
-                    socialPlatforms[index].icon,
-                  ),
+                  placeholder: unit8ListPlaceholder,
+                  image: socialPlatforms[index].icon,
                 ),
               ),
             ),

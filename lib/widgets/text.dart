@@ -9,18 +9,21 @@ class MeTextWidget extends StatelessWidget {
   final TextAlign? textAlign;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
       flex: 2,
       // fit: FlexFit.tight,
-      child: Text(
-        text.replaceAll(' ', '\n'),
-        textAlign: textAlign,
-        maxLines: 2,
-        style: TextStyle(
-          letterSpacing: 2.2,
-          fontSize: ResponsiveLayout.isMediumScreen(context) ? 25 : 35,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
+      child: FittedBox(
+        
+        child: Text(
+          text.replaceAll(' ', '\n'),
+          textAlign: textAlign,
+          maxLines: 2,
+          style: TextStyle(
+            letterSpacing: 2.2,
+            fontSize: ResponsiveLayout.isMediumScreen(context) ? 25 : 35,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );
