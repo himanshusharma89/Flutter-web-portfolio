@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_portfolio/widgets/contact_me_dialog.dart';
 
 import '../../helpers/colors.dart';
 import '../../helpers/constants.dart';
@@ -9,6 +8,7 @@ import '../../helpers/responsive_layout.dart';
 import '../../helpers/translate_on_hover.dart';
 import '../../main.dart';
 import '../../widgets/button.dart';
+import '../../widgets/contact_me_dialog.dart';
 import '../../widgets/page_title.dart';
 
 class AboutMe extends StatelessWidget {
@@ -92,7 +92,7 @@ class AboutMe extends StatelessWidget {
         ),
         ProfileButton(
           text: 'MY RESUME',
-          onTap: () => launcher.launchURL('mailto:contact@himanshusharma.tech'),
+          onTap: () => launcher.launchURL(resumeWebsite),
         )
       ],
     );

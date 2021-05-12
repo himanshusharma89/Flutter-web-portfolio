@@ -24,6 +24,7 @@ class _PageTitleState extends State<PageTitle> {
               fontWeight: FontWeight.bold,
               color: ProfileColors.headingColor,
               fontSize: ResponsiveLayout.isSmallScreen(context) ? 22 : 25.0,
+              letterSpacing: 1.5
             ),
           ),
           SizedBox(

@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 
 import '../helpers/colors.dart';
 import '../helpers/functions.dart';
-import '../helpers/responsive_layout.dart';
 import '../main.dart';
 import '../widgets/dialog_view.dart';
 
@@ -13,29 +12,25 @@ class CardView extends StatefulWidget {
       {required this.title,
       required this.imgURL,
       required this.url,
-      required this.imgAlignment,
       required this.trailingIcon,
-      this.desc,
+      required this.desc,
+      required this.startAt,
       this.org,
       this.trailingIconData = Icons.launch_rounded,
-      this.startAt,
       this.endAt,
-      this.articleLink,
       this.projectLink,
       Key? key})
       : super(key: key);
 
-  final String? title;
-  final String? desc;
+  final String title;
+  final String desc;
   final String? org;
-  final String? imgURL;
-  final Alignment imgAlignment;
+  final String imgURL;
   final bool trailingIcon;
   final IconData trailingIconData;
   final String? url;
-  final Timestamp? startAt;
+  final Timestamp startAt;
   final Timestamp? endAt;
-  final String? articleLink;
   final String? projectLink;
 
   @override
@@ -45,28 +40,22 @@ class CardView extends StatefulWidget {
 class _CardViewState extends State<CardView> {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: height * 0.1,
-      width:
-          ResponsiveLayout.isSmallScreen(context) ? width * 0.56 : width * 0.25,
-      // height: height*0.48,
+      height: height * 0.125,
       child: InkWell(
-        onTap: () => widget.articleLink != null
-            ? launcher.launchURL(widget.articleLink!)
-            : showDialog(
-                context: context,
-                builder: (_) => DialogView(
-                  description: widget.desc,
-                  title: widget.title,
-                  imgURL: widget.imgURL,
-                  org: widget.org,
-                  startAt: widget.startAt,
-                  endAt: widget.endAt,
-                  projectLink: widget.projectLink,
-                ),
-              ),
+        onTap: () => showDialog(
+          context: context,
+          builder: (_) => DialogView(
+            description: widget.desc,
+            title: widget.title,
+            imgURL: widget.imgURL,
+            org: widget.org,
+            startAt: widget.startAt,
+            endAt: widget.endAt,
+            projectLink: widget.projectLink,
+          ),
+        ),
         child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
@@ -75,22 +64,19 @@ class _CardViewState extends State<CardView> {
           color: ProfileColors.cardColor,
           child: Stack(
             fit: StackFit.expand,
-            // fit: StackFit.expand,
             children: <Widget>[
               FractionallySizedBox(
                 widthFactor: 0.25,
-                alignment: widget.imgAlignment,
+                alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: FadeInImage.memoryNetwork(
-                      placeholder: unit8ListPlaceholder, image: widget.imgURL!),
+                      placeholder: unit8ListPlaceholder, image: widget.imgURL),
                 ),
               ),
               FractionallySizedBox(
                 widthFactor: 0.75,
-                alignment: widget.imgAlignment == Alignment.centerLeft
-                    ? Alignment.centerRight
-                    : Alignment.centerLeft,
+                alignment: Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Row(
@@ -101,8 +87,9 @@ class _CardViewState extends State<CardView> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Flexible(
+                              flex: 2,
                               child: Text(
-                                widget.title!,
+                                widget.title,
                                 style: TextStyle(
                                   fontSize: fontSize(context, 15),
                                   fontWeight: FontWeight.bold,
@@ -120,20 +107,16 @@ class _CardViewState extends State<CardView> {
                                   ),
                                 ),
                               ),
-                            // SizedBox(
-                            //   height: height * 0.01,
-                            // ),
-                            if (widget.desc != null)
-                              Expanded(
-                                child: Text(
-                                  widget.desc!,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    fontSize: 13.0,
-                                    color: ProfileColors.cardTextColor,
-                                  ),
+                            Flexible(
+                              child: Text(
+                                widget.desc,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 13.0,
+                                  color: ProfileColors.cardTextColor,
                                 ),
                               ),
+                            ),
                           ],
                         ),
                       ),
@@ -141,7 +124,7 @@ class _CardViewState extends State<CardView> {
                         IconButton(
                             icon: Icon(
                               widget.trailingIconData,
-                              color: ProfileColors.navbarItemColor,
+                              color: ProfileColors.dotOutlineColor,
                               size: 15,
                             ),
                             onPressed: () {

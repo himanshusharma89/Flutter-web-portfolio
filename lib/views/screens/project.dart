@@ -4,10 +4,9 @@ import 'package:provider/provider.dart';
 
 import '../../helpers/colors.dart';
 import '../../helpers/responsive_layout.dart';
-import '../../helpers/translate_on_hover.dart';
-import '../../model/project/project.dart';
+import '../../model/card/card.dart';
 import '../../provider/project_provider.dart';
-import '../../widgets/card.dart';
+import '../../widgets/lists_view.dart';
 import '../../widgets/page_title.dart';
 
 class Project extends StatelessWidget {
@@ -25,7 +24,7 @@ class Project extends StatelessWidget {
             Flexible(
               child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: consumerWidget()),
+                  child: consumerWidget(context)),
             ),
           ],
         ),
@@ -39,24 +38,25 @@ class Project extends StatelessWidget {
               children: <Widget>[
                 const PageTitle(title: 'Projects'),
                 const SizedBox(height: 10.0),
-                consumerWidget()
+                consumerWidget(context)
               ],
             ),
           ),
         ));
   }
 
-  Widget consumerWidget() {
+  Widget consumerWidget(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Consumer<ProjectProvider>(
         builder: (BuildContext context, ProjectProvider prjt, Widget? child) {
       if (prjt.project.isEmpty) {
-        return FutureBuilder<List<ProjectModel>>(
+        return FutureBuilder<List<CardModel>>(
             future: prjt.getProjects(),
-            builder: (_, AsyncSnapshot<List<ProjectModel>> snapshot) {
+            builder: (_, AsyncSnapshot<List<CardModel>> snapshot) {
               if (snapshot.hasData) {
                 return ResponsiveLayout(
-                  largeScreen: _gridView(prjt.project, context),
-                  smallScreen: _listView(prjt.project, context),
+                  largeScreen: gridView(prjt.project, width * 0.25),
+                  smallScreen: listView(prjt.project),
                 );
               } else {
                 return const ResponsiveLayout(
@@ -70,65 +70,9 @@ class Project extends StatelessWidget {
             });
       }
       return ResponsiveLayout(
-        largeScreen: _gridView(prjt.project, context),
-        smallScreen: _listView(prjt.project, context),
+        largeScreen: gridView(prjt.project, width * 0.25),
+        smallScreen: listView(prjt.project),
       );
     });
-  }
-
-  Widget _gridView(List<ProjectModel> list, BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      primary: false,
-      // physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: ResponsiveLayout.isMediumScreen(context) ? 2 : 3,
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
-          childAspectRatio: 1 / 0.2),
-      itemCount: list.length,
-      itemBuilder: (_, int index) {
-        final projects = list[index];
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TranslateOnHover(
-            child: listItem(projects),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _listView(List<ProjectModel> list, BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return SizedBox(
-      height: height - 140,
-      child: ListView.builder(
-        shrinkWrap: true,
-        primary: false,
-        itemCount: list.length,
-        itemBuilder: (_, int index) {
-          final projects = list[index];
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: listItem(projects),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget listItem(ProjectModel projects) {
-    return CardView(
-      title: projects.title,
-      imgURL: projects.imgURL,
-      imgAlignment: Alignment.centerLeft,
-      url: projects.url,
-      desc: projects.desc,
-      trailingIcon: false,
-      startAt: projects.startAt,
-      endAt: projects.endAt,
-      projectLink: projects.projectLink,
-    );
   }
 }

@@ -59,3 +59,4 @@ const String heroImage =
     'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/Himanshu%20Sharma.jpg?alt=media&token=89e96691-a349-4d5b-9b74-da736fcab72e';
 const String aboutMeImage =
     'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/about.png?alt=media&token=f9588f27-4319-4866-861c-f1b8f48f774e';
+const String resumeWebsite = 'https://www.himanshusharma.tech/resume';

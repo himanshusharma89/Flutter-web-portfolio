@@ -51,7 +51,6 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     return ResponsiveLayout(
         largeScreen: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -79,67 +78,75 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
         smallScreen: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 65),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              AnimatedBuilder(
-                animation: _hi,
-                builder: (BuildContext context, Widget? child) {
-                  final text = hi.substring(0, int.parse(_hi.value.toString()));
-                  return Text(
-                    text,
-                    style: const TextStyle(
-                        letterSpacing: 0.2,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: ProfileColors.headingColor,
-                        height: 1.5),
-                  );
-                },
-              ),
-              AnimatedBuilder(
-                animation: _name,
-                builder: (BuildContext context, Widget? child) {
-                  final text =
-                      name.substring(0, int.parse(_name.value.toString()));
-                  return Center(
-                    child: Text(
-                      text,
-                      style: const TextStyle(
-                          letterSpacing: 0.2,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          height: 1.5),
+            children: [
+              Flexible(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    AnimatedBuilder(
+                      animation: _hi,
+                      builder: (BuildContext context, Widget? child) {
+                        final text =
+                            hi.substring(0, int.parse(_hi.value.toString()));
+                        return Text(
+                          text,
+                          style: const TextStyle(
+                              letterSpacing: 0.2,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: ProfileColors.headingColor,
+                              height: 1.5),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-              AnimatedBuilder(
-                animation: _role,
-                builder: (BuildContext context, Widget? child) {
-                  final text =
-                      role.substring(0, int.parse(_role.value.toString()));
-                  return Center(
-                    child: Text(
-                      text,
-                      style: const TextStyle(
-                          letterSpacing: 2,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                          height: 1.5),
+                    AnimatedBuilder(
+                      animation: _name,
+                      builder: (BuildContext context, Widget? child) {
+                        final text = name.substring(
+                            0, int.parse(_name.value.toString()));
+                        return Center(
+                          child: Text(
+                            text,
+                            style: const TextStyle(
+                                letterSpacing: 0.2,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                height: 1.5),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
+                    AnimatedBuilder(
+                      animation: _role,
+                      builder: (BuildContext context, Widget? child) {
+                        final text = role.substring(
+                            0, int.parse(_role.value.toString()));
+                        return Center(
+                          child: Text(
+                            text,
+                            style: const TextStyle(
+                                letterSpacing: 2,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                                height: 1.5),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(
-                height: height * 0.05,
-              ),
-              Center(
-                child: FadeTransition(
-                  opacity: _imgAnimation,
-                  child: TranslateOnHover(
-                    child: centerImage(height: height * 0.55),
+              Flexible(
+                flex: 7,
+                child: Center(
+                  child: FadeTransition(
+                    opacity: _imgAnimation,
+                    child: TranslateOnHover(
+                      child: centerImage(),
+                    ),
                   ),
                 ),
               ),
@@ -148,9 +155,8 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
         ));
   }
 
-  Widget centerImage({double? height}) {
+  Widget centerImage() {
     return Container(
-      height: height,
       decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(

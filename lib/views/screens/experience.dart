@@ -4,10 +4,9 @@ import 'package:provider/provider.dart';
 
 import '../../helpers/colors.dart';
 import '../../helpers/responsive_layout.dart';
-import '../../helpers/translate_on_hover.dart';
-import '../../model/experience/expereince.dart';
+import '../../model/card/card.dart';
 import '../../provider/expereince_provider.dart';
-import '../../widgets/card.dart';
+import '../../widgets/lists_view.dart';
 import '../../widgets/page_title.dart';
 
 class Experience extends StatelessWidget {
@@ -25,7 +24,7 @@ class Experience extends StatelessWidget {
           Flexible(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: consumerWidget(),
+              child: consumerWidget(context),
             ),
           ),
         ],
@@ -38,7 +37,7 @@ class Experience extends StatelessWidget {
             children: <Widget>[
               const PageTitle(title: 'Expereince'),
               const SizedBox(height: 10.0),
-              consumerWidget()
+              consumerWidget(context)
             ],
           ),
         ),
@@ -46,17 +45,18 @@ class Experience extends StatelessWidget {
     );
   }
 
-  Widget consumerWidget() {
+  Widget consumerWidget(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Consumer<ExperienceProvider>(
         builder: (BuildContext context, ExperienceProvider exp, Widget? child) {
       if (exp.experience.isEmpty) {
-        return FutureBuilder<List<ExperienceModel>>(
+        return FutureBuilder<List<CardModel>>(
             future: exp.getExperience(),
-            builder: (_, AsyncSnapshot<List<ExperienceModel>> snapshot) {
+            builder: (_, AsyncSnapshot<List<CardModel>> snapshot) {
               if (snapshot.hasData) {
                 return ResponsiveLayout(
-                  largeScreen: _gridView(exp.experience, context),
-                  smallScreen: _listView(exp.experience),
+                  largeScreen: gridView(exp.experience, width * 0.32),
+                  smallScreen: listView(exp.experience),
                 );
               } else {
                 return const ResponsiveLayout(
@@ -69,61 +69,9 @@ class Experience extends StatelessWidget {
             });
       }
       return ResponsiveLayout(
-        largeScreen: _gridView(exp.experience, context),
-        smallScreen: _listView(exp.experience),
+        largeScreen: gridView(exp.experience, width * 0.32),
+        smallScreen: listView(exp.experience),
       );
     });
-  }
-
-  Widget _gridView(List<ExperienceModel> list, BuildContext context) {
-    return GridView.builder(
-        primary: false,
-        // physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 4,
-            childAspectRatio:
-                ResponsiveLayout.isMediumScreen(context) ? 1 / 0.22 : 1 / 0.18),
-        itemCount: list.length,
-        shrinkWrap: true,
-        itemBuilder: (_, int index) {
-          final experience = list[index];
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TranslateOnHover(
-              child: listItem(experience),
-            ),
-          );
-        });
-  }
-
-  Widget _listView(List<ExperienceModel> list) {
-    return ListView.builder(
-      shrinkWrap: true,
-      primary: false,
-      itemCount: list.length,
-      itemBuilder: (_, int index) {
-        final experience = list[index];
-        return Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: listItem(experience),
-        );
-      },
-    );
-  }
-
-  Widget listItem(ExperienceModel experience) {
-    return CardView(
-      title: experience.title,
-      imgURL: experience.imgURL,
-      imgAlignment: Alignment.centerLeft,
-      url: experience.url,
-      desc: experience.desc,
-      org: experience.org,
-      trailingIcon: true,
-      startAt: experience.startAt,
-      endAt: experience.endAt,
-    );
   }
 }

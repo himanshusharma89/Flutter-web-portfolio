@@ -34,10 +34,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     )..addListener(() => setState(() {}));
     desktopController = PageController(
         initialPage:
-            Provider.of<CurrentPage>(context, listen: false).currentPage!);
+            Provider.of<CurrentPage>(context, listen: false).currentPage);
     mobileController = PageController(
         initialPage:
-            Provider.of<CurrentPage>(context, listen: false).currentPage!);
+            Provider.of<CurrentPage>(context, listen: false).currentPage);
   }
 
   @override

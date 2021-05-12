@@ -10,21 +10,21 @@ import '../helpers/responsive_layout.dart';
 import '../main.dart';
 
 class DialogView extends StatelessWidget {
-  const DialogView(
-      {Key? key,
-      this.description,
-      this.title,
-      this.org,
-      this.imgURL,
-      this.startAt,
-      this.endAt,
-      this.projectLink})
-      : super(key: key);
-  final String? description;
-  final String? title;
+  const DialogView({
+    required this.description,
+    required this.title,
+    required this.imgURL,
+    required this.startAt,
+    this.endAt,
+    this.org,
+    Key? key,
+    this.projectLink,
+  }) : super(key: key);
+  final String description;
+  final String title;
   final String? org;
-  final String? imgURL;
-  final Timestamp? startAt;
+  final String imgURL;
+  final Timestamp startAt;
   final Timestamp? endAt;
   final String? projectLink;
 
@@ -32,33 +32,36 @@ class DialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final children = <Widget>[
-      FadeInImage.memoryNetwork(
-          height: 100, placeholder: unit8ListPlaceholder, image: imgURL!),
-      SizedBox(
-        width: ResponsiveLayout.isSmallScreen(context) ? 0 : 10,
-        height: ResponsiveLayout.isSmallScreen(context) ? 10 : 0,
+      Flexible(
+        flex: 4,
+        child: FadeInImage.memoryNetwork(
+            height: 100, placeholder: unit8ListPlaceholder, image: imgURL),
       ),
-      Column(
-        crossAxisAlignment: ResponsiveLayout.isSmallScreen(context)
-            ? CrossAxisAlignment.center
-            : CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            org == null ? title! : '$org | $title',
-            style: TextStyle(fontSize: fontSize(context, 20)),
-          ),
-          if (startAt != null) ...<Widget>[
+      const SizedBox(
+        width: 20,
+      ),
+      Flexible(
+        flex: 5,
+        child: Column(
+          crossAxisAlignment: ResponsiveLayout.isSmallScreen(context)
+              ? CrossAxisAlignment.center
+              : CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              org == null ? title : '$org | $title',
+              style: TextStyle(fontSize: fontSize(context, 20)),
+            ),
             const SizedBox(
               height: 5,
             ),
             Text(
-              '${DateFormat.yMMM().format(startAt!.toDate())} - '
+              '${DateFormat.yMMM().format(startAt.toDate())} - '
               '${endAt == null ? "Present" : DateFormat.yMMM().format(endAt!.toDate())} '
               '${projectLink != null ? "" : "| Remote Work"}',
               style: TextStyle(fontSize: fontSize(context, 18)),
             )
-          ]
-        ],
+          ],
+        ),
       )
     ];
     return ClipRect(
@@ -66,7 +69,7 @@ class DialogView extends StatelessWidget {
         filter: imageFilter,
         child: Dialog(
           child: Container(
-              width: MediaQuery.of(context).size.width * 0.55,
+              width: width * 0.55,
               padding: const EdgeInsets.all(12),
               decoration:
                   BoxDecoration(color: Colors.grey.shade200.withOpacity(0.5)),
@@ -76,19 +79,11 @@ class DialogView extends StatelessWidget {
                     : CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  if (ResponsiveLayout.isSmallScreen(context))
-                    Column(
-                      children: children,
-                    )
-                  else
-                    Row(
-                      children: children,
-                    ),
-                  const SizedBox(
-                    width: 5,
+                  Row(
+                    children: children,
                   ),
                   Text(
-                    description!.replaceAll('•', '\n•'),
+                    description.replaceAll('•', '\n•'),
                     style: TextStyle(
                         height: 1.25, fontSize: fontSize(context, 16)),
                   ),

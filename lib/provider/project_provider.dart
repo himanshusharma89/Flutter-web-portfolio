@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../model/project/project.dart';
+import 'package:my_portfolio/model/card/card.dart';
 
 class ProjectProvider with ChangeNotifier {
-  List<ProjectModel> project = <ProjectModel>[];
+  List<CardModel> project = <CardModel>[];
 
-  Future<List<ProjectModel>> getProjects() async {
+  Future<List<CardModel>> getProjects() async {
     final _ = await FirebaseFirestore.instance
         .collection('projects')
         .orderBy('startAt')
@@ -14,7 +14,7 @@ class ProjectProvider with ChangeNotifier {
 
     _.forEach((QueryDocumentSnapshot event) {
       project.add(
-          ProjectModel.fromSnapshot(event.data()! as Map<String, dynamic>));
+          CardModel.fromSnapshot(event.data()! as Map<String, dynamic>));
     });
     notifyListeners();
     return project;

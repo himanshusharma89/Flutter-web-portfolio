@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import '../model/experience/expereince.dart';
+import '../model/card/card.dart';
 
 class ExperienceProvider with ChangeNotifier {
-  List<ExperienceModel> experience = <ExperienceModel>[];
+  List<CardModel> experience = <CardModel>[];
 
-  Future<List<ExperienceModel>> getExperience() async {
+  Future<List<CardModel>> getExperience() async {
     final _ = await FirebaseFirestore.instance
         .collection('experience')
         .orderBy('startAt', descending: true)
@@ -13,8 +13,8 @@ class ExperienceProvider with ChangeNotifier {
         .then((QuerySnapshot e) => e.docs);
 
     _.forEach((QueryDocumentSnapshot event) {
-      experience.add(
-          ExperienceModel.fromSnapshot(event.data()! as Map<String, dynamic>));
+      experience
+          .add(CardModel.fromSnapshot(event.data()! as Map<String, dynamic>));
     });
     notifyListeners();
     return experience;

@@ -46,8 +46,8 @@ class SocialWidget extends StatelessWidget {
         },
         customBorder: const CircleBorder(),
         child: FadeInImage.memoryNetwork(
-          width: 30.0,
-          height: 30.0,
+          width: 28.0,
+          height: 28.0,
           placeholder: unit8ListPlaceholder,
           image: socialPlatformsItem.icon,
         ),

@@ -46,8 +46,9 @@ class _ProfileButtonState extends State<ProfileButton> {
             child: Text(
               widget.text,
               style: TextStyle(
-                  color:
-                      _hovering ? Colors.white : ProfileColors.dotOutlineColor),
+                  color: _hovering
+                      ? Colors.white
+                      : ProfileColors.dotOutlineColor),
             ),
           ),
         ),

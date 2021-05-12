@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../helpers/colors.dart';
+import 'package:flutter/services.dart';
 
+import '../helpers/colors.dart';
+import '../helpers/responsive_layout.dart';
 import '../main.dart';
 import 'button.dart';
 
@@ -32,88 +34,110 @@ class _ContactMeDialogState extends State<ContactMeDialog> {
       filter: imageFilter,
       child: Dialog(
         child: Container(
-          width: width * 0.55,
-          height: height * 0.6,
+          width: ResponsiveLayout.isSmallScreen(context)
+              ? width * 0.65
+              : width * 0.55,
+          height: height * 0.55,
           padding: const EdgeInsets.all(10),
           child: Form(
             key: _formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  color: ProfileColors.formColor,
-                  child: TextFormField(
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Enter Valid Name';
-                      }
-                      return null;
-                    },
-                    controller: _nameController,
-                    textCapitalization: TextCapitalization.words,
-                    decoration: const InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        hintText: 'Name',
-                        border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: ProfileColors.formColor, width: 2))),
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    color: ProfileColors.formColor,
+                    child: TextFormField(
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
+                          return 'Enter Valid Name';
+                        }
+                        return null;
+                      },
+                      controller: _nameController,
+                      textCapitalization: TextCapitalization.words,
+                      decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.all(12),
+                          hintText: 'Name',
+                          border: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: ProfileColors.formColor, width: 2))),
+                    ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  color: ProfileColors.formColor,
-                  child: TextFormField(
-                    validator: (String? value) {
-                      if (!regexEmail.hasMatch(value!.trim())) {
-                        return 'Enter Valid Email';
-                      }
-                      return null;
-                    },
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        hintText: 'Email Address',
-                        border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: ProfileColors.formColor, width: 2))),
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    color: ProfileColors.formColor,
+                    child: TextFormField(
+                      validator: (String? value) {
+                        if (!regexEmail.hasMatch(value!.trim())) {
+                          return 'Enter Valid Email';
+                        }
+                        return null;
+                      },
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          hintText: 'Email Address',
+                          border: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: ProfileColors.formColor, width: 2))),
+                    ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  color: ProfileColors.formColor,
-                  child: TextFormField(
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Enter Valid Message';
-                      }
-                      return null;
-                    },
-                    minLines: 6,
-                    maxLines: 8,
-                    style: const TextStyle(fontFamily: 'Poppins'),
-                    controller: _messageController,
-                    decoration: const InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        hintText: 'Your Message',
-                        border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: ProfileColors.formColor, width: 2))),
+                Flexible(
+                  flex: 4,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    color: ProfileColors.formColor,
+                    child: TextFormField(
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
+                          return 'Enter Valid Message';
+                        }
+                        return null;
+                      },
+                      minLines: 6,
+                      maxLines: 8,
+                      style: const TextStyle(fontFamily: 'Poppins'),
+                      controller: _messageController,
+                      decoration: const InputDecoration(
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          hintText: 'Your Message',
+                          border: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: ProfileColors.formColor, width: 2))),
+                    ),
                   ),
                 ),
-                ProfileButton(
-                  text: 'Send The Message',
-                  onTap: () => _submitForm(),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  status,
-                  style: const TextStyle(
-                    fontSize: 16,
+                Flexible(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      ProfileButton(
+                        text: 'Send The Message',
+                        onTap: () => _submitForm(),
+                      ),
+                      Expanded(
+                        child: Text(
+                          status,
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            fontSize: ResponsiveLayout.isSmallScreen(context)
+                                ? 15
+                                : 16,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -122,35 +146,45 @@ class _ContactMeDialogState extends State<ContactMeDialog> {
     );
   }
 
-  void _submitForm() {
+  Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      // If the form is valid, proceed.
-      // final MessageModel feedbackForm = MessageModel(
-      //     name: _nameController.text,
-      //     email: _emailController.text,
-      //     message: _messageController.text);
-
-      // final MessageFormController formController = MessageFormController();
 
       setState(() {
         status = 'Submitting Message';
       });
 
-      // Submit 'feedbackForm' and save it in Google Sheets.
-      // formController.submitForm(feedbackForm, (String response) {
-      //   debugPrint('Response: $response');
-      //   if (response == MessageFormController.STATUS_SUCCESS) {
-      //     // Feedback is saved succesfully in Google Sheets.
-      //     debugPrint('Feedback Submitted');
-      //     ScaffoldMessenger.of(context).showSnackBar(
-      //         const SnackBar(content: Text('Feedback Submitted')));
-      //   } else {
-      //     debugPrint('Error Occurred!');
-      //     // Error Occurred while saving data in Google Sheets.
-      //     ScaffoldMessenger.of(context)
-      //         .showSnackBar(const SnackBar(content: Text('Error Occurred!')));
+      // final MailOptions mailOptions = MailOptions(
+      //     body: _messageController.text,
+      //     subject: '${_messageController.text}|${_emailController.text}',
+      //     recipients: <String>['contact@himanshusharma.tech'],
+      //     ccRecipients: <String>[_emailController.text]);
+
+      // String platformResponse;
+
+      // try {
+      //   final response = await FlutterMailer.send(mailOptions);
+      //   switch (response) {
+      //     case MailerResponse.saved:
+      //       platformResponse = 'mail was saved to draft';
+      //       break;
+      //     case MailerResponse.sent:
+      //       platformResponse = 'mail was sent';
+      //       break;
+      //     case MailerResponse.cancelled:
+      //       platformResponse = 'mail was cancelled';
+      //       break;
+      //     case MailerResponse.android:
+      //       platformResponse = 'intent was success';
+      //       break;
+      //     default:
+      //       platformResponse = 'unknown';
+      //       break;
       //   }
-      // });
+      //   status = platformResponse;
+      // } on PlatformException catch (error) {
+      //   status = error.toString();
+      // }
+      // setState(() {});
     }
   }
 }
