@@ -20,7 +20,7 @@ class MeTextWidget extends StatelessWidget {
           maxLines: 2,
           style: TextStyle(
             letterSpacing: 2.2,
-            fontSize: ResponsiveLayout.isMediumScreen(context) ? 25 : 35,
+            fontSize: ResponsiveLayout.isMediumScreen(context) ? 22 : 32,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),

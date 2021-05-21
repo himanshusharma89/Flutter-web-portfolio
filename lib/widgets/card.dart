@@ -12,11 +12,9 @@ class CardView extends StatefulWidget {
       {required this.title,
       required this.imgURL,
       required this.url,
-      required this.trailingIcon,
       required this.desc,
       required this.startAt,
       this.org,
-      this.trailingIconData = Icons.launch_rounded,
       this.endAt,
       this.projectLink,
       Key? key})
@@ -26,8 +24,6 @@ class CardView extends StatefulWidget {
   final String desc;
   final String? org;
   final String imgURL;
-  final bool trailingIcon;
-  final IconData trailingIconData;
   final String? url;
   final Timestamp startAt;
   final Timestamp? endAt;
@@ -120,16 +116,15 @@ class _CardViewState extends State<CardView> {
                           ],
                         ),
                       ),
-                      if (widget.trailingIcon)
-                        IconButton(
-                            icon: Icon(
-                              widget.trailingIconData,
-                              color: ProfileColors.dotOutlineColor,
-                              size: 15,
-                            ),
-                            onPressed: () {
-                              launcher.launchURL(widget.url!);
-                            })
+                      IconButton(
+                          icon: const Icon(
+                            Icons.launch_rounded,
+                            color: ProfileColors.dotOutlineColor,
+                            size: 15,
+                          ),
+                          onPressed: () {
+                            launcher.launchURL(widget.url!);
+                          })
                     ],
                   ),
                 ),

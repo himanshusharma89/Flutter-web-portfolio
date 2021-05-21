@@ -38,7 +38,6 @@ Widget listItem(CardModel cardModel) {
     url: cardModel.url,
     desc: cardModel.desc,
     org: cardModel.org,
-    trailingIcon: true,
     startAt: cardModel.startAt,
     endAt: cardModel.endAt,
     projectLink: cardModel.projectLink,

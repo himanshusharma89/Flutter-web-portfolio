@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/model/card/card.dart';
+import '../model/card/card.dart';
 
 class ProjectProvider with ChangeNotifier {
   List<CardModel> project = <CardModel>[];
@@ -8,7 +8,7 @@ class ProjectProvider with ChangeNotifier {
   Future<List<CardModel>> getProjects() async {
     final _ = await FirebaseFirestore.instance
         .collection('projects')
-        .orderBy('startAt')
+        .orderBy('startAt', descending: true)
         .get()
         .then((QuerySnapshot e) => e.docs);
 

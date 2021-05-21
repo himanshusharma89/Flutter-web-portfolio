@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/colors.dart';
 import '../helpers/constants.dart';
 import '../helpers/functions.dart';
 import '../helpers/responsive_layout.dart';
@@ -65,7 +66,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                   ),
                 ),
                 Flexible(
-                    flex: 8,
+                    flex: 10,
                     fit: FlexFit.tight,
                     child: DesktopWidget(controller: desktopController)),
                 Flexible(
@@ -102,6 +103,27 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
               ],
             ),
           ),
+          floatingActionButton: Transform.scale(
+            scale: 0.8,
+            origin: const Offset(-50, 0),
+            child: Visibility(
+              visible: ResponsiveLayout.isLargeScreen(context) &&
+                  Provider.of<CurrentPage>(context).currentPage > 0,
+              child: FloatingActionButton(
+                onPressed: () {
+                  animateToPage(desktopController, 0);
+                },
+                backgroundColor: ProfileColors.dotOutlineColor,
+                child: const Icon(
+                  Icons.arrow_upward_rounded,
+                  size: 30,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.miniStartFloat,
         ));
   }
 }

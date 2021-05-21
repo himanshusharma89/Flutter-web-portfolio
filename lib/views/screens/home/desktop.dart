@@ -34,22 +34,16 @@ class _DesktopWidgetState extends State<DesktopWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-    return SizedBox(
-      height: height,
-      width: width,
-      child: PageView.builder(
-        scrollDirection: Axis.vertical,
-        physics: const PageScrollPhysics(),
-        controller: widget.controller,
-        itemCount: homeList.length,
-        itemBuilder: (_, int index) => homeList[index],
-        onPageChanged: (int index) => setState(() {
-          Provider.of<CurrentPage>(context, listen: false)
-              .setCurrentPage(index);
-        }),
-      ),
+    return PageView.builder(
+      scrollDirection: Axis.vertical,
+      physics: const PageScrollPhysics(),
+      controller: widget.controller,
+      itemCount: homeList.length,
+      itemBuilder: (_, int index) => homeList[index],
+      onPageChanged: (int index) => setState(() {
+        Provider.of<CurrentPage>(context, listen: false)
+            .setCurrentPage(index);
+      }),
     );
   }
 }

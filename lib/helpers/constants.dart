@@ -1,3 +1,5 @@
+import '../model/skills.dart';
+
 import '../model/social_platform_item.dart';
 
 const List<String> navBarItems = <String>[
@@ -36,12 +38,26 @@ const List<SocialPlatformsItem> socialPlatforms = <SocialPlatformsItem>[
       url: 'https://stackoverflow.com/users/11545939/himanshu-sharma')
 ];
 
+List<SkillsItem> techSkills = <SkillsItem>[
+  SkillsItem('Dart', 'dart.png'),
+  SkillsItem('Javascript', 'js.png'),
+  SkillsItem('Java', 'java.png'),
+  SkillsItem('C', 'c.png'),
+  SkillsItem('Flutter', 'flutter.png'),
+  SkillsItem('Git', 'git.png'),
+  SkillsItem('Firebase', 'firebase.png'),
+  SkillsItem('AWS Amplify', 'amplify.png'),
+  SkillsItem('Azure', 'azure.png'),
+  SkillsItem('Node.js', 'node.png'),
+  SkillsItem('GraphQL', 'graphql.png'),
+  SkillsItem('MongoDB', 'mongodb.png'),
+  SkillsItem('GitHub Action', 'github_action.png'),
+  SkillsItem('Markdown', 'markdown.png'),
+];
+
 const String aboutMe = '''
-Focused Computer Science major (9.89 CGPA) currently attending Chitkara University. 
-I am a Flutter Application Developer, an Open Source contributor and a writer. I like to contribute to the community a lot. 
-I am a writer at Flutter Community and IEEE CIET Branch. I also like to work on Alexa Skill and Google Assistant App development sometimes.
-\nI am a hard-working individual who is developing new applications and content for the community and trying to stay occupied all the time. 
-Also, I am a Microsoft Learn Student Ambassador and learning new skills. I am a quick learner and frequently praised as hard-working by my peers.''';
+Focused Computer Science major (9.91 CGPA) currently attending Chitkara University, with 2 years of mobile development experience with Flutter. 
+A hard-working individual who is developing new applications and content for the community. Frequently praised as a hard-working and quick learner by my peers, I can be relied upon to help you achieve your goals.''';
 
 const String skills = '''
 The main area of my expertise is Flutter App Development and Firebase (analytics and growth).
@@ -53,7 +69,7 @@ Automate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.
 
 const String hi = 'Hey! I am';
 const String name = 'HIMANSHU SHARMA';
-const String role = 'FLUTTER DEVELOPER';
+const String role = 'MOBILE DEVELOPER';
 
 const String heroImage =
     'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/Himanshu%20Sharma.jpg?alt=media&token=89e96691-a349-4d5b-9b74-da736fcab72e';

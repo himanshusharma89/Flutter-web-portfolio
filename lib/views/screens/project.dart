@@ -38,7 +38,10 @@ class Project extends StatelessWidget {
               children: <Widget>[
                 const PageTitle(title: 'Projects'),
                 const SizedBox(height: 10.0),
-                consumerWidget(context)
+                Expanded(
+                    child:
+                        SingleChildScrollView(child: consumerWidget(context))),
+                const SizedBox(height: 30.0),
               ],
             ),
           ),

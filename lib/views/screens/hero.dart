@@ -61,7 +61,7 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
               textAlign: TextAlign.right,
             ),
             Flexible(
-              flex: 4,
+              flex: 3,
               fit: FlexFit.tight,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

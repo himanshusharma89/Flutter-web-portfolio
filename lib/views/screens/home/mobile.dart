@@ -105,7 +105,7 @@ class _MobileWidgetState extends State<MobileWidget>
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                  padding: const EdgeInsets.only(bottom: 25),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: pageIndicator(widget.controller)),
             )
           ],
