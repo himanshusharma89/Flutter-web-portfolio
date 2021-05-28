@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
+import 'package:my_portfolio/model/api/send_message.dart';
 
 import '../helpers/colors.dart';
 import '../helpers/responsive_layout.dart';
@@ -148,43 +151,21 @@ class _ContactMeDialogState extends State<ContactMeDialog> {
 
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
-
       setState(() {
         status = 'Submitting Message';
       });
-
-      // final MailOptions mailOptions = MailOptions(
-      //     body: _messageController.text,
-      //     subject: '${_messageController.text}|${_emailController.text}',
-      //     recipients: <String>['contact@himanshusharma.tech'],
-      //     ccRecipients: <String>[_emailController.text]);
-
-      // String platformResponse;
-
-      // try {
-      //   final response = await FlutterMailer.send(mailOptions);
-      //   switch (response) {
-      //     case MailerResponse.saved:
-      //       platformResponse = 'mail was saved to draft';
-      //       break;
-      //     case MailerResponse.sent:
-      //       platformResponse = 'mail was sent';
-      //       break;
-      //     case MailerResponse.cancelled:
-      //       platformResponse = 'mail was cancelled';
-      //       break;
-      //     case MailerResponse.android:
-      //       platformResponse = 'intent was success';
-      //       break;
-      //     default:
-      //       platformResponse = 'unknown';
-      //       break;
-      //   }
-      //   status = platformResponse;
-      // } on PlatformException catch (error) {
-      //   status = error.toString();
-      // }
-      // setState(() {});
+      final res = await sendMessage(
+          name: _nameController.text,
+          email: _emailController.text,
+          message: _messageController.text);
+      if (res) {
+        status = 'Message Sent';
+        setState(() {});
+        Navigator.pop(context);
+      } else {
+        status = 'Not Sent';
+        setState(() {});
+      }
     }
   }
 }

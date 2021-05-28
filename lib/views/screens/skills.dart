@@ -144,8 +144,7 @@ Widget skillWidget(BuildContext context, {required int end, int? start = 0}) {
       children: [
         for (int i = start!; i < end; i++)
           tile(context,
-              imageURL: 'assets/tech/${techSkills[i].imgURL}',
-              title: techSkills[i].name)
+              imageURL: techSkills[i].imgURL, title: techSkills[i].name)
       ]);
 }
 
@@ -159,9 +158,9 @@ Widget tile(BuildContext context,
           borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: FadeInImage.assetNetwork(
+        child: FadeInImage.memoryNetwork(
           image: imageURL,
-          placeholder: 'assets/placeholder.gif',
+          placeholder: unit8ListPlaceholder,
         ),
       ),
     ),
