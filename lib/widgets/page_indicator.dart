@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/helpers/functions.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../helpers/colors.dart';
-import '../helpers/constants.dart';
-import '../helpers/functions.dart';
 
 Widget pageIndicator(PageController controller, {Axis? axisDirection}) {
   return SmoothPageIndicator(
@@ -17,6 +16,6 @@ Widget pageIndicator(PageController controller, {Axis? axisDirection}) {
         dotHeight: 12,
         dotWidth: 12,
         spacing: 10,
-        paintStyle: PaintingStyle.stroke),
+        paintStyle: PaintingStyle.stroke,),
   );
 }

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:mailer/mailer.dart';
-import 'package:mailer/smtp_server.dart';
-import 'package:my_portfolio/model/api/send_message.dart';
 
-import '../helpers/colors.dart';
-import '../helpers/responsive_layout.dart';
-import '../main.dart';
-import 'button.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'package:my_portfolio/main.dart';
+import 'package:my_portfolio/model/api/send_message.dart';
+import 'package:my_portfolio/widgets/button.dart';
 
 class ContactMeDialog extends StatefulWidget {
   const ContactMeDialog({Key? key}) : super(key: key);
@@ -62,11 +59,15 @@ class _ContactMeDialogState extends State<ContactMeDialog> {
                       controller: _nameController,
                       textCapitalization: TextCapitalization.words,
                       decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(12),
-                          hintText: 'Name',
-                          border: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ProfileColors.formColor, width: 2))),
+                        contentPadding: EdgeInsets.all(12),
+                        hintText: 'Name',
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: ProfileColors.formColor,
+                            width: 2,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -84,12 +85,16 @@ class _ContactMeDialogState extends State<ContactMeDialog> {
                       },
                       controller: _emailController,
                       decoration: const InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                          hintText: 'Email Address',
-                          border: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ProfileColors.formColor, width: 2))),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        hintText: 'Email Address',
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: ProfileColors.formColor,
+                            width: 2,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -110,12 +115,16 @@ class _ContactMeDialogState extends State<ContactMeDialog> {
                       style: const TextStyle(fontFamily: 'Poppins'),
                       controller: _messageController,
                       decoration: const InputDecoration(
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                          hintText: 'Your Message',
-                          border: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: ProfileColors.formColor, width: 2))),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        hintText: 'Your Message',
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: ProfileColors.formColor,
+                            width: 2,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -137,7 +146,7 @@ class _ContactMeDialogState extends State<ContactMeDialog> {
                                 : 16,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -155,12 +164,14 @@ class _ContactMeDialogState extends State<ContactMeDialog> {
         status = 'Submitting Message';
       });
       final res = await sendMessage(
-          name: _nameController.text,
-          email: _emailController.text,
-          message: _messageController.text);
+        name: _nameController.text,
+        email: _emailController.text,
+        message: _messageController.text,
+      );
       if (res) {
         status = 'Message Sent';
         setState(() {});
+        if (!context.mounted) return;
         Navigator.pop(context);
       } else {
         status = 'Not Sent';

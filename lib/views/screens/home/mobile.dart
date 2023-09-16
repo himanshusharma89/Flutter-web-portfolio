@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/provider/drawer_controller.dart' as mc;
+import 'package:my_portfolio/views/drawer.dart';
+import 'package:my_portfolio/views/screens/about_me.dart';
+import 'package:my_portfolio/views/screens/experience.dart';
+import 'package:my_portfolio/views/screens/extra.dart';
+import 'package:my_portfolio/views/screens/hero.dart' as hero;
+import 'package:my_portfolio/views/screens/project.dart';
+import 'package:my_portfolio/views/screens/skills.dart';
+import 'package:my_portfolio/widgets/page_indicator.dart';
 import 'package:provider/provider.dart';
-
-import '../../../helpers/colors.dart';
-import '../../../provider/drawer_controller.dart';
-import '../../../views/drawer.dart';
-import '../../../views/screens/about_me.dart';
-import '../../../views/screens/experience.dart';
-import '../../../views/screens/project.dart';
-import '../../../views/screens/skills.dart';
-import '../../../widgets/page_indicator.dart';
-import '../extra.dart';
-import '../hero.dart' as hero;
 
 class MobileWidget extends StatefulWidget {
   const MobileWidget({required this.controller, Key? key}) : super(key: key);
@@ -35,7 +34,9 @@ class _MobileWidgetState extends State<MobileWidget>
     super.initState();
     isMenu = false;
     _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
   }
 
   @override
@@ -71,7 +72,7 @@ class _MobileWidgetState extends State<MobileWidget>
                       Skills(),
                       Experience(),
                       Project(),
-                      Extra()
+                      Extra(),
                     ],
                   ),
                   Padding(
@@ -82,12 +83,14 @@ class _MobileWidgetState extends State<MobileWidget>
                       child: FittedBox(
                         child: FloatingActionButton(
                           shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.0))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(16.0)),
+                          ),
                           backgroundColor: ProfileColors.navBarColor,
                           onPressed: () {
                             _handleOnPressed();
-                            Provider.of<MenuController>(context, listen: false)
+                            Provider.of<mc.MenuController>(context,
+                                    listen: false,)
                                 .toggle();
                           },
                           heroTag: null,
@@ -105,9 +108,10 @@ class _MobileWidgetState extends State<MobileWidget>
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: pageIndicator(widget.controller)),
-            )
+                padding: const EdgeInsets.only(bottom: 20),
+                child: pageIndicator(widget.controller),
+              ),
+            ),
           ],
         ),
       ),
@@ -122,51 +126,56 @@ class _MobileWidgetState extends State<MobileWidget>
   }
 
   Widget zoomAndSlideContent(Widget content) {
-    var slidePercent = 0.0, scalePercent = 0.0;
+    var slidePercent = 0.0;
+    var scalePercent = 0.0;
 
-    switch (Provider.of<MenuController>(context, listen: true).state) {
-      case MenuState.closed:
+    switch (Provider.of<mc.MenuController>(context).state) {
+      case mc.MenuState.closed:
         slidePercent = 0.0;
         scalePercent = 0.0;
         break;
-      case MenuState.open:
+      case mc.MenuState.open:
         slidePercent = 1.0;
         scalePercent = 1.0;
         break;
-      case MenuState.opening:
-        slidePercent = slideOutCurve.transform(double.parse(
-            Provider.of<MenuController>(context, listen: true)
-                .percentOpen
-                .toString()));
-        scalePercent = scaleDownCurve.transform(double.parse(
-            Provider.of<MenuController>(context, listen: true)
-                .percentOpen
-                .toString()));
+      case mc.MenuState.opening:
+        slidePercent = slideOutCurve.transform(
+          double.parse(
+            Provider.of<mc.MenuController>(context).percentOpen.toString(),
+          ),
+        );
+        scalePercent = scaleDownCurve.transform(
+          double.parse(
+            Provider.of<mc.MenuController>(context).percentOpen.toString(),
+          ),
+        );
         break;
-      case MenuState.closing:
-        slidePercent = slideInCurve.transform(double.parse(
-            Provider.of<MenuController>(context, listen: true)
-                .percentOpen
-                .toString()));
-        scalePercent = scaleUpCurve.transform(double.parse(
-            Provider.of<MenuController>(context, listen: true)
-                .percentOpen
-                .toString()));
+      case mc.MenuState.closing:
+        slidePercent = slideInCurve.transform(
+          double.parse(
+            Provider.of<mc.MenuController>(context).percentOpen.toString(),
+          ),
+        );
+        scalePercent = scaleUpCurve.transform(
+          double.parse(
+            Provider.of<mc.MenuController>(context).percentOpen.toString(),
+          ),
+        );
         break;
     }
 
     final slideAmount = 225.0 * num.parse(slidePercent.toString());
     final contentScale = 1.0 - (0.2 * num.parse(scalePercent.toString()));
     final cornerRadius = 16.0 *
-        num.parse(Provider.of<MenuController>(context, listen: true)
-            .percentOpen
-            .toString());
+        num.parse(
+          Provider.of<mc.MenuController>(context).percentOpen.toString(),
+        );
 
     return Transform(
       transform: Matrix4.translationValues(slideAmount, 0.0, 0.0)
         ..scale(contentScale, contentScale),
       alignment: Alignment.centerLeft,
-      child: Container(
+      child: DecoratedBox(
         decoration: const BoxDecoration(
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -178,7 +187,9 @@ class _MobileWidgetState extends State<MobileWidget>
           ],
         ),
         child: ClipRRect(
-            borderRadius: BorderRadius.circular(cornerRadius), child: content),
+          borderRadius: BorderRadius.circular(cornerRadius),
+          child: content,
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../helpers/responsive_layout.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
 
 class MeTextWidget extends StatelessWidget {
   const MeTextWidget({required this.text, this.textAlign, Key? key})

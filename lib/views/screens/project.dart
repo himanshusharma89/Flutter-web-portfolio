@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'package:my_portfolio/model/card/card.dart';
+import 'package:my_portfolio/provider/project_provider.dart';
+import 'package:my_portfolio/widgets/lists_view.dart';
+import 'package:my_portfolio/widgets/page_title.dart';
 import 'package:provider/provider.dart';
-
-import '../../helpers/colors.dart';
-import '../../helpers/responsive_layout.dart';
-import '../../model/card/card.dart';
-import '../../provider/project_provider.dart';
-import '../../widgets/lists_view.dart';
-import '../../widgets/page_title.dart';
 
 class Project extends StatelessWidget {
   const Project({Key? key}) : super(key: key);
@@ -24,7 +22,7 @@ class Project extends StatelessWidget {
             Flexible(
               child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: consumerWidget(context)),
+                  child: consumerWidget(context),),
             ),
           ],
         ),
@@ -40,12 +38,12 @@ class Project extends StatelessWidget {
                 const SizedBox(height: 10.0),
                 Expanded(
                     child:
-                        SingleChildScrollView(child: consumerWidget(context))),
+                        SingleChildScrollView(child: consumerWidget(context)),),
                 const SizedBox(height: 30.0),
               ],
             ),
           ),
-        ));
+        ),);
   }
 
   Widget consumerWidget(BuildContext context) {
@@ -67,15 +65,15 @@ class Project extends StatelessWidget {
                   smallScreen: SizedBox(
                       height: 50,
                       width: 50,
-                      child: CircularProgressIndicator()),
+                      child: CircularProgressIndicator(),),
                 );
               }
-            });
+            },);
       }
       return ResponsiveLayout(
         largeScreen: gridView(prjt.project, width * 0.25),
         smallScreen: listView(prjt.project),
       );
-    });
+    },);
   }
 }

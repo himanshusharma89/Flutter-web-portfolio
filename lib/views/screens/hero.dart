@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../helpers/colors.dart';
-import '../../helpers/constants.dart';
-import '../../helpers/responsive_layout.dart';
-import '../../helpers/translate_on_hover.dart';
-import '../../main.dart';
-import '../../widgets/text.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'package:my_portfolio/helpers/translate_on_hover.dart';
+import 'package:my_portfolio/main.dart';
+import 'package:my_portfolio/widgets/text.dart';
 
 class Hero extends StatefulWidget {
   const Hero({Key? key}) : super(key: key);
@@ -24,19 +24,19 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 5500));
+        vsync: this, duration: const Duration(milliseconds: 5500),);
     _hi = StepTween(begin: 0, end: hi.length).animate(CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.0, 0.25, curve: Curves.easeIn)));
+        curve: const Interval(0.0, 0.25, curve: Curves.easeIn),),);
     _name = StepTween(begin: 0, end: name.length).animate(CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.2, 0.7, curve: Curves.easeIn)));
+        curve: const Interval(0.2, 0.7, curve: Curves.easeIn),),);
     _role = StepTween(begin: 0, end: role.length).animate(CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.65, 1, curve: Curves.easeIn)));
+        curve: const Interval(0.65, 1, curve: Curves.easeIn),),);
     _imgAnimation = CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.3, 0.6, curve: Curves.easeIn));
+        curve: const Interval(0.3, 0.6, curve: Curves.easeIn),);
     _controller.forward();
     _controller.addListener(() {
       setState(() {});
@@ -72,7 +72,7 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
             const MeTextWidget(
               text: role,
               textAlign: TextAlign.left,
-            )
+            ),
           ],
         ),
         smallScreen: Padding(
@@ -96,7 +96,7 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: ProfileColors.headingColor,
-                              height: 1.5),
+                              height: 1.5,),
                         );
                       },
                     ),
@@ -104,7 +104,7 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
                       animation: _name,
                       builder: (BuildContext context, Widget? child) {
                         final text = name.substring(
-                            0, int.parse(_name.value.toString()));
+                            0, int.parse(_name.value.toString()),);
                         return Center(
                           child: Text(
                             text,
@@ -113,7 +113,7 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                height: 1.5),
+                                height: 1.5,),
                           ),
                         );
                       },
@@ -122,7 +122,7 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
                       animation: _role,
                       builder: (BuildContext context, Widget? child) {
                         final text = role.substring(
-                            0, int.parse(_role.value.toString()));
+                            0, int.parse(_role.value.toString()),);
                         return Center(
                           child: Text(
                             text,
@@ -131,7 +131,7 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
-                                height: 1.5),
+                                height: 1.5,),
                           ),
                         );
                       },
@@ -152,11 +152,11 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
               ),
             ],
           ),
-        ));
+        ),);
   }
 
   Widget centerImage() {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
@@ -165,14 +165,14 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
           ),
           color: ProfileColors.backgroundColor,
           boxShadow: const <BoxShadow>[
-            BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 15)
-          ]),
+            BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 15),
+          ],),
       child: ClipOval(
         child: FadeInImage.memoryNetwork(
             placeholderCacheHeight: 20,
             placeholderScale: 0.2,
             placeholder: unit8ListPlaceholder,
-            image: heroImage),
+            image: heroImage,),
       ),
     );
   }

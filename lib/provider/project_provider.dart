@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../model/card/card.dart';
+import 'package:my_portfolio/model/card/card.dart';
 
 class ProjectProvider with ChangeNotifier {
   List<CardModel> project = <CardModel>[];
@@ -12,10 +12,10 @@ class ProjectProvider with ChangeNotifier {
         .get()
         .then((QuerySnapshot e) => e.docs);
 
-    _.forEach((QueryDocumentSnapshot event) {
+    for (final event in _) {
       project.add(
-          CardModel.fromSnapshot(event.data()! as Map<String, dynamic>));
-    });
+          CardModel.fromSnapshot(event.data()! as Map<String, dynamic>),);
+    }
     notifyListeners();
     return project;
   }

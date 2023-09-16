@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyC99YvM-v8a3grDCBIEMfjfTK5cFEf0BRw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>425764720471</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.myPortfolio</string>
+	<key>PROJECT_ID</key>
+	<string>flutter-web-portfolio-website</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flutter-web-portfolio-website.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:425764720471:ios:c7e0595bc2d2268464b812</string>
+	<key>DATABASE_URL</key>
+	<string>https://flutter-web-portfolio-website.firebaseio.com</string>
+</dict>
+</plist>

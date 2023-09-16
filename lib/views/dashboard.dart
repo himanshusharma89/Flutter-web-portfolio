@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/helpers/functions.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'package:my_portfolio/provider/current_index.dart';
+import 'package:my_portfolio/provider/drawer_controller.dart' as mc;
+import 'package:my_portfolio/provider/expereince_provider.dart';
+import 'package:my_portfolio/provider/project_provider.dart';
+import 'package:my_portfolio/views/navbar.dart';
+import 'package:my_portfolio/views/screens/home/desktop.dart';
+import 'package:my_portfolio/views/screens/home/mobile.dart';
+import 'package:my_portfolio/widgets/page_indicator.dart';
+import 'package:my_portfolio/widgets/social.dart';
 import 'package:provider/provider.dart';
-
-import '../helpers/colors.dart';
-import '../helpers/constants.dart';
-import '../helpers/functions.dart';
-import '../helpers/responsive_layout.dart';
-import '../provider/current_index.dart';
-import '../provider/drawer_controller.dart';
-import '../provider/expereince_provider.dart';
-import '../provider/project_provider.dart';
-import '../views/navbar.dart';
-import '../views/screens/home/desktop.dart';
-import '../views/screens/home/mobile.dart';
-import '../widgets/page_indicator.dart';
-import '../widgets/social.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -22,23 +21,24 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
-  late PageController desktopController, mobileController;
-  late MenuController menuController;
+  late PageController desktopController;
+  late PageController mobileController;
+  late mc.MenuController menuController;
 
   @override
   void initState() {
     super.initState();
     Provider.of<ExperienceProvider>(context, listen: false).getExperience();
     Provider.of<ProjectProvider>(context, listen: false).getProjects();
-    menuController = MenuController(
+    menuController = mc.MenuController(
       vsync: this,
     )..addListener(() => setState(() {}));
     desktopController = PageController(
         initialPage:
-            Provider.of<CurrentPage>(context, listen: false).currentPage);
+            Provider.of<CurrentPage>(context, listen: false).currentPage,);
     mobileController = PageController(
         initialPage:
-            Provider.of<CurrentPage>(context, listen: false).currentPage);
+            Provider.of<CurrentPage>(context, listen: false).currentPage,);
   }
 
   @override
@@ -52,7 +52,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    return ChangeNotifierProvider<MenuController>.value(
+    return ChangeNotifierProvider<mc.MenuController>.value(
         value: menuController,
         child: Scaffold(
           body: ResponsiveLayout(
@@ -68,7 +68,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                 Flexible(
                     flex: 10,
                     fit: FlexFit.tight,
-                    child: DesktopWidget(controller: desktopController)),
+                    child: DesktopWidget(controller: desktopController),),
                 Flexible(
                   child: SizedBox(
                     width: width * 0.025 + navBarWidth(context),
@@ -83,18 +83,18 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             child: SocialWidget(
                               socials: socialPlatforms.sublist(0, 1),
                             ),
-                          )),
+                          ),),
                           Expanded(
                               child: Center(
                             child: pageIndicator(desktopController,
-                                axisDirection: Axis.vertical),
-                          )),
+                                axisDirection: Axis.vertical,),
+                          ),),
                           Expanded(
                               child: Align(
                                   alignment: Alignment.bottomCenter,
                                   child: SocialWidget(
                                     socials: socialPlatforms.sublist(1),
-                                  ))),
+                                  ),),),
                         ],
                       ),
                     ),
@@ -124,6 +124,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniStartFloat,
-        ));
+        ),);
   }
 }

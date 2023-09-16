@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/provider/current_index.dart';
+import 'package:my_portfolio/views/screens/about_me.dart';
+import 'package:my_portfolio/views/screens/experience.dart';
+import 'package:my_portfolio/views/screens/extra.dart';
+import 'package:my_portfolio/views/screens/hero.dart' as hero;
+import 'package:my_portfolio/views/screens/project.dart';
+import 'package:my_portfolio/views/screens/skills.dart';
 import 'package:provider/provider.dart';
-
-import '../../../provider/current_index.dart';
-import '../../../views/screens/about_me.dart';
-import '../../../views/screens/experience.dart';
-import '../../../views/screens/project.dart';
-import '../../../views/screens/skills.dart';
-import '../extra.dart';
-import '../hero.dart' as hero;
 
 class DesktopWidget extends StatefulWidget {
   const DesktopWidget({required this.controller, Key? key}) : super(key: key);
@@ -28,7 +27,7 @@ class _DesktopWidgetState extends State<DesktopWidget> {
       Skills(),
       Experience(),
       Project(),
-      Extra()
+      Extra(),
     ];
   }
 

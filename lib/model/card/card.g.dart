@@ -16,5 +16,5 @@ CardModel _$CardModelFromJson(Map<String, dynamic> json) {
       title: json['title'] as String,
       startAt: json['startAt'] as Timestamp,
       endAt: json['endAt'] as Timestamp?,
-      projectLink: json['projectLink'] as String?);
+      projectLink: json['projectLink'] as String?,);
 }

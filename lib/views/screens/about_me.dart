@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-import '../../helpers/colors.dart';
-import '../../helpers/constants.dart';
-import '../../helpers/functions.dart';
-import '../../helpers/responsive_layout.dart';
-import '../../helpers/translate_on_hover.dart';
-import '../../main.dart';
-import '../../widgets/button.dart';
-import '../../widgets/contact_me_dialog.dart';
-import '../../widgets/page_title.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/helpers/functions.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'package:my_portfolio/helpers/translate_on_hover.dart';
+import 'package:my_portfolio/main.dart';
+import 'package:my_portfolio/widgets/button.dart';
+import 'package:my_portfolio/widgets/contact_me_dialog.dart';
+import 'package:my_portfolio/widgets/page_title.dart';
 
 class AboutMe extends StatelessWidget {
   const AboutMe({Key? key}) : super(key: key);
@@ -27,7 +26,7 @@ class AboutMe extends StatelessWidget {
                 child: FadeInImage.memoryNetwork(
                     placeholderCacheHeight: 80,
                     placeholder: unit8ListPlaceholder,
-                    image: aboutMeImage),
+                    image: aboutMeImage,),
               ),
             ),
             FractionallySizedBox(
@@ -41,14 +40,14 @@ class AboutMe extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  buttons(context)
+                  buttons(context),
                 ],
               ),
             ),
             const PageTitle(title: 'ABOUT ME'),
           ],
         ),
-        smallScreen: Container(
+        smallScreen: ColoredBox(
           color: ProfileColors.backgroundColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -62,10 +61,10 @@ class AboutMe extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              buttons(context)
+              buttons(context),
             ],
           ),
-        ));
+        ),);
   }
 
   Widget text(BuildContext context) {
@@ -84,7 +83,7 @@ class AboutMe extends StatelessWidget {
           text: 'CONTACT ME',
           onTap: () {
             showDialog(
-                context: context, builder: (_) => const ContactMeDialog());
+                context: context, builder: (_) => const ContactMeDialog(),);
           },
         ),
         const SizedBox(
@@ -93,7 +92,7 @@ class AboutMe extends StatelessWidget {
         ProfileButton(
           text: 'MY RESUME',
           onTap: () => launcher.launchURL(resumeWebsite),
-        )
+        ),
       ],
     );
   }

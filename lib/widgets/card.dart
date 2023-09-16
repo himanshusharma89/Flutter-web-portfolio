@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-import '../helpers/colors.dart';
-import '../helpers/functions.dart';
-import '../main.dart';
-import '../widgets/dialog_view.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/functions.dart';
+import 'package:my_portfolio/main.dart';
+import 'package:my_portfolio/widgets/dialog_view.dart';
 
 class CardView extends StatefulWidget {
   const CardView(
@@ -17,7 +16,7 @@ class CardView extends StatefulWidget {
       this.org,
       this.endAt,
       this.projectLink,
-      Key? key})
+      Key? key,})
       : super(key: key);
 
   final String title;
@@ -67,7 +66,7 @@ class _CardViewState extends State<CardView> {
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: FadeInImage.memoryNetwork(
-                      placeholder: unit8ListPlaceholder, image: widget.imgURL),
+                      placeholder: unit8ListPlaceholder, image: widget.imgURL,),
                 ),
               ),
               FractionallySizedBox(
@@ -124,7 +123,7 @@ class _CardViewState extends State<CardView> {
                           ),
                           onPressed: () {
                             launcher.launchURL(widget.url!);
-                          })
+                          },),
                     ],
                   ),
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/colors.dart';
-import '../helpers/responsive_layout.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
 
 class PageTitle extends StatefulWidget {
   const PageTitle({required this.title, Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _PageTitleState extends State<PageTitle> {
               fontWeight: FontWeight.bold,
               color: ProfileColors.headingColor,
               fontSize: ResponsiveLayout.isSmallScreen(context) ? 22 : 25.0,
-              letterSpacing: 1.5
+              letterSpacing: 1.5,
             ),
           ),
           SizedBox(
@@ -32,7 +32,7 @@ class _PageTitleState extends State<PageTitle> {
               child: const Divider(
                 color: Colors.white,
                 thickness: 1.0,
-              )),
+              ),),
         ],
       ),
     );

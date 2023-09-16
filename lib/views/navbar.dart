@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/helpers/change_text_on_hover.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/constants.dart';
+import 'package:my_portfolio/helpers/functions.dart';
+import 'package:my_portfolio/provider/current_index.dart';
 import 'package:provider/provider.dart';
-
-import '../helpers/change_text_on_hover.dart';
-import '../helpers/colors.dart';
-import '../helpers/constants.dart';
-import '../helpers/functions.dart';
-import '../provider/current_index.dart';
 
 class Navbar extends StatelessWidget {
   const Navbar({required this.controller, Key? key}) : super(key: key);
@@ -29,7 +28,7 @@ class Navbar extends StatelessWidget {
                   child: navBarItem(
                       context: context,
                       index: navBarItems.indexOf(e),
-                      navText: e),
+                      navText: e,),
                 ),
               )
               .toList(),
@@ -64,6 +63,6 @@ class Navbar extends StatelessWidget {
                   : fontSize(context, 13),
             ),
           ),
-        ));
+        ),);
   }
 }

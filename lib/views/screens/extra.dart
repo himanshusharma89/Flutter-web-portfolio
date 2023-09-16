@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../helpers/colors.dart';
+import 'package:my_portfolio/helpers/colors.dart';
 
 class Extra extends StatelessWidget {
   const Extra({Key? key}) : super(key: key);

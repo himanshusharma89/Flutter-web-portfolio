@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:my_portfolio/helpers/colors.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
+import 'package:my_portfolio/model/card/card.dart';
+import 'package:my_portfolio/provider/expereince_provider.dart';
+import 'package:my_portfolio/widgets/lists_view.dart';
+import 'package:my_portfolio/widgets/page_title.dart';
 import 'package:provider/provider.dart';
-
-import '../../helpers/colors.dart';
-import '../../helpers/responsive_layout.dart';
-import '../../model/card/card.dart';
-import '../../provider/expereince_provider.dart';
-import '../../widgets/lists_view.dart';
-import '../../widgets/page_title.dart';
 
 class Experience extends StatelessWidget {
   const Experience({Key? key}) : super(key: key);
@@ -29,15 +27,15 @@ class Experience extends StatelessWidget {
           ),
         ],
       ),
-      smallScreen: Container(
+      smallScreen: ColoredBox(
         color: ProfileColors.backgroundColor,
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
           child: Column(
             children: <Widget>[
-              const PageTitle(title: 'Expereince'),
+              const PageTitle(title: 'Experience'),
               const SizedBox(height: 10.0),
-              consumerWidget(context)
+              consumerWidget(context),
             ],
           ),
         ),
@@ -64,14 +62,14 @@ class Experience extends StatelessWidget {
                     smallScreen: SizedBox(
                         height: 50,
                         width: 50,
-                        child: CircularProgressIndicator()));
+                        child: CircularProgressIndicator(),),);
               }
-            });
+            },);
       }
       return ResponsiveLayout(
         largeScreen: gridView(exp.experience, width * 0.32),
         smallScreen: listView(exp.experience),
       );
-    });
+    },);
   }
 }

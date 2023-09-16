@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import '../helpers/colors.dart';
+import 'package:my_portfolio/helpers/colors.dart';
 
 class ProfileButton extends StatefulWidget {
   const ProfileButton(
@@ -8,11 +7,12 @@ class ProfileButton extends StatefulWidget {
       required this.onTap,
       this.height,
       this.width,
-      Key? key})
+      Key? key,})
       : super(key: key);
 
   final String text;
-  final double? height, width;
+  final double? height;
+  final double? width;
   final Function() onTap;
 
   @override
@@ -40,7 +40,7 @@ class _ProfileButtonState extends State<ProfileButton> {
               borderRadius: BorderRadius.circular(22),
               color: _hovering
                   ? ProfileColors.dotOutlineColor
-                  : Colors.transparent),
+                  : Colors.transparent,),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
             child: Text(
@@ -48,7 +48,7 @@ class _ProfileButtonState extends State<ProfileButton> {
               style: TextStyle(
                   color: _hovering
                       ? Colors.white
-                      : ProfileColors.dotOutlineColor),
+                      : ProfileColors.dotOutlineColor,),
             ),
           ),
         ),

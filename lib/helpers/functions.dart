@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'responsive_layout.dart';
+import 'package:my_portfolio/helpers/responsive_layout.dart';
 
 double fontSize(BuildContext context, double size) =>
     ResponsiveLayout.isLargeScreen(context)
@@ -14,6 +14,6 @@ double navBarWidth(BuildContext context) =>
 Future<void> animateToPage(PageController controller, int index) async {
   if (controller.hasClients) {
     controller.animateToPage(index,
-        duration: const Duration(milliseconds: 1000), curve: Curves.ease);
+        duration: const Duration(milliseconds: 1000), curve: Curves.ease,);
   }
 }

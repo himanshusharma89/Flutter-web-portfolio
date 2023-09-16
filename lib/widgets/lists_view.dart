@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/helpers/translate_on_hover.dart';
+import 'package:my_portfolio/model/card/card.dart';
+import 'package:my_portfolio/widgets/card.dart';
 import 'package:responsive_grid/responsive_grid.dart';
-
-import '../helpers/translate_on_hover.dart';
-import '../model/card/card.dart';
-import 'card.dart';
 
 Widget gridView(List<CardModel> list, double width) {
   return ResponsiveGridList(
@@ -12,8 +11,8 @@ Widget gridView(List<CardModel> list, double width) {
       children: list
           .map((e) => TranslateOnHover(
                 child: listItem(e),
-              ))
-          .toList());
+              ),)
+          .toList(),);
 }
 
 Widget listView(List<CardModel> list) {

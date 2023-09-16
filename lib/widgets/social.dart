@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-import '../main.dart';
-import '../model/social_platform_item.dart';
+import 'package:my_portfolio/main.dart';
+import 'package:my_portfolio/model/social_platform_item.dart';
 
 class SocialWidget extends StatelessWidget {
   const SocialWidget({required this.socials, Key? key}) : super(key: key);
@@ -24,7 +23,7 @@ class SocialWidget extends StatelessWidget {
   }
 
   Widget _socialWidgetItem(
-      BuildContext context, SocialPlatformsItem socialPlatformsItem) {
+      BuildContext context, SocialPlatformsItem socialPlatformsItem,) {
     return Container(
       decoration:
           const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
@@ -38,11 +37,11 @@ class SocialWidget extends StatelessWidget {
             behavior: SnackBarBehavior.floating,
             margin: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width * 0.2,
-                vertical: 2),
+                vertical: 2,),
             content: Text(socialPlatformsItem.title.startsWith('B')
                 ? 'Check out my ${socialPlatformsItem.title}'
-                : 'Check out my ${socialPlatformsItem.title} Account'),
-          ));
+                : 'Check out my ${socialPlatformsItem.title} Account',),
+          ),);
         },
         customBorder: const CircleBorder(),
         child: FadeInImage.memoryNetwork(
