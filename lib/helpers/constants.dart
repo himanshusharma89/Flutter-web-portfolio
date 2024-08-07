@@ -47,6 +47,10 @@ List<SkillsItem> techSkills = <SkillsItem>[
       'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Fjava.png?alt=media&token=27318b73-2880-4d19-b1c8-8263b24ea71c',),
   SkillsItem('C',
       'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Fc.png?alt=media&token=6c31016a-cbda-449d-8ad1-2f07fc9df6d5',),
+  SkillsItem('Bash',
+      'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Fbash.png?alt=media&token=4688bba9-9c30-40c9-9825-39fb4e4eb65f'),
+  SkillsItem('Python',
+      'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Fpyhton.png?alt=media&token=bd1a31df-4c4a-4f9b-8ac7-24667db1e140'),
   SkillsItem('Flutter',
       'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Fflutter.png?alt=media&token=917d6379-e391-47d1-9fdf-d8a6176942a7',),
   SkillsItem('Git',
@@ -63,6 +67,10 @@ List<SkillsItem> techSkills = <SkillsItem>[
       'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Fgraphql.png?alt=media&token=a7ddacab-eb3f-4648-826f-660132b7b660',),
   SkillsItem('MongoDB',
       'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Fmongodb.png?alt=media&token=f37ab4ef-87b7-4436-aae0-729d2bbb34d0',),
+  SkillsItem('Elastic Search',
+    'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Felastic.png?alt=media&token=1d2b336a-f5cf-4abe-b6b0-d8dd26ecb0dd',),
+  SkillsItem('Apache Airflow',
+    'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Fairflow.png?alt=media&token=3dfd16cd-f373-4538-a795-9c6434a63671',),
   SkillsItem('GitHub Action',
       'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/tech%2Fgithub_action.png?alt=media&token=28edc651-0532-4d86-bda9-18abeb7347b5',),
   SkillsItem('Markdown',
@@ -70,13 +78,13 @@ List<SkillsItem> techSkills = <SkillsItem>[
 ];
 
 const String aboutMe = '''
-I am a Software Engineer, specializing in the mobile development domain and a focused computer science major currently pursuing my Bachelor. For the past 2 years, I have been developing mobile and web apps using Flutter SDK and Dart programming language.
+Senior Member of Technical Staff, with a proven track record in software engineering, and problem resolution. Skilled in cross-platform app development, Apache Airflow, and CI/CD pipelines. Holds a Bachelor's in Computer Science and Engineering from Chitkara University.
 
-I am an open-source enthusiast and I enjoy learning new technologies. Additionally, I am an organizer of Flutter Chandigarh and Flutter India.
+Passionate about innovation, I've contributed to high-impact projects, including the Swaasthy health app (Global Top 10 in Google Solution Challenge) and Relic Bazaar e-commerce app (Global Top 50 in Hack20 Flutter International Hackathon).
 
-In my spare time, I love writing Technical Articles and Mentor fellow developers at Hackathons. And I am proud that my articles have reached out to 123K+ developers and helped a lot of organizations to grow their products.
+My technical expertise includes Dart, Node.js, JavaScript, Python, MongoDB, and Elasticsearch, utilizing tools like Webstorm, VS Code, and Android Studio. Actively engaged in the tech community, I organize events for Flutter India, write technical articles, and mentor/judge in global hackathons. Let's connect and explore opportunities in tech! #TechInnovation #SoftwareEngineering #CommunityEngagement
+''';
 
-If you want to talk about Flutter, Dart, Technical Writing, or anything else, feel free to drop me a message.''';
 
 const String skills = '''
 The main area of my expertise is Flutter App Development and Firebase (analytics and growth).
@@ -88,7 +96,7 @@ Automate Work Flow: GitHub Actions.\nIDE: Android Studio.\nCode Editor: VS Code.
 
 const String hi = 'Hey! I am';
 const String name = 'HIMANSHU SHARMA';
-const String role = 'MOBILE DEVELOPER';
+const String role = 'SOFTWARE ENGINEER';
 
 const String heroImage =
     'https://firebasestorage.googleapis.com/v0/b/flutter-web-portfolio-website.appspot.com/o/Himanshu%20Sharma.jpg?alt=media&token=89e96691-a349-4d5b-9b74-da736fcab72e';

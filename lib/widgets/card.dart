@@ -65,8 +65,18 @@ class _CardViewState extends State<CardView> {
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
-                  child: FadeInImage.memoryNetwork(
-                      placeholder: unit8ListPlaceholder, image: widget.imgURL,),
+                  child: Image.network(
+                    widget.imgURL,
+                    fit: BoxFit.cover,
+                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                      return Center(
+                        child: Icon(
+                          Icons.broken_image,
+                          color: ProfileColors.cardTextColor,
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
               FractionallySizedBox(

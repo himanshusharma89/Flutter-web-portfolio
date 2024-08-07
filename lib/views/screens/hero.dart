@@ -156,24 +156,46 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
   }
 
   Widget centerImage() {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(
-            width: 20,
-            color: ProfileColors.navbarItemColor,
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        // Calculate size based on available space and border width
+        const double borderWidth = 20.0;  // Border width
+        final double size = constraints.maxWidth < constraints.maxHeight
+            ? constraints.maxWidth
+            : constraints.maxHeight;
+
+        // Ensure the size accounts for the border width
+        final double imageSize = size - (2 * borderWidth);
+
+        return Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              width: borderWidth,
+              color: ProfileColors.navbarItemColor,
+            ),
+            color: ProfileColors.backgroundColor,
+            boxShadow: const <BoxShadow>[
+              BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 15),
+            ],
           ),
-          color: ProfileColors.backgroundColor,
-          boxShadow: const <BoxShadow>[
-            BoxShadow(offset: Offset(0.0, 3.0), blurRadius: 15),
-          ],),
-      child: ClipOval(
-        child: FadeInImage.memoryNetwork(
-            placeholderCacheHeight: 20,
-            placeholderScale: 0.2,
-            placeholder: unit8ListPlaceholder,
-            image: heroImage,),
-      ),
+          child: ClipOval(
+            child: SizedBox(
+              width: imageSize,
+              height: imageSize,
+              child: FadeInImage.memoryNetwork(
+                placeholderCacheHeight: 20,
+                placeholderScale: 0.2,
+                placeholder: unit8ListPlaceholder,
+                image: heroImage,
+                fit: BoxFit.cover,  // Adjust BoxFit as needed
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

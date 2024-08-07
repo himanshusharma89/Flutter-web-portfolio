@@ -34,13 +34,13 @@ class Skills extends StatelessWidget {
                   flex: 2,
                 ),
                 text(context, 'Programming Langugaes'),
-                Flexible(child: skillWidget(context, end: 4)),
+                Flexible(child: skillWidget(context, end: 6)),
                 text(context, 'Tools and Technology'),
                 Flexible(
                   flex: 2,
                   child: skillWidget(
                     context,
-                    start: 4,
+                    start: 6,
                     end: techSkills.length,
                   ),
                 ),
@@ -65,7 +65,7 @@ class Skills extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   text(context, 'Programming Langugaes'),
-                  Flexible(child: skillWidget(context, end: 4)),
+                  Flexible(child: skillWidget(context, end: 6)),
                   const SizedBox(
                     height: 10,
                   ),
@@ -74,7 +74,7 @@ class Skills extends StatelessWidget {
                     // flex: 2,
                     child: skillWidget(
                       context,
-                      start: 4,
+                      start: 6,
                       end: techSkills.length,
                     ),
                   ),
