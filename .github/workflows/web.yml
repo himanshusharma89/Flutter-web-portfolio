@@ -10,8 +10,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the Flutter project repository (base repo)
-      - name: Checkout repo1
+      # Checkout Flutter web portfolio (the Flutter project repository)
+      - name: Checkout Flutter web portfolio
         uses: actions/checkout@v2
 
       # Set up Flutter using the subosito/flutter-action
@@ -27,25 +27,42 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      # Install Firebase CLI
+      - name: Install Firebase CLI
+        run: curl -sL https://firebase.tools | bash
+
+      # Authenticate with Firebase using a service account key
+      - name: Authenticate with Firebase
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          echo $FIREBASE_SERVICE_ACCOUNT > ${HOME}/firebase-service-account.json
+          firebase auth:login --creds ${HOME}/firebase-service-account.json
+
+      # Run flutterfire configure to generate firebase_options.dart
+      - name: Generate firebase_options.dart
+        run: flutterfire configure
+
       # Build the Flutter web app
       - name: Build Flutter web app
         run: flutter build web
 
-      # Deploy the built app to repo2's gh-pages branch
-      - name: Deploy to GitHub Pages in repo2
+      # Deploy the built app to taget repo's gh-pages branch
+      - name: Deploy to GitHub Pages in taget repo
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Configure Git
           git config --global user.name "Himanshu's GitHub Actions"
           git config --global user.email "contact@himanshusharma.tech"
 
-          # Clone the target repo where the app will be deployed
-          git clone --branch=gh-pages https://github.com/himanshusharma89himanshusharma89.github.io.git deploy-repo
-
-          # Copy the built Flutter web app to target repo
+          # Clone taget repo where the app will be deployed
+          git clone --branch=gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/himanshusharma89/himanshusharma89.github.io.git deploy-repo
+          
+          # Copy the built Flutter web app to taget repo
           rsync -av --delete build/web/ deploy-repo/
 
           # Commit and push the changes to the gh-pages branch
           cd deploy-repo
           git add .
-          git commit -m "Auto-deploy Flutter web app from flutter web portfolio"
+          git commit -m "Auto-deploy Flutter web app from Flutter web portfolio"
           git push origin gh-pages
