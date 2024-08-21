@@ -7,28 +7,45 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: beta
-    - run: flutter config --enable-web
-    - run: flutter pub get
-#     - run: flutter test
-    - run: flutter build web
-    - name: Archive Production Artifact
-      uses: actions/upload-artifact@master
-      with:
-        name: web-build
-        path: build/web
-    - name: Download Artifact
-      uses: actions/download-artifact@master
-      with:
-        name: web-build
-        path: ./
-    
-    - name: Display structure of build files
-      run: ls -R
-      working-directory: ./web
+      # Checkout the Flutter project repository (base repo)
+      - name: Checkout repo1
+        uses: actions/checkout@v2
+
+      # Set up Flutter using the subosito/flutter-action
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: beta
+
+      # Enable web support and get dependencies
+      - name: Enable Flutter web
+        run: flutter config --enable-web
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Build the Flutter web app
+      - name: Build Flutter web app
+        run: flutter build web
+
+      # Deploy the built app to repo2's gh-pages branch
+      - name: Deploy to GitHub Pages in repo2
+        run: |
+          # Configure Git
+          git config --global user.name "Himanshu's GitHub Actions"
+          git config --global user.email "contact@himanshusharma.tech"
+
+          # Clone the target repo where the app will be deployed
+          git clone --branch=gh-pages https://github.com/himanshusharma89himanshusharma89.github.io.git deploy-repo
+
+          # Copy the built Flutter web app to target repo
+          rsync -av --delete build/web/ deploy-repo/
+
+          # Commit and push the changes to the gh-pages branch
+          cd deploy-repo
+          git add .
+          git commit -m "Auto-deploy Flutter web app from flutter web portfolio"
+          git push origin gh-pages
