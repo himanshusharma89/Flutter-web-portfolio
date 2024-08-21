@@ -8,7 +8,7 @@ import 'package:my_portfolio/widgets/page_title.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
 class Skills extends StatelessWidget {
-  const Skills({Key? key}) : super(key: key);
+  const Skills({super.key});
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(

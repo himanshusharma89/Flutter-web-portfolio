@@ -11,7 +11,7 @@ import 'package:my_portfolio/widgets/contact_me_dialog.dart';
 import 'package:my_portfolio/widgets/page_title.dart';
 
 class AboutMe extends StatelessWidget {
-  const AboutMe({Key? key}) : super(key: key);
+  const AboutMe({super.key});
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(

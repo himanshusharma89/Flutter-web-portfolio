@@ -7,8 +7,7 @@ class ProfileButton extends StatefulWidget {
       required this.onTap,
       this.height,
       this.width,
-      Key? key,})
-      : super(key: key);
+      super.key,});
 
   final String text;
   final double? height;

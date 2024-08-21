@@ -15,7 +15,7 @@ import 'package:my_portfolio/widgets/social.dart';
 import 'package:provider/provider.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  const Dashboard({super.key});
   @override
   _DashboardState createState() => _DashboardState();
 }

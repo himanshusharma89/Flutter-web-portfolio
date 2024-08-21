@@ -8,7 +8,7 @@ import 'package:my_portfolio/main.dart';
 import 'package:my_portfolio/widgets/text.dart';
 
 class Hero extends StatefulWidget {
-  const Hero({Key? key}) : super(key: key);
+  const Hero({super.key});
   @override
   _HeroState createState() => _HeroState();
 }
@@ -159,13 +159,13 @@ class _HeroState extends State<Hero> with SingleTickerProviderStateMixin {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         // Calculate size based on available space and border width
-        const double borderWidth = 20.0;  // Border width
-        final double size = constraints.maxWidth < constraints.maxHeight
+        const borderWidth = 20.0;  // Border width
+        final size = constraints.maxWidth < constraints.maxHeight
             ? constraints.maxWidth
             : constraints.maxHeight;
 
         // Ensure the size accounts for the border width
-        final double imageSize = size - (2 * borderWidth);
+        final imageSize = size - (2 * borderWidth);
 
         return Container(
           width: size,

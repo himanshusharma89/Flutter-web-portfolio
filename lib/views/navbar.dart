@@ -7,7 +7,7 @@ import 'package:my_portfolio/provider/current_index.dart';
 import 'package:provider/provider.dart';
 
 class Navbar extends StatelessWidget {
-  const Navbar({required this.controller, Key? key}) : super(key: key);
+  const Navbar({required this.controller, super.key});
   final PageController controller;
   @override
   Widget build(BuildContext context) {

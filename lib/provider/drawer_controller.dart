@@ -13,16 +13,12 @@ class MenuController extends ChangeNotifier {
         switch (status) {
           case AnimationStatus.forward:
             state = MenuState.opening;
-            break;
           case AnimationStatus.reverse:
             state = MenuState.closing;
-            break;
           case AnimationStatus.completed:
             state = MenuState.open;
-            break;
           case AnimationStatus.dismissed:
             state = MenuState.closed;
-            break;
         }
         notifyListeners();
       });

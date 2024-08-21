@@ -7,7 +7,7 @@ import 'package:my_portfolio/provider/drawer_controller.dart' as mc;
 import 'package:provider/provider.dart';
 
 class DrawerScreen extends StatelessWidget {
-  const DrawerScreen({Key? key}) : super(key: key);
+  const DrawerScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

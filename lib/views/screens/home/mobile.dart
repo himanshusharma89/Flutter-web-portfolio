@@ -12,7 +12,7 @@ import 'package:my_portfolio/widgets/page_indicator.dart';
 import 'package:provider/provider.dart';
 
 class MobileWidget extends StatefulWidget {
-  const MobileWidget({required this.controller, Key? key}) : super(key: key);
+  const MobileWidget({required this.controller, super.key});
   final PageController controller;
 
   @override
@@ -133,11 +133,9 @@ class _MobileWidgetState extends State<MobileWidget>
       case mc.MenuState.closed:
         slidePercent = 0.0;
         scalePercent = 0.0;
-        break;
       case mc.MenuState.open:
         slidePercent = 1.0;
         scalePercent = 1.0;
-        break;
       case mc.MenuState.opening:
         slidePercent = slideOutCurve.transform(
           double.parse(
@@ -149,7 +147,6 @@ class _MobileWidgetState extends State<MobileWidget>
             Provider.of<mc.MenuController>(context).percentOpen.toString(),
           ),
         );
-        break;
       case mc.MenuState.closing:
         slidePercent = slideInCurve.transform(
           double.parse(
@@ -161,7 +158,6 @@ class _MobileWidgetState extends State<MobileWidget>
             Provider.of<mc.MenuController>(context).percentOpen.toString(),
           ),
         );
-        break;
     }
 
     final slideAmount = 225.0 * num.parse(slidePercent.toString());

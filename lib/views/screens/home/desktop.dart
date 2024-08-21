@@ -9,7 +9,7 @@ import 'package:my_portfolio/views/screens/skills.dart';
 import 'package:provider/provider.dart';
 
 class DesktopWidget extends StatefulWidget {
-  const DesktopWidget({required this.controller, Key? key}) : super(key: key);
+  const DesktopWidget({required this.controller, super.key});
   final PageController controller;
   @override
   _DesktopWidgetState createState() => _DesktopWidgetState();

@@ -16,8 +16,7 @@ class CardView extends StatefulWidget {
       this.org,
       this.endAt,
       this.projectLink,
-      Key? key,})
-      : super(key: key);
+      super.key,});
 
   final String title;
   final String desc;
@@ -69,7 +68,7 @@ class _CardViewState extends State<CardView> {
                     widget.imgURL,
                     fit: BoxFit.cover,
                     errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                      return Center(
+                      return const Center(
                         child: Icon(
                           Icons.broken_image,
                           color: ProfileColors.cardTextColor,

@@ -7,7 +7,7 @@ import 'package:my_portfolio/model/api/send_message.dart';
 import 'package:my_portfolio/widgets/button.dart';
 
 class ContactMeDialog extends StatefulWidget {
-  const ContactMeDialog({Key? key}) : super(key: key);
+  const ContactMeDialog({super.key});
 
   @override
   _ContactMeDialogState createState() => _ContactMeDialogState();

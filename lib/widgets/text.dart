@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/helpers/responsive_layout.dart';
 
 class MeTextWidget extends StatelessWidget {
-  const MeTextWidget({required this.text, this.textAlign, Key? key})
-      : super(key: key);
+  const MeTextWidget({required this.text, this.textAlign, super.key});
 
   final String text;
   final TextAlign? textAlign;

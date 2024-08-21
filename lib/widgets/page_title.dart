@@ -4,7 +4,7 @@ import 'package:my_portfolio/helpers/colors.dart';
 import 'package:my_portfolio/helpers/responsive_layout.dart';
 
 class PageTitle extends StatefulWidget {
-  const PageTitle({required this.title, Key? key}) : super(key: key);
+  const PageTitle({required this.title, super.key});
   final String title;
 
   @override

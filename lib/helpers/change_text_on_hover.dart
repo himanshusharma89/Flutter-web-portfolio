@@ -8,9 +8,9 @@ class ChangeTextOnHover extends StatefulWidget {
   const ChangeTextOnHover({
     required this.text,
     required this.fontSize,
-    Key? key,
+    super.key,
     this.color,
-  }) : super(key: key);
+  });
 
   final String text;
   final Color? color;

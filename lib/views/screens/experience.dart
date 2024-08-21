@@ -8,7 +8,7 @@ import 'package:my_portfolio/widgets/page_title.dart';
 import 'package:provider/provider.dart';
 
 class Experience extends StatelessWidget {
-  const Experience({Key? key}) : super(key: key);
+  const Experience({super.key});
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;

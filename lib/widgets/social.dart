@@ -4,7 +4,7 @@ import 'package:my_portfolio/main.dart';
 import 'package:my_portfolio/model/social_platform_item.dart';
 
 class SocialWidget extends StatelessWidget {
-  const SocialWidget({required this.socials, Key? key}) : super(key: key);
+  const SocialWidget({required this.socials, super.key});
   final List<SocialPlatformsItem> socials;
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class TranslateOnHover extends StatefulWidget {
-  const TranslateOnHover({Key? key, this.child}) : super(key: key);
+  const TranslateOnHover({super.key, this.child});
 
   final Widget? child;
   // You can also pass the translation in here if you want to

@@ -14,9 +14,9 @@ class DialogView extends StatelessWidget {
     required this.startAt,
     this.endAt,
     this.org,
-    Key? key,
+    super.key,
     this.projectLink,
-  }) : super(key: key);
+  });
   final String description;
   final String title;
   final String? org;
