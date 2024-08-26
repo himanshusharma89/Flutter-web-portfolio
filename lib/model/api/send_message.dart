@@ -4,7 +4,7 @@ Future<bool> sendMessage(
     {required String name,
     required String email,
     required String message,}) async {
-  const url = 'https://himanshusharma89-api.herokuapp.com/send/';
+  const url = 'https://himanshus-api.onrender.com/send';
   final response = await http.post(Uri.parse(url),
       body: {'name': name, 'message': message, 'email': email},);
   if (response.statusCode == 200) {
